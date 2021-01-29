@@ -29,12 +29,14 @@
     "noEmit": true
   },
   "include": [
-    "src",
-    "src/index.test.tsx"
+    "src"
   ],
   "exclude": [
     "node_modules",
     "dist",
     "example"
-  ]
+  ],
+  "paths": {
+    "*": ["types/*.d.ts"]
+  }
 }

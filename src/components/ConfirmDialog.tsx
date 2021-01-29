@@ -11,7 +11,7 @@ import { PropTypes } from '@material-ui/core'
 
 import Loading from './Loading'
 
-interface Props {
+type Props = {
   /** Dialog title */
   title: string
 
@@ -39,7 +39,10 @@ interface Props {
   /** Loading bar inside the dialog body */
   loading?: boolean
 
+  /** Confirm Button color */
   confirmColor?: PropTypes.Color
+
+  /** Cancel Button color */
   cancelColor?: PropTypes.Color
 }
 
@@ -47,7 +50,7 @@ interface Props {
  * A Material-UI base confirmation dialog with callbacks for a
  * confirm and cancel actions
  */
-const ConfirmDialog = ({
+const ConfirmDialog: React.FC<Props> = ({
   title,
   text,
   cancelText,
@@ -59,7 +62,7 @@ const ConfirmDialog = ({
   loading = false,
   confirmColor = 'secondary',
   cancelColor = 'primary'
-}: Props) => {
+}) => {
   return (
     <Dialog open={open} onClose={handleClose}>
       <DialogTitle>{title}</DialogTitle>
