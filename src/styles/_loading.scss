@@ -1,0 +1,9 @@
+.loader {
+  margin: auto;
+  width: 50px;
+  display: none;
+
+  &.active {
+    display: initial;
+  }
+}
