@@ -10,6 +10,7 @@ import ListItemText from '@material-ui/core/ListItemText'
 import Divider from '@material-ui/core/Divider'
 
 import YuriBlackLogo from '/../../assets/images/yuri_black.png'
+import { NavbarItem } from '../../types'
 
 type ListProps = {
   buttons: NavbarItem[]

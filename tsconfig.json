@@ -37,6 +37,6 @@
     "example"
   ],
   "paths": {
-    "*": ["types/*.d.ts"]
+    "*": ["src/types/*.d.ts"]
   }
 }

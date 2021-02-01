@@ -5,6 +5,7 @@ import CodeIcon from '@material-ui/icons/Code'
 import { makeStyles } from '@material-ui/core/styles'
 
 import { titleize } from '../helpers'
+import { AppEnvironment } from '../types'
 
 const useStyles = makeStyles((theme) => ({
   developmentBuild: {
