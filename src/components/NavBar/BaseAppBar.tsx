@@ -12,10 +12,9 @@ import MenuIcon from '@material-ui/icons/Menu'
 
 import YuMobileNavBar from './YuMobileNavBar'
 import YuDrawer from './YuDrawer'
-
 import YuriLogo from '/../../assets/images/yuri_white.png'
-
 import { useStyles } from './NavBarStyles'
+import { NavbarItem } from '../../types'
 
 export type Props = {
   items: {
