@@ -7,11 +7,9 @@ import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogActions from '@material-ui/core/DialogActions'
 import Button from '@material-ui/core/Button'
 
-import { PropTypes } from '@material-ui/core'
-
 import Loading from './Loading'
 
-interface Props {
+type Props = {
   /** Dialog title */
   title: string
 
@@ -36,18 +34,30 @@ interface Props {
   /** URL to go with the Confirm button, instead of a Confirm action */
   path?: string
 
-  /** Loading bar inside the dialog body */
+  /**
+   * Loading bar inside the dialog body
+   * @default false
+   */
   loading?: boolean
 
-  confirmColor?: PropTypes.Color
-  cancelColor?: PropTypes.Color
+  /**
+   * Confirm Button color
+   * @default 'secondary'
+   */
+  confirmColor?: 'inherit' | 'primary' | 'secondary'
+
+  /**
+   * Cancel Button color
+   * @default 'primary'
+   */
+  cancelColor?: 'inherit' | 'primary' | 'secondary'
 }
 
 /**
  * A Material-UI base confirmation dialog with callbacks for a
  * confirm and cancel actions
  */
-const ConfirmDialog = ({
+const ConfirmDialog: React.FC<Props> = ({
   title,
   text,
   cancelText,
@@ -59,7 +69,7 @@ const ConfirmDialog = ({
   loading = false,
   confirmColor = 'secondary',
   cancelColor = 'primary'
-}: Props) => {
+}) => {
   return (
     <Dialog open={open} onClose={handleClose}>
       <DialogTitle>{title}</DialogTitle>

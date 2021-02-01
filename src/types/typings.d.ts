@@ -7,6 +7,11 @@ declare module '*.css' {
   export default content
 }
 
+declare module '*.scss' {
+  const content: { [className: string]: string }
+  export default content
+}
+
 interface SvgrComponent
   extends React.FunctionComponent<React.SVGAttributes<SVGElement>> {}
 
@@ -16,3 +21,5 @@ declare module '*.svg' {
   export default svgUrl
   export { svgComponent as ReactComponent }
 }
+
+declare module '*.png'

@@ -8,7 +8,31 @@
 yarn add yu-lib
 ```
 
-## Usage
+---
+
+## Theme Usage
+
+```tsx
+import React from 'react'
+
+import { ThemeProvider } from '@material-ui/core/styles'
+import { AppTheme } from 'yu-lib'
+
+const theme = AppTheme({ darkMode: false })
+
+const App = () => {
+  return (
+    <ThemeProvider theme={theme}>
+      ...
+    </ThemeProvider>
+  )
+}
+
+```
+
+---
+
+## Components Usage
 
 ```tsx
 import React, { useState } from 'react'

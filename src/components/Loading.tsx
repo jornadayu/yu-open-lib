@@ -9,11 +9,12 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-interface Props {
+type Props = {
+  /** If the Loading Bar should be active or its children */
   loading: boolean
 }
 
-const LoadingBars = ({ loading }: Props) => {
+const LoadingBars: React.FC<Props> = ({ loading }) => {
   const classes = useStyles()
 
   return (
