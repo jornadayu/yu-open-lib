@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Typography } from '@material-ui/core'
 import { ThemeProvider } from '@material-ui/core/styles'
-import { CopyableInput, AppTheme, YuAppBar } from 'yu-lib'
+import { CopyableInput, AppTheme, YuAppBar, WhatsappChip } from 'yu-lib'
 import GroupIcon from '@material-ui/icons/Group'
 
 import 'yu-lib/dist/index.css'
@@ -47,7 +47,9 @@ const App = () => {
       </div>
       {/* <ConfirmDialog handleClose={onCancel} handleConfirm={onConfirm} title="Some title" open text="Some text" cancelText="Cancelar" confirmText="Confirmar"></ConfirmDialog> */}
 
-      <CopyableInput text="url.com" label="Some URL"></CopyableInput>
+      <CopyableInput text="url.com" label="Some URL" />
+
+      <WhatsappChip onClick={() => {}} number="123456" message="Olá" />
     </ThemeProvider>
   )
 }

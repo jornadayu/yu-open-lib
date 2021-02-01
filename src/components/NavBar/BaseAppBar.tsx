@@ -17,8 +17,6 @@ import YuriLogo from '/../../assets/images/yuri_white.png'
 
 import { useStyles } from './NavBarStyles'
 
-import '../../styles/core.scss'
-
 export type Props = {
   items: {
     leftItems: NavbarItem[]

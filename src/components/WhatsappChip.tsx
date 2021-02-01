@@ -18,14 +18,25 @@ const useStyles = makeStyles(() => ({
 }))
 
 type Props = {
+  /**
+   * Valid Phone number for WhatsApp (with area code)
+   */
   number: string
-  message: string
-  onClick: () => void
+
+  /**
+   * Default message on WhatsApp chatbox
+   */
+  message?: string
+
+  /**
+   * Callback to run before clicking on the WhatsApp Chip
+   */
+  onClick?: () => void
 }
 
 const WhatsappChip: React.FC<Props> = ({
   number,
-  message,
+  message = '',
   onClick = () => {}
 }) => {
   const classes = useStyles()
