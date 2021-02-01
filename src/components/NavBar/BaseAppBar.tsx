@@ -80,7 +80,7 @@ const BaseAppBar: React.FC<Props> = ({
               color='inherit'
               href={homeURL}
             >
-              <img src={YuriLogo} width='32' height='48' />
+              <img src={YuriLogo} width='32' />
             </IconButton>
           </Typography>
         </Toolbar>
@@ -114,7 +114,7 @@ const BaseAppBar: React.FC<Props> = ({
               </IconButton>
 
               <IconButton className={classes.logoYuri} color='inherit' href='/'>
-                <img src={YuriLogo} width='32' height='48' />
+                <img src={YuriLogo} width='32' />
               </IconButton>
 
               {leftItems.map((button) => (

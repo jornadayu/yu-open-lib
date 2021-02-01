@@ -37,7 +37,7 @@ const YuMobileNavBar: React.FC<Props> = ({ toggleLeftDrawer }) => {
             </Typography>
 
             <IconButton className={classes.logoYuri} color='inherit' href='/'>
-              <img src={YuriLogo} width='32' height='48' />
+              <img src={YuriLogo} width='32' />
             </IconButton>
           </Toolbar>
         </AppBar>

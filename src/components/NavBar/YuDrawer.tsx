@@ -60,7 +60,7 @@ const YuDrawer: React.FC<DrawerProps> = ({ items, open, handleClose }) => {
     <Drawer anchor='left' open={open} onClose={handleClose}>
       <List>
         <ListItem button component='a' href='/'>
-          <img src={YuriBlackLogo} width='32' height='48' />
+          <img src={YuriBlackLogo} width='32' />
         </ListItem>
 
         <ListItems buttons={allItems.up} />
