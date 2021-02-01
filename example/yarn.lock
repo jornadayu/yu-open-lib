@@ -11147,6 +11147,6 @@ yargs@^13.3.0, yargs@^13.3.2:
     y18n "^4.0.0"
     yargs-parser "^13.1.2"
 
-"yu-lib@link:..":
-  version "0.0.0"
-  uid ""
+"yu-lib@ssh://git@bitbucket.org:sal-jornadayu/yulib.git", "yu-lib@ssh://git@bitbucket.org:sal-jornadayu/yulib.git#1.0.0":
+  version "1.0.0"
+  resolved "ssh://git@bitbucket.org:sal-jornadayu/yulib.git#7c2f65818cd89dce03b6339434204330569d6f05"
