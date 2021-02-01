@@ -7,8 +7,6 @@ import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogActions from '@material-ui/core/DialogActions'
 import Button from '@material-ui/core/Button'
 
-import { PropTypes } from '@material-ui/core'
-
 import Loading from './Loading'
 
 type Props = {
@@ -36,14 +34,23 @@ type Props = {
   /** URL to go with the Confirm button, instead of a Confirm action */
   path?: string
 
-  /** Loading bar inside the dialog body */
+  /**
+   * Loading bar inside the dialog body
+   * @default false
+   */
   loading?: boolean
 
-  /** Confirm Button color */
-  confirmColor?: PropTypes.Color
+  /**
+   * Confirm Button color
+   * @default 'secondary'
+   */
+  confirmColor?: 'inherit' | 'primary' | 'secondary'
 
-  /** Cancel Button color */
-  cancelColor?: PropTypes.Color
+  /**
+   * Cancel Button color
+   * @default 'primary'
+   */
+  cancelColor?: 'inherit' | 'primary' | 'secondary'
 }
 
 /**

@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     top: theme.spacing(11),
     right: theme.spacing(2),
     color: 'white',
-    backgroundColor: ({ environment }: Props) =>
+    backgroundColor: ({ environment }: { environment: Props['environment'] }) =>
       environment === 'development' ? '#66ab3e' : '#de4573'
   },
   developmentBuildIcon: {

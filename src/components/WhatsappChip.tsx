@@ -4,12 +4,12 @@ import { makeStyles } from '@material-ui/core/styles'
 import Chip from '@material-ui/core/Chip'
 import WhatsAppIcon from '@material-ui/icons/WhatsApp'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   whatsappChip: {
-    backgroundColor: theme.palette.success.main,
+    backgroundColor: '#4caf50',
     color: 'white',
     '&:hover': {
-      backgroundColor: theme.palette.success.dark
+      backgroundColor: '#458c48'
     }
   },
   whatsappIcon: {
