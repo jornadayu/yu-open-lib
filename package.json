@@ -4,10 +4,14 @@
   "description": "Made with create-react-library",
   "author": "jornadayu",
   "license": "UNLICENSED",
-  "repository": "jornadayu/yu-lib",
+  "repository": {
+    "type": "git",
+    "url": "git@bitbucket.org:sal-jornadayu/yulib"
+  },
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.tsx",
+  "private": true,
   "engines": {
     "node": ">=10"
   },
