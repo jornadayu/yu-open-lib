@@ -1,11 +1,12 @@
 # yu-lib
 
-[![NPM](https://img.shields.io/npm/v/yu-lib.svg)](https://www.npmjs.com/package/yu-lib) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
 ```bash
-yarn add yu-lib
+# Specify tag version at the end of the SSH URI
+yarn add ssh://git@bitbucket.org:sal-jornadayu/yulib.git#v1.0.0
 ```
 
 ---
@@ -27,7 +28,6 @@ const App = () => {
     </ThemeProvider>
   )
 }
-
 ```
 
 ---
