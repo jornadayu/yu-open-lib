@@ -1,3 +1,5 @@
+import './styles/core.scss'
+
 export { default as ConfirmDialog } from './components/ConfirmDialog'
 export { default as CopyableInput } from './components/CopyableInput'
 export { default as EnvironmentLabel } from './components/EnvironmentLabel'
