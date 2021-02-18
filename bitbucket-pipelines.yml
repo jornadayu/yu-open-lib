@@ -15,5 +15,4 @@ pipelines:
             - chmod 600 ~/.ssh/id_rsa
             # Get current version from package.json and create new tag with it
             - VERSION=$(yarn version:current | sed -n '3 p')
-            - git tag "v${VERSION}" ${BITBUCKET_COMMIT}
-            - git push origin --tags
+            - git tag "v${VERSION}" ${BITBUCKET_COMMIT} && git push origin --tags || echo "Tag already exists, not creating new release"
