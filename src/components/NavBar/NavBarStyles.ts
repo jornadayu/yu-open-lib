@@ -11,7 +11,8 @@ export const useStyles = makeStyles((theme) => ({
     flexGrow: 1
   },
   appBar: {
-    background: '#434242'
+    background: ({ backgroundColor }: { backgroundColor: string }) =>
+      backgroundColor
   },
   logoYuri: {
     marginRight: theme.spacing(2),
