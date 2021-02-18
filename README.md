@@ -13,32 +13,28 @@ yarn add https://johnvictorfs@bitbucket.org/sal-jornadayu/yu-open-lib.git#v1.0.0
 
 - Create feature branch
 
-  ```bash
-  gcb JIRA-XXX-some-feature-here
-  ```
+        #!bash
+        git checkout -b JIRA-XXX-some-feature-here
 
 - Commit your changes
 
-  ```bash
-  ga .
-  gc -m "My commit message"
-  gp --set-upstream origin JIRA-XXX-some-feature-here
-  ```
+        #!bash
+        git add .
+        git commit -m "My commit message"
+        git push --set-upstream origin JIRA-XXX-some-feature-here
 
 - Bump version accordingly
 
-  ```
-  # MAJOR.MINOR.PATCH (Ex.: 1.0.2)
-  yarn version --major # Bump major version
-  yarn version --minor # Minor version
-  yarn version --patch # Patch version
-  ```
+        #!bash
+        # MAJOR.MINOR.PATCH (Ex.: 1.0.2)
+        yarn version --major # Bump major version
+        yarn version --minor # Minor version
+        yarn version --patch # Patch version
 
 - Push your changes (yarn will auto-commit your version bump)
 
-  ```
-  gp
-  ```
+        #!bash
+        git push
 
 - Now, when your Pull Request is merged, a new tag using your chosen version will be created on the project's repository
 
