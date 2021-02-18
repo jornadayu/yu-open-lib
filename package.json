@@ -28,12 +28,14 @@
     "deploy": "gh-pages -d example/build",
     "version:current": "echo $npm_package_version"
   },
+  "dependencies": {
+    "react-toast-notifications": "^2.4.0"
+  },
   "peerDependencies": {
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
-    "react": "^17.0.1",
-    "react-toast-notifications": "^2.4.3"
+    "react": "^17.0.1"
   },
   "devDependencies": {
     "@material-ui/core": "^4.11.3",
