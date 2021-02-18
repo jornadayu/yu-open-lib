@@ -8,8 +8,12 @@ pipelines:
           name: Version Bump
           deployment: production
           script:
-            # Get current version from package.json
-            - VERSION=$(yarn version:current | sed -n '3 p')
+            # https://support.atlassian.com/bitbucket-cloud/docs/push-back-to-your-repository/
             - git remote set-url origin ${BITBUCKET_GIT_SSH_ORIGIN}
+            - echo $PRIVATE_KEY > ~/.ssh/id_rsa.tmp
+            - base64 -d ~/.ssh/id_rsa.tmp > ~/.ssh/id_rsa
+            - chmod 600 ~/.ssh/id_rsa
+            # Get current version from package.json and create new tag with it
+            - VERSION=$(yarn version:current | sed -n '3 p')
             - git tag "v${VERSION}" ${BITBUCKET_COMMIT}
             - git push origin --tags
