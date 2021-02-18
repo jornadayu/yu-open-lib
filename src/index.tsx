@@ -13,4 +13,6 @@ export { default as YuAppBar } from './components/NavBar/YuAppBar'
 export { default as YuDrawer } from './components/NavBar/YuDrawer'
 export { default as YuMobileNavBar } from './components/NavBar/YuMobileNavBar'
 
+export { default as YuToastProvider } from './components/YuToastProvider'
+
 export { default as AppTheme } from './theme/AppTheme'
