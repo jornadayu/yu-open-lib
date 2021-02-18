@@ -3,16 +3,16 @@ import { Link } from 'react-router-dom'
 
 import { Typography } from '@material-ui/core'
 import { ThemeProvider } from '@material-ui/core/styles'
-import { CopyableInput, AppTheme, YuAppBar, WhatsappChip } from 'yu-lib'
 import GroupIcon from '@material-ui/icons/Group'
 
+import { YuToastProvider, CopyableInput, AppTheme, YuAppBar, WhatsappChip } from 'yu-lib'
 import 'yu-lib/dist/index.css'
+
+import ToastTests from './ToastTests'
 
 const theme = AppTheme({darkMode: false})
 
 const App = () => {
-  // const onConfirm = () => console.log('confirm')
-  // const onCancel = () => console.log('cancel')
   const items = {
     drawerItems: [
       { text: 'Marcas', path: '/brands', icon: <GroupIcon /> },
@@ -37,25 +37,21 @@ const App = () => {
     rightItems: []
   }
 
-  // const items = {
-  //   drawerItems: [],
-  //   leftItems: [],
-  //   rightItems: []
-  // }
-
-
   return (
     <ThemeProvider theme={theme}>
-      <YuAppBar backgroundColor="#070707" items={items} loggedIn />
+      <YuToastProvider>
+        <YuAppBar backgroundColor="#070707" items={items} loggedIn />
 
-      <div>
-        <Typography variant="h2">Texto exemplo</Typography>
-      </div>
-      {/* <ConfirmDialog handleClose={onCancel} handleConfirm={onConfirm} title="Some title" open text="Some text" cancelText="Cancelar" confirmText="Confirmar"></ConfirmDialog> */}
+        <div>
+          <Typography variant="h2">Texto exemplo</Typography>
+        </div>
 
-      <CopyableInput text="url.com" label="Some URL" />
+        <CopyableInput text="url.com" label="Some URL" />
 
-      <WhatsappChip onClick={() => {}} number="123456" message="Olá" />
+        <ToastTests />
+
+        <WhatsappChip onClick={() => {}} number="123456" message="Olá" />
+      </YuToastProvider>
     </ThemeProvider>
   )
 }
