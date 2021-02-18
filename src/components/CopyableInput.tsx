@@ -16,7 +16,7 @@ type Props = {
 
   /**
    * If the input should be Full Width or not
-   * @default {false}
+   * @default false
    */
   fullWidth?: boolean
 }

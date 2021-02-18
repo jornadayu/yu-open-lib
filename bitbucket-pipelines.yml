@@ -1,0 +1,15 @@
+image: node:14.15.5-alpine3.10
+
+pipelines:
+  branches:
+    # Run on merges to 'master' branch
+    master:
+      - step:
+          name: Version Bump
+          deployment: production
+          script:
+            # Get current version from package.json
+            - VERSION=$(yarn version:current | sed -n '3 p')
+            - git remote set-url origin ${BITBUCKET_GIT_SSH_ORIGIN}
+            - git tag "v${VERSION}" ${BITBUCKET_COMMIT}
+            - git push origin --tags

@@ -13,6 +13,7 @@ import MenuIcon from '@material-ui/icons/Menu'
 import YuMobileNavBar from './YuMobileNavBar'
 import YuDrawer from './YuDrawer'
 import YuriLogo from '/../../assets/images/yuri_white.png'
+import YuLogo from '/../../assets/images/YU_Neg_02_Laranja.png'
 import { useStyles } from './NavBarStyles'
 import { NavbarItem } from '../../types'
 
@@ -22,6 +23,12 @@ export type Props = {
     rightItems: NavbarItem[]
     drawerItems: NavbarItem[]
   }
+
+  /**
+   * Background color of the NavBar
+   * @default '#434242'
+   */
+  backgroundColor?: string
 
   /**
    * If the User is logged in or not (shows no items if logged out)
@@ -40,15 +47,42 @@ export type Props = {
    * @default 'https://jornadayu.com'
    */
   homeURL?: string
+
+  /**
+   * Whether to have a Drawer or not
+   * @default true
+   */
+  drawer?: boolean
+
+  /**
+   * @default 'yuri'
+   */
+  logo?: 'yuri' | 'yu'
+
+  /**
+   * @default false
+   */
+  centerLogo?: boolean
+
+  /**
+   * @default false
+   */
+  centerMobileLogo?: boolean
 }
 
 const BaseAppBar: React.FC<Props> = ({
   items,
+  children,
+  backgroundColor = '#434242',
   loggedIn = false,
   searchBar = false,
-  homeURL = 'https://jornadayu.com'
+  homeURL = 'https://jornadayu.com',
+  drawer = true,
+  logo = 'yuri',
+  centerLogo = false,
+  centerMobileLogo = false
 }) => {
-  const classes = useStyles()
+  const classes = useStyles({ backgroundColor })
   const [leftDrawer, setLeftDrawer] = useState(false)
 
   const toggleLeftDrawer = () => {
@@ -67,6 +101,13 @@ const BaseAppBar: React.FC<Props> = ({
     document.location.href = `/people?query=${peopleSearch}`
   }
 
+  const navbarLogo =
+    logo === 'yuri' ? (
+      <img src={YuriLogo} width='32' />
+    ) : (
+      <img src={YuLogo} width='32' />
+    )
+
   if (!loggedIn)
     return (
       <AppBar className={`${classes.appBar} ${classes.externalAppBar}`}>
@@ -77,7 +118,7 @@ const BaseAppBar: React.FC<Props> = ({
               color='inherit'
               href={homeURL}
             >
-              <img src={YuriLogo} width='32' />
+              {navbarLogo}
             </IconButton>
           </Typography>
         </Toolbar>
@@ -88,30 +129,53 @@ const BaseAppBar: React.FC<Props> = ({
 
   return (
     <React.Fragment>
-      <YuDrawer
-        items={items}
-        open={leftDrawer}
-        handleClose={toggleLeftDrawer}
+      {drawer && (
+        <YuDrawer
+          items={items}
+          open={leftDrawer}
+          handleClose={toggleLeftDrawer}
+        />
+      )}
+
+      <YuMobileNavBar
+        centerLogo={centerMobileLogo}
+        backgroundColor={backgroundColor}
+        logo={navbarLogo}
+        drawer={
+          drawer &&
+          !!(
+            items.leftItems.length ||
+            items.rightItems.length ||
+            items.drawerItems.length
+          )
+        }
+        toggleLeftDrawer={toggleLeftDrawer}
       />
 
-      <YuMobileNavBar toggleLeftDrawer={toggleLeftDrawer} />
-
       <Hidden smDown>
-        <AppBar className={classes.appBar}>
+        <AppBar
+          className={
+            centerLogo
+              ? `${classes.appBar} ${classes.externalAppBar}`
+              : classes.appBar
+          }
+        >
           <Toolbar className={classes.toolBar}>
             <Typography variant='h2' className={classes.title}>
-              <IconButton
-                edge='start'
-                className={classes.menuButton}
-                color='inherit'
-                aria-label='menu'
-                onClick={toggleLeftDrawer}
-              >
-                <MenuIcon />
-              </IconButton>
+              {drawer && !!items.drawerItems?.length && (
+                <IconButton
+                  edge='start'
+                  className={classes.menuButton}
+                  color='inherit'
+                  aria-label='menu'
+                  onClick={toggleLeftDrawer}
+                >
+                  <MenuIcon />
+                </IconButton>
+              )}
 
               <IconButton className={classes.logoYuri} color='inherit' href='/'>
-                <img src={YuriLogo} width='32' />
+                {navbarLogo}
               </IconButton>
 
               {leftItems.map((button) => (
@@ -122,11 +186,15 @@ const BaseAppBar: React.FC<Props> = ({
                   color='inherit'
                   href={button.path}
                   startIcon={button.icon}
+                  onClick={button.onClick}
+                  {...button}
                 >
                   {button.text}
                 </Button>
               ))}
             </Typography>
+
+            {children}
 
             {searchBar && (
               <div className={classes.search}>
@@ -160,6 +228,7 @@ const BaseAppBar: React.FC<Props> = ({
                 color='inherit'
                 href={button.path}
                 startIcon={button.icon}
+                onClick={button.onClick}
                 {...button}
               >
                 {button.text}

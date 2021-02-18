@@ -16,13 +16,39 @@ type ListProps = {
   buttons: NavbarItem[]
 }
 
+const NavListItem: React.FC<NavbarItem> = ({
+  path,
+  icon,
+  text,
+  component,
+  ...props
+}) => {
+  const inner = (
+    <React.Fragment>
+      <ListItemIcon>{icon}</ListItemIcon>
+      <ListItemText primary={text} />
+    </React.Fragment>
+  )
+
+  if (!component) {
+    return (
+      <ListItem button key={path} href={path} component='a' {...props}>
+        {inner}
+      </ListItem>
+    )
+  }
+
+  return (
+    <ListItem button key={path} component={component} {...props}>
+      {inner}
+    </ListItem>
+  )
+}
+
 const ListItems: React.FC<ListProps> = ({ buttons }) => (
   <React.Fragment>
-    {buttons.map(({ path, icon, text, ...props }) => (
-      <ListItem component='a' button key={path} href={path} {...props}>
-        <ListItemIcon>{icon}</ListItemIcon>
-        <ListItemText primary={text} />
-      </ListItem>
+    {buttons.map((button) => (
+      <NavListItem key={button.text} {...button} />
     ))}
   </React.Fragment>
 )

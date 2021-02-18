@@ -1,13 +1,46 @@
 # yu-lib
 
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-
 ## Install
 
 ```bash
 # Specify tag version at the end of the SSH URI
-yarn add ssh://git@bitbucket.org:sal-jornadayu/yulib.git#v1.0.0
+yarn add https://johnvictorfs@bitbucket.org/sal-jornadayu/yu-open-lib.git#v1.0.0
 ```
+
+---
+
+## Bump version
+
+- Create feature branch
+
+  ```bash
+  gcb JIRA-XXX-some-feature-here
+  ```
+
+- Commit your changes
+
+  ```bash
+  ga .
+  gc -m "My commit message"
+  gp --set-upstream origin JIRA-XXX-some-feature-here
+  ```
+
+- Bump version accordingly
+
+  ```
+  # MAJOR.MINOR.PATCH (Ex.: 1.0.2)
+  yarn version --major # Bump major version
+  yarn version --minor # Minor version
+  yarn version --patch # Patch version
+  ```
+
+- Push your changes (yarn will auto-commit your version bump)
+
+  ```
+  gp
+  ```
+
+- Now, when your Pull Request is merged, a new tag using your chosen version will be created on the project's repository
 
 ---
 

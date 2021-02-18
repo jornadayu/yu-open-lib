@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import { Typography } from '@material-ui/core'
 import { ThemeProvider } from '@material-ui/core/styles'
@@ -15,7 +16,7 @@ const App = () => {
   const items = {
     drawerItems: [
       { text: 'Marcas', path: '/brands', icon: <GroupIcon /> },
-      { text: 'Usuários', path: '/users', icon: <GroupIcon /> },
+      { text: 'Usuários', component: Link, to: '/users', icon: <GroupIcon /> },
       { text: 'Alocação de Equipes', path: '/team_allocations', icon: <GroupIcon /> },
       {
         text: 'Emails de Sign-Off',
@@ -36,11 +37,16 @@ const App = () => {
     rightItems: []
   }
 
-  console.log(theme)
+  // const items = {
+  //   drawerItems: [],
+  //   leftItems: [],
+  //   rightItems: []
+  // }
+
 
   return (
     <ThemeProvider theme={theme}>
-      <YuAppBar items={items} loggedIn />
+      <YuAppBar backgroundColor="#070707" items={items} loggedIn />
 
       <div>
         <Typography variant="h2">Texto exemplo</Typography>

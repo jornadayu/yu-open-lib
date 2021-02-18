@@ -10,34 +10,58 @@ import MenuIcon from '@material-ui/icons/Menu'
 import HideOnScroll from '../HideOnScroll'
 import { useStyles } from './NavBarStyles'
 
-import YuriLogo from '/../../assets/images/yuri_white.png'
-
 type Props = {
   toggleLeftDrawer: () => void
+
+  /**
+   * Whether to have a Drawer or not
+   * @default true
+   */
+  drawer: boolean
+
+  logo: React.ReactElement
+
+  backgroundColor: string
+
+  centerLogo: boolean
 }
 
-const YuMobileNavBar: React.FC<Props> = ({ toggleLeftDrawer }) => {
-  const classes = useStyles()
+const YuMobileNavBar: React.FC<Props> = ({
+  toggleLeftDrawer,
+  drawer,
+  logo,
+  backgroundColor,
+  centerLogo
+}) => {
+  const classes = useStyles({ backgroundColor })
 
   return (
     <Hidden mdUp>
       <HideOnScroll>
-        <AppBar className={classes.appBar}>
+        <AppBar
+          className={
+            centerLogo
+              ? `${classes.appBar} ${classes.externalAppBar}`
+              : classes.appBar
+          }
+        >
           <Toolbar className={classes.toolBar}>
             <Typography variant='h2' className={classes.title}>
-              <IconButton
-                edge='start'
-                className={classes.menuButton}
-                color='inherit'
-                aria-label='menu'
-                onClick={toggleLeftDrawer}
-              >
-                <MenuIcon />
-              </IconButton>
+              {drawer && (
+                <IconButton
+                  edge='start'
+                  className={classes.menuButton}
+                  color='inherit'
+                  aria-label='menu'
+                  onClick={toggleLeftDrawer}
+                >
+                  <MenuIcon />
+                </IconButton>
+              )}
             </Typography>
 
             <IconButton className={classes.logoYuri} color='inherit' href='/'>
-              <img src={YuriLogo} width='32' />
+              {logo}
             </IconButton>
           </Toolbar>
         </AppBar>
