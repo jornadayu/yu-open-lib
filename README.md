@@ -28,8 +28,10 @@ yarn add https://johnvictorfs@bitbucket.org/sal-jornadayu/yu-open-lib.git#v1.0.0
 - Bump version accordingly
 
   ```
-  # Choose new library version
-  yarn version
+  # MAJOR.MINOR.PATCH (Ex.: 1.0.2)
+  yarn version --major # Bump major version
+  yarn version --minor # Minor version
+  yarn version --patch # Patch version
   ```
 
 - Push your changes (yarn will auto-commit your version bump)
