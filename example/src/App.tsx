@@ -40,7 +40,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <YuToastProvider>
-        <YuAppBar backgroundColor="#070707" items={items} loggedIn />
+        <YuAppBar backgroundColor="#070707" items={items} loggedIn logo="yu" searchBar={false} />
 
         <div>
           <Typography variant="h2">Texto exemplo</Typography>
