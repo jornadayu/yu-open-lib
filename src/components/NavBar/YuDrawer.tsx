@@ -9,7 +9,6 @@ import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import Divider from '@material-ui/core/Divider'
 
-import YuriBlackLogo from '/../../assets/images/yuri_black.png'
 import { NavbarItem } from '../../types'
 
 type ListProps = {
@@ -60,11 +59,17 @@ type DrawerProps = {
     drawerItems: NavbarItem[]
   }
 
+  logo: JSX.Element
   open: boolean
   handleClose: () => void
 }
 
-const YuDrawer: React.FC<DrawerProps> = ({ items, open, handleClose }) => {
+const YuDrawer: React.FC<DrawerProps> = ({
+  items,
+  logo,
+  open,
+  handleClose
+}) => {
   const { leftItems, rightItems, drawerItems } = items
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
@@ -87,7 +92,7 @@ const YuDrawer: React.FC<DrawerProps> = ({ items, open, handleClose }) => {
     <Drawer anchor='left' open={open} onClose={handleClose}>
       <List>
         <ListItem button component='a' href='/'>
-          <img src={YuriBlackLogo} width='32' />
+          {logo}
         </ListItem>
 
         <ListItems buttons={allItems.up} />
