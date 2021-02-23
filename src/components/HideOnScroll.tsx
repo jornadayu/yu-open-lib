@@ -4,7 +4,7 @@ import useScrollTrigger from '@material-ui/core/useScrollTrigger'
 import Slide from '@material-ui/core/Slide'
 
 type Props = {
-  children: React.ReactChild
+  children: React.ReactElement
 }
 
 const HideOnScroll: React.FC<Props> = ({ children }) => {
@@ -12,7 +12,7 @@ const HideOnScroll: React.FC<Props> = ({ children }) => {
 
   return (
     <Slide appear={false} direction='down' in={!trigger}>
-      <React.Fragment>{children}</React.Fragment>
+      {children}
     </Slide>
   )
 }
