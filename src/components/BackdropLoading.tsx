@@ -15,6 +15,13 @@ type Props = {
   open: boolean
 }
 
+/**
+ * A full-screen Backdrop loading component, also prevents user from doing any actions when active
+ *
+ * Similar example: https://material-ui.com/components/backdrop/#backdrop
+ *
+ * Mostly useful for mobile environments
+ */
 const BackdropLoading: React.FC<Props> = ({ open }) => {
   const classes = useStyles()
 

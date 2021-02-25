@@ -35,6 +35,10 @@ type Props = {
   onClick?: () => void
 }
 
+/**
+ * Basic WhatsApp digit, when clicked goes to a page uising Whatsapp APIs to send a specific message
+ * to the specific number in the props
+ */
 const WhatsappChip: React.FC<Props> = ({
   number,
   message = '',

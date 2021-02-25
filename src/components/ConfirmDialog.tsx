@@ -14,7 +14,7 @@ type Props = {
   title: string
 
   /** Dialog body text */
-  text: string
+  text?: string
 
   /** Text on the Cancel button */
   cancelText: string
@@ -54,8 +54,9 @@ type Props = {
 }
 
 /**
- * A Material-UI base confirmation dialog with callbacks for a
- * confirm and cancel actions
+ * Generic confirmation/cancel dialog with callbacks for confirm and cancel actions
+ *
+ * Will render children in the `<DialogContent />` sub-component when passed
  */
 const ConfirmDialog: React.FC<Props> = ({
   title,
@@ -63,6 +64,7 @@ const ConfirmDialog: React.FC<Props> = ({
   cancelText,
   confirmText,
   open,
+  children,
   handleClose,
   handleConfirm,
   path,
@@ -77,7 +79,9 @@ const ConfirmDialog: React.FC<Props> = ({
       {(loading && <Loading loading />) || (
         <React.Fragment>
           <DialogContent>
-            <DialogContentText>{text}</DialogContentText>
+            {!!text && <DialogContentText>{text}</DialogContentText>}
+
+            {children}
           </DialogContent>
 
           <DialogActions>

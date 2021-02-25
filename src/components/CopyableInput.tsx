@@ -21,6 +21,10 @@ type Props = {
   fullWidth?: boolean
 }
 
+/**
+ * A disabled Text input with a copy to clipboard button, when clicked it copies the
+ * text passed as the input value (`text` prop)
+ */
 const CopyableInput: React.FC<Props> = ({ text, label, fullWidth = false }) => {
   const [copied, setCopied] = useState(false)
 
