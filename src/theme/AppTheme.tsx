@@ -3,14 +3,14 @@ import { createMuiTheme, ThemeOptions } from '@material-ui/core/styles'
 import { orange, red, green } from '@material-ui/core/colors'
 
 interface AppThemeOptions {
-  darkMode: boolean
+  darkMode?: boolean
   options?: ThemeOptions
 }
 
 /**
  * @param {{darkMode: boolean}} options
  */
-const AppTheme = ({ darkMode, options }: AppThemeOptions) =>
+const AppTheme = ({ darkMode = false, options }: AppThemeOptions) =>
   createMuiTheme(
     {
       status: {

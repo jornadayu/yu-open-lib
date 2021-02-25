@@ -27,6 +27,12 @@ type ProviderProps = {
   autoDismissTimeout?: number
 }
 
+/**
+ * A Custom ToastProvider for the 'react-toast-notifications' library, having a
+ * customized MUI React closable Alert in place of the default toasts
+ *
+ * For more information: https://github.com/jossmac/react-toast-notifications/#use
+ */
 const YuToastProvider: React.FC<ProviderProps> = ({
   autoDismissTimeout = 3500,
   children

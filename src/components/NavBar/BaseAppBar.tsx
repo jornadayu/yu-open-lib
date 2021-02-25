@@ -10,9 +10,9 @@ import MenuIcon from '@material-ui/icons/Menu'
 
 import YuMobileNavBar from './YuMobileNavBar'
 import YuDrawer from './YuDrawer'
-import YuriLogo from '/../../assets/images/yuri_white.png'
-import YuLogo from '/../../assets/images/YU_Neg_02_Laranja.png'
-import YuPositiveLogo from '/../../assets/images/YU_Pos_02_Laranja.png'
+import YuriLogo from '/../../assets/images/yuri/yuri_white.png'
+import YuLogo from '/../../assets/images/yu/YU_Neg_02_Laranja.png'
+import YuPositiveLogo from '/../../assets/images/yu/YU_Pos_02_Laranja.png'
 import { useStyles } from './NavBarStyles'
 import { NavbarItem } from '../../types'
 

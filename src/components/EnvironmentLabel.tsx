@@ -27,6 +27,9 @@ type Props = {
 }
 
 /**
+ * Floating Environment label to be used to differ staging/development/production environments
+ * Never shows if the received environment is 'production'
+ *
  * Example usage:
  *
  * ```jsx

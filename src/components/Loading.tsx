@@ -14,6 +14,9 @@ type Props = {
   loading: boolean
 }
 
+/**
+ * Generic horizontal loading bars, mostly to be used as specific resources loading (e.g. small cards inside a bigger container)
+ */
 const LoadingBars: React.FC<Props> = ({ loading }) => {
   const classes = useStyles()
 
