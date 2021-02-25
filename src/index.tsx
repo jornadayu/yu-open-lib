@@ -9,6 +9,7 @@ export { default as NotFound } from './components/NotFound'
 export { default as WhatsappChip } from './components/WhatsappChip'
 export { default as YuGrid } from './components/YuGrid'
 export { default as BackdropLoading } from './components/BackdropLoading'
+export { default as ErrorAlert } from './components/ErrorAlert'
 
 export { default as YuAppBar } from './components/NavBar/YuAppBar'
 export { default as YuDrawer } from './components/NavBar/YuDrawer'
