@@ -47,13 +47,16 @@ const AppTheme = ({ darkMode = false, options }: AppThemeOptions) =>
       palette: {
         type: darkMode ? 'dark' : 'light',
         primary: {
-          main: darkMode ? '#4179ad' : '#1879ba'
+          main: darkMode ? '#4179ad' : '#1879ba',
+          dark: '#1879ba'
         },
         secondary: {
-          main: darkMode ? '#f44336' : '#cc4b37'
+          main: darkMode ? '#f44336' : '#cc4b37',
+          dark: '#cc4b37'
         },
         warning: {
-          main: darkMode ? '#ff9800' : '#ffd700'
+          main: darkMode ? '#f57c00' : '#e64a19',
+          dark: '#e64a19'
         },
         success: {
           main: darkMode ? '#4caf50' : '#4caf50',

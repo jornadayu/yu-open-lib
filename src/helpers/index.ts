@@ -31,28 +31,31 @@ export const titleize = (text: string): string => {
 /**
  * https://stackoverflow.com/a/65148504/10416161
  *
- * Groups an array of objects by a key an returns an object or array grouped by provided key
+ * Groups an array of objects by a key and returns an object or array grouped by provided key
  *
  * @param {Record<string, any>[]} array - array to group objects by key.
  * @param {string} key - key to group array objects by.
  * @param {boolean} removeKey - remove the key and it's value from the resulting object.
  * @param {any} outputType - type of structure the output should be contained in.
  */
-export const groupBy = (
-  inputArray: Record<string, any>[],
+export function groupBy<T extends Record<string, any>>(
+  inputArray: T[],
   key: string,
   removeKey = false,
   outputType = {}
-) => {
-  return inputArray.reduce((previous, current) => {
-    const { [key]: keyValue } = current
+): Record<string, T[]> {
+  return inputArray.reduce((previous: Record<string, T[]>, current) => {
+    const currentCopy = current
+    const { [key]: keyValue } = currentCopy
 
-    removeKey && keyValue && delete current[key]
+    if (removeKey && keyValue) {
+      delete currentCopy[key]
+    }
 
     const { [keyValue]: reducedValue = [] } = previous
 
     return Object.assign(previous, {
-      [keyValue]: reducedValue.concat(current)
+      [keyValue]: reducedValue.concat(currentCopy)
     })
   }, outputType)
 }
