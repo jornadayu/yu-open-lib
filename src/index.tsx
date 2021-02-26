@@ -28,4 +28,6 @@ export { default as YuNegativeLaranja } from '/./assets/images/yu/YU_Neg_02_Lara
 export { default as YuPositiveSalmao } from '/./assets/images/yu/YU_Pos_01_Salmao.png'
 export { default as YuPositiveLaranja } from '/./assets/images/yu/YU_Pos_02_Laranja.png'
 
+export { groupBy, currency, kCurrency, titleize } from './helpers'
+
 export { default as YuriWhiteLogo } from '/./assets/images/yuri/yuri_white.png'
