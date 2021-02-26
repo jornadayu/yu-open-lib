@@ -28,6 +28,11 @@
     "deploy": "gh-pages -d example/build",
     "version:current": "echo $npm_package_version"
   },
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn"
+    }
+  },
   "dependencies": {
     "react-toast-notifications": "^2.4.0"
   },
