@@ -176,7 +176,7 @@ const BaseAppBar: React.FC<Props> = ({
 
               {leftItems.map((button) => (
                 <Button
-                  key={button.path}
+                  key={button.path || button.text}
                   className={classes.toolbarButton}
                   size='large'
                   color='inherit'
@@ -194,7 +194,7 @@ const BaseAppBar: React.FC<Props> = ({
 
             {rightItems.map((button) => (
               <Button
-                key={button.path}
+                key={button.path || button.text}
                 className={classes.toolbarButton}
                 size='large'
                 color='inherit'

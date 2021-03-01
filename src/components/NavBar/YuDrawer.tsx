@@ -31,14 +31,14 @@ const NavListItem: React.FC<NavbarItem> = ({
 
   if (!component) {
     return (
-      <ListItem button key={path} href={path} component='a' {...props}>
+      <ListItem button key={path || text} href={path} component='a' {...props}>
         {inner}
       </ListItem>
     )
   }
 
   return (
-    <ListItem button key={path} component={component} {...props}>
+    <ListItem button key={path || text} component={component} {...props}>
       {inner}
     </ListItem>
   )
@@ -47,7 +47,7 @@ const NavListItem: React.FC<NavbarItem> = ({
 const ListItems: React.FC<ListProps> = ({ buttons }) => (
   <React.Fragment>
     {buttons.map((button) => (
-      <NavListItem key={button.text} {...button} />
+      <NavListItem key={button.path || button.text} {...button} />
     ))}
   </React.Fragment>
 )
