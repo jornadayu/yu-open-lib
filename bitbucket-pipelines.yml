@@ -22,3 +22,4 @@ pipelines:
             - pipe: atlassian/npm-publish:0.3.2
               variables:
                 NPM_TOKEN: $NPM_TOKEN
+                EXTRA_ARGS: --access=public
