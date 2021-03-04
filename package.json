@@ -11,7 +11,7 @@
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.tsx",
-  "private": true,
+  "private": false,
   "engines": {
     "node": ">=10"
   },
