@@ -20,5 +20,3 @@ export { default as YuToastProvider } from './components/YuToastProvider'
 export { default as AppTheme } from './theme/AppTheme'
 
 export { groupBy, currency, kCurrency, titleize } from './helpers'
-
-export { default as YuriWhiteLogo } from '/assets/images/yuri/yuri_white.png'
