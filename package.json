@@ -1,6 +1,6 @@
 {
   "name": "yu-open-lib",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Made with create-react-library",
   "author": "jornadayu",
   "license": "UNLICENSED",
@@ -29,6 +29,7 @@
     "version:current": "echo $npm_package_version"
   },
   "dependencies": {
+    "node-sass": "^5.0.0",
     "react-toast-notifications": "^2.4.0"
   },
   "peerDependencies": {
@@ -64,7 +65,6 @@
     "eslint-plugin-standard": "^4.0.1",
     "gh-pages": "^2.2.0",
     "microbundle-crl": "^0.13.10",
-    "node-sass": "^5.0.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.4",
     "react": "^16.13.1",
