@@ -18,8 +18,6 @@ pipelines:
             - git tag "v${VERSION}" ${BITBUCKET_COMMIT} && git push origin --tags || echo "Tag already exists, not creating new release"
       - step:
           name: Deploy to NPM
-          caches:
-            - node
           script:
             - unset NPM_CONFIG_USER
             - yarn --ignore-scripts
