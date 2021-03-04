@@ -5,7 +5,7 @@ pipelines:
     # Run on merges to 'master' branch
     master:
       - step:
-          name: Deploy library
+          name: Tag version bump
           deployment: production
           script:
             # https://support.atlassian.com/bitbucket-cloud/docs/push-back-to-your-repository/
@@ -22,4 +22,3 @@ pipelines:
             - pipe: atlassian/npm-publish:0.3.2
               variables:
                 NPM_TOKEN: $NPM_TOKEN
-                FOLDER: 'dist'
