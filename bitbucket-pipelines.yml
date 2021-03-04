@@ -20,7 +20,6 @@ pipelines:
           name: Deploy to NPM
           script:
             - unset NPM_CONFIG_USER
-            - yarn global add node-sass
             - yarn --ignore-scripts --unsafe-perm
             - pipe: atlassian/npm-publish:0.3.2
               variables:
