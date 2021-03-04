@@ -5,7 +5,7 @@ import { Typography } from '@material-ui/core'
 import { ThemeProvider } from '@material-ui/core/styles'
 import GroupIcon from '@material-ui/icons/Group'
 
-import { YuToastProvider, YuNegativeLaranja, CopyableInput, AppTheme, YuAppBar, WhatsappChip, YuriLogo } from 'yu-lib'
+import { YuToastProvider, CopyableInput, AppTheme, YuAppBar, WhatsappChip } from 'yu-lib'
 import 'yu-lib/dist/index.css'
 
 import ToastTests from './ToastTests'
@@ -44,10 +44,6 @@ const App = () => {
 
         <div>
           <Typography variant="h2">Texto exemplo</Typography>
-
-          <img src={YuriLogo} alt="yuri-negative" />
-
-          <img src={YuNegativeLaranja} alt="yuri-negative-laranja" />
         </div>
 
         <CopyableInput text="url.com" label="Some URL" />
