@@ -20,3 +20,12 @@ export { default as YuToastProvider } from './components/YuToastProvider'
 export { default as AppTheme } from './theme/AppTheme'
 
 export { groupBy, currency, kCurrency, titleize } from './helpers'
+
+export { default as YuriLogo } from 'assets/images/yuri/logo_yuri.png'
+export { default as YuriNegativeLogo } from 'assets/images/yuri/logo_yuri_negative.png'
+
+export { default as YuNegativeSalmao } from 'assets/images/yu/YU_Neg_01_Salmao.png'
+export { default as YuNegativeLaranja } from 'assets/images/yu/YU_Neg_02_Laranja.png'
+
+export { default as YuPositiveSalmao } from 'assets/images/yu/YU_Pos_01_Salmao.png'
+export { default as YuPositiveLaranja } from 'assets/images/yu/YU_Pos_02_Laranja.png'
