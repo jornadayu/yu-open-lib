@@ -29,7 +29,8 @@
     "version:current": "echo $npm_package_version"
   },
   "dependencies": {
-    "react-toast-notifications": "^2.4.0"
+    "react-toast-notifications": "^2.4.0",
+    "node-sass": "^5.0.0"
   },
   "peerDependencies": {
     "@material-ui/core": "^4.11.3",
@@ -63,8 +64,7 @@
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-standard": "^4.0.1",
     "gh-pages": "^2.2.0",
-    "microbundle-crl": "^0.13.10",
-    "node-sass": "^5.0.0",
+    "microbundle-crl": "^0.13.10", 
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.4",
     "react": "^16.13.1",
