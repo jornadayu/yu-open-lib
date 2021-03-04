@@ -21,6 +21,7 @@ pipelines:
           caches:
             - node
           script:
+            - unset NPM_CONFIG_USER
             - yarn --ignore-scripts
             - pipe: atlassian/npm-publish:0.3.2
               variables:
