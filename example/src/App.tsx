@@ -30,8 +30,8 @@ const App = () => {
       }
     ],
     leftItems: [
-      { text: 'Vagas', path: '/jobs', icon: <GroupIcon /> },
-      { text: 'Projetos', path: '/projects', icon: <GroupIcon /> },
+      { text: 'Vagas', path: '/jobs', icon: <GroupIcon />, iconButton: true },
+      { text: 'Projetos', path: '/projects', icon: <GroupIcon />, iconButton: true, tooltip: 'Projetos' },
       { text: 'Busca Avançada', path: '/advanced_search/index', icon: <GroupIcon /> }
     ],
     rightItems: []
