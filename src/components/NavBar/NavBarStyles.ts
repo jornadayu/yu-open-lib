@@ -19,7 +19,7 @@ export const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(2)
   },
   toolbarButton: {
-    margin: theme.spacing(0, 0, 0, 3),
+    margin: `${theme.spacing(0, 0, 0, 3)} !important`,
     fontSize: 20
   },
   externalAppBar: {
