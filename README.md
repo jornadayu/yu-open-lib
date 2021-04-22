@@ -3,8 +3,7 @@
 ## Install
 
 ```bash
-# Specify tag version at the end of the SSH URI
-yarn add https://johnvictorfs@bitbucket.org/sal-jornadayu/yu-open-lib.git#v1.0.0
+yarn add yu-open-lib
 ```
 
 ---
@@ -46,7 +45,7 @@ yarn add https://johnvictorfs@bitbucket.org/sal-jornadayu/yu-open-lib.git#v1.0.0
 import React from 'react'
 
 import { ThemeProvider } from '@material-ui/core/styles'
-import { AppTheme } from 'yu-lib'
+import { AppTheme } from 'yu-open-lib'
 
 const theme = AppTheme({ darkMode: false })
 
@@ -66,8 +65,8 @@ const App = () => {
 ```tsx
 import React, { useState } from 'react'
 
-import { ConfirmDialog } from 'yu-lib'
-import 'yu-lib/dist/index.css'
+import { ConfirmDialog } from 'yu-open-lib'
+import 'yu-open-lib/dist/index.css'
 
 const App = () => {
   const [dialog, setDialog] = useState(false)
@@ -102,4 +101,4 @@ const App = () => {
 
 ## License
 
-UNLICENSED © [jornadayu](https://bitbucket.org/sal-jornadayu/yulib)
+UNLICENSED © [jornadayu](https://bitbucket.org/sal-jornadayu/yu-open-lib)
