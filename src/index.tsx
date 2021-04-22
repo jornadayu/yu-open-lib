@@ -17,6 +17,10 @@ export { default as YuMobileNavBar } from './components/NavBar/YuMobileNavBar'
 
 export { default as YuToastProvider } from './components/YuToastProvider'
 
+export { default as EChartsFunnelGraph } from './components/graphs/EChartsFunnelGraph'
+
+export { default as VCardQRCode } from './components/VCardQRCode'
+
 export { default as AppTheme } from './theme/AppTheme'
 
 export { groupBy, currency, kCurrency, titleize } from './helpers'

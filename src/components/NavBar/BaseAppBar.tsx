@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 import Hidden from '@material-ui/core/Hidden'
+import Tooltip from '@material-ui/core/Tooltip'
 import MenuIcon from '@material-ui/icons/Menu'
 
 import YuMobileNavBar from './YuMobileNavBar'
@@ -67,6 +68,51 @@ export type Props = {
    * @default false
    */
   centerMobileLogo?: boolean
+}
+
+export type ButtonProps = {
+  button: NavbarItem
+  backgroundColor: string
+}
+
+const ToolbarButton: React.FC<ButtonProps> = ({ button, backgroundColor }) => {
+  const classes = useStyles({ backgroundColor })
+
+  let buttonElement: React.ReactElement | null = null
+
+  if (button.iconButton) {
+    buttonElement = (
+      <IconButton
+        className={classes.toolbarButton}
+        size='medium'
+        color='inherit'
+        onClick={button.onClick}
+        {...button}
+      >
+        {button.icon}
+      </IconButton>
+    )
+  } else {
+    buttonElement = (
+      <Button
+        className={classes.toolbarButton}
+        size='large'
+        color='inherit'
+        href={button.path}
+        startIcon={button.icon}
+        onClick={button.onClick}
+        {...button}
+      >
+        {button.text}
+      </Button>
+    )
+  }
+
+  if (button.tooltip) {
+    return <Tooltip title={button.tooltip}>{buttonElement}</Tooltip>
+  }
+
+  return buttonElement
 }
 
 const BaseAppBar: React.FC<Props> = ({
@@ -175,36 +221,22 @@ const BaseAppBar: React.FC<Props> = ({
               </IconButton>
 
               {leftItems.map((button) => (
-                <Button
+                <ToolbarButton
+                  button={button}
+                  backgroundColor={backgroundColor}
                   key={button.path || button.text}
-                  className={classes.toolbarButton}
-                  size='large'
-                  color='inherit'
-                  href={button.path}
-                  startIcon={button.icon}
-                  onClick={button.onClick}
-                  {...button}
-                >
-                  {button.text}
-                </Button>
+                />
               ))}
             </Typography>
 
             {children}
 
             {rightItems.map((button) => (
-              <Button
+              <ToolbarButton
+                button={button}
+                backgroundColor={backgroundColor}
                 key={button.path || button.text}
-                className={classes.toolbarButton}
-                size='large'
-                color='inherit'
-                href={button.path}
-                startIcon={button.icon}
-                onClick={button.onClick}
-                {...button}
-              >
-                {button.text}
-              </Button>
+              />
             ))}
           </Toolbar>
 

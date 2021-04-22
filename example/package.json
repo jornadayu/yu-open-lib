@@ -20,12 +20,14 @@
     "@types/node": "link:../node_modules/@types/node",
     "@types/react": "link:../node_modules/@types/react",
     "@types/react-dom": "link:../node_modules/@types/react-dom",
+    "echarts": "^5.1.0",
+    "echarts-for-react": "^3.0.1",
     "react": "link:../node_modules/react",
     "react-dom": "link:../node_modules/react-dom",
     "react-router-dom": "^5.2.0",
     "react-scripts": "link:../node_modules/react-scripts",
-    "typescript": "link:../node_modules/typescript",
     "react-toast-notifications": "link:../node_modules/react-toast-notifications",
+    "typescript": "link:../node_modules/typescript",
     "yu-lib": "link:.."
   },
   "devDependencies": {
