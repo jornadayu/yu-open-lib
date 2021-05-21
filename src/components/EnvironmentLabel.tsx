@@ -32,7 +32,7 @@ type Props = {
  *
  * Example usage:
  *
- * ```jsx
+ * ```tsx
  * import { EnvironmentLabel } from 'yu-lib'
  * import { ReactQueryDevtools } from 'react-query/devtools'
  *

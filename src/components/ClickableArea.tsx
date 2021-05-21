@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
 /**
  * Use around a component to have it as a clickable area with a onClick callback
  *
- * ```jsx
+ * ```tsx
  * import { ClickableArea } from 'yu-open-lib'
  *
  * const MyComponent = () => (

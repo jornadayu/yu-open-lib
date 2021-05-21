@@ -32,7 +32,7 @@ import { TimelineItem as MuiTimelineItem } from '@material-ui/lab'
  *          title="Some Title"
  *          description="Some Description"
  *        />
- *     <YuTimelineItem>
+ *     </YuTimelineItem>
  *   </Timeline>
  * )
  * ```

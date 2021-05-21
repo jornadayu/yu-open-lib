@@ -55,12 +55,13 @@ const YuTimelineIcon: React.FC<Props> = ({
 }) => {
   const classes = useStyles({ action: !!onClick, iconColor })
 
+  const dot = <TimelineDot className={classes.icon}>{icon}</TimelineDot>
+
   return (
     <TimelineSeparator>
       <StyledBadge badgeContent={count} color='primary'>
-        <ClickableArea onClick={onClick}>
-          <TimelineDot className={classes.icon}>{icon}</TimelineDot>
-        </ClickableArea>
+        {(onClick && <ClickableArea onClick={onClick}>{dot}</ClickableArea>) ||
+          dot}
       </StyledBadge>
 
       {last || <TimelineConnector />}
