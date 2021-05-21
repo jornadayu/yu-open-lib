@@ -21,9 +21,25 @@ export { default as EChartsFunnelGraph } from './components/graphs/EChartsFunnel
 
 export { default as VCardQRCode } from './components/VCardQRCode'
 
+export { default as ClickableArea } from './components/ClickableArea'
+
+export { default as YuTimelineItem } from './components/timeline/YuTimelineItem'
+export { default as YuTimelineDate } from './components/timeline/YuTimelineDate'
+export { default as YuTimelineIcon } from './components/timeline/YuTimelineIcon'
+
 export { default as AppTheme } from './theme/AppTheme'
 
-export { groupBy, currency, kCurrency, titleize } from './helpers'
+export {
+  groupBy,
+  currency,
+  kCurrency,
+  titleize,
+  asPercentage,
+  truncatedText
+} from './helpers'
+
+export { useViewport, useToggle } from './hooks'
+export { useEchartsTheme } from './hooks/echarts'
 
 export { default as YuriLogo } from 'assets/images/yuri/logo_yuri.png'
 export { default as YuriNegativeLogo } from 'assets/images/yuri/logo_yuri_negative.png'
