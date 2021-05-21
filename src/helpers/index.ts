@@ -1,8 +1,12 @@
-export const currency = (amount: string | number, prefix = ''): string => {
+export const currency = (
+  amount: string | number,
+  prefix = '',
+  fixed = 2
+): string => {
   return (
     prefix +
     Number(parseFloat(amount.toString()))
-      .toFixed(2)
+      .toFixed(fixed)
       .replace(/\d(?=(\d{3})+\.)/g, '$&,')
   )
 }
