@@ -23,6 +23,10 @@ export { default as VCardQRCode } from './components/VCardQRCode'
 
 export { default as ClickableArea } from './components/ClickableArea'
 
+export { default as YuTimelineItem } from './components/timeline/YuTimelineItem'
+export { default as YuTimelineDate } from './components/timeline/YuTimelineDate'
+export { default as YuTimelineIcon } from './components/timeline/YuTimelineIcon'
+
 export { default as AppTheme } from './theme/AppTheme'
 
 export {
