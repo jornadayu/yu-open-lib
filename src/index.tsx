@@ -21,6 +21,8 @@ export { default as EChartsFunnelGraph } from './components/graphs/EChartsFunnel
 
 export { default as VCardQRCode } from './components/VCardQRCode'
 
+export { default as ClickableArea } from './components/ClickableArea'
+
 export { default as AppTheme } from './theme/AppTheme'
 
 export {
