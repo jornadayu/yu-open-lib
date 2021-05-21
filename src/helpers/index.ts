@@ -11,8 +11,11 @@ export const currency = (
   )
 }
 
-export const kCurrency = (amount: string | number): string =>
-  (parseFloat(amount.toString()) / 1000).toFixed(0) + 'k'
+export const asPercentage = (number: number): string =>
+  `${(number * 100).toFixed(0)}%`
+
+export const kCurrency = (amount: string | number, fixed = 0): string =>
+  `${(parseFloat(amount.toString()) / 1000).toFixed(fixed)}k`
 
 export const titleize = (text: string): string => {
   let upper = true
@@ -30,6 +33,16 @@ export const titleize = (text: string): string => {
   }
 
   return newStr
+}
+
+export function truncatedText(text?: string | null, cut = 40): string | null {
+  if (!text) return null
+
+  if (text.length > cut) {
+    return `${text.substring(0, cut - 3).trimEnd()}...`
+  }
+
+  return text
 }
 
 /**

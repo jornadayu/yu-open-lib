@@ -23,7 +23,14 @@ export { default as VCardQRCode } from './components/VCardQRCode'
 
 export { default as AppTheme } from './theme/AppTheme'
 
-export { groupBy, currency, kCurrency, titleize } from './helpers'
+export {
+  groupBy,
+  currency,
+  kCurrency,
+  titleize,
+  asPercentage,
+  truncatedText
+} from './helpers'
 
 export { useViewport, useToggle } from './hooks'
 export { useEchartsTheme } from './hooks/echarts'
