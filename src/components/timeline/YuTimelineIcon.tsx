@@ -12,7 +12,7 @@ import ClickableArea from '../ClickableArea'
 
 type Props = {
   // Action for when the icon is clicked
-  onClick: () => void
+  onClick?: () => void
 
   icon: React.ReactNode
   iconColor?: string
