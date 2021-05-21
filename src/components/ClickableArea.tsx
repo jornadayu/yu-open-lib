@@ -12,6 +12,21 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
+/**
+ * Use around a component to have it as a clickable area with a onClick callback
+ *
+ * ```jsx
+ * import { ClickableArea } from 'yu-open-lib'
+ *
+ * const MyComponent = () => (
+ *   <ClickableArea onClick={() => console.log('clicked card')}>
+ *     <Card>
+ *       <CardContent>My Card Content</CardContent>
+ *     </Card>
+ *   </ClickableArea>
+ * )
+ * ```
+ */
 const ClickableArea: React.FC<Props> = ({ onClick, children }) => {
   const classes = useStyles()
 
