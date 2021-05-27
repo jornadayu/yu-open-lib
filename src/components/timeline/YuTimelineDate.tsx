@@ -10,6 +10,9 @@ dayjs.extend(relativeTime)
 
 type Props = {
   date: Date
+  className?: string
+  dateStyles?: React.CSSProperties
+  style?: React.CSSProperties
 }
 
 const useStyles = makeStyles(() => ({
@@ -18,15 +21,21 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const YuTimelineDate: React.FC<Props> = ({ date }) => {
+const YuTimelineDate: React.FC<Props> = ({
+  date,
+  style,
+  className,
+  dateStyles
+}) => {
   const classes = useStyles()
 
   return (
-    <TimelineOppositeContent>
+    <TimelineOppositeContent className={className} style={style}>
       <Typography
         variant='body2'
         color='textSecondary'
         className={classes.date}
+        style={dateStyles}
       >
         {dayjs(date).format('DD/MM')}, {dayjs(date).from(dayjs())}
       </Typography>

@@ -10,6 +10,8 @@ type Props = {
   title: string
   description?: string
   onClick?: () => any
+  containerStyles?: React.CSSProperties
+  component?: React.ElementType<React.HTMLAttributes<HTMLElement>>
 }
 
 type StyleProps = {
@@ -30,13 +32,20 @@ const YuTimelineContent: React.FC<Props> = ({
   title,
   description,
   children,
-  onClick
+  onClick,
+  containerStyles,
+  component = Paper
 }) => {
   const { isMobile } = useViewport()
   const classes = useStyles({ isMobile })
 
   const paper = (
-    <Paper elevation={3} className={classes.paper}>
+    <Paper
+      component={component}
+      elevation={3}
+      className={classes.paper}
+      style={containerStyles}
+    >
       <Typography variant='h6' component='h1'>
         {title}
       </Typography>
