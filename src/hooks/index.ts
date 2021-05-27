@@ -7,11 +7,15 @@ import { useMediaQuery, useTheme } from '@material-ui/core'
  */
 export const useViewport = (): {
   isMobile: boolean
+  isTablet: boolean
+  isWide: boolean
 } => {
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
+  const isTablet = useMediaQuery(theme.breakpoints.down('md'))
+  const isWide = useMediaQuery(theme.breakpoints.down('lg'))
 
-  return { isMobile }
+  return { isMobile, isTablet, isWide }
 }
 
 /**
