@@ -59,12 +59,16 @@ const YuTimelineIcon: React.FC<Props> = ({
 
   return (
     <TimelineSeparator>
-      <StyledBadge badgeContent={count} color='primary'>
-        {(onClick && <ClickableArea onClick={onClick}>{dot}</ClickableArea>) ||
-          dot}
-      </StyledBadge>
+      <React.Fragment>
+        <StyledBadge badgeContent={count} color='primary'>
+          {(onClick && (
+            <ClickableArea onClick={onClick}>{dot}</ClickableArea>
+          )) ||
+            dot}
+        </StyledBadge>
 
-      {last || <TimelineConnector />}
+        {last || <TimelineConnector />}
+      </React.Fragment>
     </TimelineSeparator>
   )
 }
