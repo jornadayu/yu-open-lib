@@ -1,6 +1,13 @@
 import React from 'react'
 
-import { makeStyles, Paper, Typography, Theme, darken } from '@material-ui/core'
+import {
+  makeStyles,
+  Paper,
+  Typography,
+  Theme,
+  darken,
+  PaperProps
+} from '@material-ui/core'
 import { TimelineContent } from '@material-ui/lab'
 
 import ClickableArea from '../ClickableArea'
@@ -11,7 +18,12 @@ type Props = {
   description?: string
   onClick?: () => any
   containerStyles?: React.CSSProperties
-  component?: React.ElementType<React.HTMLAttributes<HTMLElement>>
+
+  /**
+   * If the item should have a Paper container or not
+   * @default true
+   */
+  container?: boolean
 }
 
 type StyleProps = {
@@ -28,24 +40,20 @@ const useStyles = makeStyles<Theme, StyleProps>((theme) => ({
   }
 }))
 
-const YuTimelineContent: React.FC<Props> = ({
+const YuTimelineContent: React.FC<Props & PaperProps> = ({
   title,
   description,
   children,
   onClick,
   containerStyles,
-  component = Paper
+  container = true,
+  ...paperProps
 }) => {
   const { isMobile } = useViewport()
   const classes = useStyles({ isMobile })
 
-  const paper = (
-    <Paper
-      component={component}
-      elevation={3}
-      className={classes.paper}
-      style={containerStyles}
-    >
+  const content = (
+    <>
       <Typography variant='h6' component='h1'>
         {title}
       </Typography>
@@ -55,18 +63,31 @@ const YuTimelineContent: React.FC<Props> = ({
       )}
 
       {children}
+    </>
+  )
+
+  const paper = (
+    <Paper
+      elevation={3}
+      className={classes.paper}
+      style={containerStyles}
+      {...paperProps}
+    >
+      {content}
     </Paper>
   )
 
   if (onClick) {
     return (
       <TimelineContent>
-        <ClickableArea onClick={onClick}>{paper}</ClickableArea>
+        <ClickableArea onClick={onClick}>
+          {(container && paper) || content}
+        </ClickableArea>
       </TimelineContent>
     )
   }
 
-  return <TimelineContent>{paper}</TimelineContent>
+  return <TimelineContent>{(container && paper) || content}</TimelineContent>
 }
 
 export default YuTimelineContent
