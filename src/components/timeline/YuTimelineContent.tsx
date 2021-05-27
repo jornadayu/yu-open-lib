@@ -53,7 +53,7 @@ const YuTimelineContent: React.FC<Props & PaperProps> = ({
   const classes = useStyles({ isMobile })
 
   const content = (
-    <>
+    <React.Fragment>
       <Typography variant='h6' component='h1'>
         {title}
       </Typography>
@@ -63,7 +63,7 @@ const YuTimelineContent: React.FC<Props & PaperProps> = ({
       )}
 
       {children}
-    </>
+    </React.Fragment>
   )
 
   const paper = (
