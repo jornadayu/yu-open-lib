@@ -3,12 +3,19 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core'
 
 type Props = {
-  onClick: () => any
+  onClick: (e?: React.MouseEvent<HTMLSpanElement>) => any
+
+  /** @default 'space' */
+  keybinding?: string
+
+  /** @default true */
+  useKeybinding?: boolean
 }
 
 const useStyles = makeStyles(() => ({
   clickArea: {
-    cursor: 'pointer'
+    cursor: 'pointer',
+    outline: 'none'
   }
 }))
 
@@ -27,11 +34,16 @@ const useStyles = makeStyles(() => ({
  * )
  * ```
  */
-const ClickableArea: React.FC<Props> = ({ onClick, children }) => {
+const ClickableArea: React.FC<Props> = ({
+  onClick,
+  children,
+  useKeybinding = true,
+  keybinding = 'space'
+}) => {
   const classes = useStyles()
 
   const handleKeybind = (event: React.KeyboardEvent<HTMLSpanElement>) => {
-    if (event.key === 'space') onClick()
+    if (event.key === keybinding && useKeybinding) onClick()
   }
 
   return (
