@@ -6,6 +6,16 @@
 yarn add yu-open-lib
 ```
 
+## Interactive Documentation with Storybook
+
+```bash
+yarn storybook
+```
+
+Will run at: https://localhost:6006 by default
+
+Read more about [Story Book](https://storybook.js.org/)
+
 ---
 
 ## Bump version
