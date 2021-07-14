@@ -5,20 +5,48 @@ import { Chip } from '@nivo/tooltip'
 import { useNivoTheme } from '../../hooks/nivo'
 import { asPercentage } from '../../helpers'
 
-type Props = {
-  text: string
-  value: string
-  color: string
-  isPercentage?: never
-} | {
-  text: string
-  value: number
-  color: string
-  isPercentage?: true
-}
+type Props =
+  | {
+      text: string
+      value: string
+      color: string
+      isPercentage?: never
+    }
+  | {
+      text: string
+      value: number
+      color: string
+      isPercentage?: true
+    }
 
+/**
+ * Replace a base nivo Tooltip with a custom Tooltip with color chip using
+ * this component, like below:
+ *
+ * ```tsx
+ * <ResponsiveBar
+ *   data={data}
+ *   tooltip={(input) => (
+ *     <BasicTextTooltip
+ *       text={(input.id as string)?.replace(/ *\([^)]*\)/, '')}
+ *       value={input.value}
+ *       color={input.color}
+ *     >
+ *       <br />
+ *       Some extra info:
+ *       {' '}
+ *       <strong>{input.data.expected_count}</strong>
+ *     </BasicTextTooltip>
+ *   )}
+ * />
+ * ```
+ */
 const NivoTextTooltip: React.FC<Props> = ({
-  text, value, color, children, isPercentage = false
+  text,
+  value,
+  color,
+  children,
+  isPercentage = false
 }) => {
   const nivoTheme = useNivoTheme()
 
@@ -28,13 +56,10 @@ const NivoTextTooltip: React.FC<Props> = ({
         <Chip color={color} style={nivoTheme.tooltip?.chip} />
 
         <span style={{ marginLeft: 6 }}>
-          {text}
-          :
-          {' '}
+          {text}:{' '}
           <strong>
             {isPercentage ? asPercentage(value as number) : value}
           </strong>
-
           {children}
         </span>
       </div>
