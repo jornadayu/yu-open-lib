@@ -13,13 +13,17 @@ type Contact = {
 type Props = {
   contact: Contact
   revisionDate: Date
+
+  /** @default 128 */
+  size?: number
 }
 
 /**
  * Generates a QR Code (in a HTML Canvas) with a VCard text to add a phone contact
  */
-const VCardQRCode: React.FC<Props> = ({ contact, revisionDate }) => (
+const VCardQRCode: React.FC<Props> = ({ contact, revisionDate, size = 128 }) => (
   <QRCode
+    size={size}
     value={
       `BEGIN:VCARD\nVERSION:3.0\nFN:${contact.fullName}\nN:${contact.lastName};` +
       `${contact.firstName};\nEMAIL:${contact.email}\nTEL;` +
