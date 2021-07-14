@@ -27,7 +27,7 @@ type Props =
  * <ResponsiveBar
  *   data={data}
  *   tooltip={(input) => (
- *     <BasicTextTooltip
+ *     <NivoTextTooltip
  *       text={(input.id as string)?.replace(/ *\([^)]*\)/, '')}
  *       value={input.value}
  *       color={input.color}
@@ -36,7 +36,7 @@ type Props =
  *       Some extra info:
  *       {' '}
  *       <strong>{input.data.expected_count}</strong>
- *     </BasicTextTooltip>
+ *     </NivoTextTooltip>
  *   )}
  * />
  * ```
