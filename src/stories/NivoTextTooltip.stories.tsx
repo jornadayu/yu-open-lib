@@ -1,8 +1,8 @@
 import React from 'react'
 
-import NivoTextTooltip from '../components/graphs/NivoTextTooltip'
-
 import { ComponentStory, ComponentMeta } from '@storybook/react'
+
+import NivoTextTooltip from '../components/graphs/NivoTextTooltip'
 
 export default {
   title: 'Graphs/NivoTextTooltip',
