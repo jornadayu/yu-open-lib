@@ -1,6 +1,5 @@
 import { ptBR } from '@material-ui/core/locale'
 import { createMuiTheme, ThemeOptions } from '@material-ui/core/styles'
-import { orange, red, green } from '@material-ui/core/colors'
 
 interface AppThemeOptions {
   darkMode?: boolean
@@ -13,11 +12,6 @@ interface AppThemeOptions {
 const AppTheme = ({ darkMode = false, options }: AppThemeOptions) =>
   createMuiTheme(
     {
-      status: {
-        success: green[700],
-        error: red[900],
-        warning: orange[500]
-      },
       typography: {
         fontFamily: [
           'DM Sans',
