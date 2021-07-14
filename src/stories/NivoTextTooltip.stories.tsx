@@ -6,10 +6,7 @@ import NivoTextTooltip from '../components/graphs/NivoTextTooltip'
 
 export default {
   title: 'Graphs/NivoTextTooltip',
-  component: NivoTextTooltip,
-  argTypes: {
-    color: { control: 'color' }
-  }
+  component: NivoTextTooltip
 } as ComponentMeta<typeof NivoTextTooltip>
 
 const Template: ComponentStory<typeof NivoTextTooltip> = (args) => (

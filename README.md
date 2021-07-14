@@ -55,6 +55,8 @@ Read more about [Story Book](https://storybook.js.org/)
 import React from 'react'
 
 import { ThemeProvider } from '@material-ui/core/styles'
+import { CssBaseline } from '@material-ui/core'
+
 import { AppTheme } from 'yu-open-lib'
 
 const theme = AppTheme({ darkMode: false })
@@ -62,6 +64,7 @@ const theme = AppTheme({ darkMode: false })
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       ...
     </ThemeProvider>
   )
