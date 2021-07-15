@@ -8,7 +8,7 @@ import SalariesBarGraph, {
 } from '../components/graphs/bar/SalariesBarGraph'
 
 export default {
-  title: 'Other/SalariesBarGraph',
+  title: 'Graphs/SalariesBarGraph',
   component: SalariesBarGraph
 } as ComponentMeta<typeof SalariesBarGraph>
 

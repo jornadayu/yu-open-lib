@@ -6,7 +6,7 @@ import { Grid, Card } from '@material-ui/core'
 import YuBarGraph, { Props } from '../components/graphs/bar/YuBarGraph'
 
 export default {
-  title: 'Other/YuBarGraph',
+  title: 'Graphs/YuBarGraph',
   component: YuBarGraph
 } as ComponentMeta<typeof YuBarGraph>
 
