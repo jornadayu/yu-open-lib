@@ -37,6 +37,9 @@ const BarGraphLine: React.FC<
   sameValueLabel,
   maxValueLabel,
   minValueLabel,
+  upperPosition = 68,
+  bottomPosition = 76,
+  boundModifier = 1.2,
   color = 'red'
 }) => {
   /* This number has to be big enough to ensure the line will cover the whole graph.
@@ -63,15 +66,11 @@ const BarGraphLine: React.FC<
   // Label positions have to depend on the line (maxValue / Min).
   // The constants to multiply were randomly guessed, but seem to behave
   // approximately correct.
-  const positionConstantForUpperLabel = 68
-  const positionConstantForBottomLabel = 76
-  const middleBound = maxValue / 1.2
+  const middleBound = maxValue / boundModifier
 
   const endTargetLabelPosition =
     (1 - maxValue / maxValue) *
-    (maxValue > middleBound
-      ? positionConstantForUpperLabel
-      : positionConstantForBottomLabel)
+    (maxValue > middleBound ? upperPosition : bottomPosition)
 
   let beginningTargetLabelPosition = null
 
@@ -89,9 +88,7 @@ const BarGraphLine: React.FC<
 
     beginningTargetLabelPosition =
       (1 - minValue / maxValue) *
-      (minValue > middleBound
-        ? positionConstantForUpperLabel
-        : positionConstantForBottomLabel)
+      (minValue > middleBound ? upperPosition : bottomPosition)
   }
 
   const labelColor = theme.palette.getContrastText(
