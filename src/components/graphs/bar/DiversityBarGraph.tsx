@@ -9,7 +9,7 @@ import { useNivoTheme } from '../../../hooks/nivo'
 import { asPercentage, truncatedText } from '../../../helpers'
 import NivoTextTooltip from '../NivoTextTooltip'
 
-type Datum = BarDatum & {
+export type Datum = BarDatum & {
   total: number
 }
 
@@ -30,6 +30,9 @@ export type Props = {
 
   /** @default 'question' */
   key?: string
+
+  /** @default false */
+  isPercentage?: boolean
 }
 
 const useStyles = makeStyles(() => ({
@@ -41,7 +44,8 @@ const useStyles = makeStyles(() => ({
 const DiversityBarGraph: React.FC<Props> = ({
   data,
   key = 'question',
-  verticalGraph = false
+  verticalGraph = false,
+  isPercentage = false
 }) => {
   const nivoTheme = useNivoTheme()
   const classes = useStyles()
@@ -64,11 +68,13 @@ const DiversityBarGraph: React.FC<Props> = ({
   }, [data])
 
   function barLabel(datum: ComputedDatum<Datum>) {
+    const start = `${truncatedText(datum.id.toString(), 20)}:`
+    if (isPercentage) return `${start} ${asPercentage(datum.value as number)}`
+
     const labelPercentage =
       (datum.value as number) / (datum.data.total as number)
-    const label = `${truncatedText(datum.id.toString(), 20)}: ${asPercentage(
-      labelPercentage
-    )}`
+
+    const label = `${start} ${asPercentage(labelPercentage)}`
 
     return label
   }
@@ -79,6 +85,7 @@ const DiversityBarGraph: React.FC<Props> = ({
         text={input.id as string}
         value={input.value}
         color={input.color}
+        isPercentage={isPercentage || undefined}
       />
     )
   }
