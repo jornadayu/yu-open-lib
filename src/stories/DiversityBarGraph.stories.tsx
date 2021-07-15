@@ -4,7 +4,8 @@ import { ComponentStory, ComponentMeta, Story } from '@storybook/react'
 import { Grid, Card } from '@material-ui/core'
 
 import DiversityBarGraph, {
-  Props
+  Props,
+  Datum
 } from '../components/graphs/bar/DiversityBarGraph'
 
 export default {
@@ -61,6 +62,20 @@ const data: Props['data'] = [
   }
 ]
 
+const toPercentageValues = (datum: Datum): Datum => {
+  const copy = { ...datum }
+
+  for (const key of Object.keys(datum)) {
+    if (key === 'total' || typeof datum[key] === 'string') continue
+
+    copy[key] = (datum[key] as number) / datum.total
+  }
+
+  return copy
+}
+
+const percentageData = data.map(toPercentageValues)
+
 export const Horizontal: Story<Props> = Template.bind({})
 Horizontal.args = {
   data
@@ -69,5 +84,18 @@ Horizontal.args = {
 export const Vertical: Story<Props> = Template.bind({})
 Vertical.args = {
   data,
+  verticalGraph: true
+}
+
+export const HorizontalPercentage: Story<Props> = Template.bind({})
+HorizontalPercentage.args = {
+  data: percentageData,
+  isPercentage: true
+}
+
+export const VerticalPercentage: Story<Props> = Template.bind({})
+VerticalPercentage.args = {
+  data: percentageData,
+  isPercentage: true,
   verticalGraph: true
 }
