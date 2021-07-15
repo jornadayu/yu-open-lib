@@ -2,6 +2,8 @@ import React, { useMemo } from 'react'
 
 import ReactWordcloud, { OptionsProp, Word } from 'react-wordcloud'
 
+import 'tippy.js/dist/tippy.css'
+import 'tippy.js/animations/scale.css'
 import 'tippy.js/themes/material.css'
 import 'tippy.js/themes/light.css'
 
@@ -25,7 +27,7 @@ const defaultOptions: OptionsProp = {
   }
 }
 
-type Props = {
+export type Props = {
   words: Word[]
 
   options?: OptionsProp
