@@ -13,20 +13,20 @@ type Datum = {
 
 export type Props = {
   keys: string[]
-  data?: Datum[]
+  data: Datum[]
+
+  /** @default { scheme: 'nivo' } */
   colors?: OrdinalColorScaleConfig<ComputedDatum<BarDatum>>
 } & Omit<BarSvgProps<BarDatum>, 'height' | 'width'>
 
 const YuBarGraph: React.FC<Props> = ({
   keys,
   data,
-  colors = 'nivo',
+  colors = { scheme: 'nivo' },
   ...barGraphProps
 }) => {
   const nivoTheme = useNivoTheme()
   const { isMobile } = useViewport()
-
-  if (!data) return null
 
   return (
     <ResponsiveBar
