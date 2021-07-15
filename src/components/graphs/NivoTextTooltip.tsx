@@ -5,7 +5,7 @@ import { Chip } from '@nivo/tooltip'
 import { useNivoTheme } from '../../hooks/nivo'
 import { asPercentage } from '../../helpers'
 
-type Props =
+export type Props =
   | {
       text: string
       value: string

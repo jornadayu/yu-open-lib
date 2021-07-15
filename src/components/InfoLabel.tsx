@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Grid, Theme, makeStyles } from '@material-ui/core'
 
-type Props = {
+export type Props = {
   value: number | string
   text: string
   marginTop?: number

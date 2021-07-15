@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { ComponentStory, ComponentMeta } from '@storybook/react'
+import { ComponentStory, ComponentMeta, Story } from '@storybook/react'
 
-import NivoTextTooltip from '../components/graphs/NivoTextTooltip'
+import NivoTextTooltip, { Props } from '../components/graphs/NivoTextTooltip'
 
 export default {
   title: 'Graphs/NivoTextTooltip',
@@ -13,14 +13,14 @@ const Template: ComponentStory<typeof NivoTextTooltip> = (args) => (
   <NivoTextTooltip {...args} />
 )
 
-export const StringValue = Template.bind({})
+export const StringValue: Story<Props> = Template.bind({})
 StringValue.args = {
   text: 'Some value',
   value: '55.45',
   color: '#fff'
 }
 
-export const PercentageValue = Template.bind({})
+export const PercentageValue: Story<Props> = Template.bind({})
 PercentageValue.args = {
   text: 'Some percentage value',
   value: 0.55,
