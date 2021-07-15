@@ -3,13 +3,13 @@ import React, { useMemo } from 'react'
 import { Typography, makeStyles } from '@material-ui/core'
 
 import { OrdinalColorScaleConfig } from '@nivo/colors'
-import { ResponsiveBar, BarDatumWithColor, ComputedDatum } from '@nivo/bar'
+import { ResponsiveBar, BarDatum, ComputedDatum } from '@nivo/bar'
 
 import { useNivoTheme } from '../../../hooks/nivo'
 import { asPercentage, truncatedText } from '../../../helpers'
 import NivoTextTooltip from '../NivoTextTooltip'
 
-type Datum = BarDatumWithColor & {
+type Datum = BarDatum & {
   total: number
 }
 
