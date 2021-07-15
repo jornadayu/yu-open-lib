@@ -3,8 +3,8 @@ import React from 'react'
 import { OrdinalColorScaleConfig } from '@nivo/colors'
 import { ResponsiveBar, BarDatum, ComputedDatum, BarSvgProps } from '@nivo/bar'
 
-import { legendProps, useNivoTheme } from '../../hooks/nivo'
-import { useViewport } from '../../hooks'
+import { legendProps, useNivoTheme } from '../../../hooks/nivo'
+import { useViewport } from '../../../hooks'
 
 type Datum = {
   name: string

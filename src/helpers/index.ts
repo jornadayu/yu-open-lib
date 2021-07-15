@@ -17,6 +17,29 @@ export const asPercentage = (number: number): string =>
 export const kCurrency = (amount: string | number, fixed = 0): string =>
   `${(parseFloat(amount.toString()) / 1000).toFixed(fixed)}k`
 
+export const formattedCurrency = (value: number, currency = 'pt'): string => {
+  try {
+    return Intl.NumberFormat(currency, {
+      style: 'currency',
+      currency: 'BRL',
+      currencyDisplay: 'symbol',
+      maximumFractionDigits: 0
+    }).format(Math.trunc(value))
+  } catch (_error) {
+    // IE-compatible code
+    const formattedValue = value
+      .toFixed(0)
+      .split('')
+      .reduce(
+        (a, b, i) =>
+          a + (i && !((value.toFixed(0).length - i) % 3) ? '.' : '') + b,
+        ''
+      )
+
+    return `R$ ${formattedValue}`
+  }
+}
+
 export const titleize = (text: string): string => {
   let upper = true
   let newStr = ''
