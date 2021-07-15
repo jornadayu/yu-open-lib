@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { Grid, Card } from '@material-ui/core'
 import { ComponentStory, ComponentMeta, Story } from '@storybook/react'
 
 import NivoTextTooltip, { Props } from '../components/graphs/NivoTextTooltip'
@@ -10,7 +11,11 @@ export default {
 } as ComponentMeta<typeof NivoTextTooltip>
 
 const Template: ComponentStory<typeof NivoTextTooltip> = (args) => (
-  <NivoTextTooltip {...args} />
+  <Grid container>
+    <Card style={{ height: '100%', width: '100%', padding: 24 }}>
+      <NivoTextTooltip {...args} />
+    </Card>
+  </Grid>
 )
 
 export const StringValue: Story<Props> = Template.bind({})

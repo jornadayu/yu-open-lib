@@ -1,9 +1,9 @@
-import React from 'react';
+import React from 'react'
 
 import { ThemeProvider } from '@material-ui/core/styles'
 import { CssBaseline } from '@material-ui/core'
 
-import { themes } from '@storybook/theming';
+import { themes } from '@storybook/theming'
 
 import AppTheme from '../src/theme/AppTheme'
 import '../src/styles/core.scss'
@@ -20,14 +20,14 @@ export const decorators = [
 ]
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
+  actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
     matchers: {
       color: /(background|color)$/i,
-      date: /Date$/,
-    },
+      date: /Date$/
+    }
   },
   docs: {
-    theme: themes.dark,
-  },
+    theme: themes.dark
+  }
 }

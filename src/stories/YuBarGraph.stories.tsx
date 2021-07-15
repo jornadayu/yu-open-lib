@@ -12,7 +12,7 @@ export default {
 
 const Template: ComponentStory<typeof YuBarGraph> = (args) => (
   <Grid container style={{ height: 500 }}>
-    <Card style={{ height: '90%', width: '90%', padding: 24 }}>
+    <Card style={{ height: '100%', width: '100%', padding: 24 }}>
       <YuBarGraph {...args} />
     </Card>
   </Grid>
