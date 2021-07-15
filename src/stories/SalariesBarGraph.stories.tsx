@@ -22,7 +22,7 @@ const Template: ComponentStory<typeof SalariesBarGraph> = (args) => (
 
 const data: Props['data'] = [
   {
-    job_title: 'Analista pleno',
+    job_title: 'Analista',
     'Expectativa Salarial (cor mais forte = maior amostragem)': 4872.0,
     'Salário Fixo Atual (cor mais forte = maior amostragem)': 3499.0,
     expected_count: 8,
@@ -89,4 +89,14 @@ WithLine.args = {
     maxValueLabel: 'Fim da faixa',
     minValueLabel: 'Início da faixa'
   }
+}
+
+export const WithoutMultipleKeys: Story<Props> = Template.bind({})
+WithoutMultipleKeys.args = {
+  data,
+  legend: 'Salary Data',
+  indexBy: 'job_title',
+  keys: ['Salário Fixo Atual (cor mais forte = maior amostragem)'],
+  maxValue: 16_000,
+  samplingLabel: 'Amostragem'
 }

@@ -84,7 +84,7 @@ const SalariesBarGraph: React.FC<Props> = ({
   )
 
   return (
-    <ClickableArea onClick={nextKey}>
+    <ClickableArea onClick={nextKey} active={keys.length > 1}>
       <ResponsiveBar
         axisTop={{
           legend,
