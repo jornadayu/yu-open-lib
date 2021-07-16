@@ -1,6 +1,17 @@
 image: node:14.16-buster
 
 pipelines:
+  pull-requests:
+    '**': # Run for any branch
+      - step:
+          name: Run tests, linting and build
+          caches: 
+            - yarncustom
+          script:
+            - yarn --ignore-scripts --unsafe-perm
+            - yarn test --watchAll=false --passWithNoTests
+            - yarn run eslint src/**/*.{ts,tsx}
+            - yarn build
   branches:
     # Run on merges to 'master' branch
     master:
