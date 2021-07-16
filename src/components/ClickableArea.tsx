@@ -10,6 +10,9 @@ type Props = {
 
   /** @default true */
   useKeybinding?: boolean
+
+  /** @default true */
+  active?: boolean
 }
 
 const useStyles = makeStyles(() => ({
@@ -37,6 +40,7 @@ const useStyles = makeStyles(() => ({
 const ClickableArea: React.FC<Props> = ({
   onClick,
   children,
+  active = true,
   useKeybinding = true,
   keybinding = 'space'
 }) => {
@@ -50,9 +54,9 @@ const ClickableArea: React.FC<Props> = ({
     <span
       role='button'
       tabIndex={0}
-      onClick={onClick}
-      onKeyDown={handleKeybind}
-      className={classes.clickArea}
+      onClick={active ? onClick : undefined}
+      onKeyDown={active ? handleKeybind : undefined}
+      className={active ? classes.clickArea : undefined}
     >
       {children}
     </span>

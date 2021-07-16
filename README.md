@@ -6,6 +6,16 @@
 yarn add yu-open-lib
 ```
 
+## Interactive Documentation with Storybook
+
+```bash
+yarn storybook
+```
+
+Will run at: https://localhost:6006 by default
+
+Read more about [Story Book](https://storybook.js.org/)
+
 ---
 
 ## Bump version
@@ -45,6 +55,8 @@ yarn add yu-open-lib
 import React from 'react'
 
 import { ThemeProvider } from '@material-ui/core/styles'
+import { CssBaseline } from '@material-ui/core'
+
 import { AppTheme } from 'yu-open-lib'
 
 const theme = AppTheme({ darkMode: false })
@@ -52,6 +64,7 @@ const theme = AppTheme({ darkMode: false })
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       ...
     </ThemeProvider>
   )
