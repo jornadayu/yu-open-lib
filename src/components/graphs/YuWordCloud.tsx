@@ -27,35 +27,28 @@ const defaultOptions: OptionsProp = {
   }
 }
 
-export type Props =
-  | {
-      words: Word[]
+export type BaseProps = {
+  words: Word[]
+  options?: OptionsProp
+  /** @default false */
+  darkMode?: boolean
+}
 
-      options?: OptionsProp
+export type PercentageProps = {
+  /** @default false */
+  isPercentage: true
+  /** @default 0 */
+  precision?: number
+}
 
-      /** @default false */
-      darkMode?: boolean
+export type NotPercentageProps = {
+  /** @default false */
+  isPercentage?: false
+  /** @default 0 */
+  precision: never
+}
 
-      /** @default false */
-      isPercentage?: never
-
-      /** @default 0 */
-      precision?: never
-    }
-  | {
-      words: Word[]
-
-      options?: OptionsProp
-
-      /** @default false */
-      darkMode?: boolean
-
-      /** @default false */
-      isPercentage?: true
-
-      /** @default 0 */
-      precision?: number
-    }
+export type Props = BaseProps & (PercentageProps | NotPercentageProps)
 
 const YuWordCloud: React.FC<Props> = ({
   words,
