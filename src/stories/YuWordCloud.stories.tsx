@@ -55,8 +55,7 @@ DarkMode.args = {
 export const LightMode: Story<Props> = Template.bind({})
 LightMode.args = {
   words,
-  darkMode: false,
-  precision: 4
+  darkMode: false
 }
 
 export const Percentage: Story<Props> = Template.bind({})
