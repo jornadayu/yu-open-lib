@@ -18,6 +18,8 @@ pipelines:
             - git tag "v${VERSION}" ${BITBUCKET_COMMIT} && git push origin --tags || echo "Tag already exists, not creating new release"
       - step:
           name: Deploy to NPM
+          caches:
+            - yarncustom
           condition:
               changesets:
                   includePaths:
@@ -29,3 +31,7 @@ pipelines:
               variables:
                 NPM_TOKEN: $NPM_TOKEN
                 EXTRA_ARGS: --access=public
+
+definitions:
+  caches:
+    yarncustom: /usr/local/share/.cache/yarn/v1
