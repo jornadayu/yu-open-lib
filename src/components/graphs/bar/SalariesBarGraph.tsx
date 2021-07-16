@@ -18,28 +18,24 @@ export type DatumWithCount = BaseDatum & {
 
 export type BaseProps = {
   legend: string
-  data: BaseDatum[]
   maxValue: number
   keys: string[]
   indexBy: string
   line?: BarGraphLineProps
   startColor?: string
   endColor?: string
-
-  /** @default true */
-  hasSampling: boolean
   samplingLabel?: string
 }
 
 export type WithSamplingProps = {
   data: DatumWithCount[]
-  hasSampling: never
+  hasSampling?: boolean
   samplingLabel: string
 }
 
 export type WithoutSamplingProps = {
+  data: BaseDatum[]
   hasSampling: false
-  samplingLabel: never
 }
 
 export type Props = BaseProps &
