@@ -68,10 +68,10 @@ const toPercentageValues = (datum: Datum): Datum => {
   for (const key of Object.keys(datum)) {
     if (key === 'total' || typeof datum[key] === 'string') continue
 
-    copy[key] = (datum[key] as number) / datum.total
+    copy[key] = (datum[key] as number) / (datum.total as number)
   }
 
-  return copy
+  return { ...copy, total: 1 }
 }
 
 const percentageData = data.map(toPercentageValues)
