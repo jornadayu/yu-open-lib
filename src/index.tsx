@@ -36,7 +36,8 @@ export {
   kCurrency,
   titleize,
   asPercentage,
-  truncatedText
+  truncatedText,
+  formattedCurrency
 } from './helpers'
 
 export { useViewport, useToggle } from './hooks'
@@ -50,3 +51,11 @@ export { default as YuNegativeLaranja } from 'assets/images/yu/YU_Neg_02_Laranja
 
 export { default as YuPositiveSalmao } from 'assets/images/yu/YU_Pos_01_Salmao.png'
 export { default as YuPositiveLaranja } from 'assets/images/yu/YU_Pos_02_Laranja.png'
+
+export { default as NivoTextTooltip } from './components/graphs/NivoTextTooltip'
+export { default as YuWordCloud } from './components/graphs/YuWordCloud'
+
+export { default as BarGraphLine } from './components/graphs/bar/BarGraphLine'
+export { default as DiversityBarGraph } from './components/graphs/bar/DiversityBarGraph'
+export { default as SalariesBarGraph } from './components/graphs/bar/SalariesBarGraph'
+export { default as YuBarGraph } from './components/graphs/bar/YuBarGraph'
