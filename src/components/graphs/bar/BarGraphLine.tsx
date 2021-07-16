@@ -98,9 +98,9 @@ const BarGraphLine: React.FC<
   )
 
   return (
-    <>
+    <React.Fragment>
       {maxValue && lineGeneratorMax && (
-        <>
+        <React.Fragment>
           <path
             // @ts-ignore
             d={lineGeneratorMax(bars) as string}
@@ -110,10 +110,10 @@ const BarGraphLine: React.FC<
           <text fill={labelColor} x='10' y={`${endTargetLabelPosition}%`}>
             {endTargetLabelText}
           </text>
-        </>
+        </React.Fragment>
       )}
       {minValue && lineGeneratorMin && (
-        <>
+        <React.Fragment>
           <path
             // @ts-ignore
             d={lineGeneratorMin(bars) as string}
@@ -123,9 +123,9 @@ const BarGraphLine: React.FC<
           <text fill={labelColor} x='10' y={`${beginningTargetLabelPosition}%`}>
             {beginningTargetLabelText}
           </text>
-        </>
+        </React.Fragment>
       )}
-    </>
+    </React.Fragment>
   )
 }
 

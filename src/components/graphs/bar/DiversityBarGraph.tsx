@@ -102,9 +102,9 @@ const DiversityBarGraph: React.FC<Props> = ({
 
   if (verticalGraph) {
     return (
-      <>
-        {data.map((datum) => (
-          <>
+      <React.Fragment>
+        {data.map((datum, index) => (
+          <React.Fragment key={`diversity-datum-${index}-${datum.total}`}>
             <Typography variant='subtitle2'>{datum.question}</Typography>
             <div className={classes.mobileDiversityContainer}>
               <ResponsiveBar
@@ -129,9 +129,9 @@ const DiversityBarGraph: React.FC<Props> = ({
                 {...barGraphProps}
               />
             </div>
-          </>
+          </React.Fragment>
         ))}
-      </>
+      </React.Fragment>
     )
   }
 
