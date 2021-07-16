@@ -39,6 +39,13 @@ const words: Props['words'] = [
   { text: 'Light', value: randomValue() }
 ]
 
+const valueSum = words.reduce((a, b) => a + (b.value || 0), 0)
+
+const wordsPercentage = words.map((word) => ({
+  ...word,
+  value: word.value / valueSum
+}))
+
 export const DarkMode: Story<Props> = Template.bind({})
 DarkMode.args = {
   words,
@@ -48,5 +55,14 @@ DarkMode.args = {
 export const LightMode: Story<Props> = Template.bind({})
 LightMode.args = {
   words,
-  darkMode: false
+  darkMode: false,
+  precision: 4
+}
+
+export const Percentage: Story<Props> = Template.bind({})
+Percentage.args = {
+  words: wordsPercentage,
+  darkMode: true,
+  isPercentage: true,
+  precision: 2
 }
