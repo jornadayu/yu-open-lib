@@ -1,4 +1,3 @@
-import createPalette from '@material-ui/core/styles/createPalette'
 import { Theme } from '@material-ui/core/styles/createMuiTheme'
 
 declare module '@material-ui/core/styles/createPalette' {
