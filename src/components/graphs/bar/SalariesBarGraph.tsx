@@ -159,10 +159,10 @@ const SalariesBarGraph: React.FC<Props> = ({
             color={input.color}
           >
             {hasSampling && (
-              <>
+              <React.Fragment>
                 <br />
                 {samplingLabel}: <strong>{input.data.count}</strong>
-              </>
+              </React.Fragment>
             )}
           </NivoTextTooltip>
         )}
