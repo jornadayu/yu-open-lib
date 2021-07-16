@@ -33,7 +33,7 @@ export type Props = {
 
   /** @default false */
   isPercentage?: boolean
-} & Omit<BarSvgProps<BarDatum>, 'height' | 'width'>
+} & Omit<BarSvgProps<Datum>, 'height' | 'width'>
 
 const useStyles = makeStyles(() => ({
   mobileDiversityContainer: {
@@ -110,6 +110,7 @@ const DiversityBarGraph: React.FC<Props> = ({
               <ResponsiveBar
                 {...sharedPropsDesktopAndMobile}
                 data={[datum]}
+                labelTextColor='rgba(0, 0, 0, 0.87);'
                 tooltip={diversityTooltip}
                 margin={{
                   top: 40,
@@ -139,6 +140,7 @@ const DiversityBarGraph: React.FC<Props> = ({
       <ResponsiveBar
         {...sharedPropsDesktopAndMobile}
         data={data}
+        labelTextColor='rgba(0, 0, 0, 0.87);'
         tooltip={diversityTooltip}
         indexBy='question'
         margin={{
@@ -150,6 +152,9 @@ const DiversityBarGraph: React.FC<Props> = ({
         axisTop={{}}
         axisBottom={{
           format: () => ''
+        }}
+        axisLeft={{
+          format: (value) => (isPercentage ? `${value * 100}%` : value)
         }}
         layout='vertical'
         padding={0.3}
