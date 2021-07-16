@@ -14,7 +14,7 @@ export default {
 } as ComponentMeta<typeof DiversityBarGraph>
 
 const Template: ComponentStory<typeof DiversityBarGraph> = (args) => (
-  <Grid container style={{ height: 500, width: 1000 }}>
+  <Grid container style={{ height: 500, width: 1070 }}>
     <Card style={{ height: '100%', width: '100%', padding: 24 }}>
       <DiversityBarGraph {...args} />
     </Card>
