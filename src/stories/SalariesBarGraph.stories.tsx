@@ -25,36 +25,59 @@ const data: Props['data'] = [
     job_title: 'Analista',
     'Expectativa Salarial (cor mais forte = maior amostragem)': 4872.0,
     'Salário Fixo Atual (cor mais forte = maior amostragem)': 3499.0,
-    expected_count: 8,
-    current_count: 8
+    count: 8
   },
   {
     job_title: 'Especialista',
     'Expectativa Salarial (cor mais forte = maior amostragem)': 14333.0,
     'Salário Fixo Atual (cor mais forte = maior amostragem)': 12832.333333333334,
-    expected_count: 3,
-    current_count: 3
+    count: 3
   },
   {
     job_title: 'Consultor',
     'Expectativa Salarial (cor mais forte = maior amostragem)': 10999.0,
     'Salário Fixo Atual (cor mais forte = maior amostragem)': 10499.0,
-    expected_count: 2,
-    current_count: 2
+    count: 2
   },
   {
     job_title: 'Coordenador',
     'Expectativa Salarial (cor mais forte = maior amostragem)': 12100.25,
     'Salário Fixo Atual (cor mais forte = maior amostragem)': 10749.0,
-    expected_count: 4,
-    current_count: 4
+    count: 4
   },
   {
     job_title: 'Gerente',
     'Expectativa Salarial (cor mais forte = maior amostragem)': 6499.0,
     'Salário Fixo Atual (cor mais forte = maior amostragem)': 6499.0,
-    expected_count: 1,
-    current_count: 1
+    count: 1
+  }
+]
+
+const dataWithoutCount: Props['data'] = [
+  {
+    job_title: 'Analista',
+    'Expectativa Salarial (cor mais forte = maior amostragem)': 4872.0,
+    'Salário Fixo Atual (cor mais forte = maior amostragem)': 3499.0
+  },
+  {
+    job_title: 'Especialista',
+    'Expectativa Salarial (cor mais forte = maior amostragem)': 14333.0,
+    'Salário Fixo Atual (cor mais forte = maior amostragem)': 12832.333333333334
+  },
+  {
+    job_title: 'Consultor',
+    'Expectativa Salarial (cor mais forte = maior amostragem)': 10999.0,
+    'Salário Fixo Atual (cor mais forte = maior amostragem)': 10499.0
+  },
+  {
+    job_title: 'Coordenador',
+    'Expectativa Salarial (cor mais forte = maior amostragem)': 12100.25,
+    'Salário Fixo Atual (cor mais forte = maior amostragem)': 10749.0
+  },
+  {
+    job_title: 'Gerente',
+    'Expectativa Salarial (cor mais forte = maior amostragem)': 6499.0,
+    'Salário Fixo Atual (cor mais forte = maior amostragem)': 6499.0
   }
 ]
 
@@ -99,4 +122,14 @@ WithoutMultipleKeys.args = {
   keys: ['Salário Fixo Atual (cor mais forte = maior amostragem)'],
   maxValue: 16_000,
   samplingLabel: 'Amostragem'
+}
+
+export const WithoutSampleSize: Story<Props> = Template.bind({})
+WithoutSampleSize.args = {
+  data: dataWithoutCount,
+  legend: 'Salary Data',
+  indexBy: 'job_title',
+  keys: ['Salário Fixo Atual (cor mais forte = maior amostragem)'],
+  maxValue: 16_000,
+  hasSampling: false
 }
