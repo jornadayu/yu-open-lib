@@ -5,19 +5,24 @@ import { Chip } from '@nivo/tooltip'
 import { useNivoTheme } from '../../hooks/nivo'
 import { asPercentage } from '../../helpers'
 
-export type Props =
-  | {
-      text: string
-      value: string
-      color: string
-      isPercentage?: never
-    }
-  | {
-      text: string
-      value: number
-      color: string
-      isPercentage?: true
-    }
+export type BaseProps = {
+  text: string
+  value: string | number
+  color: string
+  /** @default false */
+  isPercentage?: boolean
+}
+
+export type Props = BaseProps &
+  (
+    | {
+        isPercentage?: never
+      }
+    | {
+        value: number
+        isPercentage?: true
+      }
+  )
 
 /**
  * Replace a base nivo Tooltip with a custom Tooltip with color chip using
