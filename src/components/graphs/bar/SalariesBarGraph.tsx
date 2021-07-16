@@ -12,7 +12,7 @@ import ClickableArea from '../../ClickableArea'
 
 export type BaseDatum = BarDatum
 
-export type Datum = BaseDatum & {
+export type DatumWithCount = BaseDatum & {
   count: number
 }
 
@@ -31,17 +31,19 @@ export type BaseProps = {
   samplingLabel?: string
 }
 
+export type WithSamplingProps = {
+  data: DatumWithCount[]
+  hasSampling: never
+  samplingLabel: string
+}
+
+export type WithoutSamplingProps = {
+  hasSampling: false
+  samplingLabel: never
+}
+
 export type Props = BaseProps &
-  (
-    | {
-        hasSampling: never
-        samplingLabel: string
-      }
-    | {
-        hasSampling: false
-        samplingLabel: never
-      }
-  ) &
+  (WithSamplingProps | WithoutSamplingProps) &
   Omit<BarSvgProps<BarDatum>, 'height' | 'width'>
 
 const SalariesBarGraph: React.FC<Props> = ({
