@@ -22,7 +22,9 @@ export type BaseProps = {
   keys: string[]
   indexBy: string
   line?: BarGraphLineProps
+  /** @default '#c4f7ff' */
   startColor?: string
+  /** @default '#066878' */
   endColor?: string
   samplingLabel?: string
 }
