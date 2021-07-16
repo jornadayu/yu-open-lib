@@ -3,7 +3,7 @@ import React, { useMemo } from 'react'
 import { Typography, makeStyles } from '@material-ui/core'
 
 import { OrdinalColorScaleConfig } from '@nivo/colors'
-import { ResponsiveBar, BarDatum, ComputedDatum } from '@nivo/bar'
+import { ResponsiveBar, BarDatum, ComputedDatum, BarSvgProps } from '@nivo/bar'
 
 import { useNivoTheme } from '../../../hooks/nivo'
 import { asPercentage, truncatedText } from '../../../helpers'
@@ -33,7 +33,7 @@ export type Props = {
 
   /** @default false */
   isPercentage?: boolean
-}
+} & Omit<BarSvgProps<BarDatum>, 'height' | 'width'>
 
 const useStyles = makeStyles(() => ({
   mobileDiversityContainer: {
@@ -45,7 +45,8 @@ const DiversityBarGraph: React.FC<Props> = ({
   data,
   key = 'question',
   verticalGraph = false,
-  isPercentage = false
+  isPercentage = false,
+  ...barGraphProps
 }) => {
   const nivoTheme = useNivoTheme()
   const classes = useStyles()
@@ -124,6 +125,7 @@ const DiversityBarGraph: React.FC<Props> = ({
                 }}
                 layout='horizontal'
                 labelSkipWidth={64}
+                {...barGraphProps}
               />
             </div>
           </>
@@ -152,6 +154,7 @@ const DiversityBarGraph: React.FC<Props> = ({
         layout='vertical'
         padding={0.3}
         labelSkipHeight={15}
+        {...barGraphProps}
       />
     </span>
   )
