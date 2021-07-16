@@ -10,19 +10,39 @@ import NivoTextTooltip from '../NivoTextTooltip'
 import BarGraphLine, { Props as BarGraphLineProps } from './BarGraphLine'
 import ClickableArea from '../../ClickableArea'
 
-export type Datum = Record<string, number | string | undefined>
+export type BaseDatum = BarDatum
 
-export type Props = {
+export type Datum = BaseDatum & {
+  count: number
+}
+
+export type BaseProps = {
   legend: string
-  data: Datum[]
+  data: BaseDatum[]
   maxValue: number
   keys: string[]
   indexBy: string
   line?: BarGraphLineProps
-  samplingLabel: string
   startColor?: string
   endColor?: string
-} & Omit<BarSvgProps<BarDatum>, 'height' | 'width'>
+
+  /** @default true */
+  hasSampling: boolean
+  samplingLabel?: string
+}
+
+export type Props = BaseProps &
+  (
+    | {
+        hasSampling: never
+        samplingLabel: string
+      }
+    | {
+        hasSampling: false
+        samplingLabel: never
+      }
+  ) &
+  Omit<BarSvgProps<BarDatum>, 'height' | 'width'>
 
 const SalariesBarGraph: React.FC<Props> = ({
   legend,
@@ -32,6 +52,7 @@ const SalariesBarGraph: React.FC<Props> = ({
   indexBy,
   line,
   samplingLabel,
+  hasSampling = true,
   startColor = '#c4f7ff',
   endColor = '#066878',
   ...props
@@ -62,7 +83,7 @@ const SalariesBarGraph: React.FC<Props> = ({
   })
 
   const dataSum = useMemo(
-    () => data.reduce((a, b) => (a as number) + (b.current_count as number), 0),
+    () => data.reduce((a, b) => (a as number) + (b.count as number), 0),
     [data]
   )
 
@@ -73,9 +94,7 @@ const SalariesBarGraph: React.FC<Props> = ({
         ...datum,
         color: colorGradient.getColor(
           Number.parseInt(
-            (((datum.current_count as number) / (dataSum || 1)) * 100).toFixed(
-              0
-            ),
+            (((datum.count as number) / (dataSum || 1)) * 100).toFixed(0),
             10
           ) || 1
         )
@@ -139,8 +158,12 @@ const SalariesBarGraph: React.FC<Props> = ({
             value={formattedCurrency(input.value)}
             color={input.color}
           >
-            <br />
-            {samplingLabel}: <strong>{input.data.expected_count}</strong>
+            {hasSampling && (
+              <>
+                <br />
+                {samplingLabel}: <strong>{input.data.count}</strong>
+              </>
+            )}
           </NivoTextTooltip>
         )}
         legends={[{ ...legendProps, translateX: -110, dataFrom: 'keys' }]}
