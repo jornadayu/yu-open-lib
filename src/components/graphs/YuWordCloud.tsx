@@ -27,19 +27,42 @@ const defaultOptions: OptionsProp = {
   }
 }
 
-export type Props = {
-  words: Word[]
+export type Props =
+  | {
+      words: Word[]
 
-  options?: OptionsProp
+      options?: OptionsProp
 
-  /** @default false */
-  darkMode?: boolean
-}
+      /** @default false */
+      darkMode?: boolean
+
+      /** @default false */
+      isPercentage?: never
+
+      /** @default 0 */
+      precision?: never
+    }
+  | {
+      words: Word[]
+
+      options?: OptionsProp
+
+      /** @default false */
+      darkMode?: boolean
+
+      /** @default false */
+      isPercentage?: true
+
+      /** @default 0 */
+      precision?: number
+    }
 
 const YuWordCloud: React.FC<Props> = ({
   words,
   options = defaultOptions,
-  darkMode = false
+  darkMode = false,
+  isPercentage = false,
+  precision = 0
 }) => {
   const filteredWords = useMemo(() => removeStopWords(words), [words])
 
@@ -53,7 +76,17 @@ const YuWordCloud: React.FC<Props> = ({
     }
   }
 
-  return <ReactWordcloud options={wordcloudOptions} words={filteredWords} />
+  return (
+    <ReactWordcloud
+      callbacks={{
+        getWordTooltip: isPercentage
+          ? (word) => `${word.text}: ${(word.value * 100).toFixed(precision)}%`
+          : (word) => `${word.text}: ${word.value}`
+      }}
+      options={wordcloudOptions}
+      words={filteredWords}
+    />
+  )
 }
 
 export default YuWordCloud
