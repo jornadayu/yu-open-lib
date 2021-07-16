@@ -53,6 +53,7 @@ const BarGraphLine: React.FC<
   if (maxValue && maxValue > 0) {
     lineGeneratorMax = line()
       .x((d: any) => d.data.index * localInfinity)
+      // @ts-ignore
       .y(() => yScale(maxValue))
   }
 
@@ -60,6 +61,7 @@ const BarGraphLine: React.FC<
   if (minValue && minValue > 0) {
     lineGeneratorMin = line()
       .x((d: any) => d.data.index * localInfinity)
+      // @ts-ignore
       .y(() => yScale(minValue))
   }
 
@@ -100,6 +102,7 @@ const BarGraphLine: React.FC<
       {maxValue && lineGeneratorMax && (
         <>
           <path
+            // @ts-ignore
             d={lineGeneratorMax(bars) as string}
             strokeDasharray='5, 5'
             stroke={color}
@@ -112,6 +115,7 @@ const BarGraphLine: React.FC<
       {minValue && lineGeneratorMin && (
         <>
           <path
+            // @ts-ignore
             d={lineGeneratorMin(bars) as string}
             strokeDasharray='5, 5'
             stroke={color}
