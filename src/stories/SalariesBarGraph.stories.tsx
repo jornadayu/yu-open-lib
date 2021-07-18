@@ -120,7 +120,6 @@ WithoutMultipleKeys.args = {
   legend: 'Salary Data',
   indexBy: 'job_title',
   keys: ['Salário Fixo Atual (cor mais forte = maior amostragem)'],
-  maxValue: 16_000,
   samplingLabel: 'Amostragem'
 }
 
@@ -130,6 +129,5 @@ WithoutSampleSize.args = {
   legend: 'Salary Data',
   indexBy: 'job_title',
   keys: ['Salário Fixo Atual (cor mais forte = maior amostragem)'],
-  maxValue: 16_000,
   hasSampling: false
 }

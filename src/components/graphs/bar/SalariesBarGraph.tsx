@@ -24,7 +24,7 @@ export type DatumWithCount = BaseDatum & {
 
 export type BaseProps = {
   legend: string
-  maxValue: number
+  maxValue?: number
   keys: string[]
   indexBy: string
   line?: BarGraphLineProps
