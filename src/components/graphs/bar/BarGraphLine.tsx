@@ -2,7 +2,6 @@ import React from 'react'
 
 import { line } from 'd3-shape'
 import { useTheme } from '@material-ui/core'
-import { BarDatum, BarCustomLayerProps } from '@nivo/bar'
 
 export type Props = {
   minValue: number
@@ -22,14 +21,15 @@ export type Props = {
 
   /** default 'red' */
   color?: string
+
+  bars?: any
+  yScale?: any
 }
 
 /**
  * https://github.com/plouc/nivo/issues/141
  */
-const BarGraphLine: React.FC<
-  Props & Partial<BarCustomLayerProps<BarDatum>>
-> = ({
+const BarGraphLine: React.FC<Props> = ({
   bars,
   yScale,
   minValue,

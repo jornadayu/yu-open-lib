@@ -1,6 +1,12 @@
 import React, { useState, useMemo } from 'react'
 
-import { ResponsiveBar, BarDatum, BarSvgProps } from '@nivo/bar'
+import {
+  ResponsiveBar,
+  BarDatum,
+  BarSvgProps,
+  Layer,
+  BarCustomLayer
+} from '@nivo/bar'
 import Gradient from 'javascript-color-gradient'
 
 import { legendProps, useNivoTheme } from '../../../hooks/nivo'
@@ -42,7 +48,7 @@ export type WithoutSamplingProps = {
 
 export type Props = BaseProps &
   (WithSamplingProps | WithoutSamplingProps) &
-  Omit<BarSvgProps<BarDatum>, 'height' | 'width'>
+  Omit<BarSvgProps, 'height' | 'width'>
 
 const SalariesBarGraph: React.FC<Props> = ({
   legend,
@@ -101,6 +107,16 @@ const SalariesBarGraph: React.FC<Props> = ({
       })),
     [dataSum, data, colorGradient]
   )
+
+  const layers: Layer[] = ['grid', 'axes', 'bars', 'markers', 'legends']
+
+  if (line) {
+    layers.push(
+      ({ bars, yScale }: BarCustomLayer & { bars: any; yScale: any }) => (
+        <BarGraphLine bars={bars} yScale={yScale} {...line} />
+      )
+    )
+  }
 
   return (
     <ClickableArea onClick={nextKey} active={keys.length > 1}>
@@ -168,19 +184,7 @@ const SalariesBarGraph: React.FC<Props> = ({
         )}
         legends={[{ ...legendProps, translateX: -110, dataFrom: 'keys' }]}
         animate
-        layers={[
-          'grid',
-          'axes',
-          'bars',
-          'markers',
-          'legends',
-          'annotations',
-          line
-            ? ({ bars, yScale }) => (
-                <BarGraphLine bars={bars} yScale={yScale} {...line} />
-              )
-            : 'annotations'
-        ]}
+        layers={layers}
         {...props}
       />
     </ClickableArea>
