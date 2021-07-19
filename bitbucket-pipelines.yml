@@ -33,8 +33,7 @@ pipelines:
       - step:
           name: Deploy to NPM
           caches:
-            - nodecustom
-            - yarn
+            - node
           condition:
               changesets:
                   includePaths:
