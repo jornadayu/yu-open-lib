@@ -22,7 +22,9 @@ export type Props = {
   /** default 'red' */
   color?: string
 
+  /** Passed from `layers` callback from nivo's ResponsiveBar */
   bars?: any
+  /** Passed from `layers` callback from nivo's ResponsiveBar */
   yScale?: any
 }
 
@@ -102,7 +104,6 @@ const BarGraphLine: React.FC<Props> = ({
       {maxValue && lineGeneratorMax && (
         <React.Fragment>
           <path
-            // @ts-ignore
             d={lineGeneratorMax(bars) as string}
             strokeDasharray='5, 5'
             stroke={color}
@@ -115,7 +116,6 @@ const BarGraphLine: React.FC<Props> = ({
       {minValue && lineGeneratorMin && (
         <React.Fragment>
           <path
-            // @ts-ignore
             d={lineGeneratorMin(bars) as string}
             strokeDasharray='5, 5'
             stroke={color}
