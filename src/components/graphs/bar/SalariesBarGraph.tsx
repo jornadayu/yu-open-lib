@@ -37,7 +37,7 @@ export type BaseProps = {
 
 export type WithSamplingProps = {
   data: DatumWithCount[]
-  hasSampling?: boolean
+  hasSampling?: true
   samplingLabel: string
 }
 
@@ -107,6 +107,18 @@ const SalariesBarGraph: React.FC<Props> = ({
       })),
     [dataSum, data, colorGradient]
   )
+
+  // Calculate `maxValue` from `line` values if not passed and `line` was
+  if (!maxValue && !!line && !!line?.maxValue) {
+    const maxSalaryTarget = Math.max(
+      ...data.map((datum) => datum[keys[0]] as number),
+      ...data.map((datum) => datum[keys[1]] as number)
+    )
+
+    if (maxSalaryTarget < line?.maxValue) {
+      maxValue = maxSalaryTarget + 1000
+    }
+  }
 
   const layers: Layer[] = ['grid', 'axes', 'bars', 'markers', 'legends']
 
