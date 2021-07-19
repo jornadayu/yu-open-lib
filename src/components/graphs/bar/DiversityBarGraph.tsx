@@ -3,13 +3,17 @@ import React, { useMemo } from 'react'
 import { Typography, makeStyles } from '@material-ui/core'
 
 import { OrdinalColorScaleConfig } from '@nivo/colors'
-import { ResponsiveBar, BarDatum, BarSvgProps, AccessorFunc } from '@nivo/bar'
+import { ResponsiveBar, BarSvgProps, AccessorFunc } from '@nivo/bar'
 
 import { useNivoTheme } from '../../../hooks/nivo'
 import { asPercentage, truncatedText } from '../../../helpers'
 import NivoTextTooltip from '../NivoTextTooltip'
 
-export type Datum = BarDatum & {
+export type Datum = Record<string, number | string> & {
+  question: string
+}
+
+export type DatumWithTotal = Datum & {
   total: number
 }
 
@@ -22,9 +26,7 @@ type SharedProps = {
   label: AccessorFunc
 }
 
-export type Props = {
-  data: Datum[]
-
+export type BaseProps = {
   /** @default false */
   verticalGraph?: boolean
 
@@ -33,7 +35,21 @@ export type Props = {
 
   /** @default false */
   isPercentage?: boolean
-} & Partial<BarSvgProps>
+}
+
+export type PercentageProps = {
+  isPercentage: true
+  data: DatumWithTotal[]
+}
+
+export type WithoutPercentageProps = {
+  isPercentage?: false
+  data: Datum[]
+}
+
+export type Props = BaseProps &
+  (PercentageProps | WithoutPercentageProps) &
+  Partial<BarSvgProps>
 
 const useStyles = makeStyles(() => ({
   mobileDiversityContainer: {
@@ -68,7 +84,7 @@ const DiversityBarGraph: React.FC<Props> = ({
     return mappedKeys
   }, [data])
 
-  const barLabel: AccessorFunc = (datum) => {
+  const barLabel = (datum: Datum) => {
     const start = `${truncatedText(datum.id.toString(), 20)}:`
     if (isPercentage) return `${start} ${asPercentage(datum.value as number)}`
 
@@ -97,15 +113,18 @@ const DiversityBarGraph: React.FC<Props> = ({
     theme: nivoTheme,
     keys: Array.from(keys),
     animate: true,
-    label: (datum) => barLabel(datum)
+    label: (datum) => barLabel(datum as Datum)
   }
 
   if (verticalGraph) {
     return (
       <React.Fragment>
         {data.map((datum, index) => (
-          <React.Fragment key={`diversity-datum-${index}-${datum.total}`}>
-            <Typography variant='subtitle2'>{datum.question}</Typography>
+          <React.Fragment key={`diversity-datum-${index}-${datum.question}`}>
+            <Typography variant='subtitle2'>
+              {datum.question as string}
+            </Typography>
+
             <div className={classes.mobileDiversityContainer}>
               <ResponsiveBar
                 {...sharedPropsDesktopAndMobile}
