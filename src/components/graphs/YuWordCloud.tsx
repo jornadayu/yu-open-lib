@@ -8,6 +8,7 @@ import 'tippy.js/themes/material.css'
 import 'tippy.js/themes/light.css'
 
 import { removeStopWords } from '../../helpers/stopwords'
+import { useTheme } from '@material-ui/core'
 
 const defaultOptions: OptionsProp = {
   enableTooltip: true,
@@ -30,8 +31,6 @@ const defaultOptions: OptionsProp = {
 export type BaseProps = {
   words: Word[]
   options?: OptionsProp
-  /** @default false */
-  darkMode?: boolean
 }
 
 export type PercentageProps = {
@@ -53,10 +52,10 @@ export type Props = BaseProps & (PercentageProps | NotPercentageProps)
 const YuWordCloud: React.FC<Props> = ({
   words,
   options = defaultOptions,
-  darkMode = false,
   isPercentage = false,
   precision = 0
 }) => {
+  const theme = useTheme()
   const filteredWords = useMemo(() => removeStopWords(words), [words])
 
   // Use tooltip material theme when using dark mode
@@ -65,7 +64,7 @@ const YuWordCloud: React.FC<Props> = ({
     ...options,
     tooltipOptions: {
       ...options?.tooltipOptions,
-      theme: darkMode ? 'material' : 'light'
+      theme: theme.palette.type === 'dark' ? 'material' : 'light'
     }
   }
 
