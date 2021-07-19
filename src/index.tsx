@@ -59,3 +59,5 @@ export { default as BarGraphLine } from './components/graphs/bar/BarGraphLine'
 export { default as DiversityBarGraph } from './components/graphs/bar/DiversityBarGraph'
 export { default as SalariesBarGraph } from './components/graphs/bar/SalariesBarGraph'
 export { default as YuBarGraph } from './components/graphs/bar/YuBarGraph'
+
+export { default as RejectionsSunburst } from './components/graphs/RejectionsSunburst'
