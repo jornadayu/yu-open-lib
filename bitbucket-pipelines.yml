@@ -4,32 +4,14 @@ pipelines:
   pull-requests:
     '**': # Run for any branch
       - step:
-          name: Install dependencies
+          name: Tests, Linting and Build
           caches: 
             - nodecustom
             - yarn
           script:
             - yarn --ignore-scripts --unsafe-perm
-      - step:
-          name: Run tests
-          caches: 
-            - nodecustom
-            - yarn
-          script:
             - yarn test --watchAll=false --passWithNoTests
-      - step:
-          name: Linting
-          caches: 
-            - nodecustom
-            - yarn
-          script:
             - yarn run eslint src/**/*.{ts,tsx}
-      - step:
-          name: Build
-          caches: 
-            - nodecustom
-            - yarn
-          script:
             - yarn build
 
   branches:
