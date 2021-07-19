@@ -5,7 +5,8 @@ import { Grid, Card } from '@material-ui/core'
 
 import DiversityBarGraph, {
   Props,
-  Datum
+  Datum,
+  DatumWithTotal
 } from '../components/graphs/bar/DiversityBarGraph'
 
 export default {
@@ -21,7 +22,7 @@ const Template: ComponentStory<typeof DiversityBarGraph> = (args) => (
   </Grid>
 )
 
-const data: Props['data'] = [
+const data: Datum[] = [
   {
     question: 'PCD',
     'Prefiro não responder a esta pergunta.': 10,
@@ -62,7 +63,7 @@ const data: Props['data'] = [
   }
 ]
 
-const toPercentageValues = (datum: Datum): Datum => {
+const toPercentageValues = (datum: Datum): DatumWithTotal => {
   const copy = { ...datum }
 
   for (const key of Object.keys(datum)) {
