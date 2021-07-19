@@ -4,14 +4,34 @@ pipelines:
   pull-requests:
     '**': # Run for any branch
       - step:
-          name: Run tests, linting and build
+          name: Install dependencies
           caches: 
-            - yarncustom
+            - nodecustom
+            - yarn
           script:
             - yarn --ignore-scripts --unsafe-perm
+      - step:
+          name: Run tests
+          caches: 
+            - nodecustom
+            - yarn
+          script:
             - yarn test --watchAll=false --passWithNoTests
+      - step:
+          name: Linting
+          caches: 
+            - nodecustom
+            - yarn
+          script:
             - yarn run eslint src/**/*.{ts,tsx}
+      - step:
+          name: Build
+          caches: 
+            - nodecustom
+            - yarn
+          script:
             - yarn build
+
   branches:
     # Run on merges to 'master' branch
     master:
@@ -30,7 +50,8 @@ pipelines:
       - step:
           name: Deploy to NPM
           caches:
-            - yarncustom
+            - nodecustom
+            - yarn
           condition:
               changesets:
                   includePaths:
@@ -45,4 +66,6 @@ pipelines:
 
 definitions:
   caches:
-    yarncustom: /usr/local/share/.cache/yarn/v1
+    # https://community.atlassian.com/t5/Bitbucket-questions/Is-Yarn-supported-for-bitbucket-pipelines-caching/qaq-p/650816#M49760
+    nodecustom: ./node_modules
+    yarn: /usr/local/share/.cache/yarn
