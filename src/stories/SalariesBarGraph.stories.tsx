@@ -106,8 +106,8 @@ WithLine.args = {
   maxValue: 16_000,
   samplingLabel: 'Amostragem',
   line: {
-    minValue: 12_000,
-    maxValue: 4_000,
+    minValue: 6_000,
+    maxValue: 8_000,
     sameValueLabel: 'Target',
     maxValueLabel: 'Fim da faixa',
     minValueLabel: 'Início da faixa'
@@ -130,4 +130,23 @@ WithoutSampleSize.args = {
   indexBy: 'job_title',
   keys: ['Salário Fixo Atual (cor mais forte = maior amostragem)'],
   hasSampling: false
+}
+
+export const ComputedMaxValue: Story<Props> = Template.bind({})
+ComputedMaxValue.args = {
+  data,
+  legend: 'Salary Data',
+  indexBy: 'job_title',
+  keys: [
+    'Salário Fixo Atual (cor mais forte = maior amostragem)',
+    'Expectativa Salarial (cor mais forte = maior amostragem)'
+  ],
+  samplingLabel: 'Amostragem',
+  line: {
+    minValue: 4_000,
+    maxValue: 8_000,
+    sameValueLabel: '',
+    maxValueLabel: '',
+    minValueLabel: ''
+  }
 }
