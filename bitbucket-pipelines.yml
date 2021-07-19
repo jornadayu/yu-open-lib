@@ -9,6 +9,7 @@ pipelines:
             - nodecustom
             - yarn
           script:
+            - unset NPM_CONFIG_USER
             - yarn --ignore-scripts --unsafe-perm
             - yarn test --watchAll=false --passWithNoTests
             - yarn run eslint src/**/*.{ts,tsx}
@@ -39,6 +40,7 @@ pipelines:
                   includePaths:
                     - "package.json"
           script:
+            - unset NPM_CONFIG_USER
             - yarn --ignore-scripts --unsafe-perm
             - pipe: atlassian/npm-publish:0.3.2
               variables:
