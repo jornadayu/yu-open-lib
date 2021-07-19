@@ -3,7 +3,7 @@ import React, { useMemo } from 'react'
 import { Typography, makeStyles } from '@material-ui/core'
 
 import { OrdinalColorScaleConfig } from '@nivo/colors'
-import { ResponsiveBar, BarDatum, ComputedDatum, BarSvgProps } from '@nivo/bar'
+import { ResponsiveBar, BarDatum, BarSvgProps, AccessorFunc } from '@nivo/bar'
 
 import { useNivoTheme } from '../../../hooks/nivo'
 import { asPercentage, truncatedText } from '../../../helpers'
@@ -15,11 +15,11 @@ export type Datum = BarDatum & {
 
 type SharedProps = {
   groupMode?: 'stacked' | 'grouped'
-  colors?: OrdinalColorScaleConfig<ComputedDatum<Datum>>
+  colors?: OrdinalColorScaleConfig<Datum>
   theme: any
   keys: string[]
   animate: boolean
-  label: (datum: ComputedDatum<Datum>) => string
+  label: AccessorFunc
 }
 
 export type Props = {
@@ -33,7 +33,7 @@ export type Props = {
 
   /** @default false */
   isPercentage?: boolean
-} & Omit<BarSvgProps<Datum>, 'height' | 'width'>
+} & Partial<BarSvgProps>
 
 const useStyles = makeStyles(() => ({
   mobileDiversityContainer: {
@@ -68,12 +68,12 @@ const DiversityBarGraph: React.FC<Props> = ({
     return mappedKeys
   }, [data])
 
-  function barLabel(datum: ComputedDatum<Datum>) {
+  const barLabel: AccessorFunc = (datum) => {
     const start = `${truncatedText(datum.id.toString(), 20)}:`
     if (isPercentage) return `${start} ${asPercentage(datum.value as number)}`
 
-    const labelPercentage =
-      (datum.value as number) / (datum.data.total as number)
+    // @ts-ignore
+    const labelPercentage = datum.value / datum.data.total
 
     const label = `${start} ${asPercentage(labelPercentage)}`
 
@@ -97,7 +97,7 @@ const DiversityBarGraph: React.FC<Props> = ({
     theme: nivoTheme,
     keys: Array.from(keys),
     animate: true,
-    label: (datum: ComputedDatum<Datum>) => barLabel(datum)
+    label: (datum) => barLabel(datum)
   }
 
   if (verticalGraph) {
