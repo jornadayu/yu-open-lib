@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { OrdinalColorScaleConfig } from '@nivo/colors'
-import { ResponsiveBar, BarDatum, ComputedDatum, BarSvgProps } from '@nivo/bar'
+import { ResponsiveBar, BarDatum, BarSvgProps } from '@nivo/bar'
 
 import { legendProps, useNivoTheme } from '../../../hooks/nivo'
 import { useViewport } from '../../../hooks'
@@ -16,8 +16,8 @@ export type Props = {
   data: Datum[]
 
   /** @default { scheme: 'nivo' } */
-  colors?: OrdinalColorScaleConfig<ComputedDatum<BarDatum>>
-} & Omit<BarSvgProps<BarDatum>, 'height' | 'width'>
+  colors?: OrdinalColorScaleConfig<BarDatum>
+} & Partial<BarSvgProps>
 
 const YuBarGraph: React.FC<Props> = ({
   keys,

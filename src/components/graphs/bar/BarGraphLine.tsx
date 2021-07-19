@@ -2,7 +2,6 @@ import React from 'react'
 
 import { line } from 'd3-shape'
 import { useTheme } from '@material-ui/core'
-import { BarDatum, BarCustomLayerProps } from '@nivo/bar'
 
 export type Props = {
   minValue: number
@@ -22,14 +21,17 @@ export type Props = {
 
   /** default 'red' */
   color?: string
+
+  /** Passed from `layers` callback from nivo's ResponsiveBar */
+  bars?: any
+  /** Passed from `layers` callback from nivo's ResponsiveBar */
+  yScale?: any
 }
 
 /**
  * https://github.com/plouc/nivo/issues/141
  */
-const BarGraphLine: React.FC<
-  Props & Partial<BarCustomLayerProps<BarDatum>>
-> = ({
+const BarGraphLine: React.FC<Props> = ({
   bars,
   yScale,
   minValue,
@@ -102,7 +104,6 @@ const BarGraphLine: React.FC<
       {maxValue && lineGeneratorMax && (
         <React.Fragment>
           <path
-            // @ts-ignore
             d={lineGeneratorMax(bars) as string}
             strokeDasharray='5, 5'
             stroke={color}
@@ -115,7 +116,6 @@ const BarGraphLine: React.FC<
       {minValue && lineGeneratorMin && (
         <React.Fragment>
           <path
-            // @ts-ignore
             d={lineGeneratorMin(bars) as string}
             strokeDasharray='5, 5'
             stroke={color}

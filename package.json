@@ -1,6 +1,6 @@
 {
   "name": "yu-open-lib",
-  "version": "1.6.0-3",
+  "version": "1.6.0-4",
   "description": "Made with create-react-library",
   "author": "jornadayu",
   "license": "UNLICENSED",
@@ -31,13 +31,13 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "javascript-color-gradient": "^1.3.2",
-    "react-toast-notifications": "^2.4.0",
-    "react-wordcloud": "^1.2.7",
-    "@nivo/bar": "0.73.0",
+    "@nivo/bar": ">= 0.68.0 <0.72.0",
     "@nivo/core": "0.71.0",
     "@nivo/legends": "0.71.0",
-    "@nivo/tooltip": "0.71.0"
+    "@nivo/tooltip": "0.71.0",
+    "javascript-color-gradient": "^1.3.2",
+    "react-toast-notifications": "^2.4.0",
+    "react-wordcloud": "^1.2.7"
   },
   "peerDependencies": {
     "@material-ui/core": "^4.11.3",
