@@ -46,22 +46,14 @@ const wordsPercentage = words.map((word) => ({
   value: word.value / valueSum
 }))
 
-export const DarkMode: Story<Props> = Template.bind({})
-DarkMode.args = {
-  words,
-  darkMode: true
-}
-
-export const LightMode: Story<Props> = Template.bind({})
-LightMode.args = {
-  words,
-  darkMode: false
+export const StaticValues: Story<Props> = Template.bind({})
+StaticValues.args = {
+  words
 }
 
 export const Percentage: Story<Props> = Template.bind({})
 Percentage.args = {
   words: wordsPercentage,
-  darkMode: true,
   isPercentage: true,
   precision: 2
 }
