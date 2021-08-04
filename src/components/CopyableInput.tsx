@@ -37,7 +37,6 @@ const CopyableInput: React.FC<Props> = ({ text, label, fullWidth = false }) => {
   return (
     <React.Fragment>
       <TextField
-        id='standard-full-width'
         variant='filled'
         label={label}
         value={text}
