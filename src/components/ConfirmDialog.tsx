@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button'
 
 import Loading from './Loading'
 
-type Props = {
+export type Props = {
   /** Dialog title */
   title: string
 
