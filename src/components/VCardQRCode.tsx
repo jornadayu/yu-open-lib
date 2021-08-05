@@ -2,7 +2,7 @@ import React from 'react'
 
 import QRCode from 'qrcode.react'
 
-type Contact = {
+export type Contact = {
   fullName: string
   lastName: string
   firstName: string
@@ -10,7 +10,7 @@ type Contact = {
   phoneNumber: string
 }
 
-type Props = {
+export type Props = {
   contact: Contact
   revisionDate: Date
 
