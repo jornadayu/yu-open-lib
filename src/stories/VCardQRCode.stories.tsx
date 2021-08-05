@@ -20,8 +20,7 @@ const Template: ComponentStory<typeof VCardQRCode> = (args) => {
   )
 }
 
-export const Example: Story<Props> = Template.bind({})
-Example.args = {
+const baseProps: Partial<Props> = {
   contact: {
     fullName: 'First Middle Last',
     lastName: 'Last',
@@ -29,6 +28,24 @@ Example.args = {
     email: 'some_email@email.com',
     phoneNumber: '+5511123456789'
   },
-  revisionDate: new Date(),
+  revisionDate: new Date()
+}
+
+export const Example: Story<Props> = Template.bind({})
+Example.args = {
+  ...baseProps,
   size: 128
+}
+
+export const WithoutMargin: Story<Props> = Template.bind({})
+WithoutMargin.args = {
+  ...baseProps,
+  includeMargin: false,
+  size: 128
+}
+
+export const BiggerSize: Story<Props> = Template.bind({})
+BiggerSize.args = {
+  ...baseProps,
+  size: 512
 }
