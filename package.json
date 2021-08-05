@@ -104,6 +104,7 @@
     "react-dom": "^17.0.1",
     "react-scripts": "^3.4.1",
     "sass": "^1.32.8",
+    "storybook-addon-jsx": "^7.3.12",
     "storybook-builder-vite": "^0.0.12",
     "typescript": "^3.7.5",
     "vite": "^2.4.2"

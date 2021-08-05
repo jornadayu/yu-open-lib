@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-type Props = {
+export type Props = {
   open: boolean
 }
 
