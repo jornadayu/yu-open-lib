@@ -13,9 +13,10 @@ export type Contact = {
 export type Props = {
   contact: Contact
   revisionDate: Date
-
   /** @default 128 */
   size?: number
+  /** @default true */
+  includeMargin?: boolean
 }
 
 /**
@@ -24,9 +25,11 @@ export type Props = {
 const VCardQRCode: React.FC<Props> = ({
   contact,
   revisionDate,
-  size = 128
+  size = 128,
+  includeMargin = true
 }) => (
   <QRCode
+    includeMargin={includeMargin}
     size={size}
     value={
       `BEGIN:VCARD\nVERSION:3.0\nFN:${contact.fullName}\nN:${contact.lastName};` +
