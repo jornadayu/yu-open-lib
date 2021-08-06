@@ -2,7 +2,7 @@ import React from 'react'
 
 import { makeStyles } from '@material-ui/core'
 
-type Props = {
+export type Props = {
   onClick: (e?: React.MouseEvent<HTMLSpanElement>) => any
 
   /** @default 'space' */

@@ -1,0 +1,23 @@
+import { Story, Meta } from '@storybook/addon-docs';
+
+<Meta title="Hooks/useViewport" />
+
+# useViewport
+
+```tsx
+import { useViewport } from 'yu-open-lib'
+
+const MyComponent: React.FC = () => {
+  const { isMobile } = useViewport()
+
+  return (
+    <Card>
+      isMobile: {isMobile.toString()}
+
+      {isMobile && <div>I only appear on mobile viewports</div>}
+    </Card>
+  )
+}
+```
+
+<Story name="Example" />

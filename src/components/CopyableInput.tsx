@@ -7,25 +7,39 @@ import Tooltip from '@material-ui/core/Tooltip'
 import FileCopyIcon from '@material-ui/icons/FileCopy'
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline'
 
-type Props = {
+export type Props = {
   /** Input Text to be copied */
   text: string
-
   /** Input Label */
   label: string
-
   /**
    * If the input should be Full Width or not
    * @default false
    */
   fullWidth?: boolean
+  /**
+   * Tooltip of the copy button inside the tooltip
+   * @default 'Copiar'
+   */
+  tooltip?: string
+  /**
+   * Border colors when input is active
+   * @default 'primary'
+   */
+  color?: 'primary' | 'secondary'
 }
 
 /**
  * A disabled Text input with a copy to clipboard button, when clicked it copies the
  * text passed as the input value (`text` prop)
  */
-const CopyableInput: React.FC<Props> = ({ text, label, fullWidth = false }) => {
+const CopyableInput: React.FC<Props> = ({
+  text,
+  label,
+  fullWidth = false,
+  tooltip = 'Copiar',
+  color = 'primary'
+}) => {
   const [copied, setCopied] = useState(false)
 
   const copyText = () => {
@@ -37,21 +51,20 @@ const CopyableInput: React.FC<Props> = ({ text, label, fullWidth = false }) => {
   return (
     <React.Fragment>
       <TextField
-        id='standard-full-width'
         variant='filled'
         label={label}
         value={text}
         style={{ margin: 8 }}
         fullWidth={fullWidth}
         margin='normal'
-        color='secondary'
+        color={color}
         InputLabelProps={{
           shrink: true
         }}
         InputProps={{
           endAdornment: (
             <InputAdornment position='end'>
-              <Tooltip title='Copiar' aria-label='copy-to-clipboard'>
+              <Tooltip title={tooltip} aria-label='copy-to-clipboard'>
                 <IconButton aria-label='copy to clipboard' onClick={copyText}>
                   {copied ? <CheckCircleOutlineIcon /> : <FileCopyIcon />}
                 </IconButton>

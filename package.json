@@ -1,6 +1,6 @@
 {
   "name": "yu-open-lib",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "description": "Made with create-react-library",
   "author": "jornadayu",
   "license": "UNLICENSED",
@@ -8,24 +8,27 @@
     "type": "git",
     "url": "git@bitbucket.org:sal-jornadayu/yulib"
   },
-  "main": "dist/index.js",
-  "module": "dist/index.modern.js",
+  "main": "./dist/my-lib.umd.js",
+  "module": "./dist/my-lib.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/my-lib.es.js",
+      "require": "./dist/my-lib.umd.js"
+    }
+  },
   "source": "src/index.tsx",
   "private": false,
   "engines": {
     "node": ">=10"
   },
   "scripts": {
-    "build": "microbundle-crl --no-compress --format modern,cjs --css-modules false",
-    "start": "microbundle-crl watch --no-compress --format modern,cjs --css-modules false",
+    "build": "vite build",
     "prepare": "run-s build",
     "test": "echo 'no tests to run'",
     "test:build": "run-s build",
     "test:lint": "eslint .",
     "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
-    "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build",
     "version:current": "echo $npm_package_version",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
@@ -81,6 +84,7 @@
     "d3-shape": "^3.0.1",
     "dayjs": "^1.10.4",
     "echarts": "^5.1.0",
+    "echarts-for-react": "^3.0.1",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.7.0",
     "eslint-config-standard": "^14.1.0",
@@ -100,6 +104,7 @@
     "react-dom": "^17.0.1",
     "react-scripts": "^3.4.1",
     "sass": "^1.32.8",
+    "storybook-addon-jsx": "^7.3.12",
     "storybook-builder-vite": "^0.0.12",
     "typescript": "^3.7.5",
     "vite": "^2.4.2"

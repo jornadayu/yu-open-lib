@@ -43,21 +43,27 @@ export {
 export { useViewport, useToggle } from './hooks'
 export { useEchartsTheme } from './hooks/echarts'
 
-export { default as YuriLogo } from 'assets/images/yuri/logo_yuri.png'
-export { default as YuriNegativeLogo } from 'assets/images/yuri/logo_yuri_negative.png'
+export { default as YuriLogo } from './assets/images/yuri/logo_yuri.png'
+export { default as YuriNegativeLogo } from './assets/images/yuri/logo_yuri_negative.png'
 
-export { default as YuNegativeSalmao } from 'assets/images/yu/YU_Neg_01_Salmao.png'
-export { default as YuNegativeLaranja } from 'assets/images/yu/YU_Neg_02_Laranja.png'
+export { default as YuNegativeSalmao } from './assets/images/yu/YU_Neg_01_Salmao.png'
+export { default as YuNegativeLaranja } from './assets/images/yu/YU_Neg_02_Laranja.png'
 
-export { default as YuPositiveSalmao } from 'assets/images/yu/YU_Pos_01_Salmao.png'
-export { default as YuPositiveLaranja } from 'assets/images/yu/YU_Pos_02_Laranja.png'
+export { default as YuPositiveSalmao } from './assets/images/yu/YU_Pos_01_Salmao.png'
+export { default as YuPositiveLaranja } from './assets/images/yu/YU_Pos_02_Laranja.png'
 
 export { default as NivoTextTooltip } from './components/graphs/NivoTextTooltip'
 export { default as YuWordCloud } from './components/graphs/YuWordCloud'
 
 export { default as BarGraphLine } from './components/graphs/bar/BarGraphLine'
 export { default as DiversityBarGraph } from './components/graphs/bar/DiversityBarGraph'
-export { default as SalariesBarGraph } from './components/graphs/bar/SalariesBarGraph'
+
+export type {
+  default as SalariesBarGraph,
+  Props as SalariesBarGraphProps
+} from './components/graphs/bar/SalariesBarGraph'
+
 export { default as YuBarGraph } from './components/graphs/bar/YuBarGraph'
 
 export { default as RejectionsSunburst } from './components/graphs/RejectionsSunburst'
+export type { Props as RejectionsSunburstProps } from './components/graphs/RejectionsSunburst'

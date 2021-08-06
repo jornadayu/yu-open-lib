@@ -5,6 +5,9 @@ import { CssBaseline } from '@material-ui/core'
 
 import { themes } from '@storybook/theming'
 
+import { addDecorator } from '@storybook/react'
+import { jsxDecorator } from 'storybook-addon-jsx'
+
 import AppTheme from '../src/theme/AppTheme'
 import '../src/styles/core.scss'
 
@@ -31,3 +34,7 @@ export const parameters = {
     theme: themes.dark
   }
 }
+
+
+
+addDecorator(jsxDecorator);

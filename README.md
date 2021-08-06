@@ -12,6 +12,8 @@ yarn add yu-open-lib
 yarn storybook
 ```
 
+> Or `Ctrl + F5` in Vscode
+
 Will run at: https://localhost:6006 by default
 
 Read more about [Story Book](https://storybook.js.org/)

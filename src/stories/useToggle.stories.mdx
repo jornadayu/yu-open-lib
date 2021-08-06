@@ -1,0 +1,25 @@
+import { Story, Meta } from '@storybook/addon-docs';
+
+<Meta title="Hooks/useToggle" />
+
+# useToggle
+
+```tsx
+import { useToggle } from 'yu-open-lib'
+
+const MyComponent: React.FC = () => {
+  const [value, toggleValue] = useToggle(false)
+
+  return (
+    <Card>
+      Value is: {value.toString()}
+
+      <Button onClick={toggleValue}>
+        Toggle
+      </Button>
+    </Card>
+  )
+}
+```
+
+<Story name="Example" />
