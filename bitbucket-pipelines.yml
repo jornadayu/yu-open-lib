@@ -10,6 +10,7 @@ pipelines:
             - yarn
           script:
             - unset NPM_CONFIG_USER
+            - yarn
             - yarn test --watchAll=false --passWithNoTests
             - yarn run eslint src/**/*.{ts,tsx}
             - yarn build
@@ -33,6 +34,7 @@ pipelines:
           name: Deploy to NPM
           script:
             - unset NPM_CONFIG_USER
+            - yarn
             - pipe: atlassian/npm-publish:0.3.2
               variables:
                 NPM_TOKEN: $NPM_TOKEN
