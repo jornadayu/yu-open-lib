@@ -55,9 +55,9 @@ LoadingConfirmation.args = {
   loading: true
 }
 
-export const CustomChildren: Story<
-  Props & { children?: React.ReactNode }
-> = Template.bind({})
+type PropsWithChildren = Props & { children?: React.ReactNode }
+
+export const CustomChildren: Story<PropsWithChildren> = Template.bind({})
 CustomChildren.args = {
   ...baseProps,
   children: (
