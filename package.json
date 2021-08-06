@@ -19,7 +19,7 @@
   "source": "src/index.tsx",
   "private": false,
   "engines": {
-    "node": ">=10"
+    "node": ">=12"
   },
   "scripts": {
     "build": "vite build",
