@@ -37,6 +37,7 @@ pipelines:
             - unset NPM_CONFIG_USER
             - node --version
             - yarn
+            - apt-get update
             - apt-get install -y jq
             - EXTRA_ARGS="--access=public" ./deploy.sh
 
