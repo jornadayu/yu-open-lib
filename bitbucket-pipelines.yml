@@ -35,6 +35,7 @@ pipelines:
           script:
             - unset NPM_CONFIG_USER
             - yarn
+            - node --version
             - pipe: atlassian/npm-publish:0.3.2
               variables:
                 NPM_TOKEN: $NPM_TOKEN

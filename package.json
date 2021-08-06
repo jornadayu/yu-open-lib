@@ -1,6 +1,6 @@
 {
   "name": "yu-open-lib",
-  "version": "1.7.2",
+  "version": "1.7.3",
   "description": "Made with create-react-library",
   "author": "jornadayu",
   "license": "UNLICENSED",
@@ -19,7 +19,7 @@
   "source": "src/index.tsx",
   "private": false,
   "engines": {
-    "node": ">=10"
+    "node": ">=12"
   },
   "scripts": {
     "build": "vite build",
