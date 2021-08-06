@@ -10,6 +10,7 @@ pipelines:
             - yarn
           script:
             - unset NPM_CONFIG_USER
+            - node --version
             - yarn
             - yarn test --watchAll=false --passWithNoTests
             - yarn run eslint src/**/*.{ts,tsx}
@@ -20,7 +21,6 @@ pipelines:
     master:
       - step:
           name: Tag version bump
-          deployment: production
           script:
             # https://support.atlassian.com/bitbucket-cloud/docs/push-back-to-your-repository/
             - git remote set-url origin ${BITBUCKET_GIT_SSH_ORIGIN}
@@ -32,14 +32,12 @@ pipelines:
             - git tag "v${VERSION}" ${BITBUCKET_COMMIT} && git push origin --tags || echo "Tag already exists, not creating new release"
       - step:
           name: Deploy to NPM
+          deployment: production
           script:
             - unset NPM_CONFIG_USER
-            - yarn
             - node --version
-            - pipe: atlassian/npm-publish:0.3.2
-              variables:
-                NPM_TOKEN: $NPM_TOKEN
-                EXTRA_ARGS: --access=public
+            - yarn
+            - EXTRA_ARGS="--access=public" ./deploy.sh
 
 definitions:
   caches:
