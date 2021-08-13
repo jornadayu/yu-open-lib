@@ -13,7 +13,7 @@ export const useViewport = (): {
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   const isTablet = useMediaQuery(theme.breakpoints.down('md'))
-  const isWide = useMediaQuery(theme.breakpoints.down('lg'))
+  const isWide = useMediaQuery(theme.breakpoints.up('xl'))
 
   return { isMobile, isTablet, isWide }
 }
