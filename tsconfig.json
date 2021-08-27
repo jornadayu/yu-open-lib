@@ -37,6 +37,10 @@
     "dist",
     "example"
   ],
+  "typeRoots": [
+    "src/@types",
+    "src/types"
+  ],
   "paths": {
     "*": ["src/types/*.d.ts"]
   }
