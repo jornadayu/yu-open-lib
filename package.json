@@ -8,12 +8,12 @@
     "type": "git",
     "url": "git@bitbucket.org:sal-jornadayu/yulib"
   },
-  "main": "./dist/yu-open-lib.umd.js",
-  "module": "./dist/yu-open-lib.es.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.es.js",
   "exports": {
     ".": {
-      "import": "./dist/yu-open-libes.js",
-      "require": "./dist/yu-open-libumd.js"
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.js"
     }
   },
   "source": "src/index.tsx",
