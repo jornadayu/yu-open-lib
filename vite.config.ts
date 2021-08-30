@@ -21,7 +21,7 @@ export default (): UserConfigExport => ({
         'react',
         'react-dom',
         'echarts-for-react/lib/core',
-        '@material-ui/core'
+        // '@material-ui/core'
       ]
     }
   }

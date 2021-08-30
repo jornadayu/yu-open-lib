@@ -1,16 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import { Typography } from '@material-ui/core'
+import { Typography, CssBaseline } from '@material-ui/core'
 import { ThemeProvider } from '@material-ui/core/styles'
 import GroupIcon from '@material-ui/icons/Group'
 
-import { YuToastProvider, CopyableInput, AppTheme, YuAppBar, WhatsappChip } from 'yu-lib'
-import 'yu-lib/dist/index.css'
+// @ts-ignore
+import { YuToastProvider, CopyableInput, AppTheme, YuAppBar, WhatsappChip } from 'yu-open-lib'
+import 'yu-open-lib/dist/style.css'
 
-import ToastTests from './ToastTests'
+// import ToastTests from './ToastTests'
 
-const theme = AppTheme({darkMode: false})
+const theme = AppTheme({ darkMode: true })
 
 const App = () => {
   const items = {
@@ -39,6 +40,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <YuToastProvider>
         <YuAppBar backgroundColor="#070707" items={items} loggedIn logo="yu" searchBar={false} />
 
@@ -48,7 +50,7 @@ const App = () => {
 
         <CopyableInput text="url.com" label="Some URL" />
 
-        <ToastTests />
+        {/** <ToastTests /> */}
 
         <WhatsappChip onClick={() => {}} number="123456" message="Olá" />
       </YuToastProvider>
