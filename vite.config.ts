@@ -1,10 +1,15 @@
 import path from 'path'
 
+/**
+ * @type {import('vite').UserConfig}
+ */
 module.exports = {
   build: {
+    sourcemap: true,
     lib: {
       entry: path.resolve(__dirname, 'src/index.tsx'),
-      name: 'yu-open-lib'
+      name: 'yu-open-lib',
+      fileName: (format: string) => `index.${format}.js`
     },
     rollupOptions: {
       external: [
