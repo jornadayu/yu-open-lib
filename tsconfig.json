@@ -6,7 +6,6 @@
       "dom",
       "esnext"
     ],
-    "types": ["node", "vite/client"],
     "moduleResolution": "node",
     "jsx": "react",
     "sourceMap": true,
@@ -28,7 +27,7 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true
+    "noEmit": false
   },
   "include": [
     "src",

@@ -1,15 +1,20 @@
+import { UserConfigExport } from 'vite'
+
 import path from 'path'
 
-/**
- * @type {import('vite').UserConfig}
- */
-module.exports = {
+export default (): UserConfigExport => ({
   build: {
     sourcemap: true,
     lib: {
       entry: path.resolve(__dirname, 'src/index.tsx'),
       name: 'yu-open-lib',
-      fileName: (format: string) => `index.${format}.js`
+      fileName: (format: string) => {
+        if (format === 'umd') {
+          return 'index.js'
+        }
+
+        return `index.${format}.js`
+      }
     },
     rollupOptions: {
       external: [
@@ -20,4 +25,4 @@ module.exports = {
       ]
     }
   }
-}
+})

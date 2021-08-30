@@ -23,7 +23,7 @@
   },
   "scripts": {
     "build": "vite build && yarn build:types",
-    "build:types": "tsc src/index.tsx --declaration --emitDeclarationOnly --jsx react --esModuleInterop --outDir dist || exit 0",
+    "build:types": "tsc --declaration --emitDeclarationOnly --jsx react --esModuleInterop --outDir dist || exit 0",
     "prepare": "run-s build",
     "test": "echo 'no tests to run'",
     "test:build": "run-s build",
