@@ -7,9 +7,9 @@ import GroupIcon from '@material-ui/icons/Group'
 
 // @ts-ignore
 import { YuToastProvider, CopyableInput, AppTheme, YuAppBar, WhatsappChip } from 'yu-open-lib'
-import 'yu-open-lib/dist/style.css'
+import 'yu-open-lib/dist/index.css'
 
-// import ToastTests from './ToastTests'
+import ToastTests from './ToastTests'
 
 const theme = AppTheme({ darkMode: true })
 
@@ -50,7 +50,7 @@ const App = () => {
 
         <CopyableInput text="url.com" label="Some URL" />
 
-        {/** <ToastTests /> */}
+        <ToastTests />
 
         <WhatsappChip onClick={() => {}} number="123456" message="Olá" />
       </YuToastProvider>

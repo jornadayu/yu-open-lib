@@ -9,10 +9,10 @@
     "url": "git@bitbucket.org:sal-jornadayu/yulib"
   },
   "main": "./dist/index.js",
-  "module": "./dist/index.es.js",
+  "module": "./dist/index.modern.js",
   "exports": {
     ".": {
-      "import": "./dist/index.es.js",
+      "import": "./dist/index.modern.js",
       "require": "./dist/index.js"
     }
   },
@@ -22,7 +22,7 @@
     "node": ">=12"
   },
   "scripts": {
-    "build": "vite build && yarn build:types",
+    "build": "microbundle-crl --no-compress --format modern,cjs --css-modules false",
     "build:types": "tsc --declaration --emitDeclarationOnly --jsx react --esModuleInterop --outDir dist && cp dist/src/* ./dist -r || exit 0",
     "prepare": "run-s build",
     "test": "echo 'no tests to run'",
