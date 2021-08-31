@@ -12,6 +12,8 @@ yarn add yu-open-lib
 yarn storybook
 ```
 
+> Warning: First time running Storybook it will take quite a while as it caches all dependencies used in the library
+
 > Or `Ctrl + F5` in Vscode
 
 Will run at: https://localhost:6006 by default

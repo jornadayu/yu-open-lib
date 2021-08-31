@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { ComponentStory, ComponentMeta, Story } from '@storybook/react'
 
@@ -13,16 +13,28 @@ export default {
   }
 } as ComponentMeta<typeof ConfirmDialog>
 
-const Template: ComponentStory<typeof ConfirmDialog> = (args) => (
-  <ConfirmDialog {...args} />
-)
+const Template: ComponentStory<typeof ConfirmDialog> = (args) => {
+  const [open, setOpen] = useState(false)
+
+  const close = () => {
+    args.handleClose()
+    setOpen(false)
+  }
+
+  return (
+    <>
+      <button onClick={() => setOpen(true)}>Open Dialog</button>
+
+      <ConfirmDialog {...args} open={open} handleClose={close} />
+    </>
+  )
+}
 
 const baseProps: Partial<Props> = {
   title: 'Dialog Title',
   confirmText: 'Confirm',
   cancelText: 'Cancel',
-  text: 'Do you want to confirm?',
-  open: true
+  text: 'Do you want to confirm?'
 }
 
 export const Example: Story<Props> = Template.bind({})
