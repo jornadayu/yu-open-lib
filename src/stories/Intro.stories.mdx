@@ -1,0 +1,30 @@
+import pkg from '../../package.json'
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title={`${pkg.version}/Intro`} />
+
+# Intro
+
+<p>
+  Latest <code>yu-open-lib</code> version: <strong>{pkg.version}</strong>
+</p>
+
+---
+
+### Installation
+
+```bash
+yarn add yu-open-lib
+```
+
+---
+
+### Useful references:
+
+- [Material-UI](http://material-ui.com)
+  - React UI framework used as the base for most components in `yu-open-lib`
+
+- [Storybook](https://storybook.js.org)
+  - Tool used to create this documentation page
+  - [storybook-builder-vite](https://github.com/eirslett/storybook-builder-vite)
+    - Storybook (experimental) plugin used to build Storybooks with Vite, used to generate this documentation

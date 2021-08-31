@@ -1,16 +1,13 @@
 import { ptBR } from '@material-ui/core/locale'
-import { createMuiTheme, ThemeOptions } from '@material-ui/core/styles'
+import { createTheme, ThemeOptions } from '@material-ui/core/styles'
 
 interface AppThemeOptions {
   darkMode?: boolean
   options?: ThemeOptions
 }
 
-/**
- * @param {{darkMode: boolean}} options
- */
 const AppTheme = ({ darkMode = false, options }: AppThemeOptions) =>
-  createMuiTheme(
+  createTheme(
     {
       typography: {
         fontFamily: [

@@ -6,7 +6,7 @@ import { AppBar, Card, CardContent } from '@material-ui/core'
 import HideOnScroll, { Props } from '../components/HideOnScroll'
 
 export default {
-  title: 'Other/HideOnScroll',
+  title: 'Components/HideOnScroll',
   component: HideOnScroll
 } as ComponentMeta<typeof HideOnScroll>
 

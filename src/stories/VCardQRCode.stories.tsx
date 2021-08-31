@@ -6,7 +6,7 @@ import { Card, CardContent } from '@material-ui/core'
 import VCardQRCode, { Props } from '../components/VCardQRCode'
 
 export default {
-  title: 'Other/VCardQRCode',
+  title: 'Components/VCardQRCode',
   component: VCardQRCode
 } as ComponentMeta<typeof VCardQRCode>
 

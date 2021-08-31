@@ -1,39 +1,32 @@
 import React, { useState } from 'react'
 
 import { ComponentStory, ComponentMeta, Story } from '@storybook/react'
-import { Card, Button, CardContent } from '@material-ui/core'
 
 import ConfirmDialog, { Props } from '../components/ConfirmDialog'
 
 export default {
-  title: 'Other/ConfirmDialog',
-  component: ConfirmDialog
+  title: 'Components/ConfirmDialog',
+  component: ConfirmDialog,
+  argTypes: {
+    handleConfirm: { action: 'handleConfirm' },
+    handleClose: { action: 'handleClose' }
+  }
 } as ComponentMeta<typeof ConfirmDialog>
 
 const Template: ComponentStory<typeof ConfirmDialog> = (args) => {
   const [open, setOpen] = useState(false)
 
-  return (
-    <Card variant='outlined'>
-      <CardContent>
-        <Button variant='outlined' onClick={() => setOpen(true)}>
-          Open Dialog
-        </Button>
-      </CardContent>
+  const close = () => {
+    args.handleClose()
+    setOpen(false)
+  }
 
-      <ConfirmDialog
-        {...args}
-        open={open}
-        handleConfirm={() => {
-          alert('confirmed')
-          setOpen(false)
-        }}
-        handleClose={() => {
-          alert('closed')
-          setOpen(false)
-        }}
-      />
-    </Card>
+  return (
+    <>
+      <button onClick={() => setOpen(true)}>Open Dialog</button>
+
+      <ConfirmDialog {...args} open={open} handleClose={close} />
+    </>
   )
 }
 
