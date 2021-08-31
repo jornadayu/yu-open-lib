@@ -8,7 +8,10 @@ import DialogTitle, { Props } from '../components/DialogTitle'
 export default {
   title: 'Components/DialogTitle',
   component: DialogTitle,
-  argTypes: { onClose: { action: 'onClose' } }
+  argTypes: { onClose: { action: 'onClose' } },
+  parameters: {
+    badges: ['Added: 1.7.9']
+  }
 } as ComponentMeta<typeof DialogTitle>
 
 const Template: ComponentStory<typeof DialogTitle> = (args) => {

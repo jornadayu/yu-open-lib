@@ -43,6 +43,7 @@ module.exports = {
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@etchteam/storybook-addon-status',
+    '@geometricpanda/storybook-addon-badges',
     'storybook-addon-jsx',
     'storybook-addon-material-ui',
     {
