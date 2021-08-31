@@ -1,47 +1,28 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { ComponentStory, ComponentMeta, Story } from '@storybook/react'
-import { Card, Button, CardContent } from '@material-ui/core'
 
 import ConfirmDialog, { Props } from '../components/ConfirmDialog'
 
 export default {
-  title: 'Other/ConfirmDialog',
-  component: ConfirmDialog
+  title: 'Components/ConfirmDialog',
+  component: ConfirmDialog,
+  argTypes: {
+    handleConfirm: { action: 'handleConfirm' },
+    handleClose: { action: 'handleClose' }
+  }
 } as ComponentMeta<typeof ConfirmDialog>
 
-const Template: ComponentStory<typeof ConfirmDialog> = (args) => {
-  const [open, setOpen] = useState(false)
-
-  return (
-    <Card variant='outlined'>
-      <CardContent>
-        <Button variant='outlined' onClick={() => setOpen(true)}>
-          Open Dialog
-        </Button>
-      </CardContent>
-
-      <ConfirmDialog
-        {...args}
-        open={open}
-        handleConfirm={() => {
-          alert('confirmed')
-          setOpen(false)
-        }}
-        handleClose={() => {
-          alert('closed')
-          setOpen(false)
-        }}
-      />
-    </Card>
-  )
-}
+const Template: ComponentStory<typeof ConfirmDialog> = (args) => (
+  <ConfirmDialog {...args} />
+)
 
 const baseProps: Partial<Props> = {
   title: 'Dialog Title',
   confirmText: 'Confirm',
   cancelText: 'Cancel',
-  text: 'Do you want to confirm?'
+  text: 'Do you want to confirm?',
+  open: true
 }
 
 export const Example: Story<Props> = Template.bind({})

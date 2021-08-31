@@ -1,32 +1,20 @@
 import React from 'react'
 
 import { ComponentStory, ComponentMeta, Story } from '@storybook/react'
-import { Card, CardContent } from '@material-ui/core'
 
 import ClickableArea, { Props } from '../components/ClickableArea'
 
 export default {
-  title: 'Other/ClickableArea',
-  component: ClickableArea
+  title: 'Components/ClickableArea',
+  component: ClickableArea,
+  argTypes: { onClick: { action: 'clicked' } }
 } as ComponentMeta<typeof ClickableArea>
 
-const Template: ComponentStory<typeof ClickableArea> = (args) => {
-  return (
-    <Card variant='outlined'>
-      <CardContent>
-        <ClickableArea {...args}>
-          <div style={{ backgroundColor: 'red' }}>
-            Click anywhere in the red area
-          </div>
-        </ClickableArea>
-      </CardContent>
-    </Card>
-  )
-}
+const Template: ComponentStory<typeof ClickableArea> = (args) => (
+  <ClickableArea {...args}>
+    <div style={{ backgroundColor: 'red' }}>Click anywhere in the red area</div>
+  </ClickableArea>
+)
 
 export const Example: Story<Props> = Template.bind({})
-Example.args = {
-  onClick() {
-    alert('clicked')
-  }
-}
+Example.args = {}

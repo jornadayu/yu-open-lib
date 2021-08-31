@@ -6,7 +6,7 @@ import { Card } from '@material-ui/core'
 import InfoLabel, { Props } from '../components/InfoLabel'
 
 export default {
-  title: 'Other/InfoLabel',
+  title: 'Components/InfoLabel',
   component: InfoLabel
 } as ComponentMeta<typeof InfoLabel>
 

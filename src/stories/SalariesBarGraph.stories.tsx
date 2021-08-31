@@ -9,7 +9,12 @@ import SalariesBarGraph, {
 
 export default {
   title: 'Graphs/SalariesBarGraph',
-  component: SalariesBarGraph
+  component: SalariesBarGraph,
+  parameters: {
+    status: {
+      type: 'beta'
+    }
+  }
 } as ComponentMeta<typeof SalariesBarGraph>
 
 const Template: ComponentStory<typeof SalariesBarGraph> = (args) => (

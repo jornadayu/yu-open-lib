@@ -6,7 +6,7 @@ import { Card, CardContent } from '@material-ui/core'
 import CopyableInput, { Props } from '../components/CopyableInput'
 
 export default {
-  title: 'Other/CopyableInput',
+  title: 'Components/CopyableInput',
   component: CopyableInput
 } as ComponentMeta<typeof CopyableInput>
 

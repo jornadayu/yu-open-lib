@@ -17,7 +17,8 @@ export const decorators = [
   (Story) => (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Story />
+
+      {Story()}
     </ThemeProvider>
   )
 ]
@@ -31,10 +32,11 @@ export const parameters = {
     }
   },
   docs: {
-    theme: themes.dark
+    theme: themes.dark,
+    source: {
+      excludeDecorators: true,
+    }
   }
 }
-
-
 
 addDecorator(jsxDecorator);
