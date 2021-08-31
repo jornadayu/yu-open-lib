@@ -12,7 +12,7 @@ export default {
   component: SalariesBarGraph,
   parameters: {
     status: {
-      type: 'beta'
+      type: 'v1.7.8'
     }
   }
 } as ComponentMeta<typeof SalariesBarGraph>
