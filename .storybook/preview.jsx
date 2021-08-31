@@ -7,6 +7,7 @@ import { themes } from '@storybook/theming'
 
 import { addDecorator } from '@storybook/react'
 import { jsxDecorator } from 'storybook-addon-jsx'
+import { muiTheme } from 'storybook-addon-material-ui'
 // import { withInfo } from '@storybook/addon-info'
 
 import AppTheme from '../src/theme/AppTheme'
@@ -16,21 +17,15 @@ import pkg from '../package.json'
 const theme = AppTheme({ darkMode: true })
 
 export const decorators = [
-  (Story) => (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-
-      {Story()}
-    </ThemeProvider>
-  ),
-  jsxDecorator
+  jsxDecorator(),
+  muiTheme([theme])
 ]
 
 export const parameters = {
   options: {
     storySort: {
-      order: [`${pkg.version}`, ['Intro', 'AppTheme'], 'Components', 'Hooks', 'Graphs'],
-    },
+      order: [`${pkg.version}`, ['Intro', 'AppTheme'], 'Components', 'Hooks', 'Graphs']
+    }
   },
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {

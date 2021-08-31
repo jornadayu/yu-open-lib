@@ -44,6 +44,7 @@ module.exports = {
     '@storybook/addon-essentials',
     '@etchteam/storybook-addon-status',
     'storybook-addon-jsx',
+    'storybook-addon-material-ui',
     {
       name: '@storybook/addon-storysource'
     }
