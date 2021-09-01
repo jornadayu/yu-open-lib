@@ -2,15 +2,20 @@ import React from 'react'
 
 import Chip from '@material-ui/core/Chip'
 import CodeIcon from '@material-ui/icons/Code'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import { titleize } from '../helpers'
 import { AppEnvironment } from '../types'
 
-const useStyles = makeStyles((theme) => ({
+type StyleProps = {
+  margin: number
+  environment: Props['environment']
+}
+
+const useStyles = makeStyles<Theme, StyleProps>((theme) => ({
   developmentBuild: {
     position: 'fixed',
-    top: theme.spacing(11),
+    top: ({ margin }) => theme.spacing(margin),
     right: theme.spacing(2),
     color: 'white',
     backgroundColor: ({ environment }: { environment: Props['environment'] }) =>
@@ -24,6 +29,8 @@ const useStyles = makeStyles((theme) => ({
 type Props = {
   environment: AppEnvironment
   devTools?: React.ReactNode
+  // @default 11
+  margin?: number
 }
 
 /**
@@ -48,8 +55,12 @@ type Props = {
  * }
  * ```
  */
-const EnvironmentLabel: React.FC<Props> = ({ environment, devTools }) => {
-  const classes = useStyles({ environment })
+const EnvironmentLabel: React.FC<Props> = ({
+  environment,
+  devTools,
+  margin = 11
+}) => {
+  const classes = useStyles({ environment, margin })
 
   if (environment === 'production') return null
 
