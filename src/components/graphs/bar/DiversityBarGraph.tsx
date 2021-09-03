@@ -29,10 +29,8 @@ type SharedProps = {
 export type BaseProps = {
   /** @default false */
   verticalGraph?: boolean
-
   /** @default 'question' */
   key?: string
-
   /** @default false */
   isPercentage?: boolean
 }
@@ -96,7 +94,7 @@ const DiversityBarGraph: React.FC<Props> = ({
     return label
   }
 
-  function diversityTooltip(input: any) {
+  const diversityTooltip: React.FC = (input: any) => {
     return (
       <NivoTextTooltip
         text={input.id as string}
