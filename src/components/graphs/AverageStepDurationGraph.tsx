@@ -36,25 +36,24 @@ export const toHeatmapData = (
 } => {
   const keys: string[] = []
 
-  const datum = steps.reduce(
+  const stepsAsObject = steps.reduce(
     (object: HeatMapDatum, step: StepDuration, index: number) => {
-      let key = step.name
-
-      if (step.name in object) {
-        // Use different key for duplicate step names, so they
-        // don't get overriden
-        key = `${step.name} (${index})`
-      }
+      // Use different key for duplicate step names, so they
+      // don't get overriden
+      const key = step.name in object ? `${step.name} (${index})` : step.name
 
       keys.push(key)
 
-      return Object.assign(object, { [key]: step.count.toFixed(0) })
+      return {
+        ...object,
+        [key]: step.count.toFixed(0)
+      }
     },
     {}
   )
 
   return {
-    data: [datum],
+    data: [stepsAsObject],
     keys
   }
 }
@@ -98,7 +97,7 @@ const AverageStepDurationGraph: React.FC<AverageStepDurationGraphProps> = ({
       }}
       cellOpacity={1}
       cellBorderColor={{ from: 'color', modifiers: [['darker', 0.4]] }}
-      labelTextColor={{ from: 'theme', modifiers: [['darker', 1.8]] }}
+      labelTextColor={{ from: 'color', modifiers: [['darker', 1.2]] }}
       motionStiffness={80}
       motionDamping={9}
       hoverTarget='cell'
