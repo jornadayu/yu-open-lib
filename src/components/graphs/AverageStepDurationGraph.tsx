@@ -1,6 +1,10 @@
 import React, { useMemo } from 'react'
 
-import { ResponsiveHeatMap, HeatMapCommonProps } from '@nivo/heatmap'
+import {
+  ResponsiveHeatMap,
+  HeatMapCommonProps,
+  HeatMapDatum
+} from '@nivo/heatmap'
 
 import { useNivoTheme } from '../../hooks/nivo'
 
@@ -16,6 +20,22 @@ export type AverageStepDurationGraphProps = {
 } & Partial<HeatMapCommonProps>
 
 /**
+ * ```tsx
+ * > toHeatmapDatum([{ name: 'A', count: 14.3 }, { name: 'B', count: 13 }])
+ * { 'A': '14', 'B', '13' }
+ * ```
+ */
+const toHeatmapDatum = (steps: StepDuration[]): HeatMapDatum[] => {
+  return [
+    steps.reduce(
+      (object, step) =>
+        Object.assign(object, { [step.name]: step.count.toFixed(0) }),
+      {}
+    )
+  ]
+}
+
+/**
  * https://nivo.rocks/heatmap
  */
 const AverageStepDurationGraph: React.FC<AverageStepDurationGraphProps> = ({
@@ -24,16 +44,7 @@ const AverageStepDurationGraph: React.FC<AverageStepDurationGraphProps> = ({
   ...heatMapProps
 }) => {
   const keys = useMemo(() => steps.map(({ name }) => name), [steps])
-
-  const data = useMemo(() => {
-    const datum = {}
-
-    steps.forEach((step) => {
-      datum[step.name] = step.count
-    })
-
-    return [datum]
-  }, [steps])
+  const data = useMemo(() => toHeatmapDatum(steps), [steps])
 
   const nivoTheme = useNivoTheme()
 
