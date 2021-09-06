@@ -22,17 +22,41 @@ export type AverageStepDurationGraphProps = {
 /**
  * ```tsx
  * > toHeatmapData([{ name: 'A', count: 14.3 }, { name: 'B', count: 13 }])
- * { 'A': '14', 'B', '13' }
+ * {
+ *   data: { 'A': '14', 'B', '13' },
+ *   keys: ['A', 'B']
+ * }
  * ```
  */
-export const toHeatmapData = (steps: StepDuration[]): HeatMapDatum[] => {
-  return [
-    steps.reduce(
-      (object, step) =>
-        Object.assign(object, { [step.name]: step.count.toFixed(0) }),
-      {}
-    )
-  ]
+export const toHeatmapData = (
+  steps: StepDuration[]
+): {
+  data: HeatMapDatum[]
+  keys: string[]
+} => {
+  const keys: string[] = []
+
+  const datum = steps.reduce(
+    (object: HeatMapDatum, step: StepDuration, index: number) => {
+      let key = step.name
+
+      if (step.name in object) {
+        // Use different key for duplicate step names, so they
+        // don't get overriden
+        key = `${step.name} (${index})`
+      }
+
+      keys.push(key)
+
+      return Object.assign(object, { [key]: step.count.toFixed(0) })
+    },
+    {}
+  )
+
+  return {
+    data: [datum],
+    keys
+  }
 }
 
 /**
@@ -43,9 +67,7 @@ const AverageStepDurationGraph: React.FC<AverageStepDurationGraphProps> = ({
   legend = 'Dias',
   ...heatMapProps
 }) => {
-  const keys = useMemo(() => steps.map(({ name }) => name), [steps])
-  const data = useMemo(() => toHeatmapData(steps), [steps])
-
+  const { keys, data } = useMemo(() => toHeatmapData(steps), [steps])
   const nivoTheme = useNivoTheme()
 
   return (
@@ -60,7 +82,7 @@ const AverageStepDurationGraph: React.FC<AverageStepDurationGraphProps> = ({
       axisTop={{
         tickSize: 5,
         tickPadding: 5,
-        tickRotation: -90,
+        tickRotation: 0,
         legend: '',
         legendOffset: 36
       }}
@@ -70,18 +92,18 @@ const AverageStepDurationGraph: React.FC<AverageStepDurationGraphProps> = ({
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend,
         legendPosition: 'middle',
-        legendOffset: -40
+        legendOffset: -20,
+        legend
       }}
       cellOpacity={1}
       cellBorderColor={{ from: 'color', modifiers: [['darker', 0.4]] }}
       labelTextColor={{ from: 'theme', modifiers: [['darker', 1.8]] }}
-      animate
       motionStiffness={80}
       motionDamping={9}
       hoverTarget='cell'
       cellHoverOthersOpacity={0.5}
+      animate
       {...heatMapProps}
     />
   )

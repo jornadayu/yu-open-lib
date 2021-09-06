@@ -18,7 +18,7 @@ export default {
 
 const Template: ComponentStory<typeof AverageStepDurationGraph> = (args) => (
   <Grid container>
-    <Card style={{ height: 800, width: '100%', padding: 24 }}>
+    <Card style={{ height: 500, width: '100%', padding: 24 }}>
       <AverageStepDurationGraph {...args} />
     </Card>
   </Grid>
@@ -32,5 +32,50 @@ Example.args = {
     { name: 'Third Step', count: 5 },
     { name: 'Fourth Step', count: 13.4 },
     { name: 'Fifth Step', count: 9 }
+  ]
+}
+
+export const LongStepNames: Story<AverageStepDurationGraphProps> =
+  Template.bind({})
+LongStepNames.args = {
+  steps: [
+    { name: 'First Very Long Title Step', count: 4 },
+    { name: 'Second Very Long Title Step', count: 8.2 },
+    { name: 'Third Very Long Title Step', count: 5 },
+    { name: 'Fourth Very Long Title Step', count: 13.4 },
+    { name: 'Fifth Very Long Title Step', count: 9 }
+  ]
+}
+
+export const SameNameSteps: Story<AverageStepDurationGraphProps> =
+  Template.bind({})
+SameNameSteps.args = {
+  steps: [
+    { name: 'Same Step Name', count: 4 },
+    { name: 'Same Step Name', count: 8.2 },
+    { name: 'Same Step Name', count: 5 },
+    { name: 'Same Step Name', count: 13.4 },
+    { name: 'Same Step Name', count: 9 },
+    { name: 'Same Step Name', count: 4 },
+    { name: 'Same Step Name', count: 9 },
+    { name: 'Same Step Name', count: 14.2 },
+    { name: 'Same Step Name', count: 9 }
+  ]
+}
+
+export const LotsOfSteps: Story<AverageStepDurationGraphProps> = Template.bind(
+  {}
+)
+LotsOfSteps.args = {
+  steps: [
+    { name: 'First Very Long Title Step', count: 4 },
+    { name: 'Second Very Long Title Step', count: 8.2 },
+    { name: 'Third Very Long Title Step', count: 5 },
+    { name: 'Fourth Very Long Title Step', count: 13.4 },
+    { name: 'Fifth Very Long Title Step', count: 9 },
+    { name: 'Another Very Long Title Step', count: 9 },
+    { name: 'Another Very Long Title Step', count: 9 },
+    { name: 'Another Very Long Title Step', count: 9 },
+    { name: 'Another Very Long Title Step', count: 9 }
   ]
 }
