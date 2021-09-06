@@ -81,7 +81,7 @@ const AverageStepDurationGraph: React.FC<AverageStepDurationGraphProps> = ({
       axisTop={{
         tickSize: 5,
         tickPadding: 5,
-        tickRotation: 0,
+        tickRotation: -25,
         legend: '',
         legendOffset: 36
       }}

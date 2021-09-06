@@ -79,3 +79,29 @@ LotsOfSteps.args = {
     { name: 'Another Very Long Title Step', count: 9 }
   ]
 }
+
+export const CustomColors: Story<AverageStepDurationGraphProps> = Template.bind(
+  {}
+)
+CustomColors.args = {
+  steps: [
+    { name: 'Some Step', count: 4 },
+    { name: 'Some Step', count: 8.2 },
+    { name: 'Some Step', count: 5 },
+    { name: 'Some Step', count: 13.4 },
+    { name: 'Some Step', count: 9 },
+    { name: 'Some Step', count: 4 },
+    { name: 'Some Step', count: 9 },
+    { name: 'Some Step', count: 14.2 },
+    { name: 'Some Step', count: 9 }
+  ],
+  colors: [
+    '#b6ec78',
+    '#64c052',
+    '#2d8d20',
+    '#ddaa1f',
+    '#b6922f',
+    '#db5a5a',
+    '#e42727'
+  ]
+}
