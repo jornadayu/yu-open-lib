@@ -21,11 +21,11 @@ export type AverageStepDurationGraphProps = {
 
 /**
  * ```tsx
- * > toHeatmapDatum([{ name: 'A', count: 14.3 }, { name: 'B', count: 13 }])
+ * > toHeatmapData([{ name: 'A', count: 14.3 }, { name: 'B', count: 13 }])
  * { 'A': '14', 'B', '13' }
  * ```
  */
-const toHeatmapDatum = (steps: StepDuration[]): HeatMapDatum[] => {
+export const toHeatmapData = (steps: StepDuration[]): HeatMapDatum[] => {
   return [
     steps.reduce(
       (object, step) =>
@@ -44,7 +44,7 @@ const AverageStepDurationGraph: React.FC<AverageStepDurationGraphProps> = ({
   ...heatMapProps
 }) => {
   const keys = useMemo(() => steps.map(({ name }) => name), [steps])
-  const data = useMemo(() => toHeatmapDatum(steps), [steps])
+  const data = useMemo(() => toHeatmapData(steps), [steps])
 
   const nivoTheme = useNivoTheme()
 
