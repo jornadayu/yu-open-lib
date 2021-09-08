@@ -13,6 +13,7 @@ import { muiTheme } from 'storybook-addon-material-ui'
 import AppTheme from '../src/theme/AppTheme'
 import '../src/styles/core.scss'
 import pkg from '../package.json'
+import { BADGES } from './constants'
 
 const theme = AppTheme({ darkMode: true })
 
@@ -32,12 +33,20 @@ export const parameters = {
     matchers: {
       color: /(background|color)$/i,
       date: /Date$/
-    }
+    },
+    expanded: true
   },
   docs: {
     theme: themes.dark,
     source: {
       excludeDecorators: true,
+    }
+  },
+  badgesConfig: {
+    [BADGES.UNRELEASED] : {
+      contrast: '#ece9e9',
+      color: '#b92222',
+      title: 'Unreleased'
     }
   }
 }

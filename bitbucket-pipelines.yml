@@ -33,6 +33,7 @@ pipelines:
       - step:
           name: Deploy to NPM
           deployment: production
+          trigger: manual
           script:
             - unset NPM_CONFIG_USER
             - node --version

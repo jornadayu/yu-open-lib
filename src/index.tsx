@@ -63,3 +63,5 @@ export { default as SalariesBarGraph } from './components/graphs/bar/SalariesBar
 export { default as YuBarGraph } from './components/graphs/bar/YuBarGraph'
 
 export { default as RejectionsSunburst } from './components/graphs/RejectionsSunburst'
+
+export { default as AverageStepDurationGraph } from './components/graphs/AverageStepDurationGraph'

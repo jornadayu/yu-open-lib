@@ -1525,6 +1525,17 @@
     d3-time "^1.0.11"
     d3-time-format "^3.0.0"
 
+"@nivo/axes@0.73.0":
+  version "0.73.0"
+  resolved "https://registry.yarnpkg.com/@nivo/axes/-/axes-0.73.0.tgz#d4982bda3c21d318507e4c61b9cce31549f8c894"
+  integrity sha512-tyB+PqQTW117q9E5vz1jVTywDG6mjqD/RvtVGeqAwHziHAQxpSVb+r0UUtTFOgyaddEbLDaOXPqjD3l6Npo89g==
+  dependencies:
+    "@nivo/scales" "0.73.0"
+    "@react-spring/web" "9.2.4"
+    d3-format "^1.4.4"
+    d3-time "^1.0.11"
+    d3-time-format "^3.0.0"
+
 "@nivo/bar@>= 0.68.0 <0.72.0":
   version "0.71.0"
   resolved "https://registry.yarnpkg.com/@nivo/bar/-/bar-0.71.0.tgz#2e38bce6af796908520d6ba496baa959c97e08b1"
@@ -1582,6 +1593,17 @@
     lodash "^4.17.21"
     resize-observer-polyfill "^1.5.1"
 
+"@nivo/heatmap@^0.73.0":
+  version "0.73.0"
+  resolved "https://registry.yarnpkg.com/@nivo/heatmap/-/heatmap-0.73.0.tgz#354380233a384305e22ae931b639965a440fc6dd"
+  integrity sha512-Qte30yf0oT0PfM2HdYdLhLjo9uePvUNSguDfL88lF9JvqymEcC54dKLKZ1UQD1n1kzNYNP3uYnYzokS8bUe32w==
+  dependencies:
+    "@nivo/axes" "0.73.0"
+    "@nivo/colors" "0.73.0"
+    "@nivo/tooltip" "0.73.0"
+    "@react-spring/web" "9.2.4"
+    d3-scale "^3.2.3"
+
 "@nivo/legends@0.71.0":
   version "0.71.0"
   resolved "https://registry.yarnpkg.com/@nivo/legends/-/legends-0.71.0.tgz#8ff492fb4fa44a1c5af791dcaf44497f7ea2c6ec"
@@ -1614,6 +1636,16 @@
   version "0.71.0"
   resolved "https://registry.yarnpkg.com/@nivo/scales/-/scales-0.71.0.tgz#1e7c064e7a0337f8f0479ed9c20dae169c4a7044"
   integrity sha512-SUy/8Yb+Bm1sabQ7xVnagJg4EASow15f8W9KLIemn9Q3YJQneP0BC3I60SqMnWmj/Rmx8i27rSHHfnlEWxk50A==
+  dependencies:
+    d3-scale "^3.2.3"
+    d3-time "^1.0.11"
+    d3-time-format "^3.0.0"
+    lodash "^4.17.21"
+
+"@nivo/scales@0.73.0":
+  version "0.73.0"
+  resolved "https://registry.yarnpkg.com/@nivo/scales/-/scales-0.73.0.tgz#ec1b660b3792fdc509326fd87e88e8f46a532f63"
+  integrity sha512-xnvCEXz6KkT7/SG4ubJ/hBtbMcTraZnJSKKSVkttBkvfIhkSpQChHkNX8g0Wd4hpwBv2QlltLbjoD6pJ0b/mRA==
   dependencies:
     d3-scale "^3.2.3"
     d3-time "^1.0.11"
