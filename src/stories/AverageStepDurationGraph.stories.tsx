@@ -6,13 +6,12 @@ import { ComponentStory, ComponentMeta, Story } from '@storybook/react'
 import AverageStepDurationGraph, {
   AverageStepDurationGraphProps
 } from '../components/graphs/AverageStepDurationGraph'
-import { BADGES } from '../../.storybook/constants'
 
 export default {
   title: 'Graphs/AverageStepDurationGraph',
   component: AverageStepDurationGraph,
   parameters: {
-    badges: [BADGES.UNRELEASED]
+    badges: ['Added: 1.8.0']
   }
 } as ComponentMeta<typeof AverageStepDurationGraph>
 
