@@ -103,5 +103,41 @@ CustomColors.args = {
     '#b6922f',
     '#db5a5a',
     '#e42727'
-  ]
+  ],
+  legend: 'Dias'
+}
+
+export const CustomColors2: Story<AverageStepDurationGraphProps> =
+  Template.bind({})
+CustomColors2.args = {
+  steps: [
+    { name: 'Some Step', count: 4 },
+    { name: 'Some Step', count: 8.2 },
+    { name: 'Some Step', count: 5 },
+    { name: 'Some Step', count: 13.4 },
+    { name: 'Some Step', count: 9 },
+    { name: 'Some Step', count: 4 },
+    { name: 'Some Step', count: 9 },
+    { name: 'Some Step', count: 14.2 },
+    { name: 'Some Step', count: 9 }
+  ],
+  colors: 'blues',
+  legend: 'Dias'
+}
+
+export const Vertical: Story<AverageStepDurationGraphProps> = Template.bind({})
+Vertical.args = {
+  vertical: true,
+  steps: [
+    { name: 'Some Step', count: 4 },
+    { name: 'Some Step', count: 8.2 },
+    { name: 'Some Step', count: 5 },
+    { name: 'Some Step name', count: 13.4 },
+    { name: 'Some Step', count: 9 },
+    { name: 'Some Step', count: 4 },
+    { name: 'Another Step', count: 9 },
+    { name: 'Some Step', count: 14.2 },
+    { name: 'Some Step', count: 9 }
+  ],
+  colors: 'blues'
 }

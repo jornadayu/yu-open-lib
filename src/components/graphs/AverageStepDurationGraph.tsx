@@ -9,6 +9,7 @@ import {
 import { useNivoTheme } from '../../hooks/nivo'
 
 export type StepDuration = {
+  id?: string | number
   name: string
   count: number
 }
@@ -17,6 +18,8 @@ export type AverageStepDurationGraphProps = {
   steps: StepDuration[]
   /** @default 'Dias' */
   legend?: string
+  /** @default false */
+  vertical?: boolean
 } & Partial<HeatMapCommonProps>
 
 /**
@@ -64,10 +67,37 @@ export const toHeatmapData = (
 const AverageStepDurationGraph: React.FC<AverageStepDurationGraphProps> = ({
   steps,
   legend = 'Dias',
+  vertical = false,
   ...heatMapProps
 }) => {
-  const { keys, data } = useMemo(() => toHeatmapData(steps), [steps])
+  const { keys, data } = useMemo(() => {
+    if (vertical) {
+      const keys = new Set<string>()
+
+      let remappedSteps = steps.map(({ name, count }, index) => {
+        const datum = {
+          name: keys.has(name) ? `${name} (${index})` : name,
+          [legend]: count.toFixed(0)
+        }
+
+        keys.add(name)
+
+        return datum
+      })
+
+      return {
+        data: remappedSteps,
+        keys: [legend]
+      }
+    }
+
+    return toHeatmapData(steps)
+  }, [steps])
   const nivoTheme = useNivoTheme()
+
+  console.log(data)
+
+  const axisTopRotation = vertical ? 0 : -25
 
   return (
     <ResponsiveHeatMap
@@ -81,7 +111,7 @@ const AverageStepDurationGraph: React.FC<AverageStepDurationGraphProps> = ({
       axisTop={{
         tickSize: 5,
         tickPadding: 5,
-        tickRotation: -25,
+        tickRotation: axisTopRotation,
         legend: '',
         legendOffset: 36
       }}
@@ -93,11 +123,11 @@ const AverageStepDurationGraph: React.FC<AverageStepDurationGraphProps> = ({
         tickRotation: 0,
         legendPosition: 'middle',
         legendOffset: -20,
-        legend
+        legend: vertical ? null: legend
       }}
       cellOpacity={1}
       cellBorderColor={{ from: 'color', modifiers: [['darker', 0.4]] }}
-      labelTextColor={{ from: 'color', modifiers: [['darker', 1.2]] }}
+      labelTextColor={{ from: 'color', modifiers: [['darker', 4]] }}
       motionStiffness={80}
       motionDamping={9}
       hoverTarget='cell'
