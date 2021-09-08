@@ -14,7 +14,6 @@ then
   echo "Read more: https://yu-open-lib.netlify.app (at the 'Guidelines' tab)"
   exit 1
 else
-  echo $NC
-  echo "${GREEN}No Stories marked as released${GREEN}"
+  echo -n $NC
   exit 0
 fi
