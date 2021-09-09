@@ -6,7 +6,7 @@ import { ThemeProvider } from '@material-ui/core/styles'
 import GroupIcon from '@material-ui/icons/Group'
 
 // @ts-ignore
-import { YuToastProvider, CopyableInput, AppTheme, YuAppBar, WhatsappChip } from 'yu-open-lib'
+import { YuToastProvider, CopyableInput, AppTheme, YuAppBar, WhatsappChip, YuNegativeLaranja } from 'yu-open-lib'
 import 'yu-open-lib/dist/index.css'
 
 import ToastTests from './ToastTests'
@@ -44,7 +44,9 @@ const App = () => {
       <YuToastProvider>
         <YuAppBar backgroundColor="#070707" items={items} loggedIn logo="yu" searchBar={false} />
 
-        <div>
+        <div style={{ marginTop: 100 }}>
+          <img src={YuNegativeLaranja} alt="yu-negative-orange-logo" width="64" height="64" />
+
           <Typography variant="h2">Texto exemplo</Typography>
         </div>
 
