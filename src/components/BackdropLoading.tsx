@@ -1,11 +1,18 @@
 import React from 'react'
 
-import makeStyles from '@mui/styles/makeStyles'
+import { styled } from '@mui/material/styles'
+
 import CircularProgress from '@mui/material/CircularProgress'
 import Backdrop from '@mui/material/Backdrop'
 
-const useStyles = makeStyles((theme) => ({
-  backdrop: {
+const PREFIX = 'BackdropLoading'
+
+const classes = {
+  backdrop: `${PREFIX}-backdrop`
+}
+
+const StyledBackdrop = styled(Backdrop)(({ theme }) => ({
+  [`&.${classes.backdrop}`]: {
     zIndex: theme.zIndex.drawer + 1,
     color: '#fff'
   }
@@ -18,18 +25,14 @@ export type Props = {
 /**
  * A full-screen Backdrop loading component, also prevents user from doing any actions when active
  *
- * Similar example: https://material-ui.com/components/backdrop/#backdrop
+ * Similar example: https://mui.com/components/backdrop/#backdrop
  *
  * Mostly useful for mobile environments
  */
-const BackdropLoading: React.FC<Props> = ({ open }) => {
-  const classes = useStyles()
-
-  return (
-    <Backdrop className={classes.backdrop} open={open}>
-      <CircularProgress color='inherit' />
-    </Backdrop>
-  )
-}
+const BackdropLoading: React.FC<Props> = ({ open }) => (
+  <StyledBackdrop className={classes.backdrop} open={open}>
+    <CircularProgress color='inherit' />
+  </StyledBackdrop>
+)
 
 export default BackdropLoading
