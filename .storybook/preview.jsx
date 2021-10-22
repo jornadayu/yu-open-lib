@@ -17,7 +17,12 @@ import { BADGES } from './constants'
 const theme = AppTheme({ darkMode: true })
 
 export const decorators = [
-  jsxDecorator()
+  jsxDecorator(),
+  Story => (
+    <ThemeProvider theme={theme}>
+      {Story()}
+    </ThemeProvider>
+  )
 ]
 
 export const parameters = {
