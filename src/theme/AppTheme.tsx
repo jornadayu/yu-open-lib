@@ -2,12 +2,12 @@ import { ptBR } from '@mui/material/locale'
 import {
   createTheme,
   DeprecatedThemeOptions,
+  Theme,
   adaptV4Theme
 } from '@mui/material/styles'
 
-interface AppThemeOptions {
-  darkMode?: boolean
-  options?: DeprecatedThemeOptions
+declare module '@mui/styles' {
+  interface DefaultTheme extends Theme {}
 }
 
 const AppTheme = ({ darkMode = false, options }: AppThemeOptions) =>

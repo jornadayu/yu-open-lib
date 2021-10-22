@@ -36,6 +36,7 @@
     "preversion": "./check_unreleased.sh"
   },
   "dependencies": {
+    "@emotion/react": "^11.5.0",
     "@mui/icons-material": "^5.0.4",
     "@mui/lab": "^5.0.0-alpha.51",
     "@mui/material": "^5.0.4",
