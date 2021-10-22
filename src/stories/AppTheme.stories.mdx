@@ -8,8 +8,7 @@ import { Meta } from '@storybook/addon-docs/blocks'
 ```tsx
 import React from 'react'
 
-import { ThemeProvider } from '@material-ui/core/styles'
-import { CssBaseline } from '@material-ui/core'
+import { ThemeProvider } from '@mui/material/styles'
 
 import 'yu-open-lib/dist/index.css'
 import { AppTheme } from 'yu-open-lib'
@@ -19,12 +18,10 @@ const theme = AppTheme({ darkMode: false })
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-
       ...
     </ThemeProvider>
   )
 }
 ```
 
-- [Read More about `Material-UI`'s ThemeProvider](https://material-ui.com/customization/theming/#theme-provider)
+- [Read More about `MUI`'s ThemeProvider](https://mui.com/customization/theming/)

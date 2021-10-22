@@ -2,7 +2,7 @@ import withStyles from '@mui/styles/withStyles'
 import { TimelineItem as MuiTimelineItem } from '@mui/lab'
 
 /**
- * Use as replacement for Material-UI `TimelineItem` when using Yu-lib Timeline components
+ * Use as replacement for MUI `TimelineItem` when using Yu-lib Timeline components
  *
  * ```tsx
  * import { Timeline } from '@mui/material'

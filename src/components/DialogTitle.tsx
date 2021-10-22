@@ -30,7 +30,7 @@ export type Props = {
 }
 
 /**
- * Custom DialogTitle to be used as a replacement to `Material-UI`'s base `DialogTitle`
+ * Custom DialogTitle to be used as a replacement to `MUI`'s base `DialogTitle`
  *
  * Has a (somewhat redundant) close button in the upper-right corner
  *
@@ -62,7 +62,7 @@ const DialogTitle = withStyles(styles)(
     const { children, classes, onClose, ...other } = props
 
     return (
-      <MuiDialogTitle disableTypography className={classes.root} {...other}>
+      <MuiDialogTitle className={classes.root} {...other}>
         {!!children && <Typography variant='h6'>{children}</Typography>}
 
         {onClose ? (

@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useMediaQuery, useTheme } from '@mui/material'
 
 /**
- * Viewport hook to use for mobile-specific features, using Material-UI viewport breakpoints
+ * Viewport hook to use for mobile-specific features, using MUI viewport breakpoints
  */
 export const useViewport = (): {
   isMobile: boolean
