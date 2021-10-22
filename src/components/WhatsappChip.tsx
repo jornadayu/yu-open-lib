@@ -1,34 +1,17 @@
 import React from 'react'
 
-import makeStyles from '@mui/styles/makeStyles'
 import Chip from '@mui/material/Chip'
-import WhatsAppIcon from '@mui/icons-material/WhatsApp'
+import { WhatsApp as WhatsAppIcon } from '@mui/icons-material'
 
-const useStyles = makeStyles((theme) => ({
-  whatsappChip: {
-    backgroundColor: theme.palette.success.main,
-    color: 'white',
-    '&:hover': {
-      color: 'white',
-      backgroundColor: theme.palette.success.dark
-    }
-  },
-  whatsappIcon: {
-    color: 'white'
-  }
-}))
-
-type Props = {
+export type Props = {
   /**
    * Valid Phone number for WhatsApp (with area code)
    */
   number: string
-
   /**
    * Default message on WhatsApp chatbox
    */
   message?: string
-
   /**
    * Callback to run before clicking on the WhatsApp Chip
    */
@@ -44,9 +27,7 @@ const WhatsappChip: React.FC<Props> = ({
   message = '',
   onClick = () => {}
 }) => {
-  const classes = useStyles()
-
-  const whatsappurl = `https://api.whatsapp.com/send?phone=${number}&text=${message}`
+  const whatsappurl = `https://wa.me/${number}?text=${message}`
 
   return (
     <Chip
@@ -55,8 +36,8 @@ const WhatsappChip: React.FC<Props> = ({
       target='_blank'
       href={whatsappurl}
       onClick={onClick}
-      icon={<WhatsAppIcon className={classes.whatsappIcon} />}
-      className={classes.whatsappChip}
+      color='success'
+      icon={<WhatsAppIcon />}
       label={number}
     />
   )
