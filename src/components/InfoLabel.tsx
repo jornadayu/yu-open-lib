@@ -1,8 +1,31 @@
 import React from 'react'
 
-import { Grid, Theme } from '@mui/material'
+import { styled } from '@mui/material/styles'
 
-import makeStyles from '@mui/styles/makeStyles'
+import { Grid } from '@mui/material'
+
+const PREFIX = 'InfoLabel'
+
+const classes = {
+  root: `${PREFIX}-root`,
+  value: `${PREFIX}-value`,
+  label: `${PREFIX}-label`
+}
+
+const StyledGrid = styled(Grid)(({ theme }) => ({
+  [`&.${classes.root}`]: {
+    textAlign: 'center'
+  },
+
+  [`& .${classes.value}`]: {
+    fontWeight: theme.typography.fontWeightBold,
+    fontSize: 38
+  },
+
+  [`& .${classes.label}`]: {
+    fontSize: 16
+  }
+}))
 
 export type Props = {
   value: number | string
@@ -10,38 +33,21 @@ export type Props = {
   marginTop?: number
 }
 
-type StyleProps = {
-  marginTop: number
-}
-
-const useStyles = makeStyles<Theme, StyleProps>((theme) => ({
-  root: {
-    textAlign: 'center',
-    marginTop: ({ marginTop }) => marginTop
-  },
-  value: {
-    fontWeight: theme.typography.fontWeightBold,
-    fontSize: 38
-  },
-  label: {
-    fontSize: 16
-  }
-}))
-
-const InfoLabel: React.FC<Props> = ({ value, text, marginTop = 0 }) => {
-  const classes = useStyles({ marginTop })
-
-  return (
-    <Grid container spacing={1} className={classes.root}>
-      <Grid item xs={12}>
-        <span className={classes.value}>{value}</span>
-      </Grid>
-
-      <Grid item xs={12}>
-        <span className={classes.label}>{text}</span>
-      </Grid>
+const InfoLabel: React.FC<Props> = ({ value, text, marginTop = 0 }) => (
+  <StyledGrid
+    container
+    spacing={1}
+    className={classes.root}
+    sx={{ marginTop: marginTop }}
+  >
+    <Grid item xs={12}>
+      <span className={classes.value}>{value}</span>
     </Grid>
-  )
-}
+
+    <Grid item xs={12}>
+      <span className={classes.label}>{text}</span>
+    </Grid>
+  </StyledGrid>
+)
 
 export default InfoLabel
