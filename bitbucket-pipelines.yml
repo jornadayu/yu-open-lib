@@ -14,7 +14,6 @@ pipelines:
             - yarn
             - yarn test --watchAll=false --passWithNoTests
             - yarn run eslint src/**/*.{ts,tsx}
-            - yarn build
 
   branches:
     # Run on merges to 'master' branch
