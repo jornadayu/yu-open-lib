@@ -22,7 +22,7 @@
     "node": ">=12"
   },
   "scripts": {
-    "build": "microbundle-crl --no-compress --external=react,react-dom,react-i --format modern,cjs --css-modules false",
+    "build": "microbundle-crl --no-compress --external=react,react-dom,react-is --format modern,cjs --css-modules false",
     "build:types": "tsc --declaration --emitDeclarationOnly --jsx react --esModuleInterop --outDir dist && cp dist/src/* ./dist -r || exit 0",
     "prepare": "run-s build",
     "test": "echo 'no tests to run'",
