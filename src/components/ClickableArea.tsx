@@ -1,26 +1,29 @@
 import React from 'react'
 
-import makeStyles from '@mui/styles/makeStyles'
+import { styled } from '@mui/material/styles'
 
-export type Props = {
-  onClick: (e?: React.MouseEvent<HTMLSpanElement>) => any
+const PREFIX = 'ClickableArea'
 
-  /** @default 'space' */
-  keybinding?: string
-
-  /** @default true */
-  useKeybinding?: boolean
-
-  /** @default true */
-  active?: boolean
+const classes = {
+  clickArea: `${PREFIX}-clickArea`
 }
 
-const useStyles = makeStyles(() => ({
-  clickArea: {
+const Root = styled('span')(() => ({
+  [`& .${classes.clickArea}`]: {
     cursor: 'pointer',
     outline: 'none'
   }
 }))
+
+export type Props = {
+  onClick: (e?: React.MouseEvent<HTMLSpanElement>) => any
+  /** @default 'space' */
+  keybinding?: string
+  /** @default true */
+  useKeybinding?: boolean
+  /** @default true */
+  active?: boolean
+}
 
 /**
  * Use around a component to have it as a clickable area with a onClick callback
@@ -44,14 +47,12 @@ const ClickableArea: React.FC<Props> = ({
   useKeybinding = true,
   keybinding = 'space'
 }) => {
-  const classes = useStyles()
-
   const handleKeybind = (event: React.KeyboardEvent<HTMLSpanElement>) => {
     if (event.key === keybinding && useKeybinding) onClick()
   }
 
   return (
-    <span
+    <Root
       role='button'
       tabIndex={0}
       onClick={active ? onClick : undefined}
@@ -59,7 +60,7 @@ const ClickableArea: React.FC<Props> = ({
       className={active ? classes.clickArea : undefined}
     >
       {children}
-    </span>
+    </Root>
   )
 }
 
