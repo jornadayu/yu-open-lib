@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
-import IconButton from '@material-ui/core/IconButton'
-import Hidden from '@material-ui/core/Hidden'
-import Tooltip from '@material-ui/core/Tooltip'
-import MenuIcon from '@material-ui/icons/Menu'
+import AppBar from '@mui/material/AppBar'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
+import Button from '@mui/material/Button'
+import IconButton from '@mui/material/IconButton'
+import Hidden from '@mui/material/Hidden'
+import Tooltip from '@mui/material/Tooltip'
+import MenuIcon from '@mui/icons-material/Menu'
 
 import YuMobileNavBar from './YuMobileNavBar'
 import YuDrawer from './YuDrawer'
@@ -154,11 +154,7 @@ const BaseAppBar: React.FC<Props> = ({
       <AppBar className={`${classes.appBar} ${classes.externalAppBar}`}>
         <Toolbar className={`${classes.toolBar}`}>
           <Typography variant='h2' className={classes.title}>
-            <IconButton
-              className={classes.logoYuri}
-              color='inherit'
-              href={homeURL}
-            >
+            <IconButton className={classes.logoYuri} color='inherit' href={homeURL} size="large">
               {navbarLogo}
             </IconButton>
           </Typography>
@@ -166,7 +162,7 @@ const BaseAppBar: React.FC<Props> = ({
 
         <div className='gradient-line' />
       </AppBar>
-    )
+    );
 
   return (
     <React.Fragment>
@@ -194,7 +190,7 @@ const BaseAppBar: React.FC<Props> = ({
         toggleLeftDrawer={toggleLeftDrawer}
       />
 
-      <Hidden smDown>
+      <Hidden mdDown>
         <AppBar
           className={
             centerLogo
@@ -211,12 +207,12 @@ const BaseAppBar: React.FC<Props> = ({
                   color='inherit'
                   aria-label='menu'
                   onClick={toggleLeftDrawer}
-                >
+                  size="large">
                   <MenuIcon />
                 </IconButton>
               )}
 
-              <IconButton className={classes.logoYuri} color='inherit' href='/'>
+              <IconButton className={classes.logoYuri} color='inherit' href='/' size="large">
                 {navbarLogo}
               </IconButton>
 
@@ -244,7 +240,7 @@ const BaseAppBar: React.FC<Props> = ({
         </AppBar>
       </Hidden>
     </React.Fragment>
-  )
+  );
 }
 
 export default BaseAppBar

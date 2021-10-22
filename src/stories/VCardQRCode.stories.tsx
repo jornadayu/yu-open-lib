@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { ComponentStory, ComponentMeta, Story } from '@storybook/react'
-import { Card, CardContent } from '@material-ui/core'
+import { Card, CardContent } from '@mui/material'
 
 import VCardQRCode, { Props } from '../components/VCardQRCode'
 

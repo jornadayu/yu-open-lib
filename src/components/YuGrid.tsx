@@ -1,8 +1,8 @@
 import React from 'react'
 
-import Grid, { GridTypeMap } from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
-import { makeStyles } from '@material-ui/core/styles'
+import Grid, { GridTypeMap } from '@mui/material/Grid'
+import Paper from '@mui/material/Paper'
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -30,14 +30,14 @@ const YuGrid: React.FC<Props> = ({
   const classes = useStyles({ centerText })
 
   return (
-    <Grid container spacing={3} justify='center' {...containerProps}>
+    <Grid container spacing={3} justifyContent='center' {...containerProps}>
       <Grid item xs={12} {...itemProps}>
         <Paper elevation={3} className={classes.paper}>
           {children}
         </Paper>
       </Grid>
     </Grid>
-  )
+  );
 }
 
 export default YuGrid

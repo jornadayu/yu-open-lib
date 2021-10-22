@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { useMediaQuery, useTheme } from '@material-ui/core'
+import { useMediaQuery, useTheme } from '@mui/material'
 
 /**
  * Viewport hook to use for mobile-specific features, using Material-UI viewport breakpoints
@@ -11,8 +11,8 @@ export const useViewport = (): {
   isWide: boolean
 } => {
   const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
-  const isTablet = useMediaQuery(theme.breakpoints.down('md'))
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
+  const isTablet = useMediaQuery(theme.breakpoints.down('lg'))
   const isWide = useMediaQuery(theme.breakpoints.up('xl'))
 
   return { isMobile, isTablet, isWide }

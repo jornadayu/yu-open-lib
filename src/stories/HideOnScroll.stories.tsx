@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { ComponentStory, ComponentMeta, Story } from '@storybook/react'
-import { AppBar, Card, CardContent } from '@material-ui/core'
+import { AppBar, Card, CardContent } from '@mui/material'
 
 import HideOnScroll, { Props } from '../components/HideOnScroll'
 

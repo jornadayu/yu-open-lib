@@ -1,8 +1,10 @@
 import React from 'react'
 
-import Chip from '@material-ui/core/Chip'
-import CodeIcon from '@material-ui/icons/Code'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import Chip from '@mui/material/Chip'
+import CodeIcon from '@mui/icons-material/Code'
+import { Theme } from '@mui/material/styles';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 import { titleize } from '../helpers'
 import { AppEnvironment } from '../types'

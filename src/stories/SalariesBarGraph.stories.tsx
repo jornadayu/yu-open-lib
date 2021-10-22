@@ -2,7 +2,7 @@ import React from 'react'
 
 import { BADGE } from '@geometricpanda/storybook-addon-badges'
 import { ComponentStory, ComponentMeta, Story } from '@storybook/react'
-import { Grid, Card } from '@material-ui/core'
+import { Grid, Card } from '@mui/material'
 
 import SalariesBarGraph, {
   Props

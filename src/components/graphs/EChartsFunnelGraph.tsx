@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 
-import { useTheme } from '@material-ui/core'
+import { useTheme } from '@mui/material'
 
 // @ts-ignore
 import ReactEChartsCore from 'echarts-for-react/lib/core'

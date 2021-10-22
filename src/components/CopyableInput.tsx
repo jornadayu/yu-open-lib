@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 
-import IconButton from '@material-ui/core/IconButton'
-import InputAdornment from '@material-ui/core/InputAdornment'
-import TextField from '@material-ui/core/TextField'
-import Tooltip from '@material-ui/core/Tooltip'
-import FileCopyIcon from '@material-ui/icons/FileCopy'
-import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline'
+import IconButton from '@mui/material/IconButton'
+import InputAdornment from '@mui/material/InputAdornment'
+import TextField from '@mui/material/TextField'
+import Tooltip from '@mui/material/Tooltip'
+import FileCopyIcon from '@mui/icons-material/FileCopy'
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 
 export type Props = {
   /** Input Text to be copied */
@@ -65,7 +65,7 @@ const CopyableInput: React.FC<Props> = ({
           endAdornment: (
             <InputAdornment position='end'>
               <Tooltip title={tooltip} aria-label='copy-to-clipboard'>
-                <IconButton aria-label='copy to clipboard' onClick={copyText}>
+                <IconButton aria-label='copy to clipboard' onClick={copyText} size="large">
                   {copied ? <CheckCircleOutlineIcon /> : <FileCopyIcon />}
                 </IconButton>
               </Tooltip>
@@ -74,7 +74,7 @@ const CopyableInput: React.FC<Props> = ({
         }}
       />
     </React.Fragment>
-  )
+  );
 }
 
 export default CopyableInput

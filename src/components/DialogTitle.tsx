@@ -1,15 +1,13 @@
 import React from 'react'
 
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from '@material-ui/core/styles'
-import MuiDialogTitle from '@material-ui/core/DialogTitle'
-import IconButton from '@material-ui/core/IconButton'
-import CloseIcon from '@material-ui/icons/Close'
-import Typography from '@material-ui/core/Typography'
+import { Theme } from '@mui/material/styles';
+import { WithStyles } from '@mui/styles';
+import createStyles from '@mui/styles/createStyles';
+import withStyles from '@mui/styles/withStyles';
+import MuiDialogTitle from '@mui/material/DialogTitle'
+import IconButton from '@mui/material/IconButton'
+import CloseIcon from '@mui/icons-material/Close'
+import Typography from '@mui/material/Typography'
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -39,7 +37,7 @@ export type Props = {
  * Uses JSX children as its left-aligned title instead of a string
  *
  * ```tsx
- * import { Dialog, DialogContent } from '@material-ui/core'
+ * import { Dialog, DialogContent } from '@mui/material'
  * import { DialogTitle } from 'yu-open-lib'
  *
  * const MyComponent: React.FC = () => {
@@ -72,12 +70,12 @@ const DialogTitle = withStyles(styles)(
             aria-label='close'
             className={classes.closeButton}
             onClick={onClose}
-          >
+            size="large">
             <CloseIcon />
           </IconButton>
         ) : null}
       </MuiDialogTitle>
-    )
+    );
   }
 )
 

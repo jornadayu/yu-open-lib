@@ -1,7 +1,7 @@
 import React from 'react'
 
-import Grid, { GridProps } from '@material-ui/core/Grid'
-import Alert from '@material-ui/lab/Alert'
+import Grid, { GridProps } from '@mui/material/Grid'
+import Alert from '@mui/material/Alert'
 
 type Props = {
   message?: string
@@ -15,7 +15,7 @@ const ErrorAlert: React.FC<Props> = ({
   children,
   ...gridItemProps
 }) => (
-  <Grid container spacing={2} justify='center'>
+  <Grid container spacing={2} justifyContent='center'>
     <Grid item md={4} sm={8} xs={12} {...gridItemProps}>
       <Alert variant='outlined' severity='error'>
         {message}

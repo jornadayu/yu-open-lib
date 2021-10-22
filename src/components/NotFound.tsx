@@ -1,7 +1,7 @@
 import React from 'react'
 
-import Alert from '@material-ui/lab/Alert'
-import Button from '@material-ui/core/Button'
+import Alert from '@mui/material/Alert'
+import Button from '@mui/material/Button'
 
 import YuGrid from './YuGrid'
 

@@ -8,7 +8,7 @@ import 'tippy.js/themes/material.css'
 import 'tippy.js/themes/light.css'
 
 import { removeStopWords } from '../../helpers/stopwords'
-import { useTheme } from '@material-ui/core'
+import { useTheme } from '@mui/material'
 
 const defaultOptions: OptionsProp = {
   enableTooltip: true,
@@ -64,7 +64,7 @@ const YuWordCloud: React.FC<Props> = ({
     ...options,
     tooltipOptions: {
       ...options?.tooltipOptions,
-      theme: theme.palette.type === 'dark' ? 'material' : 'light'
+      theme: theme.palette.mode === 'dark' ? 'material' : 'light'
     }
   }
 

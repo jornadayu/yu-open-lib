@@ -1,11 +1,11 @@
 import React from 'react'
 
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import IconButton from '@material-ui/core/IconButton'
-import Typography from '@material-ui/core/Typography'
-import Hidden from '@material-ui/core/Hidden'
-import MenuIcon from '@material-ui/icons/Menu'
+import AppBar from '@mui/material/AppBar'
+import Toolbar from '@mui/material/Toolbar'
+import IconButton from '@mui/material/IconButton'
+import Typography from '@mui/material/Typography'
+import Hidden from '@mui/material/Hidden'
+import MenuIcon from '@mui/icons-material/Menu'
 
 import HideOnScroll from '../HideOnScroll'
 import { useStyles } from './NavBarStyles'
@@ -54,20 +54,20 @@ const YuMobileNavBar: React.FC<Props> = ({
                   color='inherit'
                   aria-label='menu'
                   onClick={toggleLeftDrawer}
-                >
+                  size="large">
                   <MenuIcon />
                 </IconButton>
               )}
             </Typography>
 
-            <IconButton className={classes.logoYuri} color='inherit' href='/'>
+            <IconButton className={classes.logoYuri} color='inherit' href='/' size="large">
               {logo}
             </IconButton>
           </Toolbar>
         </AppBar>
       </HideOnScroll>
     </Hidden>
-  )
+  );
 }
 
 export default YuMobileNavBar

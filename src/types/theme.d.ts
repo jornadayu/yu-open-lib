@@ -1,6 +1,6 @@
-import { Theme } from '@material-ui/core/styles/createMuiTheme'
+import { Theme } from '@mui/material/styles'
 
-declare module '@material-ui/core/styles/createPalette' {
+declare module '@mui/material/styles/createPalette' {
   interface ToolbarPaletteColorOptions {
     background?: string
   }
@@ -22,7 +22,7 @@ declare module '@material-ui/core/styles/createPalette' {
   }
 }
 
-declare module '@material-ui/core/styles/createMuiTheme' {
+declare module '@mui/material/styles/createMuiTheme' {
   interface Theme {
     status: ThemeStatus
   }
@@ -33,7 +33,7 @@ declare module '@material-ui/core/styles/createMuiTheme' {
     warning?: string
   }
 
-  interface ThemeOptions {
+  interface DeprecatedThemeOptions {
     status?: ThemeStatus
   }
 }
