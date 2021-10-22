@@ -1,10 +1,16 @@
 import React from 'react'
 
-import makeStyles from '@mui/styles/makeStyles'
-import Grid from '@mui/material/Grid'
+import { styled } from '@mui/material/styles'
+import { Grid } from '@mui/material'
 
-const useStyles = makeStyles(() => ({
-  loadingGrid: {
+const PREFIX = 'LoadingBars'
+
+const classes = {
+  loadingGrid: `${PREFIX}-loadingGrid`
+}
+
+const StyledGrid = styled(Grid)(() => ({
+  [`&.${classes.loadingGrid}`]: {
     textAlign: 'center'
   }
 }))
@@ -18,11 +24,9 @@ type Props = {
  * Generic horizontal loading bars, mostly to be used as specific resources loading (e.g. small cards inside a bigger container)
  */
 const LoadingBars: React.FC<Props> = ({ loading }) => {
-  const classes = useStyles()
-
   return (
     (loading && (
-      <Grid className={classes.loadingGrid}>
+      <StyledGrid className={classes.loadingGrid}>
         <svg
           className='loader active'
           height='55px'
@@ -115,7 +119,7 @@ const LoadingBars: React.FC<Props> = ({ loading }) => {
             />
           </rect>
         </svg>
-      </Grid>
+      </StyledGrid>
     )) ||
     null
   )
