@@ -29,6 +29,13 @@ const AppTheme = ({
                 backgroundColor: '#424242'
               }
             }
+          },
+          MuiButton: {
+            styleOverrides: {
+              root: {
+                borderRadius: 0
+              }
+            }
           }
         },
         typography: {

@@ -66,3 +66,5 @@ export { default as YuBarGraph } from './components/graphs/bar/YuBarGraph'
 export { default as RejectionsSunburst } from './components/graphs/RejectionsSunburst'
 
 export { default as AverageStepDurationGraph } from './components/graphs/AverageStepDurationGraph'
+
+export { default as YuButton } from './components/yu/YuButton'
