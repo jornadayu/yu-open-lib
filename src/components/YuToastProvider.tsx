@@ -14,7 +14,12 @@ export const Toast: React.FC<ToastProps> = ({
   children,
   onDismiss
 }) => (
-  <Alert variant='filled' severity={appearance} onClose={() => onDismiss()}>
+  <Alert
+    style={{ margin: 10 }}
+    variant='filled'
+    severity={appearance}
+    onClose={() => onDismiss()}
+  >
     {children}
   </Alert>
 )
