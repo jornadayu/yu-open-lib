@@ -17,7 +17,7 @@ export default (): UserConfigExport => ({
       }
     },
     rollupOptions: {
-      external: ['react', 'react-dom', 'echarts-for-react/lib/core']
+      external: ['react', 'react-dom', 'echarts-for-react/lib/core', 'react-is']
     }
   }
 })
