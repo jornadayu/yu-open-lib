@@ -154,7 +154,12 @@ const BaseAppBar: React.FC<Props> = ({
       <AppBar className={`${classes.appBar} ${classes.externalAppBar}`}>
         <Toolbar className={`${classes.toolBar}`}>
           <Typography variant='h2' className={classes.title}>
-            <IconButton className={classes.logoYuri} color='inherit' href={homeURL} size="large">
+            <IconButton
+              className={classes.logoYuri}
+              color='inherit'
+              href={homeURL}
+              size='large'
+            >
               {navbarLogo}
             </IconButton>
           </Typography>
@@ -162,7 +167,7 @@ const BaseAppBar: React.FC<Props> = ({
 
         <div className='gradient-line' />
       </AppBar>
-    );
+    )
 
   return (
     <React.Fragment>
@@ -207,12 +212,18 @@ const BaseAppBar: React.FC<Props> = ({
                   color='inherit'
                   aria-label='menu'
                   onClick={toggleLeftDrawer}
-                  size="large">
+                  size='large'
+                >
                   <MenuIcon />
                 </IconButton>
               )}
 
-              <IconButton className={classes.logoYuri} color='inherit' href='/' size="large">
+              <IconButton
+                className={classes.logoYuri}
+                color='inherit'
+                href='/'
+                size='large'
+              >
                 {navbarLogo}
               </IconButton>
 
@@ -240,7 +251,7 @@ const BaseAppBar: React.FC<Props> = ({
         </AppBar>
       </Hidden>
     </React.Fragment>
-  );
+  )
 }
 
 export default BaseAppBar
