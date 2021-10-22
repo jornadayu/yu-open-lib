@@ -10,7 +10,7 @@ export default {
   component: DialogTitle,
   argTypes: { onClose: { action: 'onClose' } },
   parameters: {
-    badges: ['Added: 1.7.9']
+    badges: ['Added: 2.0.0']
   }
 } as ComponentMeta<typeof DialogTitle>
 

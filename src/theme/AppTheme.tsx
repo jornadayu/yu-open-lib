@@ -1,19 +1,36 @@
-import { ptBR } from '@mui/material/locale'
-import {
-  createTheme,
-  DeprecatedThemeOptions,
-  Theme,
-  adaptV4Theme
-} from '@mui/material/styles'
+import { Localization, ptBR as coreptBR } from '@mui/material/locale'
+import { createTheme, ThemeOptions, Theme } from '@mui/material/styles'
+import { deepmerge } from '@mui/utils'
 
 declare module '@mui/styles' {
   interface DefaultTheme extends Theme {}
 }
 
-const AppTheme = ({ darkMode = false, options }: AppThemeOptions) =>
+export type AppThemeOptions = {
+  /** @default false */
+  darkMode?: boolean
+  options?: ThemeOptions
+  /** @default ptBR */
+  locale?: Localization
+}
+
+const AppTheme = ({
+  darkMode = true,
+  locale = coreptBR,
+  options
+}: AppThemeOptions) =>
   createTheme(
-    adaptV4Theme(
+    deepmerge(
       {
+        components: {
+          MuiCard: {
+            styleOverrides: {
+              root: {
+                backgroundColor: '#424242'
+              }
+            }
+          }
+        },
         typography: {
           fontFamily: [
             'DM Sans',
@@ -43,8 +60,8 @@ const AppTheme = ({ darkMode = false, options }: AppThemeOptions) =>
         palette: {
           mode: darkMode ? 'dark' : 'light',
           primary: {
-            main: darkMode ? '#4179ad' : '#1879ba',
-            dark: '#1879ba'
+            main: darkMode ? '#00CCFF' : '#166faa',
+            dark: '#166faa'
           },
           secondary: {
             main: darkMode ? '#f44336' : '#cc4b37',
@@ -55,20 +72,18 @@ const AppTheme = ({ darkMode = false, options }: AppThemeOptions) =>
             dark: '#e64a19'
           },
           success: {
-            main: darkMode ? '#4caf50' : '#4caf50',
-            dark: '#458c48'
+            main: darkMode ? '#00FF00' : '#00FF00',
+            dark: '#07d607'
           },
           background: {
-            default: darkMode ? '#303030' : '#fff'
-          },
-          toolbar: {
-            background: '#434242'
+            default: darkMode ? '#303030' : '#fff',
+            paper: darkMode ? '#424242' : '#fff'
           }
-        },
-        ...options
+        }
       },
-      ptBR
-    )
+      options
+    ),
+    locale
   )
 
 export default AppTheme

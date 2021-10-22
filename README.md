@@ -58,8 +58,7 @@ Read more about [Story Book](https://storybook.js.org/)
 ```tsx
 import React from 'react'
 
-import { ThemeProvider } from '@material-ui/core/styles'
-import { CssBaseline } from '@material-ui/core'
+import { ThemeProvider } from '@mui/material/styles'
 
 import { AppTheme } from 'yu-open-lib'
 
@@ -68,7 +67,6 @@ const theme = AppTheme({ darkMode: false })
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
       ...
     </ThemeProvider>
   )

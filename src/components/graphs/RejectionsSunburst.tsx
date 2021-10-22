@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react'
+import { styled } from '@mui/material/styles'
 import { useTheme, Grid } from '@mui/material'
-
-import makeStyles from '@mui/styles/makeStyles'
 
 import { ResponsiveSunburst, SunburstSvgProps } from '@nivo/sunburst'
 import { ResponsivePie } from '@nivo/pie'
@@ -9,23 +8,31 @@ import NivoTextTooltip from './NivoTextTooltip'
 import { useViewport } from '../../hooks'
 import { legendProps } from '../../hooks/nivo'
 
+const PREFIX = 'RejectionsSunburst'
+
+const classes = {
+  container: `${PREFIX}-container`,
+  rejectionGraph: `${PREFIX}-rejectionGraph`,
+  legendsStyle: `${PREFIX}-legendsStyle`
+}
+
+const StyledGrid = styled(Grid)(() => ({
+  [`&.${classes.container}`]: {
+    height: '100%'
+  },
+  [`& .${classes.rejectionGraph}`]: {
+    height: '80%',
+    marginTop: '5%'
+  },
+  [`& .${classes.legendsStyle}`]: {
+    marginTop: '2%'
+  }
+}))
+
 export type ResponsiveSunburstProps<RawDatum> = Partial<
   Omit<SunburstSvgProps<RawDatum>, 'data' | 'width' | 'height'>
 > &
   Pick<SunburstSvgProps<RawDatum>, 'data'>
-
-const useStyles = makeStyles(() => ({
-  container: {
-    height: '100%'
-  },
-  rejectionGraph: {
-    height: '80%',
-    marginTop: '5%'
-  },
-  legendsStyle: {
-    marginTop: '2%'
-  }
-}))
 
 export type Datum = {
   name: string
@@ -42,7 +49,7 @@ const RejectionsSunburst: React.FC<
   Partial<ResponsiveSunburstProps<Datum>> & Props
 > = ({ data, ...sunBurstProps }) => {
   const { isMobile } = useViewport()
-  const classes = useStyles()
+
   const theme = useTheme()
 
   const pluckRejectionTypes = useMemo(() => {
@@ -74,7 +81,7 @@ const RejectionsSunburst: React.FC<
   }, [data, isMobile])
 
   return (
-    <Grid container className={classes.container}>
+    <StyledGrid container className={classes.container}>
       <Grid
         item
         xs={isMobile ? 8 : 12}
@@ -142,7 +149,7 @@ const RejectionsSunburst: React.FC<
           ]}
         />
       </Grid>
-    </Grid>
+    </StyledGrid>
   )
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import { Typography, CssBaseline } from '@mui/material'
-import { ThemeProvider, Theme, StyledEngineProvider } from '@mui/material/styles';
+import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
 import GroupIcon from '@mui/icons-material/Group'
 
 // @ts-ignore
@@ -10,13 +10,6 @@ import { YuToastProvider, CopyableInput, AppTheme, YuAppBar, WhatsappChip, YuNeg
 import 'yu-open-lib/dist/index.css'
 
 import ToastTests from './ToastTests'
-
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
-
 
 const theme = AppTheme({ darkMode: true })
 
