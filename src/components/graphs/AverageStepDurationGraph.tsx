@@ -74,7 +74,7 @@ const AverageStepDurationGraph: React.FC<AverageStepDurationGraphProps> = ({
     if (vertical) {
       const keys = new Set<string>()
 
-      let remappedSteps = steps.map(({ name, count }, index) => {
+      const remappedSteps = steps.map(({ name, count }, index) => {
         const datum = {
           name: keys.has(name) ? `${name} (${index})` : name,
           [legend]: count.toFixed(0)
@@ -123,7 +123,7 @@ const AverageStepDurationGraph: React.FC<AverageStepDurationGraphProps> = ({
         tickRotation: 0,
         legendPosition: 'middle',
         legendOffset: -20,
-        legend: vertical ? null: legend
+        legend: vertical ? null : legend
       }}
       cellOpacity={1}
       cellBorderColor={{ from: 'color', modifiers: [['darker', 0.4]] }}

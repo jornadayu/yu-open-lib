@@ -3,8 +3,8 @@ import React from 'react'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 
-import { Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Typography } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import { TimelineOppositeContent } from '@mui/lab'
 
 dayjs.extend(relativeTime)

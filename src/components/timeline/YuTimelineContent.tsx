@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { Paper, Typography, Theme, darken, PaperProps } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { Paper, Typography, Theme, darken, PaperProps } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import { TimelineContent } from '@mui/lab'
 
 import ClickableArea from '../ClickableArea'

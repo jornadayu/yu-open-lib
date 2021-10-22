@@ -1,4 +1,4 @@
-import withStyles from '@mui/styles/withStyles';
+import withStyles from '@mui/styles/withStyles'
 import { TimelineItem as MuiTimelineItem } from '@mui/lab'
 
 /**

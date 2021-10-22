@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { Grid, Theme } from '@mui/material';
+import { Grid, Theme } from '@mui/material'
 
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from '@mui/styles/makeStyles'
 
 export type Props = {
   value: number | string

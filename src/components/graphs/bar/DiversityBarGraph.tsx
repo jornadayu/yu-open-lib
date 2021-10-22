@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react'
 
-import { Typography } from '@mui/material';
+import { Typography } from '@mui/material'
 
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from '@mui/styles/makeStyles'
 
 import { OrdinalColorScaleConfig } from '@nivo/colors'
 import { ResponsiveBar, BarSvgProps, AccessorFunc } from '@nivo/bar'

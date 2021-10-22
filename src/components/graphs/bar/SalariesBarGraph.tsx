@@ -200,7 +200,7 @@ const SalariesBarGraph: React.FC<Props> = ({
         {...props}
       />
     </ClickableArea>
-  );
+  )
 }
 
 export default SalariesBarGraph

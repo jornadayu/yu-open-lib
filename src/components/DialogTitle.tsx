@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { Theme } from '@mui/material/styles';
-import { WithStyles } from '@mui/styles';
-import createStyles from '@mui/styles/createStyles';
-import withStyles from '@mui/styles/withStyles';
+import { Theme } from '@mui/material/styles'
+import { WithStyles } from '@mui/styles'
+import createStyles from '@mui/styles/createStyles'
+import withStyles from '@mui/styles/withStyles'
 import MuiDialogTitle from '@mui/material/DialogTitle'
 import IconButton from '@mui/material/IconButton'
 import CloseIcon from '@mui/icons-material/Close'
@@ -70,12 +70,13 @@ const DialogTitle = withStyles(styles)(
             aria-label='close'
             className={classes.closeButton}
             onClick={onClose}
-            size="large">
+            size='large'
+          >
             <CloseIcon />
           </IconButton>
         ) : null}
       </MuiDialogTitle>
-    );
+    )
   }
 )
 

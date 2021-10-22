@@ -65,7 +65,11 @@ const CopyableInput: React.FC<Props> = ({
           endAdornment: (
             <InputAdornment position='end'>
               <Tooltip title={tooltip} aria-label='copy-to-clipboard'>
-                <IconButton aria-label='copy to clipboard' onClick={copyText} size="large">
+                <IconButton
+                  aria-label='copy to clipboard'
+                  onClick={copyText}
+                  size='large'
+                >
                   {copied ? <CheckCircleOutlineIcon /> : <FileCopyIcon />}
                 </IconButton>
               </Tooltip>
@@ -74,7 +78,7 @@ const CopyableInput: React.FC<Props> = ({
         }}
       />
     </React.Fragment>
-  );
+  )
 }
 
 export default CopyableInput

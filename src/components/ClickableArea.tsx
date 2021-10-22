@@ -1,6 +1,6 @@
 import React from 'react'
 
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from '@mui/styles/makeStyles'
 
 export type Props = {
   onClick: (e?: React.MouseEvent<HTMLSpanElement>) => any

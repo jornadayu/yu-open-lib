@@ -2,7 +2,7 @@ import React from 'react'
 
 import Grid, { GridTypeMap } from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from '@mui/styles/makeStyles'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -37,7 +37,7 @@ const YuGrid: React.FC<Props> = ({
         </Paper>
       </Grid>
     </Grid>
-  );
+  )
 }
 
 export default YuGrid

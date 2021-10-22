@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
-import { useTheme, Grid } from '@mui/material';
+import { useTheme, Grid } from '@mui/material'
 
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from '@mui/styles/makeStyles'
 
 import { ResponsiveSunburst, SunburstSvgProps } from '@nivo/sunburst'
 import { ResponsivePie } from '@nivo/pie'
@@ -143,7 +143,7 @@ const RejectionsSunburst: React.FC<
         />
       </Grid>
     </Grid>
-  );
+  )
 }
 
 export default RejectionsSunburst

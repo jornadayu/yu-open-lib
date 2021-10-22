@@ -1,6 +1,6 @@
 import React from 'react'
 
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from '@mui/styles/makeStyles'
 import Chip from '@mui/material/Chip'
 import WhatsAppIcon from '@mui/icons-material/WhatsApp'
 

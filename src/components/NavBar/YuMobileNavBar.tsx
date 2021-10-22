@@ -54,20 +54,26 @@ const YuMobileNavBar: React.FC<Props> = ({
                   color='inherit'
                   aria-label='menu'
                   onClick={toggleLeftDrawer}
-                  size="large">
+                  size='large'
+                >
                   <MenuIcon />
                 </IconButton>
               )}
             </Typography>
 
-            <IconButton className={classes.logoYuri} color='inherit' href='/' size="large">
+            <IconButton
+              className={classes.logoYuri}
+              color='inherit'
+              href='/'
+              size='large'
+            >
               {logo}
             </IconButton>
           </Toolbar>
         </AppBar>
       </HideOnScroll>
     </Hidden>
-  );
+  )
 }
 
 export default YuMobileNavBar
