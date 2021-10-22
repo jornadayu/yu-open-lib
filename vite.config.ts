@@ -8,7 +8,7 @@ export default (): UserConfigExport => ({
     lib: {
       entry: path.resolve(__dirname, 'src/index.tsx'),
       name: 'yu-open-lib',
-      fileName: (format: string) => {
+      fileName: (format) => {
         if (format === 'umd') {
           return 'index.js'
         }
