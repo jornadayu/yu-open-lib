@@ -17,7 +17,13 @@ export default (): UserConfigExport => ({
       }
     },
     rollupOptions: {
-      external: ['react', 'react-dom', 'echarts-for-react/lib/core', 'react-is']
+      external: [
+        'react',
+        'react-dom',
+        'echarts-for-react/lib/core',
+        // https://github.com/transitive-bullshit/react-modern-library-boilerplate/issues/29
+        'react-is'
+      ]
     }
   }
 })
