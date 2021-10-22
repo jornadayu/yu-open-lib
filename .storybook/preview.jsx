@@ -7,7 +7,6 @@ import { themes } from '@storybook/theming'
 
 import { addDecorator } from '@storybook/react'
 import { jsxDecorator } from 'storybook-addon-jsx'
-import { muiTheme } from 'storybook-addon-material-ui'
 // import { withInfo } from '@storybook/addon-info'
 
 import AppTheme from '../src/theme/AppTheme'
@@ -18,8 +17,7 @@ import { BADGES } from './constants'
 const theme = AppTheme({ darkMode: true })
 
 export const decorators = [
-  jsxDecorator(),
-  muiTheme([theme])
+  jsxDecorator()
 ]
 
 export const parameters = {

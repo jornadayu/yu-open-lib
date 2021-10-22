@@ -45,7 +45,6 @@ module.exports = {
     '@etchteam/storybook-addon-status',
     '@geometricpanda/storybook-addon-badges',
     'storybook-addon-jsx',
-    'storybook-addon-material-ui',
     {
       name: '@storybook/addon-storysource'
     }
