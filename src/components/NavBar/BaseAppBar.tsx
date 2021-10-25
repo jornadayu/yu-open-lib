@@ -11,9 +11,10 @@ import MenuIcon from '@mui/icons-material/Menu'
 
 import YuMobileNavBar from './YuMobileNavBar'
 import YuDrawer from './YuDrawer'
-import YuriLogo from 'images/yuri_white.png'
-import YuLogo from 'images/YU_Neg_02_Laranja.png'
-import YuPositiveLogo from 'images/YU_Pos_02_Laranja.png'
+
+import YuriNegativeWhiteIcon from '../../assets/icons/yuri/negative/WhiteIcon'
+import YuNegativeLaranjaIcon from '../../assets/icons/yu/negative/LaranjaIcon'
+
 import { useStyles } from './NavBarStyles'
 import { NavbarItem } from '../../types'
 
@@ -136,18 +137,10 @@ const BaseAppBar: React.FC<Props> = ({
   const { leftItems, rightItems } = items
 
   const navbarLogo =
-    logo === 'yuri' ? (
-      <img src={YuriLogo} width='32' />
-    ) : (
-      <img src={YuLogo} width='64' />
-    )
+    logo === 'yuri' ? <YuriNegativeWhiteIcon /> : <YuNegativeLaranjaIcon />
 
   const drawerLogo =
-    logo === 'yuri' ? (
-      <img src={YuriLogo} width='32' />
-    ) : (
-      <img src={YuPositiveLogo} width='64' />
-    )
+    logo === 'yuri' ? <YuriNegativeWhiteIcon /> : <YuNegativeLaranjaIcon />
 
   if (!loggedIn)
     return (

@@ -1,3 +1,4 @@
+const { viteCommonjs } = require('@originjs/vite-plugin-commonjs')
 const path = require('path')
 
 /**
@@ -65,7 +66,15 @@ module.exports = {
     // Vite config
     return {
       ...config,
-      plugins: [...config.plugins, forceBundleConfigDeps()],
+      build: {
+        sourcemap: true
+      },
+      plugins: [
+        ...config.plugins,
+        forceBundleConfigDeps(),
+        // https://github.com/vitejs/vite/issues/3409
+        // viteCommonjs()
+      ],
       optimizeDeps: {
         include: [
           "@storybook/react",

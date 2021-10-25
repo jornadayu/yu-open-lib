@@ -13,8 +13,13 @@ export { default as BackdropLoading } from './components/BackdropLoading'
 export { default as ErrorAlert } from './components/ErrorAlert'
 
 export { default as YuAppBar } from './components/NavBar/YuAppBar'
+export type { Props as YuAppBarProps } from './components/NavBar/BaseAppBar'
+
 export { default as YuDrawer } from './components/NavBar/YuDrawer'
-export { default as YuMobileNavBar } from './components/NavBar/YuMobileNavBar'
+export type {
+  Props as YuMobileNavBarProps,
+  default as YuMobileNavBar
+} from './components/NavBar/YuMobileNavBar'
 
 export { default as YuToastProvider } from './components/YuToastProvider'
 
@@ -43,15 +48,6 @@ export {
 
 export { useViewport, useToggle } from './hooks'
 export { useEchartsTheme } from './hooks/echarts'
-
-export { default as YuriLogo } from 'assets/images/yuri/logo_yuri.png'
-export { default as YuriNegativeLogo } from 'assets/images/yuri/logo_yuri_negative.png'
-
-export { default as YuNegativeSalmao } from 'assets/images/yu/YU_Neg_01_Salmao.png'
-export { default as YuNegativeLaranja } from 'assets/images/yu/YU_Neg_02_Laranja.png'
-
-export { default as YuPositiveSalmao } from 'assets/images/yu/YU_Pos_01_Salmao.png'
-export { default as YuPositiveLaranja } from 'assets/images/yu/YU_Pos_02_Laranja.png'
 
 export { default as NivoTextTooltip } from './components/graphs/NivoTextTooltip'
 export { default as YuWordCloud } from './components/graphs/YuWordCloud'

@@ -64,6 +64,7 @@
     "@babel/core": "^7.14.6",
     "@etchteam/storybook-addon-status": "^4.0.0",
     "@geometricpanda/storybook-addon-badges": "^0.0.4",
+    "@originjs/vite-plugin-commonjs": "^1.0.1",
     "@storybook/addon-actions": "6.4.0-alpha.16",
     "@storybook/addon-essentials": "6.4.0-alpha.16",
     "@storybook/addon-info": "^5.3.21",

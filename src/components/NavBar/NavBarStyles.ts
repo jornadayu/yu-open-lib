@@ -16,7 +16,9 @@ export const useStyles = makeStyles((theme) => ({
   },
   logoYuri: {
     marginRight: theme.spacing(2),
-    marginLeft: theme.spacing(2)
+    marginLeft: theme.spacing(2),
+    width: 64,
+    height: 64
   },
   toolbarButton: {
     margin: `${theme.spacing(0, 0, 0, 3)} !important`,

@@ -10,6 +10,7 @@ import ListItemText from '@mui/material/ListItemText'
 import Divider from '@mui/material/Divider'
 
 import { NavbarItem } from '../../types'
+import { Avatar } from '@mui/material'
 
 type ListProps = {
   buttons: NavbarItem[]
@@ -92,7 +93,7 @@ const YuDrawer: React.FC<DrawerProps> = ({
     <Drawer anchor='left' open={open} onClose={handleClose}>
       <List>
         <ListItem button component='a' href='/'>
-          {logo}
+          <Avatar sx={{ height: 48, padding: 1.5, width: 48 }}>{logo}</Avatar>
         </ListItem>
 
         <ListItems buttons={allItems.up} />

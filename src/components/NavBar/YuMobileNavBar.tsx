@@ -10,19 +10,15 @@ import MenuIcon from '@mui/icons-material/Menu'
 import HideOnScroll from '../HideOnScroll'
 import { useStyles } from './NavBarStyles'
 
-type Props = {
+export type Props = {
   toggleLeftDrawer: () => void
-
   /**
    * Whether to have a Drawer or not
    * @default true
    */
   drawer: boolean
-
   logo: React.ReactElement
-
   backgroundColor: string
-
   centerLogo: boolean
 }
 

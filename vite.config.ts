@@ -1,8 +1,14 @@
 import { UserConfigExport } from 'vite'
 
+import { viteCommonjs } from '@originjs/vite-plugin-commonjs'
+
 import path from 'path'
 
 export default (): UserConfigExport => ({
+  plugins: [
+    // https://github.com/vitejs/vite/issues/3409
+    viteCommonjs()
+  ],
   build: {
     sourcemap: true,
     lib: {

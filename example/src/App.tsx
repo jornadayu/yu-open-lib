@@ -18,22 +18,36 @@ const App = () => {
     drawerItems: [
       { text: 'Marcas', path: '/brands', icon: <GroupIcon /> },
       { text: 'Usuários', component: Link, to: '/users', icon: <GroupIcon /> },
-      { text: 'Alocação de Equipes', path: '/team_allocations', icon: <GroupIcon /> },
       {
-        text: 'Emails de Sign-Off',
-        path: '/people/people_with_automatic_signoff?filter_by_days=7',
+        text: 'Some Things',
+        path: '/some_things',
         icon: <GroupIcon />
       },
       {
-        text: 'Extensão LinkedIn',
-        path: '/linkedin_extension',
+        text: 'Stuff',
+        path: '/stuff',
+        icon: <GroupIcon />
+      },
+      {
+        text: 'Other Stuff',
+        path: '/other_stuff',
         icon: <GroupIcon />
       }
     ],
     leftItems: [
       { text: 'Vagas', path: '/jobs', icon: <GroupIcon />, iconButton: true },
-      { text: 'Projetos', path: '/projects', icon: <GroupIcon />, iconButton: true, tooltip: 'Projetos' },
-      { text: 'Busca Avançada', path: '/advanced_search/index', icon: <GroupIcon /> }
+      {
+        text: 'Projetos',
+        path: '/projects',
+        icon: <GroupIcon />,
+        iconButton: true,
+        tooltip: 'Projetos'
+      },
+      {
+        text: 'Search',
+        path: '/search',
+        icon: <GroupIcon />
+      }
     ],
     rightItems: []
   }
