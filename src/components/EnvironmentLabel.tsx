@@ -1,7 +1,8 @@
 import React from 'react'
 
-import { useTheme, Chip } from '@mui/material'
-import { Code as CodeIcon } from '@mui/icons-material'
+import { useTheme } from '@mui/material'
+import Chip from '@mui/material/Chip'
+import CodeIcon from '@mui/icons-material/Code'
 
 import { titleize } from '../helpers'
 import { AppEnvironment } from '../types'

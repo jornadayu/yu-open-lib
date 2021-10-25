@@ -36,6 +36,33 @@
     "preversion": "./check_unreleased.sh"
   },
   "dependencies": {
+    "babel-loader": "8.1.0",
+    "javascript-color-gradient": "^1.3.2"
+  },
+  "peerDependencies": {
+    "react-toast-notifications": "^2.4.0",
+    "react-wordcloud": "^1.2.7",
+    "dayjs": "^1.10.4",
+    "echarts": "^5.1.0",
+    "echarts-for-react": "^3.0.1",
+    "qrcode.react": "^1.0.1",
+    "react": "^17.0.1",
+    "@emotion/react": "^11.5.0",
+    "@mui/icons-material": "^5.0.4",
+    "@mui/lab": "^5.0.0-alpha.51",
+    "@mui/material": "^5.0.4",
+    "@mui/styles": "^5.0.1",
+    "@nivo/bar": ">= 0.68.0 <0.72.0",
+    "@nivo/core": "0.71.0",
+    "@nivo/heatmap": "^0.73.0",
+    "@nivo/legends": "0.71.0",
+    "@nivo/pie": "0.73.0",
+    "@nivo/sunburst": "0.73.0",
+    "@nivo/tooltip": "0.71.0"
+  },
+  "devDependencies": {
+    "react-toast-notifications": "^2.4.0",
+    "react-wordcloud": "^1.2.7",
     "@emotion/react": "^11.5.0",
     "@mui/icons-material": "^5.0.4",
     "@mui/lab": "^5.0.0-alpha.51",
@@ -48,19 +75,6 @@
     "@nivo/pie": "0.73.0",
     "@nivo/sunburst": "0.73.0",
     "@nivo/tooltip": "0.71.0",
-    "babel-loader": "8.1.0",
-    "javascript-color-gradient": "^1.3.2",
-    "react-toast-notifications": "^2.4.0",
-    "react-wordcloud": "^1.2.7"
-  },
-  "peerDependencies": {
-    "dayjs": "^1.10.4",
-    "echarts": "^5.1.0",
-    "echarts-for-react": "^3.0.1",
-    "qrcode.react": "^1.0.1",
-    "react": "^17.0.1"
-  },
-  "devDependencies": {
     "@babel/core": "^7.14.6",
     "@etchteam/storybook-addon-status": "^4.0.0",
     "@geometricpanda/storybook-addon-badges": "^0.0.4",
