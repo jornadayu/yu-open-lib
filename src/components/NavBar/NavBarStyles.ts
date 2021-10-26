@@ -1,27 +1,23 @@
 import makeStyles from '@mui/styles/makeStyles'
 
-export const useStyles = makeStyles((theme) => ({
+export const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1
   },
   menuButton: {
-    marginRight: theme.spacing(2)
+    marginRight: 16
   },
   title: {
     flexGrow: 1
   },
-  appBar: {
-    background: ({ backgroundColor }: { backgroundColor: string }) =>
-      backgroundColor
-  },
   logoYuri: {
-    marginRight: theme.spacing(2),
-    marginLeft: theme.spacing(2),
+    marginRight: 16,
+    marginLeft: 16,
     width: 64,
     height: 64
   },
   toolbarButton: {
-    margin: `${theme.spacing(0, 0, 0, 3)} !important`,
+    margin: '0px 0px 0px 24px !important',
     fontSize: 20
   },
   externalAppBar: {

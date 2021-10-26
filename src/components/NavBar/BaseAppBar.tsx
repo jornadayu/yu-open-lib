@@ -13,7 +13,9 @@ import YuMobileNavBar from './YuMobileNavBar'
 import YuDrawer from './YuDrawer'
 
 import YuriNegativeWhiteIcon from '../../assets/icons/yuri/negative/WhiteIcon'
+import YuriPositiveOrangeIcon from '../../assets/icons/yuri/positive/OrangeIcon'
 import YuNegativeLaranjaIcon from '../../assets/icons/yu/negative/LaranjaIcon'
+import YuPositiveLaranjaIcon from '../../assets/icons/yu/positive/VioletaIcon'
 
 import { useStyles } from './NavBarStyles'
 import { NavbarItem } from '../../types'
@@ -24,47 +26,43 @@ export type Props = {
     rightItems: NavbarItem[]
     drawerItems: NavbarItem[]
   }
-
   /**
    * Background color of the NavBar
    * @default '#434242'
    */
   backgroundColor?: string
-
   /**
    * If the User is logged in or not (shows no items if logged out)
    * @default false
    */
   loggedIn?: boolean
-
   /**
    * If a People Search bar should be on the NavBar or not
    * @default false
    */
   searchBar?: boolean
-
   /**
    * Home URL of Yu Logo when not authenticated
    * @default 'https://jornadayu.com'
    */
   homeURL?: string
-
   /**
    * Whether to have a Drawer or not
    * @default true
    */
   drawer?: boolean
-
   /**
    * @default 'yuri'
    */
-  logo?: 'yuri' | 'yu'
-
+  logo?: 'yuri' | 'yu' | React.ReactElement
+  /**
+   * @default 'yuri'
+   */
+  positiveLogo?: 'yuri' | 'yu' | React.ReactElement
   /**
    * @default false
    */
   centerLogo?: boolean
-
   /**
    * @default false
    */
@@ -73,11 +71,10 @@ export type Props = {
 
 export type ButtonProps = {
   button: NavbarItem
-  backgroundColor: string
 }
 
-const ToolbarButton: React.FC<ButtonProps> = ({ button, backgroundColor }) => {
-  const classes = useStyles({ backgroundColor })
+const ToolbarButton: React.FC<ButtonProps> = ({ button }) => {
+  const classes = useStyles()
 
   let buttonElement: React.ReactElement | null = null
 
@@ -124,10 +121,11 @@ const BaseAppBar: React.FC<Props> = ({
   homeURL = 'https://jornadayu.com',
   drawer = true,
   logo = 'yuri',
+  positiveLogo,
   centerLogo = false,
   centerMobileLogo = false
 }) => {
-  const classes = useStyles({ backgroundColor })
+  const classes = useStyles()
   const [leftDrawer, setLeftDrawer] = useState(false)
 
   const toggleLeftDrawer = () => {
@@ -136,15 +134,37 @@ const BaseAppBar: React.FC<Props> = ({
 
   const { leftItems, rightItems } = items
 
-  const navbarLogo =
-    logo === 'yuri' ? <YuriNegativeWhiteIcon /> : <YuNegativeLaranjaIcon />
+  let navbarLogo = <YuNegativeLaranjaIcon />
 
-  const drawerLogo =
-    logo === 'yuri' ? <YuriNegativeWhiteIcon /> : <YuNegativeLaranjaIcon />
+  if (logo === 'yuri') {
+    navbarLogo = <YuriNegativeWhiteIcon />
+  } else if (logo === 'yu') {
+    navbarLogo = <YuNegativeLaranjaIcon />
+  } else {
+    // Use custom logo passed
+    navbarLogo = logo as React.ReactElement
+  }
+
+  let drawerLogo = <YuPositiveLaranjaIcon />
+
+  // Use same logo as 'logo', but positive (if available) if none was passed
+  const actualPositiveLogo = positiveLogo || logo
+
+  if (actualPositiveLogo === 'yuri') {
+    drawerLogo = <YuriPositiveOrangeIcon />
+  } else if (actualPositiveLogo === 'yu') {
+    drawerLogo = <YuPositiveLaranjaIcon />
+  } else {
+    // Use custom logo passed
+    drawerLogo = actualPositiveLogo as React.ReactElement
+  }
 
   if (!loggedIn)
     return (
-      <AppBar className={`${classes.appBar} ${classes.externalAppBar}`}>
+      <AppBar
+        className={classes.externalAppBar}
+        sx={{ backgroundColor: backgroundColor }}
+      >
         <Toolbar className={`${classes.toolBar}`}>
           <Typography variant='h2' className={classes.title}>
             <IconButton
@@ -190,11 +210,8 @@ const BaseAppBar: React.FC<Props> = ({
 
       <Hidden mdDown>
         <AppBar
-          className={
-            centerLogo
-              ? `${classes.appBar} ${classes.externalAppBar}`
-              : classes.appBar
-          }
+          className={centerLogo ? classes.externalAppBar : undefined}
+          sx={{ backgroundColor: backgroundColor }}
         >
           <Toolbar className={classes.toolBar}>
             <Typography variant='h2' className={classes.title}>
@@ -223,7 +240,6 @@ const BaseAppBar: React.FC<Props> = ({
               {leftItems.map((button) => (
                 <ToolbarButton
                   button={button}
-                  backgroundColor={backgroundColor}
                   key={button.path || button.text}
                 />
               ))}
@@ -232,11 +248,7 @@ const BaseAppBar: React.FC<Props> = ({
             {children}
 
             {rightItems.map((button) => (
-              <ToolbarButton
-                button={button}
-                backgroundColor={backgroundColor}
-                key={button.path || button.text}
-              />
+              <ToolbarButton button={button} key={button.path || button.text} />
             ))}
           </Toolbar>
 

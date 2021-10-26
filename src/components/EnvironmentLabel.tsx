@@ -1,6 +1,5 @@
 import React from 'react'
 
-import { useTheme } from '@mui/material'
 import Chip from '@mui/material/Chip'
 import CodeIcon from '@mui/icons-material/Code'
 
@@ -44,7 +43,6 @@ const EnvironmentLabel: React.FC<Props> = ({
   margin = 11
 }) => {
   if (environment === 'production') return null
-  const theme = useTheme()
 
   return (
     <React.Fragment>
@@ -54,8 +52,8 @@ const EnvironmentLabel: React.FC<Props> = ({
         size='small'
         sx={{
           position: 'fixed',
-          top: theme.spacing(margin),
-          right: theme.spacing(2),
+          top: 8 * margin,
+          right: 16,
           color: 'white',
           backgroundColor: environment === 'development' ? '#66ab3e' : '#de4573'
         }}

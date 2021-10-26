@@ -1,28 +1,13 @@
 import React from 'react'
 
-import { styled } from '@mui/material/styles'
-
-import Grid, { GridTypeMap } from '@mui/material/Grid'
+import Grid, { GridProps } from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
-
-const PREFIX = 'YuGrid'
-
-const classes = {
-  paper: `${PREFIX}-paper`
-}
-
-const StyledGrid = styled(Grid)(({ theme }) => ({
-  [`& .${classes.paper}`]: {
-    padding: theme.spacing(2),
-    background: theme.palette.background.default,
-    height: '100%'
-  }
-}))
+import { useTheme } from '@mui/material'
 
 type Props = {
   children: React.ReactNode
-  containerProps?: GridTypeMap['props']
-  itemProps?: GridTypeMap['props']
+  containerProps?: GridProps
+  itemProps?: GridProps & { item?: true }
   centerText?: boolean
 }
 
@@ -32,8 +17,10 @@ const YuGrid: React.FC<Props> = ({
   itemProps,
   centerText = false
 }) => {
+  const theme = useTheme()
+
   return (
-    <StyledGrid
+    <Grid
       container
       spacing={3}
       justifyContent='center'
@@ -43,11 +30,18 @@ const YuGrid: React.FC<Props> = ({
       {...containerProps}
     >
       <Grid item xs={12} {...itemProps}>
-        <Paper elevation={3} className={classes.paper}>
+        <Paper
+          elevation={3}
+          sx={{
+            p: 2,
+            background: theme.palette.background.default,
+            height: '100%'
+          }}
+        >
           {children}
         </Paper>
       </Grid>
-    </StyledGrid>
+    </Grid>
   )
 }
 

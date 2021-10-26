@@ -11,9 +11,14 @@ pipelines:
           script:
             - unset NPM_CONFIG_USER
             - node --version
+            # Post-install action also builds the library
             - yarn
             - yarn test --watchAll=false --passWithNoTests
             - yarn run eslint src/**/*.{ts,tsx}
+            # Example build
+            - cd example
+            - yarn
+            - yarn build
 
   branches:
     # Run on merges to 'master' branch

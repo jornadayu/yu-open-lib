@@ -1,19 +1,22 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import { Typography, CssBaseline } from '@mui/material'
-import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
+import { Typography, CssBaseline, Switch, FormGroup, FormControlLabel } from '@mui/material'
+import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles'
+import { ThemeProvider as EmotionThemeProvider } from 'emotion-theming'
 import GroupIcon from '@mui/icons-material/Group'
 
 // @ts-ignore
-import { YuToastProvider, CopyableInput, AppTheme, YuAppBar, WhatsappChip, YuNegativeLaranja } from 'yu-open-lib'
+import { YuToastProvider, CopyableInput, AppTheme, YuAppBar, WhatsappChip, useToggle } from 'yu-open-lib'
 import 'yu-open-lib/dist/index.css'
 
 import ToastTests from './ToastTests'
 
-const theme = AppTheme({ darkMode: true })
+
 
 const App = () => {
+  const [darkMode, toggleDarkMode] = useToggle(true)
+  const theme = AppTheme({ darkMode: darkMode })
   const items = {
     drawerItems: [
       { text: 'Marcas', path: '/brands', icon: <GroupIcon /> },
@@ -54,24 +57,29 @@ const App = () => {
 
   return (
     <StyledEngineProvider injectFirst>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <YuToastProvider>
-          <YuAppBar backgroundColor="#070707" items={items} loggedIn logo="yu" searchBar={false} />
+      <EmotionThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
 
-          <div style={{ marginTop: 100 }}>
-            <img src={YuNegativeLaranja} alt="yu-negative-orange-logo" width="64" height="64" />
+          <YuToastProvider>
+            <YuAppBar backgroundColor="#070707" items={items} loggedIn logo="yu" searchBar={false} />
 
-            <Typography variant="h2">Texto exemplo</Typography>
-          </div>
+            <div style={{ marginTop: 100 }}>
+              <Typography variant="h2">Texto exemplo</Typography>
+            </div>
 
-          <CopyableInput text="url.com" label="Some URL" />
+            <CopyableInput text="url.com" label="Some URL" />
 
-          <ToastTests />
+            <ToastTests />
 
-          <WhatsappChip onClick={() => {}} number="123456" message="Olá" />
-        </YuToastProvider>
-      </ThemeProvider>
+            <WhatsappChip onClick={() => {}} number="123456" message="Olá" />
+
+            <FormGroup>
+              <FormControlLabel control={<Switch checked={darkMode} onChange={toggleDarkMode} />} label="Dark Mode" />
+            </FormGroup>
+          </YuToastProvider>
+        </ThemeProvider>
+      </EmotionThemeProvider>
     </StyledEngineProvider>
   );
 }

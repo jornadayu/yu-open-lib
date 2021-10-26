@@ -2,7 +2,7 @@ import React from 'react'
 
 import { ComponentStory, ComponentMeta, Story } from '@storybook/react'
 import Link from '@mui/material/Link'
-import { Group as GroupIcon } from '@mui/icons-material'
+import { Group as GroupIcon, People as PeopleIcon } from '@mui/icons-material'
 
 import YuAppBar from '../components/NavBar/YuAppBar'
 import { Props as YuAppBarProps } from '../components/NavBar/BaseAppBar'
@@ -71,4 +71,11 @@ YuriLogo.args = {
   loggedIn: true,
   items: navItems,
   logo: 'yuri'
+}
+
+export const CustomLogo: Story<YuAppBarProps> = Template.bind({})
+CustomLogo.args = {
+  loggedIn: true,
+  items: navItems,
+  logo: <PeopleIcon />
 }

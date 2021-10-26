@@ -14,6 +14,10 @@
     ".": {
       "import": "./dist/index.modern.js",
       "require": "./dist/index.js"
+    },
+    "./icons": {
+      "import": "./dist/index.modern.js",
+      "require": "./dist/index.js" 
     }
   },
   "source": "src/index.tsx",

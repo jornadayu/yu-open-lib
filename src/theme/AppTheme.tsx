@@ -1,10 +1,6 @@
 import { Localization, ptBR as coreptBR } from '@mui/material/locale'
-import { createTheme, ThemeOptions, Theme } from '@mui/material/styles'
+import { createTheme, ThemeOptions } from '@mui/material/styles'
 import { deepmerge } from '@mui/utils'
-
-declare module '@mui/styles' {
-  interface DefaultTheme extends Theme {}
-}
 
 export type AppThemeOptions = {
   /** @default false */
@@ -17,7 +13,7 @@ export type AppThemeOptions = {
 const AppTheme = ({
   darkMode = true,
   locale = coreptBR,
-  options
+  options = {}
 }: AppThemeOptions) =>
   createTheme(
     deepmerge(
@@ -60,7 +56,7 @@ const AppTheme = ({
         palette: {
           mode: darkMode ? 'dark' : 'light',
           primary: {
-            main: darkMode ? '#00CCFF' : '#166faa',
+            main: darkMode ? '#04a7cf' : '#166faa',
             dark: '#166faa'
           },
           secondary: {
@@ -70,10 +66,6 @@ const AppTheme = ({
           warning: {
             main: darkMode ? '#f57c00' : '#e64a19',
             dark: '#e64a19'
-          },
-          success: {
-            main: darkMode ? '#00FF00' : '#00FF00',
-            dark: '#07d607'
           },
           background: {
             default: darkMode ? '#303030' : '#fff',

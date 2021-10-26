@@ -8,9 +8,10 @@ import ListItem from '@mui/material/ListItem'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import Divider from '@mui/material/Divider'
+import { Avatar } from '@mui/material'
+import { grey } from '@mui/material/colors'
 
 import { NavbarItem } from '../../types'
-import { Avatar } from '@mui/material'
 
 type ListProps = {
   buttons: NavbarItem[]
@@ -92,8 +93,25 @@ const YuDrawer: React.FC<DrawerProps> = ({
   return (
     <Drawer anchor='left' open={open} onClose={handleClose}>
       <List>
-        <ListItem button component='a' href='/'>
-          <Avatar sx={{ height: 48, padding: 1.5, width: 48 }}>{logo}</Avatar>
+        <ListItem
+          button
+          component='a'
+          href='/'
+          sx={{
+            display: 'flex',
+            justifyContent: 'center'
+          }}
+        >
+          <Avatar
+            sx={{
+              height: 48,
+              padding: 1.5,
+              width: 48,
+              bgcolor: grey[100]
+            }}
+          >
+            {logo}
+          </Avatar>
         </ListItem>
 
         <ListItems buttons={allItems.up} />

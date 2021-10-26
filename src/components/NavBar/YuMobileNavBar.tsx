@@ -29,17 +29,14 @@ const YuMobileNavBar: React.FC<Props> = ({
   backgroundColor,
   centerLogo
 }) => {
-  const classes = useStyles({ backgroundColor })
+  const classes = useStyles()
 
   return (
     <Hidden mdUp>
       <HideOnScroll>
         <AppBar
-          className={
-            centerLogo
-              ? `${classes.appBar} ${classes.externalAppBar}`
-              : classes.appBar
-          }
+          className={centerLogo ? classes.externalAppBar : undefined}
+          sx={{ backgroundColor: backgroundColor }}
         >
           <Toolbar className={classes.toolBar}>
             <Typography variant='h2' className={classes.title}>
