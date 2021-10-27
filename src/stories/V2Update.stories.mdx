@@ -73,24 +73,24 @@ const App = () => {
 
 ```diff
 # Diff
-< import { ThemeProvider } from '@mui/material/styles'
+- import { ThemeProvider } from '@mui/material/styles'
 ---
-> import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles'
-> import { ThemeProvider as EmotionThemeProvider } from 'emotion-theming'
++ import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles'
++ import { ThemeProvider as EmotionThemeProvider } from 'emotion-theming'
 
-<     <ThemeProvider theme={theme}>
-<       <CssBaseline />
-<       ...
-<     </ThemeProvider>
+-     <ThemeProvider theme={theme}>
+-       <CssBaseline />
+-       ...
+-     </ThemeProvider>
 ---
->     <StyledEngineProvider injectFirst>
->       <EmotionThemeProvider theme={theme}>
->         <ThemeProvider theme={theme}>
->           <CssBaseline />
->           ...
->         </ThemeProvider>
->       </EmotionThemeProvider>
->     </StyledEngineProvider>
++     <StyledEngineProvider injectFirst>
++       <EmotionThemeProvider theme={theme}>
++         <ThemeProvider theme={theme}>
++           <CssBaseline />
++           ...
++         </ThemeProvider>
++       </EmotionThemeProvider>
++     </StyledEngineProvider>
 ```
 
 ---
@@ -99,13 +99,13 @@ const App = () => {
 
 ## New components
 
-- [YuButton](/?path=/story/components-dialogtitle--example)
-- [DialogTitle](/?path=/story/yu-yubutton--base)
+- [YuButton](/?path=/story/yu-button--base)
+- [DialogTitle](/?path=/story/components-dialogtitle--example)
 
 ## New features
 
-- `logo` prop for [YuAppBar](/?path=/story/yu-yuappbar--customlogo) now can receive a custom logo for the drawer and navbar (just pass a `React.ReactElement` instead of `'yuri'` or `'yu'`)
+- `logo` prop for [YuAppBar](/?path=/story/yu-yuappbar--custom-logo) now can receive a custom logo for the drawer and navbar (just pass a `React.ReactElement` instead of `'yuri'` or `'yu'`)
 
 ## Bugs fixed
 
-- [YuAppBar](/?path=/story/yu-yuappbar--loggedin)'s Mobile Drawer Yu/Yuri logo has a delay to load, and shifts content around the drawer
+- [YuAppBar](/?path=/story/yu-yuappbar--logged-in)'s Mobile Drawer Yu/Yuri logo has a delay to load, and shifts content around the drawer

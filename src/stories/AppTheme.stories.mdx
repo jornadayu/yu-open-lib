@@ -8,20 +8,27 @@ import { Meta } from '@storybook/addon-docs/blocks'
 ```tsx
 import React from 'react'
 
-import { ThemeProvider } from '@mui/material/styles'
+import { CssBaseline } from '@mui/material'
+import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles'
+import { ThemeProvider as EmotionThemeProvider } from 'emotion-theming'
 
-import 'yu-open-lib/dist/index.css'
 import { AppTheme } from 'yu-open-lib'
 
+// Can also be in some Context or used with an useState/useToggle for a dark mode toggle
 const theme = AppTheme({ darkMode: false })
 
 const App = () => {
   return (
-    <ThemeProvider theme={theme}>
-      ...
-    </ThemeProvider>
+    <StyledEngineProvider injectFirst>
+      <EmotionThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          ...
+        </ThemeProvider>
+      </EmotionThemeProvider>
+    </StyledEngineProvider>
   )
 }
 ```
 
-- [Read More about `MUI`'s ThemeProvider](https://mui.com/customization/theming/)
+- [Read More about `MUI`'s ThemeProvider](https://mui.com/customization/theming)
