@@ -1,4 +1,4 @@
-const { viteCommonjs } = require('@originjs/vite-plugin-commonjs')
+// const { viteCommonjs } = require('@originjs/vite-plugin-commonjs')
 const path = require('path')
 
 /**
@@ -66,9 +66,6 @@ module.exports = {
     // Vite config
     return {
       ...config,
-      build: {
-        sourcemap: true
-      },
       plugins: [
         ...config.plugins,
         forceBundleConfigDeps(),
