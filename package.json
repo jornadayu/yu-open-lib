@@ -36,7 +36,7 @@
     "test:watch": "react-scripts test --env=jsdom",
     "version:current": "echo $npm_package_version",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
+    "build-storybook": "build-storybook -s ./.storybook/public/ -o ./storybook-static/",
     "preversion": "./check_unreleased.sh"
   },
   "dependencies": {
