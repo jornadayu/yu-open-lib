@@ -19,6 +19,8 @@ pipelines:
             - cd example
             - yarn
             - yarn build
+            # Check if storybook builds correctly
+            - yarn run start-storybook --smoke-test
 
   branches:
     # Run on merges to 'master' branch
