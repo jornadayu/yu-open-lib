@@ -1,28 +1,24 @@
 import React from 'react'
 
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import IconButton from '@material-ui/core/IconButton'
-import Typography from '@material-ui/core/Typography'
-import Hidden from '@material-ui/core/Hidden'
-import MenuIcon from '@material-ui/icons/Menu'
+import AppBar from '@mui/material/AppBar'
+import Toolbar from '@mui/material/Toolbar'
+import IconButton from '@mui/material/IconButton'
+import Typography from '@mui/material/Typography'
+import Hidden from '@mui/material/Hidden'
+import MenuIcon from '@mui/icons-material/Menu'
 
 import HideOnScroll from '../HideOnScroll'
 import { useStyles } from './NavBarStyles'
 
-type Props = {
+export type Props = {
   toggleLeftDrawer: () => void
-
   /**
    * Whether to have a Drawer or not
    * @default true
    */
   drawer: boolean
-
   logo: React.ReactElement
-
   backgroundColor: string
-
   centerLogo: boolean
 }
 
@@ -33,17 +29,14 @@ const YuMobileNavBar: React.FC<Props> = ({
   backgroundColor,
   centerLogo
 }) => {
-  const classes = useStyles({ backgroundColor })
+  const classes = useStyles()
 
   return (
     <Hidden mdUp>
       <HideOnScroll>
         <AppBar
-          className={
-            centerLogo
-              ? `${classes.appBar} ${classes.externalAppBar}`
-              : classes.appBar
-          }
+          className={centerLogo ? classes.externalAppBar : undefined}
+          sx={{ backgroundColor: backgroundColor }}
         >
           <Toolbar className={classes.toolBar}>
             <Typography variant='h2' className={classes.title}>
@@ -54,13 +47,19 @@ const YuMobileNavBar: React.FC<Props> = ({
                   color='inherit'
                   aria-label='menu'
                   onClick={toggleLeftDrawer}
+                  size='large'
                 >
                   <MenuIcon />
                 </IconButton>
               )}
             </Typography>
 
-            <IconButton className={classes.logoYuri} color='inherit' href='/'>
+            <IconButton
+              className={classes.logoYuri}
+              color='inherit'
+              href='/'
+              size='large'
+            >
               {logo}
             </IconButton>
           </Toolbar>

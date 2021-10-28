@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Alert from '@material-ui/lab/Alert'
+import Alert from '@mui/material/Alert'
 
 import {
   ToastProvider,
@@ -14,7 +14,12 @@ export const Toast: React.FC<ToastProps> = ({
   children,
   onDismiss
 }) => (
-  <Alert variant='filled' severity={appearance} onClose={() => onDismiss()}>
+  <Alert
+    style={{ margin: 10 }}
+    variant='filled'
+    severity={appearance}
+    onClose={() => onDismiss()}
+  >
     {children}
   </Alert>
 )

@@ -10,9 +10,10 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "@material-ui/core": "^4.11.3",
-    "@material-ui/icons": "^4.11.2",
-    "@material-ui/lab": "^4.0.0-alpha.57",
+    "@mui/icons-material": "link:../node_modules/@mui/icons-material",
+    "@mui/lab": "link:../node_modules/@mui/lab",
+    "@mui/material": "link:../node_modules/@mui/material",
+    "@mui/styles": "link:../node_modules/@mui/styles",
     "@types/jest": "link:../node_modules/@types/jest",
     "@types/node": "link:../node_modules/@types/node",
     "@types/react": "link:../node_modules/@types/react",

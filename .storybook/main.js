@@ -1,3 +1,4 @@
+// const { viteCommonjs } = require('@originjs/vite-plugin-commonjs')
 const path = require('path')
 
 /**
@@ -45,7 +46,6 @@ module.exports = {
     '@etchteam/storybook-addon-status',
     '@geometricpanda/storybook-addon-badges',
     'storybook-addon-jsx',
-    'storybook-addon-material-ui',
     {
       name: '@storybook/addon-storysource'
     }
@@ -66,7 +66,12 @@ module.exports = {
     // Vite config
     return {
       ...config,
-      plugins: [...config.plugins, forceBundleConfigDeps()],
+      plugins: [
+        ...config.plugins,
+        forceBundleConfigDeps(),
+        // https://github.com/vitejs/vite/issues/3409
+        // viteCommonjs()
+      ],
       optimizeDeps: {
         include: [
           "@storybook/react",

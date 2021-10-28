@@ -58,8 +58,8 @@ Read more about [Story Book](https://storybook.js.org/)
 ```tsx
 import React from 'react'
 
-import { ThemeProvider } from '@material-ui/core/styles'
-import { CssBaseline } from '@material-ui/core'
+import { CssBaseline } from '@mui/material'
+import { ThemeProvider } from '@mui/material/styles'
 
 import { AppTheme } from 'yu-open-lib'
 

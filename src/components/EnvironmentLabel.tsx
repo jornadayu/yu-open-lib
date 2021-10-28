@@ -1,35 +1,17 @@
 import React from 'react'
 
-import Chip from '@material-ui/core/Chip'
-import CodeIcon from '@material-ui/icons/Code'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import Chip from '@mui/material/Chip'
+import CodeIcon from '@mui/icons-material/Code'
 
 import { titleize } from '../helpers'
 import { AppEnvironment } from '../types'
 
-type StyleProps = {
-  margin: number
-  environment: Props['environment']
-}
-
-const useStyles = makeStyles<Theme, StyleProps>((theme) => ({
-  developmentBuild: {
-    position: 'fixed',
-    top: ({ margin }) => theme.spacing(margin),
-    right: theme.spacing(2),
-    color: 'white',
-    backgroundColor: ({ environment }: { environment: Props['environment'] }) =>
-      environment === 'development' ? '#66ab3e' : '#de4573'
-  },
-  developmentBuildIcon: {
-    color: 'white'
-  }
-}))
-
 type Props = {
   environment: AppEnvironment
   devTools?: React.ReactNode
-  // @default 11
+  /**
+   * @default 11
+   */
   margin?: number
 }
 
@@ -60,17 +42,21 @@ const EnvironmentLabel: React.FC<Props> = ({
   devTools,
   margin = 11
 }) => {
-  const classes = useStyles({ environment, margin })
-
   if (environment === 'production') return null
 
   return (
     <React.Fragment>
       <Chip
         label={titleize(`${environment} build`)}
-        icon={<CodeIcon className={classes.developmentBuildIcon} />}
+        icon={<CodeIcon sx={{ color: 'white' }} />}
         size='small'
-        className={classes.developmentBuild}
+        sx={{
+          position: 'fixed',
+          top: 8 * margin,
+          right: 16,
+          color: 'white',
+          backgroundColor: environment === 'development' ? '#66ab3e' : '#de4573'
+        }}
       />
 
       {!!devTools && devTools}

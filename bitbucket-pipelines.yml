@@ -11,10 +11,16 @@ pipelines:
           script:
             - unset NPM_CONFIG_USER
             - node --version
+            # Post-install action also builds the library
             - yarn
             - yarn test --watchAll=false --passWithNoTests
             - yarn run eslint src/**/*.{ts,tsx}
-            - yarn build
+            # Check if storybook builds correctly
+            - yarn run start-storybook --smoke-test
+            # Example build
+            - cd example
+            - yarn
+            - SKIP_PREFLIGHT_CHECK=true yarn build
 
   branches:
     # Run on merges to 'master' branch

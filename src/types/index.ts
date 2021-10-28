@@ -1,11 +1,9 @@
 export interface NavbarItem {
   text: string
-
   /**
    * @default false
    */
   iconButton?: boolean
-
   tooltip?: string
   path?: string
   icon: React.ReactNode

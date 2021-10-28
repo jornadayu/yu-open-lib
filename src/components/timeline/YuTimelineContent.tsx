@@ -1,14 +1,8 @@
 import React from 'react'
 
-import {
-  makeStyles,
-  Paper,
-  Typography,
-  Theme,
-  darken,
-  PaperProps
-} from '@material-ui/core'
-import { TimelineContent } from '@material-ui/lab'
+import { Paper, Typography, Theme, darken, PaperProps } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
+import { TimelineContent } from '@mui/lab'
 
 import ClickableArea from '../ClickableArea'
 import { useViewport } from '../../hooks'

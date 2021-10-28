@@ -1,13 +1,13 @@
 import React from 'react'
 
-import { ThemeProvider } from '@material-ui/core/styles'
-import { CssBaseline } from '@material-ui/core'
+import { ThemeProvider } from '@mui/material/styles'
+import { CssBaseline } from '@mui/material'
 
 import { themes } from '@storybook/theming'
 
 import { addDecorator } from '@storybook/react'
 import { jsxDecorator } from 'storybook-addon-jsx'
-import { muiTheme } from 'storybook-addon-material-ui'
+import { ThemeProvider as EmotionThemeProvider } from "emotion-theming";
 // import { withInfo } from '@storybook/addon-info'
 
 import AppTheme from '../src/theme/AppTheme'
@@ -19,7 +19,14 @@ const theme = AppTheme({ darkMode: true })
 
 export const decorators = [
   jsxDecorator(),
-  muiTheme([theme])
+  Story => (
+    <EmotionThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Story />
+      </ThemeProvider>
+    </EmotionThemeProvider>
+  )
 ]
 
 export const parameters = {

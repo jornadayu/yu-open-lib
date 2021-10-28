@@ -1,0 +1,118 @@
+import { Meta } from '@storybook/addon-docs'
+
+import pkg from '../../../package.json'
+
+<Meta title={`${pkg.version}/V2 Migration Guide`} />
+
+# Migration to yu-open-lib V2
+
+## MUI v5 update
+
+`yu-open-lib` from v2.0.0 and up uses MUI v5 (from v4), follow the instructions to migrate to MUI v5 here before updating to v2: [https://mui.com/guides/migration-v4](https://mui.com/guides/migration-v4/)
+
+## Breaking Changes
+
+- **Removed** named imports for all external assets:
+  - YuriLogo
+  - YuriNegativeLogo
+  - YuNegativeSalmao
+  - YuNegativeLaranja
+  - YuPositiveSalmao
+  - YuPositiveLaranja
+
+> The above assets have been converted to `.tsx` svg components and are, at the moment, only used internally in the library, thus none of them are exported. In the future they may be moved to their own package (also with other assets in different colors and gradients) so the core package does not have a larger bundle size if you do not neet to use any of those icons/images.
+
+- `AppTheme` Setup
+
+```tsx
+// BEFORE
+import React from 'react'
+
+import { CssBaseline } from '@mui/material'
+import { ThemeProvider } from '@mui/material/styles'
+
+import { AppTheme } from 'yu-open-lib'
+
+const theme = AppTheme({ darkMode: false })
+
+const App = () => {
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      ...
+    </ThemeProvider>
+  )
+}
+```
+
+```tsx
+// NOW
+import React from 'react'
+
+import { CssBaseline } from '@mui/material'
+import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles'
+import { ThemeProvider as EmotionThemeProvider } from 'emotion-theming'
+
+import { AppTheme } from 'yu-open-lib'
+
+const theme = AppTheme({ darkMode: false })
+
+const App = () => {
+  return (
+    <StyledEngineProvider injectFirst>
+      <EmotionThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          ...
+        </ThemeProvider>
+      </EmotionThemeProvider>
+    </StyledEngineProvider>
+  )
+}
+```
+
+```diff
+# Diff
+- import { ThemeProvider } from '@mui/material/styles'
+---
++ import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles'
++ import { ThemeProvider as EmotionThemeProvider } from 'emotion-theming'
+
+-     <ThemeProvider theme={theme}>
+-       <CssBaseline />
+-       ...
+-     </ThemeProvider>
+---
++     <StyledEngineProvider injectFirst>
++       <EmotionThemeProvider theme={theme}>
++         <ThemeProvider theme={theme}>
++           <CssBaseline />
++           ...
++         </ThemeProvider>
++       </EmotionThemeProvider>
++     </StyledEngineProvider>
+```
+
+---
+
+# Changelog
+
+## New components
+
+- [YuButton](/?path=/story/yu-button--base)
+- [DialogTitle](/?path=/story/dialogs-dialogtitle--example)
+- [CopyableButton](/?path=/story/inputs-copyablebutton--example)
+- [LoadingLine](/?path=/story/loaders-loadingline--top)
+
+## New helpers
+
+- `copyToClipboard`
+
+## New features
+
+- `logo` prop for [YuAppBar](/?path=/story/navbar-yuappbar--custom-logo) now can receive a custom logo for the drawer and navbar (just pass a `React.ReactElement` instead of `'yuri'` or `'yu'`)
+
+## Bugs fixed
+
+- [YuAppBar](/?path=/story/navbar-yuappbar--logged-in)'s Mobile Drawer Yu/Yuri logo has a delay to load, and shifts content around the drawer
+- Fixed warnings related to `iconButton` from [YuAppBar](/?path=/story/navbar-yuappbar--logged-in) components

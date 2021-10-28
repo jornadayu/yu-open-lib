@@ -1,12 +1,12 @@
-import { withStyles } from '@material-ui/core'
-import { TimelineItem as MuiTimelineItem } from '@material-ui/lab'
+import withStyles from '@mui/styles/withStyles'
+import { TimelineItem as MuiTimelineItem } from '@mui/lab'
 
 /**
- * Use as replacement for Material-UI `TimelineItem` when using Yu-lib Timeline components
+ * Use as replacement for MUI `TimelineItem` when using Yu-lib Timeline components
  *
  * ```tsx
- * import { Timeline } from '@material-ui/core'
- * import StarsIcon from '@material-ui/icons/Stars'
+ * import { Timeline } from '@mui/material'
+ * import StarsIcon from '@mui/icons-material/Stars'
  *
  * import {
  *   YuTimelineItem,

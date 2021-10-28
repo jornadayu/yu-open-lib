@@ -1,19 +1,22 @@
 import React, { useState } from 'react'
 
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
-import IconButton from '@material-ui/core/IconButton'
-import Hidden from '@material-ui/core/Hidden'
-import Tooltip from '@material-ui/core/Tooltip'
-import MenuIcon from '@material-ui/icons/Menu'
+import AppBar from '@mui/material/AppBar'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
+import Button from '@mui/material/Button'
+import IconButton from '@mui/material/IconButton'
+import Hidden from '@mui/material/Hidden'
+import Tooltip from '@mui/material/Tooltip'
+import MenuIcon from '@mui/icons-material/Menu'
 
 import YuMobileNavBar from './YuMobileNavBar'
 import YuDrawer from './YuDrawer'
-import YuriLogo from 'images/yuri_white.png'
-import YuLogo from 'images/YU_Neg_02_Laranja.png'
-import YuPositiveLogo from 'images/YU_Pos_02_Laranja.png'
+
+import YuriNegativeWhiteIcon from '../../assets/icons/yuri/negative/WhiteIcon'
+import YuriPositiveOrangeIcon from '../../assets/icons/yuri/positive/OrangeIcon'
+import YuNegativeLaranjaIcon from '../../assets/icons/yu/negative/LaranjaIcon'
+import YuPositiveLaranjaIcon from '../../assets/icons/yu/positive/VioletaIcon'
+
 import { useStyles } from './NavBarStyles'
 import { NavbarItem } from '../../types'
 
@@ -23,47 +26,43 @@ export type Props = {
     rightItems: NavbarItem[]
     drawerItems: NavbarItem[]
   }
-
   /**
    * Background color of the NavBar
    * @default '#434242'
    */
   backgroundColor?: string
-
   /**
    * If the User is logged in or not (shows no items if logged out)
    * @default false
    */
   loggedIn?: boolean
-
   /**
    * If a People Search bar should be on the NavBar or not
    * @default false
    */
   searchBar?: boolean
-
   /**
    * Home URL of Yu Logo when not authenticated
    * @default 'https://jornadayu.com'
    */
   homeURL?: string
-
   /**
    * Whether to have a Drawer or not
    * @default true
    */
   drawer?: boolean
-
   /**
    * @default 'yuri'
    */
-  logo?: 'yuri' | 'yu'
-
+  logo?: 'yuri' | 'yu' | React.ReactElement
+  /**
+   * @default 'yuri'
+   */
+  positiveLogo?: 'yuri' | 'yu' | React.ReactElement
   /**
    * @default false
    */
   centerLogo?: boolean
-
   /**
    * @default false
    */
@@ -72,13 +71,19 @@ export type Props = {
 
 export type ButtonProps = {
   button: NavbarItem
-  backgroundColor: string
 }
 
-const ToolbarButton: React.FC<ButtonProps> = ({ button, backgroundColor }) => {
-  const classes = useStyles({ backgroundColor })
+const ToolbarButton: React.FC<ButtonProps> = ({ button }) => {
+  const classes = useStyles()
 
   let buttonElement: React.ReactElement | null = null
+
+  const buttonProps = {
+    onClick: button.onClick,
+    to: button.to,
+    component: button.component,
+    path: button.path
+  }
 
   if (button.iconButton) {
     buttonElement = (
@@ -86,8 +91,7 @@ const ToolbarButton: React.FC<ButtonProps> = ({ button, backgroundColor }) => {
         className={classes.toolbarButton}
         size='medium'
         color='inherit'
-        onClick={button.onClick}
-        {...button}
+        {...buttonProps}
       >
         {button.icon}
       </IconButton>
@@ -123,10 +127,11 @@ const BaseAppBar: React.FC<Props> = ({
   homeURL = 'https://jornadayu.com',
   drawer = true,
   logo = 'yuri',
+  positiveLogo,
   centerLogo = false,
   centerMobileLogo = false
 }) => {
-  const classes = useStyles({ backgroundColor })
+  const classes = useStyles()
   const [leftDrawer, setLeftDrawer] = useState(false)
 
   const toggleLeftDrawer = () => {
@@ -135,29 +140,44 @@ const BaseAppBar: React.FC<Props> = ({
 
   const { leftItems, rightItems } = items
 
-  const navbarLogo =
-    logo === 'yuri' ? (
-      <img src={YuriLogo} width='32' />
-    ) : (
-      <img src={YuLogo} width='64' />
-    )
+  let navbarLogo = <YuNegativeLaranjaIcon />
 
-  const drawerLogo =
-    logo === 'yuri' ? (
-      <img src={YuriLogo} width='32' />
-    ) : (
-      <img src={YuPositiveLogo} width='64' />
-    )
+  if (logo === 'yuri') {
+    navbarLogo = <YuriNegativeWhiteIcon />
+  } else if (logo === 'yu') {
+    navbarLogo = <YuNegativeLaranjaIcon />
+  } else {
+    // Use custom logo passed
+    navbarLogo = logo as React.ReactElement
+  }
+
+  let drawerLogo = <YuPositiveLaranjaIcon />
+
+  // Use same logo as 'logo', but positive (if available) if none was passed
+  const actualPositiveLogo = positiveLogo || logo
+
+  if (actualPositiveLogo === 'yuri') {
+    drawerLogo = <YuriPositiveOrangeIcon />
+  } else if (actualPositiveLogo === 'yu') {
+    drawerLogo = <YuPositiveLaranjaIcon />
+  } else {
+    // Use custom logo passed
+    drawerLogo = actualPositiveLogo as React.ReactElement
+  }
 
   if (!loggedIn)
     return (
-      <AppBar className={`${classes.appBar} ${classes.externalAppBar}`}>
+      <AppBar
+        className={classes.externalAppBar}
+        sx={{ backgroundColor: backgroundColor }}
+      >
         <Toolbar className={`${classes.toolBar}`}>
           <Typography variant='h2' className={classes.title}>
             <IconButton
               className={classes.logoYuri}
               color='inherit'
               href={homeURL}
+              size='large'
             >
               {navbarLogo}
             </IconButton>
@@ -194,13 +214,10 @@ const BaseAppBar: React.FC<Props> = ({
         toggleLeftDrawer={toggleLeftDrawer}
       />
 
-      <Hidden smDown>
+      <Hidden mdDown>
         <AppBar
-          className={
-            centerLogo
-              ? `${classes.appBar} ${classes.externalAppBar}`
-              : classes.appBar
-          }
+          className={centerLogo ? classes.externalAppBar : undefined}
+          sx={{ backgroundColor: backgroundColor }}
         >
           <Toolbar className={classes.toolBar}>
             <Typography variant='h2' className={classes.title}>
@@ -211,19 +228,24 @@ const BaseAppBar: React.FC<Props> = ({
                   color='inherit'
                   aria-label='menu'
                   onClick={toggleLeftDrawer}
+                  size='large'
                 >
                   <MenuIcon />
                 </IconButton>
               )}
 
-              <IconButton className={classes.logoYuri} color='inherit' href='/'>
+              <IconButton
+                className={classes.logoYuri}
+                color='inherit'
+                href='/'
+                size='large'
+              >
                 {navbarLogo}
               </IconButton>
 
               {leftItems.map((button) => (
                 <ToolbarButton
                   button={button}
-                  backgroundColor={backgroundColor}
                   key={button.path || button.text}
                 />
               ))}
@@ -232,11 +254,7 @@ const BaseAppBar: React.FC<Props> = ({
             {children}
 
             {rightItems.map((button) => (
-              <ToolbarButton
-                button={button}
-                backgroundColor={backgroundColor}
-                key={button.path || button.text}
-              />
+              <ToolbarButton button={button} key={button.path || button.text} />
             ))}
           </Toolbar>
 

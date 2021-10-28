@@ -1,23 +1,13 @@
 import React from 'react'
 
-import Grid, { GridTypeMap } from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
-import { makeStyles } from '@material-ui/core/styles'
-
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    padding: theme.spacing(2),
-    background: theme.palette.background.default,
-    height: '100%',
-    textAlign: ({ centerText }: { centerText: Props['centerText'] }) =>
-      centerText ? 'center' : 'initial'
-  }
-}))
+import Grid, { GridProps } from '@mui/material/Grid'
+import Paper from '@mui/material/Paper'
+import { useTheme } from '@mui/material'
 
 type Props = {
   children: React.ReactNode
-  containerProps?: GridTypeMap['props']
-  itemProps?: GridTypeMap['props']
+  containerProps?: GridProps
+  itemProps?: GridProps & { item?: true }
   centerText?: boolean
 }
 
@@ -27,12 +17,27 @@ const YuGrid: React.FC<Props> = ({
   itemProps,
   centerText = false
 }) => {
-  const classes = useStyles({ centerText })
+  const theme = useTheme()
 
   return (
-    <Grid container spacing={3} justify='center' {...containerProps}>
+    <Grid
+      container
+      spacing={3}
+      justifyContent='center'
+      sx={{
+        textAlign: centerText ? 'center' : 'initial'
+      }}
+      {...containerProps}
+    >
       <Grid item xs={12} {...itemProps}>
-        <Paper elevation={3} className={classes.paper}>
+        <Paper
+          elevation={3}
+          sx={{
+            p: 2,
+            background: theme.palette.background.default,
+            height: '100%'
+          }}
+        >
           {children}
         </Paper>
       </Grid>

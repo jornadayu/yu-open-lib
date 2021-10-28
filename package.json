@@ -1,6 +1,6 @@
 {
   "name": "yu-open-lib",
-  "version": "1.8.1",
+  "version": "2.0.0",
   "description": "A collection of React components, helpers and assets used at YU",
   "author": "jornadayu",
   "license": "UNLICENSED",
@@ -14,6 +14,10 @@
     ".": {
       "import": "./dist/index.modern.js",
       "require": "./dist/index.js"
+    },
+    "./icons": {
+      "import": "./dist/index.modern.js",
+      "require": "./dist/index.js"
     }
   },
   "source": "src/index.tsx",
@@ -22,7 +26,7 @@
     "node": ">=12"
   },
   "scripts": {
-    "build": "microbundle-crl --no-compress --format modern,cjs --css-modules false",
+    "build": "microbundle-crl --no-compress --external=react,react-dom,react-is --format modern,cjs --css-modules false",
     "build:types": "tsc --declaration --emitDeclarationOnly --jsx react --esModuleInterop --outDir dist && cp dist/src/* ./dist -r || exit 0",
     "prepare": "run-s build",
     "test": "echo 'no tests to run'",
@@ -32,10 +36,19 @@
     "test:watch": "react-scripts test --env=jsdom",
     "version:current": "echo $npm_package_version",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
+    "build-storybook": "build-storybook -s ./.storybook/public/ -o ./storybook-static/",
     "preversion": "./check_unreleased.sh"
   },
   "dependencies": {
+    "babel-loader": "8.1.0",
+    "javascript-color-gradient": "^1.3.2"
+  },
+  "peerDependencies": {
+    "@emotion/react": "^11.5.0",
+    "@mui/icons-material": "^5.0.4",
+    "@mui/lab": "^5.0.0-alpha.51",
+    "@mui/material": "^5.0.4",
+    "@mui/styles": "^5.0.1",
     "@nivo/bar": ">= 0.68.0 <0.72.0",
     "@nivo/core": "0.71.0",
     "@nivo/heatmap": "^0.73.0",
@@ -43,28 +56,31 @@
     "@nivo/pie": "0.73.0",
     "@nivo/sunburst": "0.73.0",
     "@nivo/tooltip": "0.71.0",
-    "babel-loader": "8.1.0",
-    "javascript-color-gradient": "^1.3.2",
-    "react-toast-notifications": "^2.4.0",
-    "react-wordcloud": "^1.2.7"
-  },
-  "peerDependencies": {
-    "@material-ui/core": "^4.11.3",
-    "@material-ui/icons": "^4.11.2",
-    "@material-ui/lab": "^4.0.0-alpha.57",
     "dayjs": "^1.10.4",
     "echarts": "^5.1.0",
     "echarts-for-react": "^3.0.1",
     "qrcode.react": "^1.0.1",
-    "react": "^17.0.1"
+    "react": "^17.0.1",
+    "react-toast-notifications": "^2.4.0",
+    "react-wordcloud": "^1.2.7"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
+    "@emotion/react": "^11.5.0",
     "@etchteam/storybook-addon-status": "^4.0.0",
     "@geometricpanda/storybook-addon-badges": "^0.0.4",
-    "@material-ui/core": "^4.11.3",
-    "@material-ui/icons": "^4.11.2",
-    "@material-ui/lab": "^4.0.0-alpha.57",
+    "@mui/icons-material": "^5.0.4",
+    "@mui/lab": "^5.0.0-alpha.51",
+    "@mui/material": "^5.0.4",
+    "@mui/styles": "^5.0.1",
+    "@nivo/bar": ">= 0.68.0 <0.72.0",
+    "@nivo/core": "0.71.0",
+    "@nivo/heatmap": "^0.73.0",
+    "@nivo/legends": "0.71.0",
+    "@nivo/pie": "0.73.0",
+    "@nivo/sunburst": "0.73.0",
+    "@nivo/tooltip": "0.71.0",
+    "@originjs/vite-plugin-commonjs": "^1.0.1",
     "@storybook/addon-actions": "6.4.0-alpha.16",
     "@storybook/addon-essentials": "6.4.0-alpha.16",
     "@storybook/addon-info": "^5.3.21",
@@ -108,10 +124,11 @@
     "qrcode.react": "^1.0.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-toast-notifications": "^2.4.0",
+    "react-wordcloud": "^1.2.7",
     "rollup-plugin-typescript2": "^0.30.0",
     "sass": "^1.32.8",
     "storybook-addon-jsx": "^7.3.12",
-    "storybook-addon-material-ui": "^0.9.0-alpha.24",
     "storybook-builder-vite": "^0.0.12",
     "typescript": "^3.7.5",
     "vite": "^2.4.2"

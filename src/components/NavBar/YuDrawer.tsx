@@ -1,13 +1,15 @@
 import React, { useMemo } from 'react'
 
-import { useTheme } from '@material-ui/core/styles'
-import useMediaQuery from '@material-ui/core/useMediaQuery'
-import Drawer from '@material-ui/core/Drawer'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ListItemText from '@material-ui/core/ListItemText'
-import Divider from '@material-ui/core/Divider'
+import { useTheme } from '@mui/material/styles'
+import useMediaQuery from '@mui/material/useMediaQuery'
+import Drawer from '@mui/material/Drawer'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
+import Divider from '@mui/material/Divider'
+import { Avatar } from '@mui/material'
+import { grey } from '@mui/material/colors'
 
 import { NavbarItem } from '../../types'
 
@@ -72,7 +74,7 @@ const YuDrawer: React.FC<DrawerProps> = ({
 }) => {
   const { leftItems, rightItems, drawerItems } = items
   const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
 
   const allItems = useMemo(() => {
     if (isMobile) {
@@ -91,8 +93,25 @@ const YuDrawer: React.FC<DrawerProps> = ({
   return (
     <Drawer anchor='left' open={open} onClose={handleClose}>
       <List>
-        <ListItem button component='a' href='/'>
-          {logo}
+        <ListItem
+          button
+          component='a'
+          href='/'
+          sx={{
+            display: 'flex',
+            justifyContent: 'center'
+          }}
+        >
+          <Avatar
+            sx={{
+              height: 48,
+              padding: 1.5,
+              width: 48,
+              bgcolor: grey[100]
+            }}
+          >
+            {logo}
+          </Avatar>
         </ListItem>
 
         <ListItems buttons={allItems.up} />

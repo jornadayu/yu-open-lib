@@ -1,29 +1,10 @@
 import React from 'react'
 
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles
-} from '@material-ui/core/styles'
-import MuiDialogTitle from '@material-ui/core/DialogTitle'
-import IconButton from '@material-ui/core/IconButton'
-import CloseIcon from '@material-ui/icons/Close'
-import Typography from '@material-ui/core/Typography'
-
-const styles = (theme: Theme) =>
-  createStyles({
-    root: {
-      margin: 0,
-      padding: theme.spacing(2)
-    },
-    closeButton: {
-      position: 'absolute',
-      right: theme.spacing(1),
-      top: theme.spacing(1),
-      color: theme.palette.grey[500]
-    }
-  })
+import MuiDialogTitle from '@mui/material/DialogTitle'
+import IconButton from '@mui/material/IconButton'
+import CloseIcon from '@mui/icons-material/Close'
+import Typography from '@mui/material/Typography'
+import { grey } from '@mui/material/colors'
 
 export type Props = {
   id?: string
@@ -32,14 +13,14 @@ export type Props = {
 }
 
 /**
- * Custom DialogTitle to be used as a replacement to `Material-UI`'s base `DialogTitle`
+ * Custom DialogTitle to be used as a replacement to `MUI`'s base `DialogTitle`
  *
  * Has a (somewhat redundant) close button in the upper-right corner
  *
  * Uses JSX children as its left-aligned title instead of a string
  *
  * ```tsx
- * import { Dialog, DialogContent } from '@material-ui/core'
+ * import { Dialog, DialogContent } from '@mui/material'
  * import { DialogTitle } from 'yu-open-lib'
  *
  * const MyComponent: React.FC = () => {
@@ -59,26 +40,30 @@ export type Props = {
  * export default MyComponent
  * ```
  */
-const DialogTitle = withStyles(styles)(
-  (props: Props & WithStyles<typeof styles>) => {
-    const { children, classes, onClose, ...other } = props
+const DialogTitle: React.FC<Props> = ({
+  children,
+  onClose,
+  ...dialogTitleProps
+}) => (
+  <MuiDialogTitle sx={{ p: 2, m: 0 }} {...dialogTitleProps}>
+    {!!children && <Typography variant='h6'>{children}</Typography>}
 
-    return (
-      <MuiDialogTitle disableTypography className={classes.root} {...other}>
-        {!!children && <Typography variant='h6'>{children}</Typography>}
-
-        {onClose ? (
-          <IconButton
-            aria-label='close'
-            className={classes.closeButton}
-            onClick={onClose}
-          >
-            <CloseIcon />
-          </IconButton>
-        ) : null}
-      </MuiDialogTitle>
-    )
-  }
+    {onClose ? (
+      <IconButton
+        aria-label='close'
+        onClick={onClose}
+        size='large'
+        sx={{
+          position: 'absolute',
+          right: 8,
+          top: 8,
+          color: grey[500]
+        }}
+      >
+        <CloseIcon />
+      </IconButton>
+    ) : null}
+  </MuiDialogTitle>
 )
 
 export default DialogTitle

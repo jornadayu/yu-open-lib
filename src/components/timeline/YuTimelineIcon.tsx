@@ -1,12 +1,10 @@
 import React from 'react'
 
-import { makeStyles, withStyles, Theme, Badge } from '@material-ui/core'
-import { darken } from '@material-ui/core/styles'
-import {
-  TimelineConnector,
-  TimelineDot,
-  TimelineSeparator
-} from '@material-ui/lab'
+import { Theme, Badge } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
+import withStyles from '@mui/styles/withStyles'
+import { darken } from '@mui/material/styles'
+import { TimelineConnector, TimelineDot, TimelineSeparator } from '@mui/lab'
 
 import ClickableArea from '../ClickableArea'
 
