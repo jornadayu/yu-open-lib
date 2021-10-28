@@ -78,14 +78,20 @@ const ToolbarButton: React.FC<ButtonProps> = ({ button }) => {
 
   let buttonElement: React.ReactElement | null = null
 
+  const buttonProps = {
+    onClick: button.onClick,
+    to: button.to,
+    component: button.component,
+    path: button.path
+  }
+
   if (button.iconButton) {
     buttonElement = (
       <IconButton
         className={classes.toolbarButton}
         size='medium'
         color='inherit'
-        onClick={button.onClick}
-        {...button}
+        {...buttonProps}
       >
         {button.icon}
       </IconButton>
