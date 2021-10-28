@@ -4,11 +4,11 @@ import { ComponentStory, ComponentMeta, Story } from '@storybook/react'
 import Link from '@mui/material/Link'
 import { Group as GroupIcon, Shop as ShopIcon } from '@mui/icons-material'
 
-import YuAppBar from '../components/NavBar/YuAppBar'
-import { Props as YuAppBarProps } from '../components/NavBar/BaseAppBar'
+import YuAppBar from '../../components/NavBar/YuAppBar'
+import { Props as YuAppBarProps } from '../../components/NavBar/BaseAppBar'
 
 export default {
-  title: 'YU/YuAppBar',
+  title: 'NavBar/YuAppBar',
   component: YuAppBar
 } as ComponentMeta<typeof YuAppBar>
 

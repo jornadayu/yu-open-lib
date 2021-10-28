@@ -5,7 +5,7 @@ import { Grid, Card } from '@mui/material'
 
 import RejectionsSunburst, {
   Props
-} from '../components/graphs/RejectionsSunburst'
+} from '../../components/graphs/RejectionsSunburst'
 
 export default {
   title: 'Graphs/RejectionsSunburst',

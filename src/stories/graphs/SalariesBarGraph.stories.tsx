@@ -6,7 +6,7 @@ import { Grid, Card } from '@mui/material'
 
 import SalariesBarGraph, {
   Props
-} from '../components/graphs/bar/SalariesBarGraph'
+} from '../../components/graphs/bar/SalariesBarGraph'
 
 export default {
   title: 'Graphs/SalariesBarGraph',

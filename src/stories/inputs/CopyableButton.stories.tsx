@@ -3,10 +3,10 @@ import React from 'react'
 import { ComponentStory, ComponentMeta, Story } from '@storybook/react'
 import { Card, CardContent } from '@mui/material'
 
-import CopyableButton, { Props } from '../components/CopyableButton'
+import CopyableButton, { Props } from '../../components/CopyableButton'
 
 export default {
-  title: 'Components/CopyableButton',
+  title: 'Inputs/CopyableButton',
   component: CopyableButton
 } as ComponentMeta<typeof CopyableButton>
 

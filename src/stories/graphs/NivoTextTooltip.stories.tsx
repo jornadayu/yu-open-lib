@@ -3,7 +3,7 @@ import React from 'react'
 import { Grid, Card } from '@mui/material'
 import { ComponentStory, ComponentMeta, Story } from '@storybook/react'
 
-import NivoTextTooltip, { Props } from '../components/graphs/NivoTextTooltip'
+import NivoTextTooltip, { Props } from '../../components/graphs/NivoTextTooltip'
 
 export default {
   title: 'Graphs/NivoTextTooltip',

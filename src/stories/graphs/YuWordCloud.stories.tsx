@@ -3,7 +3,7 @@ import React from 'react'
 import { Grid, Card } from '@mui/material'
 import { ComponentStory, ComponentMeta, Story } from '@storybook/react'
 
-import YuWordCloud, { Props } from '../components/graphs/YuWordCloud'
+import YuWordCloud, { Props } from '../../components/graphs/YuWordCloud'
 
 export default {
   title: 'Graphs/YuWordCloud',

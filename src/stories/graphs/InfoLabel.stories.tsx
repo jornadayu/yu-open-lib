@@ -3,10 +3,10 @@ import React from 'react'
 import { ComponentStory, ComponentMeta, Story } from '@storybook/react'
 import { Card } from '@mui/material'
 
-import InfoLabel, { Props } from '../components/InfoLabel'
+import InfoLabel, { Props } from '../../components/InfoLabel'
 
 export default {
-  title: 'Components/InfoLabel',
+  title: 'Graphs/InfoLabel',
   component: InfoLabel
 } as ComponentMeta<typeof InfoLabel>
 

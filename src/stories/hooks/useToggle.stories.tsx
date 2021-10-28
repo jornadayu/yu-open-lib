@@ -3,7 +3,7 @@ import React from 'react'
 import { Story } from '@storybook/react'
 import { Card, CardContent, Button } from '@mui/material'
 
-import { useToggle } from '../hooks'
+import { useToggle } from '../../hooks'
 
 export default {
   title: 'Hooks/useToggle'

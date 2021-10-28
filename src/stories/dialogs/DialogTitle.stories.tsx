@@ -3,10 +3,10 @@ import React, { useState } from 'react'
 import { ComponentStory, ComponentMeta, Story } from '@storybook/react'
 import { Dialog, DialogContent } from '@mui/material'
 
-import DialogTitle, { Props } from '../components/DialogTitle'
+import DialogTitle, { Props } from '../../components/DialogTitle'
 
 export default {
-  title: 'Components/DialogTitle',
+  title: 'Dialogs/DialogTitle',
   component: DialogTitle,
   argTypes: { onClose: { action: 'onClose' } },
   parameters: {

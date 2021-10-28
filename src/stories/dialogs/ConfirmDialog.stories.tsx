@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 
 import { ComponentStory, ComponentMeta, Story } from '@storybook/react'
 
-import ConfirmDialog, { Props } from '../components/ConfirmDialog'
+import ConfirmDialog, { Props } from '../../components/ConfirmDialog'
 
 export default {
-  title: 'Components/ConfirmDialog',
+  title: 'Dialogs/ConfirmDialog',
   component: ConfirmDialog,
   argTypes: {
     handleConfirm: { action: 'handleConfirm' },

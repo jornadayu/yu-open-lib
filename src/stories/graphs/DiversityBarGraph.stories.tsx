@@ -7,7 +7,7 @@ import DiversityBarGraph, {
   Props,
   Datum,
   DatumWithTotal
-} from '../components/graphs/bar/DiversityBarGraph'
+} from '../../components/graphs/bar/DiversityBarGraph'
 
 export default {
   title: 'Graphs/DiversityBarGraph',

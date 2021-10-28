@@ -3,7 +3,7 @@ import React from 'react'
 import { ComponentStory, ComponentMeta, Story } from '@storybook/react'
 import { Grid, Card } from '@mui/material'
 
-import YuBarGraph, { Props } from '../components/graphs/bar/YuBarGraph'
+import YuBarGraph, { Props } from '../../components/graphs/bar/YuBarGraph'
 
 export default {
   title: 'Graphs/YuBarGraph',

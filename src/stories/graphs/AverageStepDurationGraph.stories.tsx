@@ -5,7 +5,7 @@ import { ComponentStory, ComponentMeta, Story } from '@storybook/react'
 
 import AverageStepDurationGraph, {
   AverageStepDurationGraphProps
-} from '../components/graphs/AverageStepDurationGraph'
+} from '../../components/graphs/AverageStepDurationGraph'
 
 export default {
   title: 'Graphs/AverageStepDurationGraph',

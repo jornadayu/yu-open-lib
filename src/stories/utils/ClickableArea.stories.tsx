@@ -2,10 +2,10 @@ import React from 'react'
 
 import { ComponentStory, ComponentMeta, Story } from '@storybook/react'
 
-import ClickableArea, { Props } from '../components/ClickableArea'
+import ClickableArea, { Props } from '../../components/ClickableArea'
 
 export default {
-  title: 'Components/ClickableArea',
+  title: 'Utils/ClickableArea',
   component: ClickableArea,
   argTypes: { onClick: { action: 'clicked' } }
 } as ComponentMeta<typeof ClickableArea>

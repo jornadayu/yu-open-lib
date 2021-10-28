@@ -3,10 +3,10 @@ import React from 'react'
 import { ComponentStory, ComponentMeta, Story } from '@storybook/react'
 import { Card, CardContent } from '@mui/material'
 
-import CopyableInput, { Props } from '../components/CopyableInput'
+import CopyableInput, { Props } from '../../components/CopyableInput'
 
 export default {
-  title: 'Components/CopyableInput',
+  title: 'Inputs/CopyableInput',
   component: CopyableInput
 } as ComponentMeta<typeof CopyableInput>
 

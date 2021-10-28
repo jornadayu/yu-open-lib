@@ -7,7 +7,7 @@ import DialogContentText from '@mui/material/DialogContentText'
 import DialogActions from '@mui/material/DialogActions'
 import Button from '@mui/material/Button'
 
-import Loading from './Loading'
+import Loading from './loaders/Loading'
 
 export type Props = {
   /** Dialog title */

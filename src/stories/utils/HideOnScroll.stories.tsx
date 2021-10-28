@@ -3,10 +3,10 @@ import React from 'react'
 import { ComponentStory, ComponentMeta, Story } from '@storybook/react'
 import { AppBar, Card, CardContent } from '@mui/material'
 
-import HideOnScroll, { Props } from '../components/HideOnScroll'
+import HideOnScroll, { Props } from '../../components/HideOnScroll'
 
 export default {
-  title: 'Components/HideOnScroll',
+  title: 'Utils/HideOnScroll',
   component: HideOnScroll
 } as ComponentMeta<typeof HideOnScroll>
 
