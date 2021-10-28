@@ -2,14 +2,14 @@ import './styles/core.scss'
 
 export { default as ConfirmDialog } from './components/ConfirmDialog'
 export { default as DialogTitle } from './components/DialogTitle'
-export { default as CopyableInput } from './components/CopyableInput'
+export { default as CopyableInput } from './components/inputs/CopyableInput'
 export { default as EnvironmentLabel } from './components/EnvironmentLabel'
 export { default as HideOnScroll } from './components/HideOnScroll'
 export { default as Loading } from './components/loaders/Loading'
 export { default as NotFound } from './components/NotFound'
-export { default as WhatsappChip } from './components/WhatsappChip'
+export { default as WhatsappChip } from './components/inputs/WhatsappChip'
 export { default as YuGrid } from './components/YuGrid'
-export { default as BackdropLoading } from './components/BackdropLoading'
+export { default as BackdropLoading } from './components/loaders/BackdropLoading'
 export { default as ErrorAlert } from './components/ErrorAlert'
 
 export { default as YuAppBar } from './components/NavBar/YuAppBar'
@@ -25,7 +25,7 @@ export { default as YuToastProvider } from './components/YuToastProvider'
 
 export { default as EChartsFunnelGraph } from './components/graphs/EChartsFunnelGraph'
 
-export { default as VCardQRCode } from './components/VCardQRCode'
+export { default as VCardQRCode } from './components/inputs/VCardQRCode'
 
 export { default as ClickableArea } from './components/ClickableArea'
 
@@ -66,4 +66,4 @@ export { default as AverageStepDurationGraph } from './components/graphs/Average
 
 export { default as YuButton } from './components/yu/YuButton'
 
-export { default as CopyableButton } from './components/CopyableButton'
+export { default as CopyableButton } from './components/inputs/CopyableButton'

@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 
 import { ComponentStory, ComponentMeta, Story } from '@storybook/react'
 
-import BackdropLoading, { Props } from '../../components/BackdropLoading'
+import BackdropLoading, {
+  Props
+} from '../../components/loaders/BackdropLoading'
 
 export default {
   title: 'Loaders/BackdropLoading',

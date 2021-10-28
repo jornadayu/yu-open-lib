@@ -3,7 +3,7 @@ import React from 'react'
 import { ComponentStory, ComponentMeta, Story } from '@storybook/react'
 import { Card, CardContent } from '@mui/material'
 
-import CopyableButton, { Props } from '../../components/CopyableButton'
+import CopyableButton, { Props } from '../../components/inputs/CopyableButton'
 
 export default {
   title: 'Inputs/CopyableButton',

@@ -3,7 +3,7 @@ import React from 'react'
 import { ComponentStory, ComponentMeta, Story } from '@storybook/react'
 import { Card, CardContent } from '@mui/material'
 
-import VCardQRCode, { Props } from '../../components/VCardQRCode'
+import VCardQRCode, { Props } from '../../components/inputs/VCardQRCode'
 
 export default {
   title: 'Inputs/VCardQRCode',

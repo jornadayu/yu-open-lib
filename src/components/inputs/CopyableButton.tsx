@@ -7,7 +7,7 @@ import {
   CheckCircleOutline as CheckCircleOutlineIcon
 } from '@mui/icons-material'
 
-import { copyToClipboard } from '../helpers/text'
+import { copyToClipboard } from '../../helpers/text'
 
 export type Props = {
   text: string

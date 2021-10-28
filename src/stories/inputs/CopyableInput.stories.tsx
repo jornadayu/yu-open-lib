@@ -3,7 +3,7 @@ import React from 'react'
 import { ComponentStory, ComponentMeta, Story } from '@storybook/react'
 import { Card, CardContent } from '@mui/material'
 
-import CopyableInput, { Props } from '../../components/CopyableInput'
+import CopyableInput, { Props } from '../../components/inputs/CopyableInput'
 
 export default {
   title: 'Inputs/CopyableInput',
