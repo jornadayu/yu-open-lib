@@ -6,5 +6,8 @@
   "bracketSpacing": true,
   "jsxBracketSameLine": false,
   "arrowParens": "always",
-  "trailingComma": "none"
+  "trailingComma": "none",
+  "importOrder": ["^react$", "^react-(.*)$", "<THIRD_PARTY_MODULES>", "^@mui/(.*)$", "^@/(.*)$", "^[./]"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }
