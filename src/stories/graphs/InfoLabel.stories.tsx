@@ -1,6 +1,7 @@
 import React from 'react'
 
-import { ComponentStory, ComponentMeta, Story } from '@storybook/react'
+import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
+
 import { Card } from '@mui/material'
 
 import InfoLabel, { Props } from '../../components/InfoLabel'

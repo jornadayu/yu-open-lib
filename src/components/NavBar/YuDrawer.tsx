@@ -1,15 +1,15 @@
 import React, { useMemo } from 'react'
 
-import { useTheme } from '@mui/material/styles'
-import useMediaQuery from '@mui/material/useMediaQuery'
+import { Avatar } from '@mui/material'
+import Divider from '@mui/material/Divider'
 import Drawer from '@mui/material/Drawer'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
-import Divider from '@mui/material/Divider'
-import { Avatar } from '@mui/material'
 import { grey } from '@mui/material/colors'
+import { useTheme } from '@mui/material/styles'
+import useMediaQuery from '@mui/material/useMediaQuery'
 
 import { NavbarItem } from '../../types'
 

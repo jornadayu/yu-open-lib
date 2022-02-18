@@ -1,7 +1,8 @@
 import React from 'react'
 
-import { Grid, Card } from '@mui/material'
-import { ComponentStory, ComponentMeta, Story } from '@storybook/react'
+import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
+
+import { Card, Grid } from '@mui/material'
 
 import YuWordCloud, { Props } from '../../components/graphs/YuWordCloud'
 

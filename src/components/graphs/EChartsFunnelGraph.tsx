@@ -1,18 +1,18 @@
 import React, { useMemo } from 'react'
 
-import { useTheme } from '@mui/material'
-
+import { EChartOption } from 'echarts'
 // @ts-ignore
 import ReactEChartsCore from 'echarts-for-react/lib/core'
-import { EChartOption } from 'echarts'
-import * as echarts from 'echarts/core'
-import { SVGRenderer } from 'echarts/renderers'
 import { FunnelChart } from 'echarts/charts'
 import {
+  GridComponent,
   TitleComponent,
-  TooltipComponent,
-  GridComponent
+  TooltipComponent
 } from 'echarts/components'
+import * as echarts from 'echarts/core'
+import { SVGRenderer } from 'echarts/renderers'
+
+import { useTheme } from '@mui/material'
 
 import { useEchartsTheme } from '../../hooks/echarts'
 

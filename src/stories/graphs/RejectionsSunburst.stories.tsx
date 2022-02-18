@@ -1,7 +1,8 @@
 import React from 'react'
 
-import { ComponentStory, ComponentMeta, Story } from '@storybook/react'
-import { Grid, Card } from '@mui/material'
+import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
+
+import { Card, Grid } from '@mui/material'
 
 import RejectionsSunburst, {
   Props

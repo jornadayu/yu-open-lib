@@ -1,11 +1,11 @@
 import React from 'react'
 
-import { Paper, Typography, Theme, darken, PaperProps } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
 import { TimelineContent } from '@mui/lab'
+import { Paper, PaperProps, Theme, Typography, darken } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 
-import ClickableArea from '../ClickableArea'
 import { useViewport } from '../../hooks'
+import ClickableArea from '../ClickableArea'
 
 type Props = {
   title: string

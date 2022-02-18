@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ComponentStory, ComponentMeta, Story } from '@storybook/react'
+import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
 
 import ClickableArea, { Props } from '../../components/ClickableArea'
 

@@ -1,14 +1,13 @@
 import React, { useMemo } from 'react'
 
-import { Typography } from '@mui/material'
+import { AccessorFunc, BarSvgProps, ResponsiveBar } from '@nivo/bar'
+import { OrdinalColorScaleConfig } from '@nivo/colors'
 
+import { Typography } from '@mui/material'
 import makeStyles from '@mui/styles/makeStyles'
 
-import { OrdinalColorScaleConfig } from '@nivo/colors'
-import { ResponsiveBar, BarSvgProps, AccessorFunc } from '@nivo/bar'
-
-import { useNivoTheme } from '../../../hooks/nivo'
 import { asPercentage, truncatedText } from '../../../helpers'
+import { useNivoTheme } from '../../../hooks/nivo'
 import NivoTextTooltip from '../NivoTextTooltip'
 
 export type Datum = Record<string, number | string> & {

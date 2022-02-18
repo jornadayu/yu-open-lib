@@ -1,7 +1,7 @@
 import React from 'react'
 
-import Chip from '@mui/material/Chip'
 import { WhatsApp as WhatsAppIcon } from '@mui/icons-material'
+import Chip from '@mui/material/Chip'
 
 export type Props = {
   /**

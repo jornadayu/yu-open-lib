@@ -1,20 +1,20 @@
-import React, { useState, useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 
 import {
-  ResponsiveBar,
+  BarCustomLayer,
   BarDatum,
   BarSvgProps,
   Layer,
-  BarCustomLayer
+  ResponsiveBar
 } from '@nivo/bar'
 import Gradient from 'javascript-color-gradient'
 
-import { legendProps, useNivoTheme } from '../../../hooks/nivo'
 import { formattedCurrency, kCurrency } from '../../../helpers'
 import { useViewport } from '../../../hooks'
+import { legendProps, useNivoTheme } from '../../../hooks/nivo'
+import ClickableArea from '../../ClickableArea'
 import NivoTextTooltip from '../NivoTextTooltip'
 import BarGraphLine, { Props as BarGraphLineProps } from './BarGraphLine'
-import ClickableArea from '../../ClickableArea'
 
 export type BaseDatum = BarDatum
 

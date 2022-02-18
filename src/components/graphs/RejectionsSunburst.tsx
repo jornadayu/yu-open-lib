@@ -1,12 +1,14 @@
 import React, { useMemo } from 'react'
-import { styled } from '@mui/material/styles'
-import { useTheme, Grid } from '@mui/material'
 
-import { ResponsiveSunburst, SunburstSvgProps } from '@nivo/sunburst'
 import { ResponsivePie } from '@nivo/pie'
-import NivoTextTooltip from './NivoTextTooltip'
+import { ResponsiveSunburst, SunburstSvgProps } from '@nivo/sunburst'
+
+import { Grid, useTheme } from '@mui/material'
+import { styled } from '@mui/material/styles'
+
 import { useViewport } from '../../hooks'
 import { legendProps } from '../../hooks/nivo'
+import NivoTextTooltip from './NivoTextTooltip'
 
 const PREFIX = 'RejectionsSunburst'
 

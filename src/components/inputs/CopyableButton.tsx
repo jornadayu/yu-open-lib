@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 
+import {
+  CheckCircleOutline as CheckCircleOutlineIcon,
+  FileCopy as FileCopyIcon
+} from '@mui/icons-material'
 import IconButton from '@mui/material/IconButton'
 import Tooltip from '@mui/material/Tooltip'
-import {
-  FileCopy as FileCopyIcon,
-  CheckCircleOutline as CheckCircleOutlineIcon
-} from '@mui/icons-material'
 
 import { copyToClipboard } from '../../helpers/text'
 

@@ -1,5 +1,5 @@
 import { Localization, ptBR as coreptBR } from '@mui/material/locale'
-import { createTheme, ThemeOptions } from '@mui/material/styles'
+import { ThemeOptions, createTheme } from '@mui/material/styles'
 import { deepmerge } from '@mui/utils'
 
 export type AppThemeOptions = {

@@ -1,5 +1,5 @@
-import withStyles from '@mui/styles/withStyles'
 import { TimelineItem as MuiTimelineItem } from '@mui/lab'
+import withStyles from '@mui/styles/withStyles'
 
 /**
  * Use as replacement for MUI `TimelineItem` when using Yu-lib Timeline components

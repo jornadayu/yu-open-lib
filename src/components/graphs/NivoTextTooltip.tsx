@@ -2,8 +2,8 @@ import React from 'react'
 
 import { Chip } from '@nivo/tooltip'
 
-import { useNivoTheme } from '../../hooks/nivo'
 import { asPercentage } from '../../helpers'
+import { useNivoTheme } from '../../hooks/nivo'
 
 export type BaseProps = {
   text: string

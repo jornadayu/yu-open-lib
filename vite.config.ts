@@ -1,8 +1,6 @@
-import { UserConfigExport } from 'vite'
-
 import { viteCommonjs } from '@originjs/vite-plugin-commonjs'
-
 import path from 'path'
+import { UserConfigExport } from 'vite'
 
 export default (): UserConfigExport => ({
   plugins: [

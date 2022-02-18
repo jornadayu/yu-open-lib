@@ -1,9 +1,8 @@
 import React from 'react'
 
+import { Button, ButtonProps } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { alpha } from '@mui/system'
-
-import { Button, ButtonProps } from '@mui/material'
 
 const StyledYuButton = styled(Button)<ButtonProps>(({ theme }) => {
   const baseColor =

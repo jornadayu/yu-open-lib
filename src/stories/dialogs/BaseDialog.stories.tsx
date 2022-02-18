@@ -2,18 +2,22 @@ import React, { useState } from 'react'
 
 import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
 
-import ConfirmDialog, { Props } from '../../components/ConfirmDialog'
+import { Button } from '@mui/material'
+
+import BaseDialog, {
+  BaseDialogProps
+} from '../../components/dialogs/BaseDialog'
 
 export default {
-  title: 'Dialogs/ConfirmDialog',
-  component: ConfirmDialog,
+  title: 'Dialogs/BaseDialog',
+  component: BaseDialog,
   argTypes: {
     handleConfirm: { action: 'handleConfirm' },
     handleClose: { action: 'handleClose' }
   }
-} as ComponentMeta<typeof ConfirmDialog>
+} as ComponentMeta<typeof BaseDialog>
 
-const Template: ComponentStory<typeof ConfirmDialog> = (args) => {
+const Template: ComponentStory<typeof BaseDialog> = (args) => {
   const [open, setOpen] = useState(false)
 
   const close = () => {
@@ -25,30 +29,35 @@ const Template: ComponentStory<typeof ConfirmDialog> = (args) => {
     <>
       <button onClick={() => setOpen(true)}>Open Dialog</button>
 
-      <ConfirmDialog {...args} open={open} handleClose={close} />
+      <BaseDialog {...args} open={open} onClose={close}>
+        Some Content here
+      </BaseDialog>
     </>
   )
 }
 
-const baseProps: Partial<Props> = {
+const baseProps: BaseDialogProps = {
   title: 'Dialog Title',
-  confirmText: 'Confirm',
-  cancelText: 'Cancel',
-  text: 'Do you want to confirm?'
+  actions: () => (
+    <>
+      <Button>Yes</Button>
+      <Button>No</Button>
+    </>
+  )
 }
 
-export const Example: Story<Props> = Template.bind({})
+export const Example: Story<BaseDialogProps> = Template.bind({})
 Example.args = {
   ...baseProps
 }
 
-export const LoadingConfirmation: Story<Props> = Template.bind({})
-LoadingConfirmation.args = {
+export const LoadingDialog: Story<BaseDialogProps> = Template.bind({})
+LoadingDialog.args = {
   ...baseProps,
   loading: true
 }
 
-type PropsWithChildren = Props & { children?: React.ReactNode }
+type PropsWithChildren = BaseDialogProps & { children?: React.ReactNode }
 
 export const CustomChildren: Story<PropsWithChildren> = Template.bind({})
 CustomChildren.args = {

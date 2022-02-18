@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
+import FileCopyIcon from '@mui/icons-material/FileCopy'
 import IconButton from '@mui/material/IconButton'
 import InputAdornment from '@mui/material/InputAdornment'
 import TextField from '@mui/material/TextField'
 import Tooltip from '@mui/material/Tooltip'
-import FileCopyIcon from '@mui/icons-material/FileCopy'
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 
 export type Props = {
   /** Input Text to be copied */

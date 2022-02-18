@@ -1,8 +1,8 @@
 import React from 'react'
 
+import CloseIcon from '@mui/icons-material/Close'
 import MuiDialogTitle from '@mui/material/DialogTitle'
 import IconButton from '@mui/material/IconButton'
-import CloseIcon from '@mui/icons-material/Close'
 import Typography from '@mui/material/Typography'
 import { grey } from '@mui/material/colors'
 

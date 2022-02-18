@@ -1,7 +1,7 @@
 import React from 'react'
 
-import Grid, { GridProps } from '@mui/material/Grid'
 import Alert from '@mui/material/Alert'
+import Grid, { GridProps } from '@mui/material/Grid'
 
 type Props = {
   message?: string
