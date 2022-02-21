@@ -1,7 +1,6 @@
 import React from 'react'
 
-import Slide from '@mui/material/Slide'
-import useScrollTrigger from '@mui/material/useScrollTrigger'
+import { Slide, useScrollTrigger } from '@mui/material'
 
 export type Props = {
   children: React.ReactElement

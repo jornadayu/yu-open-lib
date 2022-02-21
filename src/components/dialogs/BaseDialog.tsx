@@ -8,8 +8,7 @@ import {
   Typography
 } from '@mui/material'
 
-import DialogTitle from '@/components/shared/DialogTitle'
-
+import DialogTitle from '../DialogTitle'
 import Loading from '../loaders/Loading'
 
 export type BaseDialogProps = {

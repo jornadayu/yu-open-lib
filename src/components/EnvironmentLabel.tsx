@@ -1,7 +1,7 @@
 import React from 'react'
 
-import CodeIcon from '@mui/icons-material/Code'
-import Chip from '@mui/material/Chip'
+import { Code as CodeIcon } from '@mui/icons-material'
+import { Chip } from '@mui/material'
 
 import { titleize } from '../helpers'
 import { AppEnvironment } from '../types'

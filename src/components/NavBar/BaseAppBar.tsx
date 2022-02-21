@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 
-import MenuIcon from '@mui/icons-material/Menu'
-import AppBar from '@mui/material/AppBar'
-import Button from '@mui/material/Button'
-import Hidden from '@mui/material/Hidden'
-import IconButton from '@mui/material/IconButton'
-import Toolbar from '@mui/material/Toolbar'
-import Tooltip from '@mui/material/Tooltip'
-import Typography from '@mui/material/Typography'
+import { Menu as MenuIcon } from '@mui/icons-material'
+import {
+  AppBar,
+  Button,
+  Hidden,
+  IconButton,
+  Toolbar,
+  Tooltip,
+  Typography
+} from '@mui/material'
 
 import YuNegativeLaranjaIcon from '../../assets/icons/yu/negative/LaranjaIcon'
 import YuPositiveLaranjaIcon from '../../assets/icons/yu/positive/VioletaIcon'

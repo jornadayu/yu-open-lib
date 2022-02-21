@@ -7,7 +7,7 @@ import {
   ToastProvider
 } from 'react-toast-notifications'
 
-import Alert from '@mui/material/Alert'
+import { Alert } from '@mui/material'
 
 export const Toast: React.FC<ToastProps> = ({
   appearance,

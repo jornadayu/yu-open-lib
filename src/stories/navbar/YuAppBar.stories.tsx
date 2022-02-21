@@ -3,7 +3,7 @@ import React from 'react'
 import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
 
 import { Group as GroupIcon, Shop as ShopIcon } from '@mui/icons-material'
-import Link from '@mui/material/Link'
+import { Link } from '@mui/material'
 
 import { Props as YuAppBarProps } from '../../components/NavBar/BaseAppBar'
 import YuAppBar from '../../components/NavBar/YuAppBar'
