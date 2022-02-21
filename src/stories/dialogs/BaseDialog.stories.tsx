@@ -14,6 +14,9 @@ export default {
   argTypes: {
     handleConfirm: { action: 'handleConfirm' },
     handleClose: { action: 'handleClose' }
+  },
+  parameters: {
+    badges: ['Added: 2.0.1'] // Component was added in version 1.7.9
   }
 } as ComponentMeta<typeof BaseDialog>
 
