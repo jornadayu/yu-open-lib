@@ -1,4 +1,4 @@
-image: node:14.16-buster
+image: node:14.19-buster
 
 pipelines:
   pull-requests:
