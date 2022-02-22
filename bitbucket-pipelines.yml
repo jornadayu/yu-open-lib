@@ -14,7 +14,7 @@ pipelines:
             # Post-install action also builds the library
             - yarn
             - yarn test --watchAll=false --passWithNoTests
-            - yarn run eslint src/**/*.{ts,tsx}
+            - yarn run eslint "src/**/*.{ts,tsx}"
             # Check if storybook builds correctly
             - yarn run start-storybook --smoke-test --no-manager-cache
             # Example build
