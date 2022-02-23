@@ -1,8 +1,7 @@
 import React from 'react'
 
+import { Grid } from '@mui/material'
 import { styled } from '@mui/material/styles'
-
-import Grid from '@mui/material/Grid'
 
 const PREFIX = 'InfoLabel'
 

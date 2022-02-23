@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 
 import { Typography, CssBaseline, Switch, FormGroup, FormControlLabel } from '@mui/material'

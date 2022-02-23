@@ -1,11 +1,7 @@
 import React from 'react'
 
-import AppBar from '@mui/material/AppBar'
-import Toolbar from '@mui/material/Toolbar'
-import IconButton from '@mui/material/IconButton'
-import Typography from '@mui/material/Typography'
-import Hidden from '@mui/material/Hidden'
-import MenuIcon from '@mui/icons-material/Menu'
+import { Menu as MenuIcon } from '@mui/icons-material'
+import { AppBar, Hidden, IconButton, Toolbar, Typography } from '@mui/material'
 
 import HideOnScroll from '../HideOnScroll'
 import { useStyles } from './NavBarStyles'

@@ -1,9 +1,7 @@
 import React from 'react'
 
+import { Backdrop, CircularProgress } from '@mui/material'
 import { styled } from '@mui/material/styles'
-
-import CircularProgress from '@mui/material/CircularProgress'
-import Backdrop from '@mui/material/Backdrop'
 
 const PREFIX = 'BackdropLoading'
 

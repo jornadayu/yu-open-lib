@@ -1,24 +1,24 @@
 import React, { useState } from 'react'
 
-import AppBar from '@mui/material/AppBar'
-import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
-import IconButton from '@mui/material/IconButton'
-import Hidden from '@mui/material/Hidden'
-import Tooltip from '@mui/material/Tooltip'
-import MenuIcon from '@mui/icons-material/Menu'
+import { Menu as MenuIcon } from '@mui/icons-material'
+import {
+  AppBar,
+  Button,
+  Hidden,
+  IconButton,
+  Toolbar,
+  Tooltip,
+  Typography
+} from '@mui/material'
 
-import YuMobileNavBar from './YuMobileNavBar'
-import YuDrawer from './YuDrawer'
-
-import YuriNegativeWhiteIcon from '../../assets/icons/yuri/negative/WhiteIcon'
-import YuriPositiveOrangeIcon from '../../assets/icons/yuri/positive/OrangeIcon'
 import YuNegativeLaranjaIcon from '../../assets/icons/yu/negative/LaranjaIcon'
 import YuPositiveLaranjaIcon from '../../assets/icons/yu/positive/VioletaIcon'
-
-import { useStyles } from './NavBarStyles'
+import YuriNegativeWhiteIcon from '../../assets/icons/yuri/negative/WhiteIcon'
+import YuriPositiveOrangeIcon from '../../assets/icons/yuri/positive/OrangeIcon'
 import { NavbarItem } from '../../types'
+import { useStyles } from './NavBarStyles'
+import YuDrawer from './YuDrawer'
+import YuMobileNavBar from './YuMobileNavBar'
 
 export type Props = {
   items: {

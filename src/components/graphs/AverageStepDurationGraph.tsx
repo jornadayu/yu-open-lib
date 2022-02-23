@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react'
 
 import {
-  ResponsiveHeatMap,
   HeatMapCommonProps,
-  HeatMapDatum
+  HeatMapDatum,
+  ResponsiveHeatMap
 } from '@nivo/heatmap'
 
 import { useNivoTheme } from '../../hooks/nivo'

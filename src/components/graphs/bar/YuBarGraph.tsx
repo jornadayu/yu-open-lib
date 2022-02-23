@@ -1,10 +1,10 @@
 import React from 'react'
 
+import { BarDatum, BarSvgProps, ResponsiveBar } from '@nivo/bar'
 import { OrdinalColorScaleConfig } from '@nivo/colors'
-import { ResponsiveBar, BarDatum, BarSvgProps } from '@nivo/bar'
 
-import { legendProps, useNivoTheme } from '../../../hooks/nivo'
 import { useViewport } from '../../../hooks'
+import { legendProps, useNivoTheme } from '../../../hooks/nivo'
 
 type Datum = {
   name: string

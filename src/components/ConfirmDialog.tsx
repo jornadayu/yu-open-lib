@@ -1,51 +1,43 @@
 import React from 'react'
 
-import Dialog from '@mui/material/Dialog'
-import DialogTitle from '@mui/material/DialogTitle'
-import DialogContent from '@mui/material/DialogContent'
-import DialogContentText from '@mui/material/DialogContentText'
-import DialogActions from '@mui/material/DialogActions'
-import Button from '@mui/material/Button'
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle
+} from '@mui/material'
 
 import Loading from './loaders/Loading'
 
 export type Props = {
   /** Dialog title */
-  title: string
-
+  title: React.ReactNode
   /** Dialog body text */
-  text?: string
-
+  text?: React.ReactNode
   /** Text on the Cancel button */
   cancelText: string
-
   /** Text on the Confirm button */
   confirmText: string
-
   /** If the dialog should be open or not */
   open: boolean
-
   /** Action when closing/cancelling the Dialog */
   handleClose: () => void
-
   /** Action when confirming the Dialog action */
   handleConfirm: () => void
-
   /** URL to go with the Confirm button, instead of a Confirm action */
   path?: string
-
   /**
    * Loading bar inside the dialog body
    * @default false
    */
   loading?: boolean
-
   /**
    * Confirm Button color
    * @default 'secondary'
    */
   confirmColor?: 'inherit' | 'primary' | 'secondary'
-
   /**
    * Cancel Button color
    * @default 'primary'

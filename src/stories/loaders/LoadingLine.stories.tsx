@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { ComponentStory, ComponentMeta, Story } from '@storybook/react'
+import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
 
-import LoadingLine, { Props } from '../../components/loaders/LoadingLine'
 import YuAppBar from '../../components/NavBar/YuAppBar'
+import LoadingLine, { Props } from '../../components/loaders/LoadingLine'
 
 export default {
   title: 'Loaders/LoadingLine',

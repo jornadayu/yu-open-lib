@@ -1,9 +1,11 @@
 import React from 'react'
 
-import MuiDialogTitle from '@mui/material/DialogTitle'
-import IconButton from '@mui/material/IconButton'
-import CloseIcon from '@mui/icons-material/Close'
-import Typography from '@mui/material/Typography'
+import { Close as CloseIcon } from '@mui/icons-material'
+import {
+  IconButton,
+  DialogTitle as MuiDialogTitle,
+  Typography
+} from '@mui/material'
 import { grey } from '@mui/material/colors'
 
 export type Props = {

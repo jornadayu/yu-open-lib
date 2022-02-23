@@ -1,13 +1,13 @@
 import React from 'react'
 
-import Alert from '@mui/material/Alert'
-
 import {
-  ToastProvider,
   DefaultToastContainer,
   ToastContainerProps,
-  ToastProps
+  ToastProps,
+  ToastProvider
 } from 'react-toast-notifications'
+
+import { Alert } from '@mui/material'
 
 export const Toast: React.FC<ToastProps> = ({
   appearance,

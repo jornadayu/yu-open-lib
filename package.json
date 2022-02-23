@@ -1,6 +1,6 @@
 {
   "name": "yu-open-lib",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A collection of React components, helpers and assets used at YU",
   "author": "jornadayu",
   "license": "UNLICENSED",
@@ -23,7 +23,7 @@
   "source": "src/index.tsx",
   "private": false,
   "engines": {
-    "node": ">=12"
+    "node": ">=14"
   },
   "scripts": {
     "build": "microbundle-crl --no-compress --external=react,react-dom,react-is --format modern,cjs --css-modules false",
@@ -67,8 +67,8 @@
   "devDependencies": {
     "@babel/core": "^7.14.6",
     "@emotion/react": "^11.5.0",
-    "@etchteam/storybook-addon-status": "^4.0.0",
-    "@geometricpanda/storybook-addon-badges": "^0.0.4",
+    "@etchteam/storybook-addon-status": "^4.2.0",
+    "@geometricpanda/storybook-addon-badges": "^0.2.1",
     "@mui/icons-material": "^5.0.4",
     "@mui/lab": "^5.0.0-alpha.51",
     "@mui/material": "^5.0.4",
@@ -81,17 +81,18 @@
     "@nivo/sunburst": "0.73.0",
     "@nivo/tooltip": "0.71.0",
     "@originjs/vite-plugin-commonjs": "^1.0.1",
-    "@storybook/addon-actions": "6.4.0-alpha.16",
-    "@storybook/addon-essentials": "6.4.0-alpha.16",
+    "@storybook/addon-actions": "^6.4.19",
+    "@storybook/addon-essentials": "^6.4.19",
     "@storybook/addon-info": "^5.3.21",
-    "@storybook/addon-links": "6.4.0-alpha.16",
-    "@storybook/addon-storysource": "^6.3.4",
-    "@storybook/addons": "6.4.0-alpha.33",
-    "@storybook/react": "6.4.0-alpha.16",
-    "@storybook/theming": "6.3.4",
+    "@storybook/addon-links": "^6.4.19",
+    "@storybook/addon-storysource": "^6.4.19",
+    "@storybook/addons": "^6.4.19",
+    "@storybook/react": "^6.4.19",
+    "@storybook/theming": "6.4.19",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "@trivago/prettier-plugin-sort-imports": "^3.2.0",
     "@types/d3-shape": "^3.0.1",
     "@types/echarts": "^4.9.7",
     "@types/jest": "^25.1.4",
@@ -99,8 +100,8 @@
     "@types/qrcode.react": "^1.0.1",
     "@types/react": "^17.0.1",
     "@types/react-dom": "^17.0.1",
-    "@typescript-eslint/eslint-plugin": "^2.26.0",
-    "@typescript-eslint/parser": "^2.26.0",
+    "@typescript-eslint/eslint-plugin": "^5.10.2",
+    "@typescript-eslint/parser": "^5.10.2",
     "babel-eslint": "^10.0.3",
     "cross-env": "^7.0.2",
     "d3-shape": "^3.0.1",
@@ -128,10 +129,11 @@
     "react-wordcloud": "^1.2.7",
     "rollup-plugin-typescript2": "^0.30.0",
     "sass": "^1.32.8",
-    "storybook-addon-jsx": "^7.3.12",
-    "storybook-builder-vite": "^0.0.12",
-    "typescript": "^3.7.5",
-    "vite": "^2.4.2"
+    "storybook": "^6.4.19",
+    "storybook-addon-jsx": "^7.3.14",
+    "storybook-builder-vite": "^0.1.16",
+    "typescript": "^4.5.5",
+    "vite": "^2.8.4"
   },
   "files": [
     "dist"
