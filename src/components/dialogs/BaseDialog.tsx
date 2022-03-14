@@ -15,7 +15,7 @@ export type BaseDialogProps = {
   open: boolean
   onClose?: () => void
   title: string
-  actions?: React.ReactChild | React.ReactChildren
+  actions?: React.ReactChild | React.ReactChildren | (() => React.ReactElement)
   /** @default false */
   loading?: boolean
 } & DialogProps
@@ -63,7 +63,7 @@ const BaseDialog: React.FC<BaseDialogProps> = ({
     fullWidth
     {...dialogProps}
   >
-    <DialogTitle onClose={onClose}>
+    <DialogTitle onClose={() => onClose?.()}>
       <Typography variant='h5' sx={{ ml: 2 }}>
         {title}
       </Typography>
