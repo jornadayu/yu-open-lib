@@ -85,7 +85,8 @@ module.exports = {
       ],
       optimizeDeps: {
         include: [
-          ...config.optimizeDeps.include,
+          // optimizeDeps.include only exists in Development
+          ...config?.optimizeDeps?.include || [],
           "@storybook/react",
           "@storybook/client-api",
           "@storybook/client-logger",

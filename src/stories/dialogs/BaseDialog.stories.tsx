@@ -12,8 +12,7 @@ export default {
   title: 'Dialogs/BaseDialog',
   component: BaseDialog,
   argTypes: {
-    handleConfirm: { action: 'handleConfirm' },
-    handleClose: { action: 'handleClose' }
+    onClose: { action: 'onClose' }
   },
   parameters: {
     badges: ['Added: 2.0.1'] // Component was added in version 1.7.9
@@ -24,7 +23,7 @@ const Template: ComponentStory<typeof BaseDialog> = (args) => {
   const [open, setOpen] = useState(false)
 
   const close = () => {
-    args.handleClose()
+    args.onClose && args.onClose()
     setOpen(false)
   }
 
@@ -40,6 +39,7 @@ const Template: ComponentStory<typeof BaseDialog> = (args) => {
 }
 
 const baseProps: BaseDialogProps = {
+  open: false,
   title: 'Dialog Title',
   actions: () => (
     <>

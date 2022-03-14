@@ -1,0 +1,29 @@
+name: Publish Release
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  release:
+    name: Publish Release
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    # Publish to NPM when package.json.version is bumped and a commit 'vX.Y.Z' is made
+    - name: Publish to NPM
+      uses: pascalgn/npm-publish-action@1.3.8
+      with:
+        tag_name: "v%s"
+        tag_message: "v%s"
+        create_tag: "true"
+        commit_pattern: "^(v\\S+)$"
+        workspace: "."
+        publish_command: "yarn"
+        publish_args: "--non-interactive"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
