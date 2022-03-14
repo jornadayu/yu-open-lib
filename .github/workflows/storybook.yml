@@ -2,9 +2,9 @@ name: Storybook
 
 on:
   pull_request:
-    branches: [staging]
+    branches: [master]
   push:
-    branches: [staging, master]
+    branches: [master]
 
 jobs:
   storybook:
