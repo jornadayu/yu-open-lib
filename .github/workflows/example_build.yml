@@ -6,10 +6,6 @@ on:
   push:
     branches: [master]
 
-defaults:
-  run:
-    working-directory: ./example
-
 jobs:
   example_build:
     runs-on: ubuntu-latest
