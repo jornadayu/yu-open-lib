@@ -1,4 +1,4 @@
-name: Storybook
+name: Storybook Build
 
 on:
   pull_request:
