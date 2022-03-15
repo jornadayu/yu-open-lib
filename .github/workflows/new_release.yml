@@ -1,4 +1,4 @@
-name: Create new Release
+name: Create and Deploy new Release
 
 on:
   workflow_dispatch:
@@ -27,12 +27,13 @@ jobs:
           git config --global user.name 'yu-open-lib'
           git config --global user.email 'jornadayu@users.noreply.github.com'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+
       - name: Bump project version
         run: yarn version --${{ github.event.inputs.releaseType }}
 
       # https://stackoverflow.com/a/61919791/10416161
       - name: Get new project version
-      - id: set_var
+        id: set_var
         run: |
           content=`cat package.json`
           # the following lines are only required for multi line json
