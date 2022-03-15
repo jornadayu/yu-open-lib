@@ -1,4 +1,4 @@
-name: Create and Deploy new Release
+name: New Release and Deploy
 
 on:
   workflow_dispatch:
@@ -21,6 +21,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Cache Yarn Dependencies
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ hashFiles('**/yarn.lock') }}
+
+      - name: Setup Node and Yarn
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+          cache: 'yarn'
+
+      - name: Install Dependencies
+        run: yarn install --prefer-offline --ignore-scripts
 
       - name: Setup Git config
         run: |
