@@ -22,7 +22,7 @@ Read more about [Story Book](https://storybook.js.org/)
 
 ---
 
-## Bump version
+## Create new release/version
 
 - Create feature branch
 

@@ -27,8 +27,24 @@ jobs:
           git config --global user.name 'yu-open-lib'
           git config --global user.email 'jornadayu@users.noreply.github.com'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-
       - name: Bump project version
+        run: yarn version --${{ github.event.inputs.releaseType }}
+
+      # https://stackoverflow.com/a/61919791/10416161
+      - name: Get new project version
+      - id: set_var
         run: |
-          yarn version --${{ github.event.inputs.releaseType }}
+          content=`cat package.json`
+          # the following lines are only required for multi line json
+          content="${content//'%'/'%25'}"
+          content="${content//$'\n'/'%0A'}"
+          content="${content//$'\r'/'%0D'}"
+          # end of optional handling for multi line json
+          echo "::set-output name=packageJson::$content"
+
+      - name: Set release version for unreleased Stories
+        run: |
+          bin/set_release_badges.sh ${{ fromJson(steps.set_var.outputs.packageJson).version }}
+          git add src/stories
+          git commit --amend --no-edit
           git push origin master --tags

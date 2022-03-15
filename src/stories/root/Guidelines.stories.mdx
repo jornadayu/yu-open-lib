@@ -26,18 +26,18 @@ export default {
 } as ComponentMeta<typeof DialogTitle>
 ```
 
-If a release is not being made in the same Pull Request as the story being added, then use the `BADGES.UNRELEASED` badge. Example:
+If a release is not being made in the same Pull Request as the story being added, then use the `"v1.4.4"` badge. Example:
 
 ```tsx
 // src/stories/DialogTitle.stories.tsx
-import { BADGES } from '../../.storybook/constants'
+import { BADGES } from '../../../.storybook/constants'
 
 export default {
   title: 'Components/DialogTitle',
   component: DialogTitle,
   argTypes: { onClose: { action: 'onClose' } },
   parameters: {
-    badges: [BADGES.UNRELEASED] // Component was still not released
+    badges: ["v1.4.4"] // Component was still not released
   }
 } as ComponentMeta<typeof DialogTitle>
 ```
