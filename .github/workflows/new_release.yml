@@ -64,3 +64,19 @@ jobs:
           git add src/stories
           git commit --amend --no-edit
           git push origin master --tags
+
+      - name: Publish package
+        run: yarn publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Build Changelog
+        id: github_release
+        uses: mikepenz/release-changelog-builder-action@v1
+
+      - name: Create Release
+        uses: actions/create-release@v1
+        with:
+          tag_name: v${{ fromJson(steps.set_var.outputs.packageJson).version }}
+          release_name: v${{ fromJson(steps.set_var.outputs.packageJson).version }}
+          body: https://www.npmjs.com/package/yu-open-lib/v/v${{ fromJson(steps.set_var.outputs.packageJson).version }}}\n\n${{steps.github_release.outputs.changelog}}
