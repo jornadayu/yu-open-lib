@@ -11,7 +11,7 @@ if grep -lnr --include \*.tsx\* 'badges: \[BADGES.UNRELEASED\]' 'src/stories';
 then
   echo $NC
   echo "${RED}Error: The Stories above are marked as unreleased, you need to version them first since you are creating a new release${NC}"
-  echo "Read more: https://yu-open-lib.netlify.app (at the 'Guidelines' tab)"
+  echo "Read more: https://yu-open-lib.netlify.app (in the 'Guidelines' tab)"
   exit 1
 else
   echo -n $NC
