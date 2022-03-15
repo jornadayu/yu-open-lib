@@ -2,13 +2,13 @@
 
 ## Install
 
-```bash
+```shell
 yarn add yu-open-lib
 ```
 
 ## Interactive Documentation with Storybook
 
-```bash
+```shell
 yarn storybook
 ```
 
@@ -16,7 +16,7 @@ yarn storybook
 
 > Or `Ctrl + F5` in Vscode
 
-Will run at: https://localhost:6006 by default
+Will run at: [https://localhost:6006](https://localhost:6006) by default
 
 Read more about [Story Book](https://storybook.js.org/)
 
@@ -26,30 +26,24 @@ Read more about [Story Book](https://storybook.js.org/)
 
 - Create feature branch
 
-        #!bash
-        git checkout -b JIRA-XXX-some-feature-here
+```shell
+git checkout -b JIRA-XXX-some-feature-here
+```
 
 - Commit your changes
 
-        #!bash
-        git add .
-        git commit -m "My commit message"
-        git push --set-upstream origin JIRA-XXX-some-feature-here
+```shell
+git add .
+git commit -m "My commit message"
+git push --set-upstream origin JIRA-XXX-some-feature-here
+```
 
-- Bump version accordingly
+- Now add a reviewer to your Pull Request and wait for it to be reviewed/merged
 
-        #!bash
-        # MAJOR.MINOR.PATCH (Ex.: 1.0.2)
-        yarn version --major # Bump major version
-        yarn version --minor # Minor version
-        yarn version --patch # Patch version
-
-- Push your changes (yarn will auto-commit your version bump)
-
-        #!bash
-        git push
-
-- Now, when your Pull Request is merged, a new tag using your chosen version will be created on the project's repository
+- Create [new release](https://github.com/jornadayu/yu-open-lib/actions/workflows/new_release.yml) with the desired type
+  - `major` - For breaking Changes (existing code already using the library has to change)
+  - `minor` - No breaking changes, new components or decently big visual changes
+  - `patch` - No breaking changes, bug fixes
 
 ---
 
@@ -118,4 +112,4 @@ const App = () => {
 
 ## License
 
-UNLICENSED © [jornadayu](https://bitbucket.org/sal-jornadayu/yu-open-lib)
+UNLICENSED © [jornadayu](https://github.com/jornadayu)
