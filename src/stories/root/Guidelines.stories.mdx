@@ -12,34 +12,20 @@ import pkg from '../../../package.json'
 
 ##### Versioning in documentation
 
-Always add a badge with the version the component/hook/helper/etc. was added. Example:
+Always add a `UNRELEASED` badge in the component/hook/helper/etc. story when creating a new one:
 
 ```tsx
-// src/stories/DialogTitle.stories.tsx
-export default {
-  title: 'Components/DialogTitle',
-  component: DialogTitle,
-  argTypes: { onClose: { action: 'onClose' } },
-  parameters: {
-    badges: ['Added: 1.7.9'] // Component was added in version 1.7.9
-  }
-} as ComponentMeta<typeof DialogTitle>
-```
-
-If a release is not being made in the same Pull Request as the story being added, then use the `"v1.4.4"` badge. Example:
-
-```tsx
-// src/stories/DialogTitle.stories.tsx
 import { BADGES } from '../../../.storybook/constants'
 
+// src/stories/DialogTitle.stories.tsx
 export default {
   title: 'Components/DialogTitle',
   component: DialogTitle,
   argTypes: { onClose: { action: 'onClose' } },
   parameters: {
-    badges: ["v1.4.4"] // Component was still not released
+    badges: [BADGES.UNRELEASED]
   }
 } as ComponentMeta<typeof DialogTitle>
 ```
 
-On release pull requests (ex.: `release/v1.7.9`), all stories with a unreleased badge should then be changed to contain a badge with the format `Added: x.y.z`, where `x.y.z` stands for the exact version for the release being made.
+When a new release is made the unreleased badges will be automatically changed to the version being released.
