@@ -9,7 +9,7 @@ export default {
   title: 'person/PersonAvatar',
   component: PersonAvatar,
   parameters: {
-    badges: [BADGES.UNRELEASED]
+    badges: ['v2.1.0']
   }
 } as ComponentMeta<typeof PersonAvatar>
 
