@@ -3,8 +3,12 @@ name: Storybook Build
 on:
   pull_request:
     branches: [master]
+    # Trigger only with changes to stories and components
+    paths: ["src/stories/**", "src/components/**"]
   push:
     branches: [master]
+    # Trigger only with changes to stories and components
+    paths: ["src/stories/**", "src/components/**"]
 
 jobs:
   storybook:

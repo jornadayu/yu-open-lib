@@ -3,8 +3,13 @@ name: Linting
 on:
   pull_request:
     branches: [master]
+    # Trigger only with changes to any code
+    paths: ["src/**"]
+
   push:
     branches: [master]
+    # Trigger only with changes to any code
+    paths: ["src/**"]
 
 jobs:
   linting:
