@@ -48,12 +48,24 @@ jobs:
           git config --global user.email 'jornadayu@users.noreply.github.com'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
 
+      # https://stackoverflow.com/a/61919791/10416161
+      - name: Get current (old) project version
+        id: old_version
+        run: |
+          content=`cat package.json`
+          # the following lines are only required for multi line json
+          content="${content//'%'/'%25'}"
+          content="${content//$'\n'/'%0A'}"
+          content="${content//$'\r'/'%0D'}"
+          # end of optional handling for multi line json
+          echo "::set-output name=packageJson::$content"
+
       - name: Bump project version
         run: yarn version --${{ github.event.inputs.releaseType }}
 
       # https://stackoverflow.com/a/61919791/10416161
       - name: Get new project version
-        id: set_var
+        id: new_version
         run: |
           content=`cat package.json`
           # the following lines are only required for multi line json
@@ -65,11 +77,11 @@ jobs:
 
       - name: Set release version for unreleased Stories
         run: |
-          bin/set_release_badges.sh ${{ fromJson(steps.set_var.outputs.packageJson).version }}
+          bin/set_release_badges.sh ${{ fromJson(steps.new_version.outputs.packageJson).version }}
           bin/check_unreleased.sh
           git add src/stories
           git commit --amend --no-edit
-      
+
       - name: Push changes
         if:  ${{ github.event.inputs.fakeDeploy == 'false' }}
         run: git push origin master --tags
@@ -83,12 +95,15 @@ jobs:
       - name: Build Changelog
         id: github_release
         uses: mikepenz/release-changelog-builder-action@v1
+        with:
+          fromTag: ${{ fromJson(steps.old_version.outputs.packageJson).version }}
+          toTag: ${{ fromJson(steps.new_version.outputs.packageJson).version }}
 
       - name: Release
         uses: softprops/action-gh-release@v1
         if:  ${{ github.event.inputs.fakeDeploy == 'false' }}
         with:
           body: |
-            https://www.npmjs.com/package/yu-open-lib/v/${{ fromJson(steps.set_var.outputs.packageJson).version }}}
+            https://www.npmjs.com/package/yu-open-lib/v/${{ fromJson(steps.new_version.outputs.packageJson).version }}}
 
             ${{steps.github_release.outputs.changelog}}
