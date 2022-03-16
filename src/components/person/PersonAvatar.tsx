@@ -129,12 +129,12 @@ const PersonAvatar: React.FC<Props> = ({
               </div>
             )
           ) : (
-            <>
+            <React.Fragment>
               <IconButton className={classes.addIcon} size='large'>
                 <AddAPhotoIcon />
               </IconButton>
               <AvatarImage />
-            </>
+            </React.Fragment>
           )}
         </div>
       </Tooltip>
