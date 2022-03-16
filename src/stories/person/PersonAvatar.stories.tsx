@@ -15,7 +15,7 @@ export default {
 
 const Template: ComponentStory<typeof PersonAvatar> = (args) => {
   return (
-    <div style={{ minWidth: 280 }}>
+    <div style={{ width: 280 }}>
       <PersonAvatar {...args} />
     </div>
   )
