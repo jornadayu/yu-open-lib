@@ -61,36 +61,50 @@ export type Props = {
   avatarSrc: React.ImgHTMLAttributes<any>['src']
   /** @default 'Clique ou arraste para adicionar' */
   tooltip?: string
-}
+  /** @default 'avatar' */
+  fileKey?: string
+  onAttach?: (data: FormData) => void
+  imageProps?: React.DetailedHTMLProps<
+    React.ImgHTMLAttributes<HTMLImageElement>,
+    HTMLImageElement
+  >
+} & React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
+>
 
 const PersonAvatar: React.FC<Props> = ({
   avatarSrc,
   children,
-  tooltip = 'Clique ou arraste para adicionar'
+  onAttach,
+  fileKey = 'avatar',
+  tooltip = 'Clique ou arraste para adicionar',
+  imageProps,
+  ...props
 }) => {
   const classes = useStyles()
 
-  const onDrop = useCallback(
-    (acceptedFiles: File[]) => {
-      const formData = new FormData()
-      if (acceptedFiles.length) {
-        formData.append('avatar', acceptedFiles[0])
-        // uploadAvatar.mutateAsync(formData)
-      }
-    },
-    [] // uploadAvatar
-  )
+  const onDrop = useCallback((acceptedFiles: File[]) => {
+    const formData = new FormData()
+    if (acceptedFiles.length) {
+      formData.append(fileKey, acceptedFiles[0])
+      onAttach && onAttach(formData)
+    }
+  }, [])
+
   const { getRootProps, getInputProps, isDragActive, isDragReject } =
     useDropzone({
       onDrop,
       accept: 'image/*'
     })
 
+  const AvatarImage: React.FC = () => <img src={avatarSrc} {...imageProps} />
+
   return (
     <div style={{ position: 'relative' }}>
       <div className={classes.children}>{children}</div>
       <Tooltip title={tooltip}>
-        <div className={classes.root} {...getRootProps()}>
+        <div className={classes.root} {...getRootProps()} {...props}>
           <input {...getInputProps()} />
           {isDragActive ? (
             isDragReject ? (
@@ -99,7 +113,7 @@ const PersonAvatar: React.FC<Props> = ({
                 <Typography color='secondary' className={classes.rejectFile}>
                   Somente imagens <BlockIcon />
                 </Typography>
-                <img src={avatarSrc} />
+                <AvatarImage />
               </div>
             ) : (
               <div className={classes.backdrop}>
@@ -111,7 +125,7 @@ const PersonAvatar: React.FC<Props> = ({
                 >
                   <AddAPhotoIcon />
                 </IconButton>
-                <img src={avatarSrc} />
+                <AvatarImage />
               </div>
             )
           ) : (
@@ -119,7 +133,7 @@ const PersonAvatar: React.FC<Props> = ({
               <IconButton className={classes.addIcon} size='large'>
                 <AddAPhotoIcon />
               </IconButton>
-              <img src={avatarSrc} />
+              <AvatarImage />
             </>
           )}
         </div>
