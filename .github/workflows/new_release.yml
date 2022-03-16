@@ -3,6 +3,10 @@ name: New Release and Deploy
 on:
   workflow_dispatch:
     inputs:
+      fakeDeploy:
+        type: boolean
+        default: false
+        description: Run pre-release tasks but don't deploy to NPM or GitHub
       releaseType:
         description: 'Release Type'
         required: true
@@ -65,18 +69,24 @@ jobs:
           bin/check_unreleased.sh
           git add src/stories
           git commit --amend --no-edit
-          git push origin master --tags
+      
+      - name: Push changes
+        if:  ${{ github.event.inputs.fakeDeploy == 'false' }}
+        run: git push origin master --tags
 
       - name: Publish package
         run: yarn publish
+        if:  ${{ github.event.inputs.fakeDeploy == 'false' }}
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
       - name: Build Changelog
         id: github_release
         uses: mikepenz/release-changelog-builder-action@v1
 
       - name: Release
         uses: softprops/action-gh-release@v1
+        if:  ${{ github.event.inputs.fakeDeploy == 'false' }}
         with:
           body: |
             https://www.npmjs.com/package/yu-open-lib/v/${{ fromJson(steps.set_var.outputs.packageJson).version }}}
