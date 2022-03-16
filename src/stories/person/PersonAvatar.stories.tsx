@@ -29,3 +29,9 @@ export const Base: Story<Props> = Template.bind({})
 Base.args = {
   ...baseProps
 }
+
+export const CustomTooltip: Story<Props> = Template.bind({})
+CustomTooltip.args = {
+  ...baseProps,
+  tooltip: 'Drag to upload'
+}

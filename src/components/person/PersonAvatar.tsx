@@ -59,9 +59,15 @@ const useStyles = makeStyles(() => ({
 
 export type Props = {
   avatarSrc: React.ImgHTMLAttributes<any>['src']
+  /** @default 'Clique ou arraste para adicionar' */
+  tooltip?: string
 }
 
-const PersonAvatar: React.FC<Props> = ({ avatarSrc, children }) => {
+const PersonAvatar: React.FC<Props> = ({
+  avatarSrc,
+  children,
+  tooltip = 'Clique ou arraste para adicionar'
+}) => {
   const classes = useStyles()
 
   const onDrop = useCallback(
@@ -83,7 +89,7 @@ const PersonAvatar: React.FC<Props> = ({ avatarSrc, children }) => {
   return (
     <div style={{ position: 'relative' }}>
       <div className={classes.children}>{children}</div>
-      <Tooltip title='Clique ou arraste para adicionar'>
+      <Tooltip title={tooltip}>
         <div className={classes.root} {...getRootProps()}>
           <input {...getInputProps()} />
           {isDragActive ? (
