@@ -103,7 +103,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         if:  ${{ github.event.inputs.fakeDeploy == 'false' }}
         with:
-          tag_name: ${{ fromJson(steps.new_version.outputs.packageJson).version }}
+          tag_name: v${{ fromJson(steps.new_version.outputs.packageJson).version }}
           body: |
             https://www.npmjs.com/package/yu-open-lib/v/${{ fromJson(steps.new_version.outputs.packageJson).version }}
 
