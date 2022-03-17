@@ -96,14 +96,15 @@ jobs:
         id: github_release
         uses: mikepenz/release-changelog-builder-action@v1
         with:
-          fromTag: ${{ fromJson(steps.old_version.outputs.packageJson).version }}
-          toTag: ${{ fromJson(steps.new_version.outputs.packageJson).version }}
+          fromTag: v${{ fromJson(steps.old_version.outputs.packageJson).version }}
+          toTag: v${{ fromJson(steps.new_version.outputs.packageJson).version }}
 
       - name: Release
         uses: softprops/action-gh-release@v1
         if:  ${{ github.event.inputs.fakeDeploy == 'false' }}
         with:
+          tag_name: ${{ fromJson(steps.new_version.outputs.packageJson).version }}
           body: |
-            https://www.npmjs.com/package/yu-open-lib/v/${{ fromJson(steps.new_version.outputs.packageJson).version }}}
+            https://www.npmjs.com/package/yu-open-lib/v/${{ fromJson(steps.new_version.outputs.packageJson).version }}
 
             ${{steps.github_release.outputs.changelog}}
