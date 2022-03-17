@@ -2,7 +2,6 @@ import React from 'react'
 
 import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
 
-import { BADGES } from '../../../.storybook/constants'
 import PersonAvatar, { Props } from '../../components/person/PersonAvatar'
 
 export default {
