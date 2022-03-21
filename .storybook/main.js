@@ -67,6 +67,8 @@ module.exports = {
 
     return {
       ...config,
+      // https://vitejs.dev/guide/static-deploy.html#github-pages
+      base: '/yu-open-lib/',
       resolve: {
         ...config.resolve,
         alias: {
