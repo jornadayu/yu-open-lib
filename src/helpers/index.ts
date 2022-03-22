@@ -82,9 +82,9 @@ export function groupBy<T extends Record<string, any>>(
   inputArray: T[],
   key: string,
   removeKey = false,
-  outputType = {}
-): Record<string, T[]> {
-  return inputArray.reduce((previous: Record<string, T[]>, current) => {
+  outputType = {} as T
+): Record<keyof T, T[]> {
+  return inputArray.reduce((previous: Record<keyof T, T[]>, current) => {
     const currentCopy = current
     const { [key]: keyValue } = currentCopy
 
