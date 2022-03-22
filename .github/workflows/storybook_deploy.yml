@@ -3,7 +3,7 @@ on:
   push:
     branches: [master]
     # Trigger only with changes to stories and components
-    paths: ["src/stories/**", "src/components/**"]
+    paths: ["src/stories/**", "src/components/**", ".storybook/**", ".github/workflows/storybook_deploy.yml"]
 
 jobs:
   build-and-deploy:
