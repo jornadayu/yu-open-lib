@@ -5,14 +5,13 @@ import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
 import { Check } from '@mui/icons-material'
 import { Card, CardContent } from '@mui/material'
 
-import { BADGES } from '../../../.storybook/constants'
 import FileUploadInput, { Props } from '../../components/inputs/FileUploadInput'
 
 export default {
   title: 'Inputs/FileUploadInput',
   component: FileUploadInput,
   parameters: {
-    badges: [BADGES.UNRELEASED]
+    badges: ['v2.1.2']
   }
 } as ComponentMeta<typeof FileUploadInput>
 
