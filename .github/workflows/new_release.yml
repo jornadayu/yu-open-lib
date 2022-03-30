@@ -6,6 +6,7 @@ on:
       fakeDeploy:
         type: boolean
         default: false
+        required: false
         description: Run pre-release tasks but don't deploy to NPM or GitHub
       releaseType:
         description: 'Release Type'
