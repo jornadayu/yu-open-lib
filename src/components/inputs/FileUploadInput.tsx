@@ -25,6 +25,7 @@ export type Props = {
     React.LabelHTMLAttributes<HTMLLabelElement>,
     HTMLLabelElement
   >
+  saveIcon?: React.ReactElement
   onSubmit: (file: File) => void
   onError?: () => void
   defaultValue?: File
@@ -41,6 +42,7 @@ const FileUploadInput: React.FC<Props> = ({
   saveButtonProps,
   labelProps,
   onError,
+  saveIcon = <Save />,
   loading = false,
   defaultValue = null,
   accept = 'video/mp4,video/mkv,video/x-m4v,video/*'
@@ -101,7 +103,7 @@ const FileUploadInput: React.FC<Props> = ({
             size='large'
             {...saveButtonProps}
           >
-            <Save />
+            {saveIcon}
           </IconButton>
         </Fade>
       </Grid>

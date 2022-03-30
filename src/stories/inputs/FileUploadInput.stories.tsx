@@ -2,6 +2,7 @@ import React from 'react'
 
 import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
 
+import { Check } from '@mui/icons-material'
 import { Card, CardContent } from '@mui/material'
 
 import { BADGES } from '../../../.storybook/constants'
@@ -65,11 +66,13 @@ CustomSave.args = {
   ...baseProps,
   label: 'File',
   defaultValue: new File(['Hello World'], 'hello.txt'),
+  saveIcon: <Check />,
   saveButtonProps: {
     color: 'success',
     sx: {
       fontWeight: 'bold',
-      textTransform: 'none'
+      textTransform: 'none',
+      ml: 2
     }
   }
 }
