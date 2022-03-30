@@ -2,7 +2,7 @@ name: Deploy Storybook
 on: 
   push:
     branches: [master]
-    paths: ["src/stories/**", "src/components/**", ".storybook/**", ".github/workflows/storybook_deploy.yml"]
+    paths: ["src/stories/**", "src/components/**", ".storybook/**", ".github/workflows/storybook_deploy.yml", "package.json"]
 
 jobs:
   build-and-deploy:
