@@ -68,4 +68,6 @@ export { default as YuButton } from './components/yu/YuButton'
 
 export { default as CopyableButton } from './components/inputs/CopyableButton'
 
+export { default as FileUploadInput } from './components/inputs/FileUploadInput'
+
 export { default as PersonAvatar } from './components/person/PersonAvatar'
