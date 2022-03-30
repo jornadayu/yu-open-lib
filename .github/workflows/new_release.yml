@@ -6,6 +6,7 @@ on:
       fakeDeploy:
         type: boolean
         default: false
+        required: false
         description: Run pre-release tasks but don't deploy to NPM or GitHub
       releaseType:
         description: 'Release Type'
@@ -96,6 +97,7 @@ jobs:
         id: github_release
         uses: mikepenz/release-changelog-builder-action@v1
         with:
+          configuration: ".github/configs/changelog-builder.json"
           fromTag: v${{ fromJson(steps.old_version.outputs.packageJson).version }}
           toTag: v${{ fromJson(steps.new_version.outputs.packageJson).version }}
 

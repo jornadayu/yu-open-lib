@@ -1,0 +1,28 @@
+{
+  "categories": [
+    {
+      "title": "## 🚀 Novas Adições",
+      "labels": ["feature", "enhancement"]
+    },
+    {
+      "title": "## 🐛 Correções",
+      "labels": ["fix", "bug"]
+    },
+    {
+      "title": "## 🧪 Mudanças Internas (CI/DI)",
+      "labels": ["ci/cd"]
+    },
+    {
+      "title": "## :hammer: Dependencies",
+      "labels": ["dependencies"]
+    }
+  ],
+  "template": "${{CHANGELOG}}\n\n<details>\n<summary>🚀 Outras Alterações</summary>\n\n${{UNCATEGORIZED}}\n</details>",
+  "pr_template": "- #${{NUMBER}} ${{TITLE}}",
+  "transformers": [
+    {
+      "pattern": "YURI-(\\d+)",
+      "target": "[YURI-$1](https://jornadayu.atlassian.net/browse/YURI-$1)"
+    }
+  ]
+}
