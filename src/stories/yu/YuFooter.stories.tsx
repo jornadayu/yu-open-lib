@@ -12,7 +12,7 @@ export default {
   title: 'YU/YuFooter',
   component: YuFooter,
   parameters: {
-    badges: ['v2.1.4']
+    badges: ['Added: v2.1.4']
   }
 } as ComponentMeta<typeof YuFooter>
 
@@ -38,3 +38,8 @@ const Template: ComponentStory<typeof YuFooter> = (args) => {
 
 export const Example: Story<Props> = Template.bind({})
 Example.args = {}
+
+export const CustomImage: Story<Props> = Template.bind({})
+CustomImage.args = {
+  imageSrc: 'https://via.placeholder.com/150'
+}

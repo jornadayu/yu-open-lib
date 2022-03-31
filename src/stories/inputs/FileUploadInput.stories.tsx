@@ -11,7 +11,7 @@ export default {
   title: 'Inputs/FileUploadInput',
   component: FileUploadInput,
   parameters: {
-    badges: ['v2.1.2']
+    badges: ['Added: v2.1.2']
   }
 } as ComponentMeta<typeof FileUploadInput>
 
