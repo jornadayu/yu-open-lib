@@ -4,7 +4,6 @@ import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
 
 import { Grid } from '@mui/material'
 
-import { BADGES } from '../../../.storybook/constants'
 import YuAppBar from '../../components/NavBar/YuAppBar'
 import { Props } from '../../components/yu/YuFooter'
 import { YuFooter } from '../../index'
@@ -13,7 +12,7 @@ export default {
   title: 'YU/YuFooter',
   component: YuFooter,
   parameters: {
-    badges: [BADGES.UNRELEASED]
+    badges: ['v2.1.4']
   }
 } as ComponentMeta<typeof YuFooter>
 
