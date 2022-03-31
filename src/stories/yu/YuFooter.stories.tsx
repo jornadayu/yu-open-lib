@@ -12,7 +12,7 @@ export default {
   title: 'YU/YuFooter',
   component: YuFooter,
   parameters: {
-    badges: ['v2.1.4']
+    badges: ['Added: v2.1.4']
   }
 } as ComponentMeta<typeof YuFooter>
 
