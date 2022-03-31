@@ -65,6 +65,7 @@ export { default as RejectionsSunburst } from './components/graphs/RejectionsSun
 export { default as AverageStepDurationGraph } from './components/graphs/AverageStepDurationGraph'
 
 export { default as YuButton } from './components/yu/YuButton'
+export { default as YuFooter } from './components/yu/YuFooter'
 
 export { default as CopyableButton } from './components/inputs/CopyableButton'
 
