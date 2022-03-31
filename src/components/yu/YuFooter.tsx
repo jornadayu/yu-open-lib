@@ -154,6 +154,7 @@ export type Props = {
   root?: string
   /** @default 'https://jobs.jornadayu.com' */
   candidatesUrl?: string
+  imageSrc?: string
 }
 
 const Footer: React.FC<Props> = ({
@@ -164,7 +165,8 @@ const Footer: React.FC<Props> = ({
   instagramUrl = 'https://instagram.com/jornadayu',
   clientsUrl = 'https://clientes.jornadayu.com',
   candidatesUrl = 'https://jobs.jornadayu.com',
-  address = 'Rua Ferreira de Araújo, 221 Cj. 122 Alto de Pinheiros, São Paulo'
+  address = 'Rua Ferreira de Araújo, 221 Cj. 122 Alto de Pinheiros, São Paulo',
+  imageSrc = Logo
 }) => {
   const classes = useStyles()
 
@@ -172,7 +174,7 @@ const Footer: React.FC<Props> = ({
     <div className={classes.root}>
       <div className={classes.contentContainer}>
         <div className={classes.logoContainer}>
-          <img src={Logo} alt='logo yu' className={classes.logo} />
+          <img src={imageSrc} alt='logo yu' className={classes.logo} />
           <Typography
             variant='h3'
             style={{

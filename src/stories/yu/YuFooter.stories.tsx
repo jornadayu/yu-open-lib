@@ -38,3 +38,8 @@ const Template: ComponentStory<typeof YuFooter> = (args) => {
 
 export const Example: Story<Props> = Template.bind({})
 Example.args = {}
+
+export const CustomImage: Story<Props> = Template.bind({})
+CustomImage.args = {
+  imageSrc: 'https://via.placeholder.com/150'
+}
