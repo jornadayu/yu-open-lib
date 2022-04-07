@@ -8,6 +8,11 @@ on:
 jobs:
   storybook:
     runs-on: ubuntu-latest
+    env:
+      # 7 GiB by default on GitHub, setting to 6 GiB
+      # https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources
+      # https://github.com/storybookjs/builder-vite/issues/282#issuecomment-1072455178
+      NODE_OPTIONS: --max-old-space-size=6144
 
     steps:
       - name: Checkout Repo
