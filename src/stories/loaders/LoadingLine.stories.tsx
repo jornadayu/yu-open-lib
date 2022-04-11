@@ -15,7 +15,7 @@ export default {
 
 const Template: ComponentStory<typeof LoadingLine> = (args) => {
   return (
-    <>
+    <React.Fragment>
       <YuAppBar
         items={{
           drawerItems: [],
@@ -25,7 +25,7 @@ const Template: ComponentStory<typeof LoadingLine> = (args) => {
       />
 
       <LoadingLine active {...args} />
-    </>
+    </React.Fragment>
   )
 }
 

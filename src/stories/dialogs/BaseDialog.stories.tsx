@@ -28,13 +28,13 @@ const Template: ComponentStory<typeof BaseDialog> = (args) => {
   }
 
   return (
-    <>
+    <React.Fragment>
       <button onClick={() => setOpen(true)}>Open Dialog</button>
 
       <BaseDialog {...args} open={open} onClose={close}>
         Some Content here
       </BaseDialog>
-    </>
+    </React.Fragment>
   )
 }
 
@@ -42,10 +42,10 @@ const baseProps: BaseDialogProps = {
   open: false,
   title: 'Dialog Title',
   actions: () => (
-    <>
+    <React.Fragment>
       <Button>Yes</Button>
       <Button>No</Button>
-    </>
+    </React.Fragment>
   )
 }
 

@@ -15,7 +15,7 @@ const Template: ComponentStory<typeof BackdropLoading> = () => {
   const [loading, setLoading] = useState(false)
 
   return (
-    <>
+    <React.Fragment>
       <button
         onClick={() => {
           setLoading(true)
@@ -26,7 +26,7 @@ const Template: ComponentStory<typeof BackdropLoading> = () => {
       </button>
 
       <BackdropLoading open={loading} />
-    </>
+    </React.Fragment>
   )
 }
 
