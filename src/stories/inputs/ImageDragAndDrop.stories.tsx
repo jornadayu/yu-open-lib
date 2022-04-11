@@ -2,7 +2,6 @@ import React from 'react'
 
 import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
 
-import { BADGES } from '../../../.storybook/constants'
 import ImageDragAndDrop, {
   Props
 } from '../../components/inputs/ImageDragAndDrop'
@@ -11,7 +10,7 @@ export default {
   title: 'inputs/ImageDragAndDrop',
   component: ImageDragAndDrop,
   parameters: {
-    badges: [BADGES.UNRELEASED]
+    badges: ['Added: v2.2.0']
   }
 } as ComponentMeta<typeof ImageDragAndDrop>
 
