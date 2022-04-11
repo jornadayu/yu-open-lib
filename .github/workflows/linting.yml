@@ -12,31 +12,6 @@ on:
     paths: ["src/**"]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v2
-
-      - name: Cache Yarn Dependencies
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ hashFiles('**/yarn.lock') }}
-
-      - name: Setup Node and Yarn
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-          cache: 'yarn'
-
-      - name: Install Dependencies
-        run: yarn install --prefer-offline --ignore-scripts
-
-      - name: Build
-        run: yarn build
-
   linting:
     runs-on: ubuntu-latest
 
@@ -64,3 +39,6 @@ jobs:
 
       - name: Run TypeScript Type-checking
         run: yarn run tsc --noEmit
+
+      - name: Build
+        run: yarn build
