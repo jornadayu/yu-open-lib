@@ -20,7 +20,7 @@
   },
   "settings": {
     "react": {
-      "version": "16"
+      "version": "17"
     }
   },
   "plugins": ["@typescript-eslint", "unused-imports"],
@@ -39,7 +39,7 @@
     "space-before-function-paren": 0,
     "react/prop-types": 0,
     "react/jsx-handler-names": 0,
-    "react/jsx-fragments": 0,
+    "react/jsx-fragments": [2, "element"],
     "react/no-unused-prop-types": 0,
     "import/export": 0,
     "import/no-absolute-path": "off"

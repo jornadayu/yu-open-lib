@@ -1,4 +1,4 @@
-name: Linting
+name: Linting and Build
 
 on:
   pull_request:
@@ -39,3 +39,6 @@ jobs:
 
       - name: Run TypeScript Type-checking
         run: yarn run tsc --noEmit
+
+      - name: Build
+        run: yarn build

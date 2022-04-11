@@ -24,7 +24,7 @@ const Template: ComponentStory<typeof DialogTitle> = (args) => {
   }
 
   return (
-    <>
+    <React.Fragment>
       <button onClick={() => setOpen(true)}>Open Dialog</button>
 
       <Dialog open={open} onClose={close} maxWidth='md' fullWidth>
@@ -32,7 +32,7 @@ const Template: ComponentStory<typeof DialogTitle> = (args) => {
 
         <DialogContent>Some Content</DialogContent>
       </Dialog>
-    </>
+    </React.Fragment>
   )
 }
 

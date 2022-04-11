@@ -22,11 +22,11 @@ const Template: ComponentStory<typeof ConfirmDialog> = (args) => {
   }
 
   return (
-    <>
+    <React.Fragment>
       <button onClick={() => setOpen(true)}>Open Dialog</button>
 
       <ConfirmDialog {...args} open={open} handleClose={close} />
-    </>
+    </React.Fragment>
   )
 }
 
