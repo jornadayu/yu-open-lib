@@ -133,12 +133,12 @@ const ImageDragAndDrop: React.FC<Props> = ({
             </Backdrop>
           )
         ) : (
-          <>
+          <React.Fragment>
             <AddIcon className='addIcon' size='large'>
               <AddAPhotoIcon />
             </AddIcon>
             <img src={imageSrc} />
-          </>
+          </React.Fragment>
         )}
         {!!title && (
           <Typography style={{ wordBreak: 'break-all', width }}>
