@@ -25,7 +25,7 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Cache Yarn Dependencies
         uses: actions/cache@v2
@@ -42,12 +42,6 @@ jobs:
 
       - name: Install Dependencies
         run: yarn install --prefer-offline --ignore-scripts
-
-      - name: Setup Git config
-        run: |
-          git config --global user.name 'jornadayu'
-          git config --global user.email 'jornadayu@users.noreply.github.com'
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
 
       # https://stackoverflow.com/a/61919791/10416161
       - name: Get current (old) project version
@@ -83,15 +77,15 @@ jobs:
           git add src/stories
           git commit --amend --no-edit
 
-      - name: Push changes
-        if:  ${{ github.event.inputs.fakeDeploy == 'false' }}
-        run: git push origin master --tags
-
       - name: Publish package
         run: yarn publish
         if:  ${{ github.event.inputs.fakeDeploy == 'false' }}
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
+      - name: Push changes
+        if:  ${{ github.event.inputs.fakeDeploy == 'false' }}
+        run: git push origin master --tags
 
       - name: Build Changelog
         id: github_release
