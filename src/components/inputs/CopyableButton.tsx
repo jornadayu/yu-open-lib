@@ -12,13 +12,20 @@ export type Props = {
   text: string
   /** @default 'Copiar' */
   tooltip?: string
+  format?: 'text/plain' | 'text/html'
+  icon?: React.ReactElement
 }
 
-const CopyableButton: React.FC<Props> = ({ text, tooltip = 'Copiar' }) => {
+const CopyableButton: React.FC<Props> = ({
+  text,
+  tooltip = 'Copiar',
+  format = 'text/plain',
+  icon = <FileCopyIcon />
+}) => {
   const [copied, setCopied] = useState(false)
 
   const copyText = () => {
-    copyToClipboard(text)
+    copyToClipboard(text, format)
     setCopied(true)
     setTimeout(() => setCopied(false), 1000)
   }
@@ -26,7 +33,7 @@ const CopyableButton: React.FC<Props> = ({ text, tooltip = 'Copiar' }) => {
   return (
     <Tooltip title={tooltip}>
       <IconButton onClick={copyText}>
-        {copied ? <CheckCircleOutlineIcon /> : <FileCopyIcon />}
+        {copied ? <CheckCircleOutlineIcon /> : icon}
       </IconButton>
     </Tooltip>
   )

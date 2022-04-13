@@ -2,6 +2,7 @@ import React from 'react'
 
 import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
 
+import { Email as EmailIcon } from '@mui/icons-material'
 import { Card, CardContent } from '@mui/material'
 
 import CopyableButton, { Props } from '../../components/inputs/CopyableButton'
@@ -24,4 +25,23 @@ const Template: ComponentStory<typeof CopyableButton> = (args) => {
 export const Example: Story<Props> = Template.bind({})
 Example.args = {
   text: 'Some text to copy'
+}
+
+export const WithCustomIcon: Story<Props> = Template.bind({})
+WithCustomIcon.args = {
+  text: 'Some text to copy',
+  icon: <EmailIcon />
+}
+
+export const WithCustomFormat: Story<Props> = Template.bind({})
+WithCustomFormat.args = {
+  text: `
+  <div>
+    some <strong>text</strong> <p style="color: blue">in blue</p>
+
+    and some text <p style="text-decoration: underline">underlined</p>
+  </div>
+  `,
+  icon: <EmailIcon />,
+  format: 'text/html'
 }
