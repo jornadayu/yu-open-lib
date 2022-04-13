@@ -2,14 +2,13 @@ import React from 'react'
 
 import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
 
-import { BADGES } from '../../../.storybook/constants'
 import RichTextViewer, { Props } from '../../components/RichTextViewer'
 
 export default {
   title: 'Utils/RichTextViewer',
   component: RichTextViewer,
   parameters: {
-    badges: [BADGES.UNRELEASED]
+    badges: ['Added: v2.3.0']
   }
 } as ComponentMeta<typeof RichTextViewer>
 
