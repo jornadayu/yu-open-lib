@@ -72,3 +72,5 @@ export { default as CopyableButton } from './components/inputs/CopyableButton'
 export { default as FileUploadInput } from './components/inputs/FileUploadInput'
 
 export { default as ImageDragAndDrop } from './components/inputs/ImageDragAndDrop'
+
+export { default as RichTextViewer } from './components/RichTextViewer'
