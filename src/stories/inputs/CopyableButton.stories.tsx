@@ -35,7 +35,13 @@ WithCustomIcon.args = {
 
 export const WithCustomFormat: Story<Props> = Template.bind({})
 WithCustomFormat.args = {
-  text: '<b>Some text to copy</b>',
+  text: `
+  <div>
+    some <strong>text</strong> <p style="color: blue">in blue</p>
+
+    and some text <p style="text-decoration: underline">underlined</p>
+  </div>
+  `,
   icon: <EmailIcon />,
   format: 'text/html'
 }
