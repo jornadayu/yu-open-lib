@@ -44,5 +44,6 @@ export const copyToClipboard = (
     onError?.()
   }
 
+  selection?.removeAllRanges()
   document.body.removeChild(mark)
 }
