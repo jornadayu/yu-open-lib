@@ -4,6 +4,7 @@ import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
 
 import { Button } from '@mui/material'
 
+import { BADGES } from '../../../.storybook/constants'
 import BaseDialog, {
   BaseDialogProps
 } from '../../components/dialogs/BaseDialog'
@@ -15,7 +16,7 @@ export default {
     onClose: { action: 'onClose' }
   },
   parameters: {
-    badges: ['Added: 2.0.1'] // Component was added in version 1.7.9
+    badges: [BADGES.UNRELEASED]
   }
 } as ComponentMeta<typeof BaseDialog>
 
