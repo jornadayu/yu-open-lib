@@ -32,7 +32,7 @@ export const decorators = [
 export const parameters = {
   options: {
     storySort: {
-      order: [`${pkg.version}`, ['Intro', 'AppTheme'], 'Components', 'Hooks', 'Graphs']
+      order: ['yu-open-lib', ['Intro', 'AppTheme'], 'Components', 'Hooks', 'Graphs']
     }
   },
   actions: { argTypesRegex: '^on[A-Z].*' },
