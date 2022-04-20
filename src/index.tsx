@@ -2,6 +2,7 @@ import './styles/core.scss'
 
 export { default as ConfirmDialog } from './components/ConfirmDialog'
 export { default as DialogTitle } from './components/DialogTitle'
+export { default as BaseDialog } from './components/dialogs/BaseDialog'
 export { default as CopyableInput } from './components/inputs/CopyableInput'
 export { default as EnvironmentLabel } from './components/EnvironmentLabel'
 export { default as HideOnScroll } from './components/HideOnScroll'
