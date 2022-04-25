@@ -1,11 +1,12 @@
 import React, { useMemo } from 'react'
 
 import { EChartOption } from 'echarts'
-// @ts-ignore
+import { EChartsReactProps } from 'echarts-for-react'
 import ReactEChartsCore from 'echarts-for-react/lib/core'
 import { FunnelChart } from 'echarts/charts'
 import {
   GridComponent,
+  LegendComponent,
   TitleComponent,
   TooltipComponent
 } from 'echarts/components'
@@ -21,7 +22,8 @@ echarts.use([
   TooltipComponent,
   GridComponent,
   FunnelChart,
-  SVGRenderer
+  SVGRenderer,
+  LegendComponent
 ])
 
 export type Datum = {
@@ -30,12 +32,40 @@ export type Datum = {
   value: number
 }
 
+export type SharedSeriesOptions = {
+  type: string
+  top: string
+  left: string
+  width: string
+  height: string
+  maxSize: string
+}
+
 export type Props = {
   data: Datum[]
   colors: string[]
+  options?: Partial<EChartOption>
+  /** @default false */
+  withLegends?: boolean
+  seriesOptions?: Partial<SharedSeriesOptions>
+  legendOptions?: Partial<EChartOption.Legend>
+} & Partial<EChartsReactProps>
+
+function formatParamIsSingle(
+  p: EChartOption.Tooltip.Format | EChartOption.Tooltip.Format[]
+): p is EChartOption.Tooltip.Format {
+  return 'name' in p
 }
 
-const EChartsFunnelGraph: React.FC<Props> = ({ data, colors }) => {
+const EChartsFunnelGraph: React.FC<Props> = ({
+  data,
+  colors,
+  options,
+  seriesOptions,
+  legendOptions,
+  withLegends = false,
+  ...echartProps
+}) => {
   const mappedData = useMemo(
     () => data.filter((d) => d.value).map((d) => ({ ...d, name: d.label })),
     [data]
@@ -55,19 +85,59 @@ const EChartsFunnelGraph: React.FC<Props> = ({ data, colors }) => {
   const echartsTheme = useEchartsTheme()
   const theme = useTheme()
 
+  const asTooltip = (datum?: Datum): string => {
+    if (!datum) return ''
+
+    return `${datum?.label}: <strong>${datum?.value}<strong>`
+  }
+
+  const sharedSeriesOptions = {
+    type: 'funnel',
+    top: '0',
+    left: '0%',
+    width: '80%',
+    height: '100%',
+    maxSize: '100%',
+    ...seriesOptions
+  }
+
   const option: EChartOption = {
     title: {
       show: false
     },
-    legend: {
-      show: false
-    },
+    legend: withLegends
+      ? {
+          data: mappedData.map((d) => d.name),
+          backgroundColor: theme.palette.background.default,
+          padding: 8,
+          borderRadius: theme.shape.borderRadius as number,
+          textStyle: {
+            fontFamily: theme.typography.fontFamily,
+            color: theme.palette.getContrastText(theme.palette.background.paper)
+          },
+          ...legendOptions
+        }
+      : {
+          show: false
+        },
     tooltip: {
       trigger: 'item',
-      formatter: (params: any) => {
-        const item = mappedData.find((d) => d.name === params.name)
+      formatter(params) {
+        if (formatParamIsSingle(params)) {
+          const item = mappedData.find((d) => d.name === params.name)
 
-        return `${item?.label}: <strong>${item?.value}<strong>`
+          return asTooltip(item)
+        }
+
+        const tooltip = params
+          .map((datum) => {
+            const item = mappedData.find((d) => d.name === datum.name)
+
+            return asTooltip(item)
+          })
+          .join('<br/>')
+
+        return tooltip
       },
       textStyle: {
         color: theme.palette.getContrastText(theme.palette.background.default)
@@ -78,23 +148,11 @@ const EChartsFunnelGraph: React.FC<Props> = ({ data, colors }) => {
     grid: {
       top: -55
     },
-    toolbox: {
-      feature: {
-        dataView: { readOnly: false },
-        restore: {},
-        saveAsImage: {}
-      }
-    },
     color: mappedColors,
     series: [
       {
         name: 'Outside Funnel',
-        type: 'funnel',
-        top: '0',
-        left: '0%',
-        width: '80%',
-        height: '100%',
-        maxSize: '100%',
+        ...sharedSeriesOptions,
         label: {
           formatter: '{b}',
           fontFamily: theme.typography.fontFamily,
@@ -104,7 +162,7 @@ const EChartsFunnelGraph: React.FC<Props> = ({ data, colors }) => {
           show: true
         },
         itemStyle: {
-          opacity: 0.7
+          opacity: 0.6
         },
         emphasis: {
           label: {
@@ -116,12 +174,7 @@ const EChartsFunnelGraph: React.FC<Props> = ({ data, colors }) => {
       },
       {
         name: 'Inside Funnel',
-        type: 'funnel',
-        top: '0',
-        left: '0%',
-        width: '80%',
-        height: '100%',
-        maxSize: '100%',
+        ...sharedSeriesOptions,
         label: {
           position: 'inside',
           formatter: '{c}',
@@ -135,7 +188,8 @@ const EChartsFunnelGraph: React.FC<Props> = ({ data, colors }) => {
         data: mappedData,
         z: 100
       }
-    ]
+    ],
+    ...options
   }
 
   return (
@@ -145,6 +199,7 @@ const EChartsFunnelGraph: React.FC<Props> = ({ data, colors }) => {
       theme={echartsTheme}
       notMerge
       lazyUpdate
+      {...echartProps}
     />
   )
 }
