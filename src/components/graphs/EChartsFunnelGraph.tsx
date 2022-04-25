@@ -46,8 +46,6 @@ export type Props = {
   colors: string[]
   options?: Partial<EChartOption>
   /** @default false */
-  withPercentage?: boolean
-  /** @default false */
   withLegends?: boolean
   seriesOptions?: Partial<SharedSeriesOptions>
   legendOptions?: Partial<EChartOption.Legend>
