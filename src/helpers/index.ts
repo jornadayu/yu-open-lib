@@ -72,18 +72,17 @@ export function truncatedText(text?: string | null, cut = 40): string | null {
  * https://stackoverflow.com/a/65148504/10416161
  *
  * Groups an array of objects by a key and returns an object or array grouped by provided key
- *
- * @param {Record<string, any>[]} array - array to group objects by key.
- * @param {string} key - key to group array objects by.
- * @param {boolean} removeKey - remove the key and it's value from the resulting object.
- * @param {any} outputType - type of structure the output should be contained in.
  */
-export function groupBy<T extends Record<string, any>>(
+export function groupBy<T extends Record<string, any>, K extends keyof T>(
+  /** array to group objects by key. */
   inputArray: T[],
-  key: string,
+  /** key to group array objects by. */
+  key: K,
+  /** remove the key and it's value from the resulting object. */
   removeKey = false,
+  /** type of structure the output should be contained in. */
   outputType = {} as T
-): Record<keyof T, T[]> {
+): Record<T[K], T[]> {
   return inputArray.reduce((previous: Record<keyof T, T[]>, current) => {
     const currentCopy = current
     const { [key]: keyValue } = currentCopy
