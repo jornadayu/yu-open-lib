@@ -1,4 +1,4 @@
-name: Linting and Build
+name: Linting/Build/Tests
 
 on:
   pull_request:
@@ -36,6 +36,9 @@ jobs:
 
       - name: Run Eslint
         run: yarn run eslint "src/**/*.{ts,tsx}"
+
+      - name: Run Tests
+        run: yarn test
 
       - name: Run TypeScript Type-checking
         run: yarn run tsc --noEmit
