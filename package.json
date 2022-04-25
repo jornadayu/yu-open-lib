@@ -31,9 +31,9 @@
     "prepare": "run-s build",
     "test:build": "run-s build",
     "test:lint": "eslint .",
-    "test": "vitest --config ./vite.config.ts run --passWithNoTests",
-    "test:coverage": "vitest --config ./vite.config.ts run --coverage",
-    "test:watch": "vitest --config ./vite.config.ts watch",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:watch": "vitest watch",
     "version:current": "echo $npm_package_version",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -s ./.storybook/public/ -o ./storybook-static/"
