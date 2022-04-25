@@ -45,9 +45,19 @@ export type Props = {
   data: Datum[]
   colors: string[]
   options?: Partial<EChartOption>
-  /** @default false */
+  /**
+   * Adds customizable legends to chart.
+   *
+   * @default false
+   */
   withLegends?: boolean
+  /**
+   * Customization for series options. (ex.: size, positioning, label formatting etc.)
+   */
   seriesOptions?: Partial<SharedSeriesOptions>
+  /**
+   * Customization for graph legends (ex.: positioning, font styling, etc.)
+   */
   legendOptions?: Partial<EChartOption.Legend>
 } & Partial<EChartsReactProps>
 
