@@ -59,6 +59,11 @@ export type Props = {
    * Customization for graph legends (ex.: positioning, font styling, etc.)
    */
   legendOptions?: Partial<EChartOption.Legend>
+  /**
+   * If true, allow values passed as '0' to be displayed in the graph.
+   * @default false
+   */
+  allowEmptyValues?: boolean
 } & Partial<EChartsReactProps>
 
 function formatParamIsSingle(
@@ -74,12 +79,18 @@ const EChartsFunnelGraph: React.FC<Props> = ({
   seriesOptions,
   legendOptions,
   withLegends = false,
+  allowEmptyValues = false,
   ...echartProps
 }) => {
-  const mappedData = useMemo(
-    () => data.filter((d) => d.value).map((d) => ({ ...d, name: d.label })),
-    [data]
-  )
+  const mappedData = useMemo(() => {
+    let filteredData = data
+
+    if (!allowEmptyValues) {
+      filteredData = data.filter((d) => d.value)
+    }
+
+    return filteredData.map((d) => ({ ...d, name: d.label }))
+  }, [data])
 
   const smoothedData = useMemo(
     () =>

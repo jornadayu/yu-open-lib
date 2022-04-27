@@ -105,3 +105,18 @@ CustomLegend.args = {
   },
   withLegends: true
 }
+
+export const WithEmptyValues: Story<Props> = Template.bind({})
+WithEmptyValues.args = {
+  data: [...exampleData, { id: 'empty', label: 'Empty', value: 0 }],
+  colors: [
+    ...Array(exampleData.length / 2).fill('#26bd60'),
+    ...Array(exampleData.length / 2).fill('#c4ba2f')
+  ],
+  seriesOptions: {
+    top: '40',
+    height: '85%'
+  },
+  allowEmptyValues: true,
+  withLegends: true
+}
