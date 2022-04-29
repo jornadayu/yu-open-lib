@@ -75,3 +75,5 @@ export { default as FileUploadInput } from './components/inputs/FileUploadInput'
 export { default as ImageDragAndDrop } from './components/inputs/ImageDragAndDrop'
 
 export { default as RichTextViewer } from './components/RichTextViewer'
+
+export { default as StatusChip } from './components/chips/StatusChip'
