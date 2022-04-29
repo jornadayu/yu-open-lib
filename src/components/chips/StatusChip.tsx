@@ -17,7 +17,7 @@ export type Props<Status extends string = string> = {
   sx?: SxProps<Theme>
 } & ChipProps
 
-const JobPositionStatusChip = <Status extends string = string>({
+const StatusChip = <Status extends string = string>({
   value,
   label,
   errorValues,
@@ -61,4 +61,4 @@ const JobPositionStatusChip = <Status extends string = string>({
   )
 }
 
-export default JobPositionStatusChip
+export default StatusChip
