@@ -4,7 +4,6 @@ import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
 
 import { Card, CardContent, Grid } from '@mui/material'
 
-import { BADGES } from '../../../.storybook/constants'
 import { Props } from '../../components/chips/StatusChip'
 import { StatusChip } from '../../index'
 
@@ -12,7 +11,7 @@ export default {
   title: 'Chips/StatusChip',
   component: StatusChip,
   parameters: {
-    badges: [BADGES.UNRELEASED]
+    badges: ['Added: v2.3.6']
   }
 } as ComponentMeta<typeof StatusChip>
 
