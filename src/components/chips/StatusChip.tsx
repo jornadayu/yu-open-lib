@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 
 import { Property } from 'csstype'
 
-import { Chip, Theme, Tooltip } from '@mui/material'
+import { Chip, ChipProps, Theme, Tooltip } from '@mui/material'
 import { ResponsiveStyleValue, SxProps, SystemStyleObject } from '@mui/system'
 
 export type Props<Status extends string = string> = {
@@ -15,7 +15,7 @@ export type Props<Status extends string = string> = {
   /** Optional tooltip on chip hover */
   tooltip?: string
   sx?: SxProps<Theme>
-}
+} & ChipProps
 
 const JobPositionStatusChip = <Status extends string = string>({
   value,
@@ -25,7 +25,8 @@ const JobPositionStatusChip = <Status extends string = string>({
   warningValues,
   primaryValues,
   tooltip,
-  sx
+  sx,
+  ...chipProps
 }: Props<Status>): React.ReactElement => {
   const chipColor = useMemo<
     | SystemStyleObject<Theme>
@@ -49,6 +50,7 @@ const JobPositionStatusChip = <Status extends string = string>({
     <Tooltip title={tooltip || false} open={tooltip ? undefined : false}>
       <Chip
         label={label || value}
+        {...chipProps}
         sx={{
           color: 'white',
           bgcolor: chipColor,
