@@ -3,18 +3,16 @@ import React, { useMemo } from 'react'
 import { Property } from 'csstype'
 
 import { Chip, ChipProps, Theme, Tooltip } from '@mui/material'
-import { ResponsiveStyleValue, SxProps, SystemStyleObject } from '@mui/system'
+import { ResponsiveStyleValue, SystemStyleObject } from '@mui/system'
 
 export type Props<Status extends string = string> = {
   value: Status
-  label?: string
   errorValues?: Status[]
   successValues?: Status[]
   warningValues?: Status[]
   primaryValues?: Status[]
   /** Optional tooltip on chip hover */
   tooltip?: string
-  sx?: SxProps<Theme>
 } & ChipProps
 
 const StatusChip = <Status extends string = string>({
