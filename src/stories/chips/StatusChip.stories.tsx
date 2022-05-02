@@ -2,7 +2,7 @@ import React from 'react'
 
 import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
 
-import { Card, CardContent, Grid } from '@mui/material'
+import { Card, CardContent, Grid, Typography } from '@mui/material'
 
 import { Props } from '../../components/chips/StatusChip'
 import { StatusChip } from '../../index'
@@ -29,23 +29,48 @@ const Template: ComponentStory<typeof StatusChip> = (args) => {
       <CardContent>
         <Grid container spacing={2}>
           <Grid item>
-            <StatusChip {...args} value={canceled} label='Canceled' />
+            <StatusChip
+              {...args}
+              value={canceled}
+              label={args.label || 'Canceled'}
+              onDelete={undefined}
+            />
           </Grid>
 
           <Grid item>
-            <StatusChip {...args} value={open} label='Open' />
+            <StatusChip
+              {...args}
+              value={open}
+              label={args.label || 'Open'}
+              onDelete={undefined}
+            />
           </Grid>
 
           <Grid item>
-            <StatusChip {...args} value={onHold} label='On Hold' />
+            <StatusChip
+              {...args}
+              value={onHold}
+              label={args.label || 'On Hold'}
+              onDelete={undefined}
+            />
           </Grid>
 
           <Grid item>
-            <StatusChip {...args} value={inactive} label='Inactive' />
+            <StatusChip
+              {...args}
+              value={inactive}
+              label={args.label || 'Inactive'}
+              onDelete={undefined}
+            />
           </Grid>
 
           <Grid item>
-            <StatusChip {...args} value={active} label='Active' />
+            <StatusChip
+              {...args}
+              value={active}
+              label={args.label || 'Active'}
+              onDelete={undefined}
+            />
           </Grid>
         </Grid>
       </CardContent>
@@ -58,6 +83,14 @@ Example.args = {
   successValues: ['open', 'active'],
   errorValues: ['canceled', 'inactive'],
   warningValues: ['on_hold']
+}
+
+export const CustomLabel: Story<Props> = Template.bind({})
+CustomLabel.args = {
+  successValues: ['open', 'active'],
+  errorValues: ['canceled', 'inactive'],
+  warningValues: ['on_hold'],
+  label: <Typography variant='subtitle1'>Some label</Typography>
 }
 
 export const WithTooltip: Story<Props> = Template.bind({})
