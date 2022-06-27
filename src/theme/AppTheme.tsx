@@ -22,7 +22,7 @@ const AppTheme = ({
           MuiCard: {
             styleOverrides: {
               root: {
-                backgroundColor: '#424242'
+                backgroundColor: darkMode ? '#424242' : '#fff'
               }
             }
           }
