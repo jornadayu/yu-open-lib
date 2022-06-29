@@ -4,12 +4,9 @@ export const loadAsset = (asset: string) => {
 
     return require(`./${asset}`)
   } catch (error) {
-    console.log(error)
     try {
       return require(`asset`)
     } catch (error2) {
-      console.log(error2)
-      console.log('nope', asset)
       return asset
     }
   }

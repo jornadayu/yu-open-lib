@@ -2,10 +2,12 @@ import React from 'react'
 
 import {
   Button,
+  ButtonProps,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
+  DialogProps,
   DialogTitle
 } from '@mui/material'
 
@@ -37,13 +39,20 @@ export type Props = {
    * Confirm Button color
    * @default 'secondary'
    */
-  confirmColor?: 'inherit' | 'primary' | 'secondary'
+  confirmColor?: ButtonProps['color']
   /**
    * Cancel Button color
    * @default 'primary'
    */
-  cancelColor?: 'inherit' | 'primary' | 'secondary'
-}
+  cancelColor?: ButtonProps['color']
+  renderCancelButton?: (props: ButtonProps) => React.ReactNode
+  renderConfirmButton?: (props: ButtonProps) => React.ReactNode
+  renderActions?: (props: {
+    handleClose: Props['handleClose']
+    handleConfirm: Props['handleConfirm']
+    loading: Props['loading']
+  }) => React.ReactNode
+} & DialogProps
 
 /**
  * Generic confirmation/cancel dialog with callbacks for confirm and cancel actions
@@ -62,10 +71,20 @@ const ConfirmDialog: React.FC<Props> = ({
   path,
   loading = false,
   confirmColor = 'secondary',
-  cancelColor = 'primary'
+  cancelColor = 'primary',
+  renderCancelButton = (buttonProps) => (
+    <Button autoFocus {...buttonProps}>
+      {cancelText}
+    </Button>
+  ),
+  renderConfirmButton = (buttonProps) => (
+    <Button {...buttonProps}>{confirmText}</Button>
+  ),
+  renderActions,
+  ...dialogProps
 }) => {
   return (
-    <Dialog open={open} onClose={handleClose}>
+    <Dialog open={open} onClose={handleClose} {...dialogProps}>
       <DialogTitle>{title}</DialogTitle>
 
       {(loading && <Loading loading />) || (
@@ -77,13 +96,22 @@ const ConfirmDialog: React.FC<Props> = ({
           </DialogContent>
 
           <DialogActions>
-            <Button onClick={handleClose} color={cancelColor} autoFocus>
-              {cancelText}
-            </Button>
+            {renderActions ? (
+              renderActions({ handleClose, handleConfirm, loading })
+            ) : (
+              <React.Fragment>
+                {renderCancelButton({
+                  onClick: handleClose,
+                  color: cancelColor
+                })}
 
-            <Button href={path} onClick={handleConfirm} color={confirmColor}>
-              {confirmText}
-            </Button>
+                {renderConfirmButton({
+                  onClick: handleConfirm,
+                  color: confirmColor,
+                  href: path
+                })}
+              </React.Fragment>
+            )}
           </DialogActions>
         </React.Fragment>
       )}

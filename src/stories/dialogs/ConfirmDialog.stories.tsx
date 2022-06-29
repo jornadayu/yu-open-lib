@@ -2,6 +2,10 @@ import React, { useState } from 'react'
 
 import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
 
+import { Cancel } from '@mui/icons-material'
+import { LoadingButton } from '@mui/lab'
+import { Button, IconButton } from '@mui/material'
+
 import ConfirmDialog, { Props } from '../../components/ConfirmDialog'
 
 export default {
@@ -59,4 +63,50 @@ CustomChildren.args = {
       <span style={{ color: 'red' }}>JSX</span>
     </div>
   )
+}
+
+export const CustomButtons: Story<PropsWithChildren> = Template.bind({})
+CustomButtons.args = {
+  ...baseProps,
+  renderCancelButton(buttonProps) {
+    return (
+      <IconButton {...buttonProps} color='error'>
+        <Cancel />
+      </IconButton>
+    )
+  }
+}
+
+export const CustomActions: Story<PropsWithChildren> = Template.bind({})
+CustomActions.args = {
+  ...baseProps,
+  renderActions({ handleClose, handleConfirm, loading }) {
+    return (
+      <div>
+        <Button variant='outlined' onClick={handleClose} color='error'>
+          Cancel
+        </Button>
+
+        <Button
+          variant='outlined'
+          onClick={handleConfirm}
+          color='success'
+          sx={{ ml: 1 }}
+        >
+          Confirm
+        </Button>
+
+        <LoadingButton
+          variant='outlined'
+          loading={loading}
+          onClick={() => {
+            alert('extra action!')
+          }}
+          sx={{ ml: 1 }}
+        >
+          New Extra action
+        </LoadingButton>
+      </div>
+    )
+  }
 }

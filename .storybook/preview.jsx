@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 
 import { ThemeProvider } from '@mui/material/styles'
 import { CssBaseline } from '@mui/material'
@@ -17,9 +17,15 @@ import { BADGES } from './constants'
 
 const theme = AppTheme({ darkMode: true })
 
-export const decorators = [
-  jsxDecorator(),
-  Story => (
+/**
+ * https://storybook.js.org/addons/storybook-addon-mui-mode/
+ */
+const withMuiTheme = (Story, context) => {
+  const mode = context.globals?.muiMode;
+
+  const theme = useMemo(() => AppTheme({ darkMode: mode === 'dark' }), [mode])
+
+  return (
     <EmotionThemeProvider theme={theme}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
@@ -27,9 +33,15 @@ export const decorators = [
       </ThemeProvider>
     </EmotionThemeProvider>
   )
+}
+
+export const decorators = [
+  jsxDecorator(),
+  withMuiTheme
 ]
 
 export const parameters = {
+  backgrounds: { disable: true },
   options: {
     storySort: {
       order: ['yu-open-lib', ['Intro', 'AppTheme'], 'Components', 'Hooks', 'Graphs']
