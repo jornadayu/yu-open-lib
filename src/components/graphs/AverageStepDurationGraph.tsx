@@ -95,8 +95,6 @@ const AverageStepDurationGraph: React.FC<AverageStepDurationGraphProps> = ({
   }, [steps])
   const nivoTheme = useNivoTheme()
 
-  console.log(data)
-
   const axisTopRotation = vertical ? 0 : -25
 
   return (

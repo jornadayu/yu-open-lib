@@ -44,10 +44,10 @@ module.exports = {
     '@storybook/addon-essentials',
     '@etchteam/storybook-addon-status',
     '@geometricpanda/storybook-addon-badges',
-    'storybook-addon-jsx'
-    // {
-    //   name: '@storybook/addon-storysource'
-    // }
+    'storybook-addon-jsx',
+    {
+      name: '@storybook/addon-storysource'
+    }
   ],
   core: {
     builder: '@storybook/builder-vite'
