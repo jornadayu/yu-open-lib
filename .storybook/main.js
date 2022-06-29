@@ -4,37 +4,36 @@ const path = require('path')
 /**
  * https://github.com/eirslett/storybook-builder-vite/issues/87
  */
+
 const forceBundleConfigDeps = () => {
-  const virtualFileId = '/virtual:/@storybook/builder-vite/vite-app.js';
-
+  const virtualFileId = '/virtual:/@storybook/builder-vite/vite-app.js'
   return {
-      name: 'force-bundle-config-dep',
-      enforce: 'pre',
-      /**
-       * @param {string} code 
-       * @param {string} id 
-       * @returns {{
-       *   code: string,
-       *   map: null
-       * }}
-       */
-      transform(code, id) {
-          if (id !== virtualFileId) {
-            return
-          }
+    name: 'force-bundle-config-dep',
+    enforce: 'pre',
 
-          // match last node_modules
-          // .../node_modules/.../node_modules/yy/zz -> yy/zz
-          const transformedCode = code.replace(
-            /import \* as (config_.*?) from '.*\/node_modules\/(.*?)'/g,
-            (_substr, name, mpath) => `import * as ${name} from '${mpath}'`
-          )
+    /**
+     * @param {string} code
+     * @param {string} id
+     * @returns {{
+     *   code: string,
+     *   map: null
+     * }}
+     */
+    transform(code, id) {
+      if (id !== virtualFileId) {
+        return
+      } // match last node_modules
+      // .../node_modules/.../node_modules/yy/zz -> yy/zz
 
-          return {
-            code: transformedCode,
-            map: null,
-          }
+      const transformedCode = code.replace(
+        /import \* as (config_.*?) from '.*\/node_modules\/(.*?)'/g,
+        (_substr, name, mpath) => `import * as ${name} from '${mpath}'`
+      )
+      return {
+        code: transformedCode,
+        map: null
       }
+    }
   }
 }
 
@@ -45,13 +44,13 @@ module.exports = {
     '@storybook/addon-essentials',
     '@etchteam/storybook-addon-status',
     '@geometricpanda/storybook-addon-badges',
-    'storybook-addon-jsx',
+    'storybook-addon-jsx'
     // {
     //   name: '@storybook/addon-storysource'
     // }
   ],
   core: {
-    builder: 'storybook-builder-vite'
+    builder: '@storybook/builder-vite'
   },
   typescript: {
     // check: false,
@@ -64,7 +63,6 @@ module.exports = {
   },
   async viteFinal(config, options) {
     // Vite config
-
     return {
       ...config,
       // https://vitejs.dev/guide/static-deploy.html#github-pages
@@ -73,54 +71,61 @@ module.exports = {
         ...config.resolve,
         alias: {
           ...config.resolve.alias,
-          '@emotion/react': path.resolve(path.join(__dirname, '../node_modules/@emotion/react')),
-          '@emotion/styled': path.resolve(path.join(__dirname,'../node_modules/@emotion/styled')),
-          '@emotion/core':path.resolve(path.join(__dirname, '../node_modules/@emotion/react')),
-          'emotion-theming': path.resolve(path.join(__dirname, '../node_modules/@emotion/react'))
+          '@emotion/react': path.resolve(
+            path.join(__dirname, '../node_modules/@emotion/react')
+          ),
+          '@emotion/styled': path.resolve(
+            path.join(__dirname, '../node_modules/@emotion/styled')
+          ),
+          '@emotion/core': path.resolve(
+            path.join(__dirname, '../node_modules/@emotion/react')
+          ),
+          'emotion-theming': path.resolve(
+            path.join(__dirname, '../node_modules/@emotion/react')
+          )
         }
       },
       plugins: [
-        ...config.plugins,
-        // forceBundleConfigDeps(),
+        ...config.plugins // forceBundleConfigDeps(),
         // https://github.com/vitejs/vite/issues/3409
         // viteCommonjs()
       ],
       optimizeDeps: {
         include: [
           // optimizeDeps.include only exists in Development
-          ...config?.optimizeDeps?.include || [],
-          "@storybook/react",
-          "@storybook/client-api",
-          "@storybook/client-logger",
-          "react",
-          "@mui/material/styles",
-          "@mdx-js/react",
-          "@mui/material",
-          "@mui/system",
-          "@mui/icons-material",
-          "@mui/material/locale",
-          "@mui/utils",
-          "@storybook/addon-docs",
-          "@storybook/theming",
-          "storybook-addon-jsx",
-          "@geometricpanda/storybook-addon-badges",
-          "d3-shape",
-          "javascript-color-gradient",
-          "@nivo/bar",
-          "@nivo/core",
-          "@nivo/sunburst",
-          "@mui/styles/makeStyles",
-          "@nivo/tooltip",
-          "@nivo/heatmap",
-          "@mui/material/colors",
-          "qrcode.react",
-          "@nivo/pie",
-          "react-wordcloud"
+          ...(config?.optimizeDeps?.include || []),
+          '@storybook/react',
+          '@storybook/client-api',
+          '@storybook/client-logger',
+          'react',
+          '@mui/material/styles',
+          '@mdx-js/react',
+          '@mui/material',
+          '@mui/system',
+          '@mui/icons-material',
+          '@mui/material/locale',
+          '@mui/utils',
+          '@storybook/addon-docs',
+          '@storybook/theming',
+          'storybook-addon-jsx',
+          '@geometricpanda/storybook-addon-badges',
+          'd3-shape',
+          'javascript-color-gradient',
+          '@nivo/bar',
+          '@nivo/core',
+          '@nivo/sunburst',
+          '@mui/styles/makeStyles',
+          '@nivo/tooltip',
+          '@nivo/heatmap',
+          '@mui/material/colors',
+          'qrcode.react',
+          '@nivo/pie',
+          'react-wordcloud'
         ],
         entries: [
           `${path.relative(
             config.root,
-            path.resolve(__dirname, "../stories")
+            path.resolve(__dirname, '../stories')
           )}/**/*.stories.@(js|jsx|ts|tsx)`
         ]
       }
