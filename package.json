@@ -26,6 +26,7 @@
     "node": ">=14"
   },
   "scripts": {
+    "prepare": "run-s build",
     "build": "microbundle-crl --no-compress --external=react,react-dom,react-is --format modern,cjs --css-modules false",
     "build:types": "tsc --declaration --emitDeclarationOnly --jsx react --esModuleInterop --outDir dist && cp dist/src/* ./dist -r || exit 0",
     "test:build": "run-s build",
