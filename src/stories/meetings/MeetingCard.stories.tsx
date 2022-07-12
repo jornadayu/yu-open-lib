@@ -2,14 +2,13 @@ import React from 'react'
 
 import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
 
-import { BADGES } from '../../../.storybook/constants'
 import MeetingCard, { Props } from '../../components/meetings/MeetingCard'
 
 export default {
   title: 'meetings/MeetingCard',
   component: MeetingCard,
   parameters: {
-    badges: [BADGES.UNRELEASED]
+    badges: ['Added: v2.4.2']
   }
 } as ComponentMeta<typeof MeetingCard>
 
