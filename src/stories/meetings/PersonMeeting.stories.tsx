@@ -32,13 +32,7 @@ const baseProps: Partial<Props> = {
     { value: 'scheduled_without_invite', label: 'Agendada (Sem Link)' },
     { value: 'canceled', label: 'Cancelada' },
     { value: 'pending', label: 'Pendente' }
-  ],
-  statusLabel: 'Status: ',
-  label: 'Meetings',
-  interviewerLabel: 'Entrevistador: ',
-  intervieweeLabel: 'Entrevistado: ',
-  dateLabel: 'Data: ',
-  inviteUrlLabel: 'Link'
+  ]
 }
 
 export const Base: Story<Props> = Template.bind({})

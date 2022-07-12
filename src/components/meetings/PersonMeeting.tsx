@@ -7,43 +7,43 @@ import { Box } from '@mui/system'
 
 export type Props = {
   status: string
-  label: string
-  statusLabel: string
+  label?: { label: string; value: string }[]
+  statusLabel?: { label: string; value: string }[]
   interviewer: string
   interviewerId: string | number
   interviewerName: string
   interviewerAvatarUrl: string
-  interviewerLabel: string
+  interviewerLabel?: { label: string; value: string }[]
   intervieweeId: string | number
   intervieweeName: string
   intervieweeAvatarUrl: string
-  intervieweeLabel: string
+  intervieweeLabel?: { label: string; value: string }[]
   startAt?: string
   endAt?: string
-  dateLabel?: string
+  dateLabel?: { label: string; value: string }[]
   inviteUrl?: string
-  inviteUrlLabel?: string
+  inviteUrlLabel?: { label: string; value: string }[]
   userId: string | number
   statusOptions: any[]
 }
 
 const PersonMeeting: React.FC<Props> = ({
   status,
-  label,
-  statusLabel,
+  label = 'Meetings',
+  statusLabel = 'Status: ',
   interviewerId,
   interviewerName,
   interviewerAvatarUrl,
-  interviewerLabel,
+  interviewerLabel = 'Entrevistador: ',
   intervieweeId,
   intervieweeName,
   intervieweeAvatarUrl,
-  intervieweeLabel,
+  intervieweeLabel = 'Entrevistado: ',
   startAt,
   endAt,
-  dateLabel,
+  dateLabel = 'Data: ',
   inviteUrl,
-  inviteUrlLabel,
+  inviteUrlLabel = 'Invite',
   userId,
   statusOptions
 }) => {
@@ -61,8 +61,9 @@ const PersonMeeting: React.FC<Props> = ({
         return 'error'
       case 'pending':
         return 'default'
+      default:
+        return 'default'
     }
-    return 'default'
   }, [status])
 
   return (
