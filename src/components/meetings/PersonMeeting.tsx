@@ -62,6 +62,7 @@ const PersonMeeting: React.FC<Props> = ({
       case 'pending':
         return 'default'
     }
+    return 'default'
   }, [status])
 
   return (
