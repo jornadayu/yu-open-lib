@@ -25,6 +25,13 @@ const AppTheme = ({
                 backgroundColor: darkMode ? '#424242' : '#fff'
               }
             }
+          },
+          MuiLink: {
+            styleOverrides: {
+              root: {
+                textDecoration: 'none'
+              }
+            }
           }
         },
         typography: {

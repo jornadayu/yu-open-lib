@@ -1,71 +1,89 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 
 import dayjs from 'dayjs'
 
-import { Avatar, Button, Chip, Paper, Typography } from '@mui/material'
-import { Box } from '@mui/system'
+import DateRangeIcon from '@mui/icons-material/DateRange'
+import {
+  Avatar,
+  Box,
+  Button,
+  ButtonProps,
+  Chip,
+  ChipProps,
+  Link,
+  Paper,
+  Typography
+} from '@mui/material'
 
 export type Props = {
   status: string
+  /**
+   * @default 'Meetings'
+   */
   label?: string
-  statusLabel?: string
+  statusPrefixLabel?: string
+  statusLabel: string
   interviewer: string
-  interviewerId: string | number
   interviewerName: string
   interviewerAvatarUrl: string
+  /**
+   * @default 'Entrevistador: '
+   */
   interviewerLabel?: string
-  intervieweeId: string | number
   intervieweeName: string
   intervieweeAvatarUrl: string
+  /**
+   * @default 'Entrevistado: '
+   */
   intervieweeLabel?: string
+  /**
+   * @default true
+   */
+  showInterviewer?: boolean
+  /**
+   * @default true
+   */
+  showInterviewee?: boolean
   startAt?: string
   endAt?: string
+  /**
+   * @default 'Data: '
+   */
   dateLabel?: string
+  /**
+   * @default 'Invite'
+   */
   inviteUrl?: string
   inviteUrlLabel?: string
-  userId: string | number
-  statusOptions: { label: string; value: string }[]
+  /**
+   * @default 'default'
+   */
+  statusChipColor?: ChipProps['color']
+  statusChipProps?: Partial<ChipProps>
+  inviteButtonProps?: Partial<ButtonProps>
 }
 
-const PersonMeeting: React.FC<Props> = ({
-  status,
+const MeetingCard: React.FC<Props> = ({
   label = 'Meetings',
-  statusLabel = 'Status: ',
-  interviewerId,
+  statusPrefixLabel,
+  statusLabel,
   interviewerName,
   interviewerAvatarUrl,
   interviewerLabel = 'Entrevistador: ',
-  intervieweeId,
   intervieweeName,
   intervieweeAvatarUrl,
   intervieweeLabel = 'Entrevistado: ',
+  showInterviewer = true,
+  showInterviewee = true,
   startAt,
   endAt,
   dateLabel = 'Data: ',
   inviteUrl,
   inviteUrlLabel = 'Invite',
-  userId,
-  statusOptions
+  statusChipColor = 'default',
+  statusChipProps,
+  inviteButtonProps
 }) => {
-  const statusChipColor = useMemo(() => {
-    switch (status) {
-      case 'scheduled':
-        return 'success'
-      case 'finished':
-        return 'primary'
-      case 'error':
-        return 'error'
-      case 'scheduled_without_invite':
-        return 'warning'
-      case 'canceled':
-        return 'error'
-      case 'pending':
-        return 'default'
-      default:
-        return 'default'
-    }
-  }, [status])
-
   return (
     <React.Fragment>
       <Paper variant='outlined' sx={{ p: 1 }}>
@@ -74,16 +92,17 @@ const PersonMeeting: React.FC<Props> = ({
         <Box mt={1} />
 
         <Box display='flex' flexDirection='row' alignItems='center' gap={1}>
-          <Typography variant='body2'>{statusLabel}</Typography>
+          <Typography variant='body2'>{statusPrefixLabel}</Typography>
           <Chip
             color={statusChipColor}
-            label={statusOptions?.find(({ value }) => status === value)?.label}
+            label={statusLabel}
+            {...statusChipProps}
           />
         </Box>
 
         <Box mt={1} />
 
-        {userId?.toString() !== interviewerId.toString() && (
+        {showInterviewer && (
           <Box display='flex' flexDirection='row' alignItems='center' gap={1}>
             <Typography variant='body2'>{interviewerLabel}</Typography>
             {interviewerName}
@@ -95,7 +114,7 @@ const PersonMeeting: React.FC<Props> = ({
           </Box>
         )}
 
-        {userId?.toString() !== intervieweeId.toString() && (
+        {showInterviewee && (
           <Box display='flex' flexDirection='row' alignItems='center' gap={1}>
             <Typography variant='body2'>{intervieweeLabel}</Typography>
             {intervieweeName}
@@ -117,9 +136,13 @@ const PersonMeeting: React.FC<Props> = ({
 
         <Box mt={1} />
 
-        <Button component='a' href={inviteUrl} target='_blank'>
-          {inviteUrlLabel}
-        </Button>
+        {inviteUrl && (
+          <Link href={inviteUrl} target='_blank'>
+            <Button endIcon={<DateRangeIcon />} {...inviteButtonProps}>
+              {inviteUrlLabel}
+            </Button>
+          </Link>
+        )}
       </Paper>
 
       <Box mt={1} />
@@ -127,4 +150,4 @@ const PersonMeeting: React.FC<Props> = ({
   )
 }
 
-export default PersonMeeting
+export default MeetingCard
