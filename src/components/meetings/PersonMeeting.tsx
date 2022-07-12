@@ -7,24 +7,24 @@ import { Box } from '@mui/system'
 
 export type Props = {
   status: string
-  label?: { label: string; value: string }[]
-  statusLabel?: { label: string; value: string }[]
+  label?: string
+  statusLabel?: string
   interviewer: string
   interviewerId: string | number
   interviewerName: string
   interviewerAvatarUrl: string
-  interviewerLabel?: { label: string; value: string }[]
+  interviewerLabel?: string
   intervieweeId: string | number
   intervieweeName: string
   intervieweeAvatarUrl: string
-  intervieweeLabel?: { label: string; value: string }[]
+  intervieweeLabel?: string
   startAt?: string
   endAt?: string
-  dateLabel?: { label: string; value: string }[]
+  dateLabel?: string
   inviteUrl?: string
-  inviteUrlLabel?: { label: string; value: string }[]
+  inviteUrlLabel?: string
   userId: string | number
-  statusOptions: any[]
+  statusOptions: { label: string; value: string }[]
 }
 
 const PersonMeeting: React.FC<Props> = ({
