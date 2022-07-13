@@ -13,6 +13,8 @@ export { default as YuGrid } from './components/YuGrid'
 export { default as BackdropLoading } from './components/loaders/BackdropLoading'
 export { default as ErrorAlert } from './components/ErrorAlert'
 
+export { default as Welcome } from './components/welcome/Welcome'
+
 export { default as YuAppBar } from './components/NavBar/YuAppBar'
 export type { Props as YuAppBarProps } from './components/NavBar/BaseAppBar'
 
