@@ -18,7 +18,7 @@ const Welcome: React.FC<Props> = ({ name }) => {
     'Buenos dias',
     'Fala',
     'Vamos lá',
-    "Let\'s go",
+    "Let's go",
     'Vámonos',
     'Have a nice day'
   ]
