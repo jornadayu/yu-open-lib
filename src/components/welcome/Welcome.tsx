@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { Typography } from '@mui/material'
 
 export type Props = {
@@ -17,14 +18,14 @@ const Welcome: React.FC<Props> = ({ name }) => {
     'Buenos dias',
     'Fala',
     'Vamos lá',
-    'Let\'s go',
+    "Let\'s go",
     'Vámonos',
     'Have a nice day'
   ]
   const emojis = ['🦾🦾🦾', '😘', '🌈', '😜', '🤪', '🦾', '🙂']
 
   return (
-    <Typography variant="h3">
+    <Typography variant='h3'>
       {`${greetings[Math.floor(Math.random() * greetings.length)]} ${
         emojis[Math.floor(Math.random() * emojis.length)]
       }, ${name}!`}
