@@ -2,14 +2,13 @@ import React from 'react'
 
 import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
 
-import { BADGES } from '../../../.storybook/constants'
 import Welcome, { Props } from '../../components/welcome/Welcome'
 
 export default {
   title: 'welcome/Welcome',
   component: Welcome,
   parameters: {
-    badges: [BADGES.UNRELEASED]
+    badges: ['Added: v2.5.0']
   }
 } as ComponentMeta<typeof Welcome>
 
