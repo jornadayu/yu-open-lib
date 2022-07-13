@@ -9,17 +9,17 @@ const Welcome: React.FC<Props> = ({ name }) => {
   const greetings = [
     'Olá',
     'Oi',
-    'Bonjour',
-    'Hello',
-    'Buongiorno',
-    'Olá',
-    'Buenos dias',
-    'Olá',
-    'Oi',
     'Oie',
+    'Hello',
+    'Hola',
+    'Bonjour',
+    'Buongiorno',
+    'Buenos dias',
     'Fala',
     'Vamos lá',
-    'Ao trabalho'
+    'Let\'s go',
+    'Vámonos',
+    'Have a nice day'
   ]
   const emojis = ['🦾🦾🦾', '😘', '🌈', '😜', '🤪', '🦾', '🙂']
 
