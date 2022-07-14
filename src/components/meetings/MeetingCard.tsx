@@ -16,14 +16,12 @@ import {
 } from '@mui/material'
 
 export type Props = {
-  status: string
   /**
    * @default 'Meetings'
    */
   label?: string
   statusPrefixLabel?: string
   statusLabel: string
-  interviewer: string
   interviewerName: string
   interviewerAvatarUrl: string
   /**
