@@ -16,14 +16,12 @@ import {
 } from '@mui/material'
 
 export type Props = {
-  status: string
   /**
    * @default 'Meetings'
    */
   label?: string
   statusPrefixLabel?: string
   statusLabel: string
-  interviewer: string
   interviewerName: string
   interviewerAvatarUrl: string
   /**
@@ -82,7 +80,8 @@ const MeetingCard: React.FC<Props> = ({
   inviteUrlLabel = 'Invite',
   statusChipColor = 'default',
   statusChipProps,
-  inviteButtonProps
+  inviteButtonProps,
+  children
 }) => {
   return (
     <React.Fragment>
@@ -143,6 +142,7 @@ const MeetingCard: React.FC<Props> = ({
             </Button>
           </Link>
         )}
+        {children}
       </Paper>
 
       <Box mt={1} />
