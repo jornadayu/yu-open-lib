@@ -90,7 +90,7 @@ const MeetingCard: React.FC<Props> = ({
 
         <Box mt={1} />
 
-        <Box display='flex' flexDirection='row' alignItems='center' gap={1}>
+        <Box display='flex' flexDirection='row' alignItems='center'>
           <Typography variant='body2'>{statusPrefixLabel}</Typography>
           <Chip
             color={statusChipColor}
