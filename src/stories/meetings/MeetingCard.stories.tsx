@@ -2,6 +2,8 @@ import React from 'react'
 
 import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
 
+import { Button } from '@mui/material'
+
 import MeetingCard, { Props } from '../../components/meetings/MeetingCard'
 
 export default {
@@ -22,6 +24,13 @@ const Template: ComponentStory<typeof MeetingCard> = (args) => {
         statusLabel='Agendada (sem link)'
         statusChipColor='warning'
       />
+      <MeetingCard
+        {...args}
+        statusLabel='Agendada (sem link)'
+        statusChipColor='warning'
+      >
+        <Button>Agendar</Button>
+      </MeetingCard>
     </div>
   )
 }

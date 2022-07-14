@@ -80,7 +80,8 @@ const MeetingCard: React.FC<Props> = ({
   inviteUrlLabel = 'Invite',
   statusChipColor = 'default',
   statusChipProps,
-  inviteButtonProps
+  inviteButtonProps,
+  children
 }) => {
   return (
     <React.Fragment>
@@ -141,6 +142,7 @@ const MeetingCard: React.FC<Props> = ({
             </Button>
           </Link>
         )}
+        {children}
       </Paper>
 
       <Box mt={1} />
