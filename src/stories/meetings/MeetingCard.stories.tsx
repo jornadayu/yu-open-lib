@@ -62,6 +62,6 @@ IntervieweeView.args = {
 export const WithDate: Story<Props> = Template.bind({})
 WithDate.args = {
   ...baseProps,
-  startAt: new Date(2022, 12, 17, 3, 24, 0),
-  endAt: new Date(2022, 12, 17, 3, 24, 0)
+  startAt: new Date(2022, 12, 17, 12, 0, 0),
+  endAt: new Date(2022, 12, 17, 12, 30, 0)
 }
