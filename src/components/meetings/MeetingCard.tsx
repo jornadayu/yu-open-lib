@@ -14,6 +14,7 @@ import {
   Paper,
   Typography
 } from '@mui/material'
+import { SxProps, Theme } from '@mui/system'
 
 export type Props = {
   /**
@@ -42,8 +43,8 @@ export type Props = {
    * @default true
    */
   showInterviewee?: boolean
-  startAt?: string
-  endAt?: string
+  startAt?: Date
+  endAt?: Date
   /**
    * @default 'Data: '
    */
@@ -59,6 +60,7 @@ export type Props = {
   statusChipColor?: ChipProps['color']
   statusChipProps?: Partial<ChipProps>
   inviteButtonProps?: Partial<ButtonProps>
+  sx?: SxProps<Theme>
 }
 
 const MeetingCard: React.FC<Props> = ({
@@ -81,11 +83,12 @@ const MeetingCard: React.FC<Props> = ({
   statusChipColor = 'default',
   statusChipProps,
   inviteButtonProps,
-  children
+  children,
+  sx
 }) => {
   return (
     <React.Fragment>
-      <Paper variant='outlined' sx={{ p: 1 }}>
+      <Paper variant='outlined' sx={{ p: 1, ...sx }}>
         <Typography sx={{ fontWeight: 'bolder' }}>{label}</Typography>
 
         <Box mt={1} />
@@ -127,11 +130,13 @@ const MeetingCard: React.FC<Props> = ({
 
         <Box mt={1} />
 
-        <Box display='flex' flexDirection='row' alignItems='center' gap={1}>
-          <Typography variant='body2'>{dateLabel}</Typography>
-          {dayjs(startAt).format('DD/MMM - HH:mm')}-
-          {dayjs(endAt).format('HH:mm')}
-        </Box>
+        {startAt && endAt && (
+          <Box display='flex' flexDirection='row' alignItems='center' gap={1}>
+            <Typography variant='body2'>{dateLabel}</Typography>
+            {dayjs(startAt).format('DD/MMM - HH:mm')}-
+            {dayjs(endAt).format('HH:mm')}
+          </Box>
+        )}
 
         <Box mt={1} />
 
