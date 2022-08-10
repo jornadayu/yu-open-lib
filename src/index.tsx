@@ -51,6 +51,9 @@ export {
 export { copyToClipboard } from './helpers/text'
 
 export { useViewport, useToggle } from './hooks'
+
+export { legendProps as nivoLegendPros, useNivoTheme } from './hooks/nivo'
+
 export { useEchartsTheme } from './hooks/echarts'
 
 export { default as NivoTextTooltip } from './components/graphs/NivoTextTooltip'
