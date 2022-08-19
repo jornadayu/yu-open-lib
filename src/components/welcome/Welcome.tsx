@@ -3,7 +3,7 @@ import React from 'react'
 import { Typography } from '@mui/material'
 
 export type Props = {
-  name: string
+  name?: string
 }
 
 const Welcome: React.FC<Props> = ({ name }) => {
@@ -24,11 +24,17 @@ const Welcome: React.FC<Props> = ({ name }) => {
   ]
   const emojis = ['🦾🦾🦾', '😘', '🌈', '😜', '🤪', '🦾', '🙂']
 
-  return (
+  return name ? (
     <Typography variant='h3'>
       {`${greetings[Math.floor(Math.random() * greetings.length)]} ${
         emojis[Math.floor(Math.random() * emojis.length)]
       }, ${name}!`}
+    </Typography>
+  ) : (
+    <Typography variant='h3'>
+      {`${greetings[Math.floor(Math.random() * greetings.length)]}!!! ${
+        emojis[Math.floor(Math.random() * emojis.length)]
+      }`}
     </Typography>
   )
 }
