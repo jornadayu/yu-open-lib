@@ -30,6 +30,8 @@ export type Props = {
   onError?: () => void
   defaultValue?: File
   loading?: boolean
+  autoSave?: boolean
+  onFileChange?: (file: File | null) => void
 }
 
 const FileUploadInput: React.FC<Props> = ({
@@ -45,22 +47,31 @@ const FileUploadInput: React.FC<Props> = ({
   saveIcon = <Save />,
   loading = false,
   defaultValue = null,
-  accept = 'video/mp4,video/mkv,video/x-m4v,video/*'
+  accept = 'video/mp4,video/mkv,video/x-m4v,video/*',
+  autoSave = false,
+  onFileChange
 }) => {
   const [file, setFile] = useState<File | null>(defaultValue)
-
-  const handleCapture = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-    if (target.files && target.files.length) {
-      setFile(target.files[0])
-    } else {
-      onError?.()
-    }
-  }
 
   async function submit() {
     if (file) {
       onSubmit(file)
       setFile(null)
+    }
+  }
+
+  const handleCapture = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+    if (target.files && target.files.length) {
+      setFile(target.files[0])
+      if (onFileChange) {
+        onFileChange(target.files[0])
+      }
+      if (autoSave) {
+        onSubmit(target.files[0])
+        setFile(null)
+      }
+    } else {
+      onError?.()
     }
   }
 
@@ -90,13 +101,13 @@ const FileUploadInput: React.FC<Props> = ({
           </LoadingButton>
         </label>
 
-        <Fade in={!!file}>
+        <Fade in={!!file && !autoSave}>
           <label style={{ marginLeft: 10 }} {...labelProps}>
             {file?.name}
           </label>
         </Fade>
 
-        <Fade in={!!file}>
+        <Fade in={!!file && !autoSave}>
           <IconButton
             sx={{ ml: 2 }}
             onClick={() => submit()}
