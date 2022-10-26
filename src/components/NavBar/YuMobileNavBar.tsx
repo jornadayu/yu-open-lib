@@ -77,14 +77,14 @@ const YuMobileNavBar: React.FC<Props> = ({
               <Box>
                 {leftItems.map((button) => (
                   <ToolbarButton
-                    button={button}
+                    button={{ ...button, iconButton: true }}
                     key={button.path || button.text}
                   />
                 ))}
 
                 {rightItems.map((button) => (
                   <ToolbarButton
-                    button={button}
+                    button={{ ...button, iconButton: true }}
                     key={button.path || button.text}
                   />
                 ))}
