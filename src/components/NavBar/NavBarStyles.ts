@@ -23,5 +23,9 @@ export const useStyles = makeStyles(() => ({
   externalAppBar: {
     alignItems: 'center'
   },
+  mobileNavBar: {
+    width: '100%',
+    justifyContent: 'space-between'
+  },
   toolBar: {}
 }))
