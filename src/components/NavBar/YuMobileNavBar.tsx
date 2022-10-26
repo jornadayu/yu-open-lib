@@ -1,12 +1,19 @@
 import React from 'react'
 
 import { Menu as MenuIcon } from '@mui/icons-material'
-import { AppBar, Box, Hidden, IconButton, Toolbar, Typography } from '@mui/material'
+import {
+  AppBar,
+  Box,
+  Hidden,
+  IconButton,
+  Toolbar,
+  Typography
+} from '@mui/material'
 
-import HideOnScroll from '../HideOnScroll'
-import { useStyles } from './NavBarStyles'
 import { NavbarItem } from '../../types'
+import HideOnScroll from '../HideOnScroll'
 import { ToolbarButton } from './BaseAppBar'
+import { useStyles } from './NavBarStyles'
 
 export type Props = {
   toggleLeftDrawer: () => void
@@ -49,7 +56,11 @@ const YuMobileNavBar: React.FC<Props> = ({
           className={centerLogo ? classes.externalAppBar : undefined}
           sx={{ backgroundColor: backgroundColor }}
         >
-          <Toolbar className={`${classes.toolBar} ${(!drawer && withMobileIcons) ? classes.mobileNavBar : ''}`}>
+          <Toolbar
+            className={`${classes.toolBar} ${
+              !drawer && withMobileIcons ? classes.mobileNavBar : ''
+            }`}
+          >
             {drawer && (
               <Typography variant='h2' className={classes.title}>
                 <IconButton
