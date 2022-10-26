@@ -67,13 +67,17 @@ export type Props = {
    * @default false
    */
   centerMobileLogo?: boolean
+  /**
+   * @default false
+   */
+  withMobileIcons?: boolean
 }
 
 export type ButtonProps = {
   button: NavbarItem
 }
 
-const ToolbarButton: React.FC<ButtonProps> = ({ button }) => {
+export const ToolbarButton: React.FC<ButtonProps> = ({ button }) => {
   const classes = useStyles()
 
   let buttonElement: React.ReactElement | null = null
@@ -129,7 +133,8 @@ const BaseAppBar: React.FC<Props> = ({
   logo = 'yuri',
   positiveLogo,
   centerLogo = false,
-  centerMobileLogo = false
+  centerMobileLogo = false,
+  withMobileIcons = false
 }) => {
   const classes = useStyles()
   const [leftDrawer, setLeftDrawer] = useState(false)
@@ -200,6 +205,7 @@ const BaseAppBar: React.FC<Props> = ({
       )}
 
       <YuMobileNavBar
+        withMobileIcons={withMobileIcons}
         centerLogo={centerMobileLogo}
         backgroundColor={backgroundColor}
         logo={navbarLogo}
@@ -212,6 +218,7 @@ const BaseAppBar: React.FC<Props> = ({
           )
         }
         toggleLeftDrawer={toggleLeftDrawer}
+        items={items}
       />
 
       <Hidden mdDown>

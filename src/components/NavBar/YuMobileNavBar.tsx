@@ -1,9 +1,18 @@
 import React from 'react'
 
 import { Menu as MenuIcon } from '@mui/icons-material'
-import { AppBar, Hidden, IconButton, Toolbar, Typography } from '@mui/material'
+import {
+  AppBar,
+  Box,
+  Hidden,
+  IconButton,
+  Toolbar,
+  Typography
+} from '@mui/material'
 
+import { NavbarItem } from '../../types'
 import HideOnScroll from '../HideOnScroll'
+import { ToolbarButton } from './BaseAppBar'
 import { useStyles } from './NavBarStyles'
 
 export type Props = {
@@ -13,9 +22,19 @@ export type Props = {
    * @default true
    */
   drawer: boolean
+  /**
+   * Whether to have icons in the mobile header or not
+   * @default false
+   */
+  withMobileIcons: boolean
   logo: React.ReactElement
   backgroundColor: string
   centerLogo: boolean
+  items: {
+    leftItems: NavbarItem[]
+    rightItems: NavbarItem[]
+    drawerItems: NavbarItem[]
+  }
 }
 
 const YuMobileNavBar: React.FC<Props> = ({
@@ -23,9 +42,12 @@ const YuMobileNavBar: React.FC<Props> = ({
   drawer,
   logo,
   backgroundColor,
-  centerLogo
+  centerLogo,
+  withMobileIcons,
+  items
 }) => {
   const classes = useStyles()
+  const { leftItems, rightItems } = items
 
   return (
     <Hidden mdUp>
@@ -34,9 +56,13 @@ const YuMobileNavBar: React.FC<Props> = ({
           className={centerLogo ? classes.externalAppBar : undefined}
           sx={{ backgroundColor: backgroundColor }}
         >
-          <Toolbar className={classes.toolBar}>
-            <Typography variant='h2' className={classes.title}>
-              {drawer && (
+          <Toolbar
+            className={`${classes.toolBar} ${
+              !drawer && withMobileIcons ? classes.mobileNavBar : ''
+            }`}
+          >
+            {drawer && (
+              <Typography variant='h2' className={classes.title}>
                 <IconButton
                   edge='start'
                   className={classes.menuButton}
@@ -47,9 +73,8 @@ const YuMobileNavBar: React.FC<Props> = ({
                 >
                   <MenuIcon />
                 </IconButton>
-              )}
-            </Typography>
-
+              </Typography>
+            )}
             <IconButton
               className={classes.logoYuri}
               color='inherit'
@@ -58,6 +83,24 @@ const YuMobileNavBar: React.FC<Props> = ({
             >
               {logo}
             </IconButton>
+
+            {withMobileIcons && !drawer && (
+              <Box>
+                {leftItems.map((button) => (
+                  <ToolbarButton
+                    button={{ ...button, iconButton: true }}
+                    key={button.path || button.text}
+                  />
+                ))}
+
+                {rightItems.map((button) => (
+                  <ToolbarButton
+                    button={{ ...button, iconButton: true }}
+                    key={button.path || button.text}
+                  />
+                ))}
+              </Box>
+            )}
           </Toolbar>
         </AppBar>
       </HideOnScroll>
