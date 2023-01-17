@@ -6,7 +6,7 @@
   "license": "UNLICENSED",
   "repository": {
     "type": "git",
-    "url": "git@bitbucket.org:sal-jornadayu/yulib"
+    "url": "https://github.com/jornadayu/yu-open-lib"
   },
   "main": "./dist/index.js",
   "module": "./dist/index.modern.js",
@@ -23,7 +23,7 @@
   "source": "src/index.tsx",
   "private": false,
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
   "scripts": {
     "prepare": "run-s build",
