@@ -136,8 +136,8 @@
     "storybook-addon-jsx": "^7.3.14",
     "storybook-addon-mui-mode": "^0.0.14",
     "typescript": "^4.6.3",
-    "vite": "^2.8.4",
-    "vitest": "^0.10.0"
+    "vite": "^4.0.4",
+    "vitest": "^0.27.2"
   },
   "files": [
     "dist"
