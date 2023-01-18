@@ -26,7 +26,7 @@
     "node": ">=14"
   },
   "scripts": {
-    "prepare": "run-s build",
+    "prepares": "run-s build",
     "build": "microbundle-crl --no-compress --external=react,react-dom,react-is --format modern,cjs --css-modules false",
     "build:types": "tsc --declaration --emitDeclarationOnly --jsx react --esModuleInterop --outDir dist && cp dist/src/* ./dist -r || exit 0",
     "test:build": "run-s build",
@@ -35,7 +35,7 @@
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest watch",
     "version:current": "echo $npm_package_version",
-    "storybook": "NODE_OPTIONS='--openssl-legacy-provider' start-storybook -p 6006",
+    "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -s ./.storybook/public/ -o ./storybook-static/"
   },
   "dependencies": {
@@ -44,6 +44,7 @@
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
+    "@emotion/styled": "^11.5.0",
     "@mui/icons-material": "^5.0.4",
     "@mui/lab": "^5.0.0-alpha.51",
     "@mui/material": "^5.0.4",
@@ -67,7 +68,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
-    "@emotion/react": "^11.5.0",
+    "@emotion/react": "^11.10.5",
     "@etchteam/storybook-addon-status": "^4.2.1",
     "@geometricpanda/storybook-addon-badges": "^0.2.1",
     "@mui/icons-material": "^5.0.4",
