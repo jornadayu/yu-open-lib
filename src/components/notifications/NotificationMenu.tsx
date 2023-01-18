@@ -54,7 +54,6 @@ type Props = {
   /**
    * @example {id: 1, title: 'Notificação 1', description: 'Descrição da notificação 1', created_at: new Date(), updated_at: new Date(), viewed_at: new Date(), viewed: false}
    */
-
   notifications: Notification[]
   handleNotifications?: (id: (string | number)[]) => void
   open: boolean
