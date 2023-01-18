@@ -104,9 +104,10 @@ function linkifyText(str?: string): (string | JSX.Element)[] | undefined {
   const URL_REGEX =
     /https?:\/\/[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/
 
-  return str.split(' ').map((part) =>
+  return str.split(' ').map((part, index) =>
     URL_REGEX.test(part) ? (
       <Link
+        key={`${part}-${index}`}
         href={part}
         variant='body2'
         target='_blank'
