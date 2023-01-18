@@ -5,8 +5,6 @@ import { CssBaseline } from '@mui/material'
 
 import { themes } from '@storybook/theming'
 
-import { addDecorator } from '@storybook/react'
-import { jsxDecorator } from 'storybook-addon-jsx'
 import { ThemeProvider as EmotionThemeProvider } from "emotion-theming";
 // import { withInfo } from '@storybook/addon-info'
 
@@ -17,9 +15,6 @@ import { BADGES } from './constants'
 
 const theme = AppTheme({ darkMode: true })
 
-/**
- * https://storybook.js.org/addons/storybook-addon-mui-mode/
- */
 const withMuiTheme = (Story, context) => {
   const mode = context.globals?.muiMode;
 
@@ -36,7 +31,6 @@ const withMuiTheme = (Story, context) => {
 }
 
 export const decorators = [
-  jsxDecorator(),
   withMuiTheme
 ]
 
