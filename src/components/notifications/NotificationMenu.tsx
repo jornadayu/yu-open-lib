@@ -30,11 +30,11 @@ export interface Notification {
   // eslint-disable-next-line camelcase
   updated_at: Date
   // eslint-disable-next-line camelcase
-  viewed_at: Date
+  viewed_at: Date | null
   viewed: boolean
 }
 
-type Props = {
+export type Props = {
   /**
    * @default 'Notificações'
    */
@@ -55,6 +55,10 @@ type Props = {
    * @example {id: 1, title: 'Notificação 1', description: 'Descrição da notificação 1', created_at: new Date(), updated_at: new Date(), viewed_at: new Date(), viewed: false}
    */
   notifications: Notification[]
+  /**
+   * @description Function to handle notifications
+   * @example (ids: (string | number)[]) => void
+   */
   handleNotifications?: (id: (string | number)[]) => void
   open: boolean
   onClose: () => void
@@ -199,6 +203,7 @@ const NotificationPopover: React.FC<Props> = ({
       (notification: Notification) => notification.id
     )
     handleNotifications?.(ids)
+    setNotificationIds([])
   }
 
   return (
@@ -217,6 +222,7 @@ const NotificationPopover: React.FC<Props> = ({
         onClose={() => {
           onClose()
           handleNotifications?.(notificationIds)
+          setNotificationIds([])
         }}
         anchorOrigin={{
           vertical: 'bottom',
