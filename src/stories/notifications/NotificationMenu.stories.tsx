@@ -67,7 +67,8 @@ const baseProps: Partial<Props> = {
   showOnlyUnreadText: 'Mostrar somente não lidas',
   markAllAsReadText: 'Marcar todas como lidas',
   notifications: notificationsData,
-  handleNotifications: (ids) => console.log(ids)
+  handleNotifications: (ids) =>
+    alert('Ids das notificações marcadas como lidas: ' + ids)
 }
 
 export const Base: Story<Props> = Template.bind({})

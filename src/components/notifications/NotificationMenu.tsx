@@ -199,9 +199,9 @@ const NotificationPopover: React.FC<Props> = ({
     }
 
   const handleMarkAllAsRead = () => {
-    const ids = notifications?.map(
-      (notification: Notification) => notification.id
-    )
+    const ids = notifications
+      ?.filter((notification: Notification) => notification.viewed === false)
+      .map((notification: Notification) => notification.id)
     handleNotifications?.(ids)
     setNotificationIds([])
   }
