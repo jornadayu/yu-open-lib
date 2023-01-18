@@ -319,7 +319,9 @@ const NotificationPopover: React.FC<Props> = ({
               control={
                 <Android12Switch
                   checked={checkedOnlyNotViewed}
-                  onChange={(event) => handleCheckedOnlyNotViewedChange(event)}
+                  onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                    handleCheckedOnlyNotViewedChange(event)
+                  }
                 />
               }
               label={showOnlyUnreadText}
