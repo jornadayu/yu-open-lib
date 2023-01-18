@@ -221,8 +221,12 @@ const NotificationPopover: React.FC<Props> = ({
         open={open}
         onClose={() => {
           onClose()
-          handleNotifications?.(notificationIds)
+          setAnchorEl(null)
+          if (notificationIds.length) {
+            handleNotifications?.(notificationIds)
+          }
           setNotificationIds([])
+          setExpanded(false)
         }}
         anchorOrigin={{
           vertical: 'bottom',
