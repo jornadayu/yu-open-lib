@@ -84,3 +84,5 @@ export { default as RichTextViewer } from './components/RichTextViewer'
 export { default as StatusChip } from './components/chips/StatusChip'
 
 export { default as MeetingCard } from './components/meetings/MeetingCard'
+
+export { default as NotificationMenu } from './components/notifications/NotificationMenu'
