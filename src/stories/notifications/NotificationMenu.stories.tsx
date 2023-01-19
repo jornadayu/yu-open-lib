@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 
 import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
 
-import { BADGES } from '../../../.storybook/constants'
 import NotificationMenu, {
   Props
 } from '../../components/notifications/NotificationMenu'
@@ -12,7 +11,7 @@ export default {
   title: 'notifications/NotificationMenu',
   component: NotificationMenu,
   parameters: {
-    badges: [BADGES.UNRELEASED]
+    badges: ['Added: v2.7.0']
   }
 } as ComponentMeta<typeof NotificationMenu>
 
