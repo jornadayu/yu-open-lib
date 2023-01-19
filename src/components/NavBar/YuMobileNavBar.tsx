@@ -35,7 +35,7 @@ export type Props = {
     rightItems: NavbarItem[]
     drawerItems: NavbarItem[]
   }
-  notifyItem?: NavbarItem
+  mobileActionItem?: NavbarItem
 }
 
 const YuMobileNavBar: React.FC<Props> = ({
@@ -45,7 +45,7 @@ const YuMobileNavBar: React.FC<Props> = ({
   backgroundColor,
   centerLogo,
   withMobileIcons,
-  notifyItem,
+  mobileActionItem,
   items
 }) => {
   const classes = useStyles()
@@ -77,9 +77,7 @@ const YuMobileNavBar: React.FC<Props> = ({
                 </IconButton>
               </Typography>
             )}
-            {!!notifyItem && (
-              <ToolbarButton button={{ ...notifyItem, iconButton: true }} />
-            )}
+            {!!mobileActionItem && <ToolbarButton button={mobileActionItem} />}
             <IconButton
               className={classes.logoYuri}
               color='inherit'

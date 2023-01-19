@@ -60,12 +60,12 @@ export type Props = {
    * @example (ids: (string | number)[]) => void
    */
   handleNotifications?: (id: (string | number)[]) => void
-  open: boolean
+  open?: boolean
   onClose: () => void
-  setAnchorEl: Dispatch<
+  setAnchorEl?: Dispatch<
     SetStateAction<Element | (EventTarget & SVGSVGElement) | null>
   >
-  anchorEl: Element | (EventTarget & SVGSVGElement) | null
+  anchorEl?: Element | (EventTarget & SVGSVGElement) | null
 }
 
 const Android12Switch = styled(Switch)(({ theme }) => ({
@@ -133,9 +133,9 @@ const NotificationPopover: React.FC<Props> = ({
   notifications,
   handleNotifications,
   open,
-  onClose,
+  anchorEl,
   setAnchorEl,
-  anchorEl
+  onClose
 }) => {
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('md'))
@@ -144,6 +144,7 @@ const NotificationPopover: React.FC<Props> = ({
   const [notificationIds, setNotificationIds] = useState<(string | number)[]>(
     []
   )
+  const [anchorElNotify, setAnchorElNotify] = useState<Element | null>(null)
 
   const badgeNotificationsContent = useMemo(() => {
     if (!notifications) return null
@@ -214,22 +215,24 @@ const NotificationPopover: React.FC<Props> = ({
       <Badge badgeContent={badgeNotificationsContent} color='primary'>
         <NotificationsIcon
           onClick={(e) => {
-            setAnchorEl(e.currentTarget)
+            setAnchorElNotify(e.currentTarget)
+            setAnchorEl?.(e.currentTarget)
           }}
           id='notify-item'
         />
       </Badge>
       <Popover
-        anchorEl={anchorEl}
-        open={open}
+        anchorEl={anchorElNotify || anchorEl}
+        open={open || Boolean(anchorElNotify)}
         onClose={() => {
-          onClose()
-          setAnchorEl(null)
           if (notificationIds.length) {
             handleNotifications?.(notificationIds)
           }
           setNotificationIds([])
           setExpanded(false)
+          setAnchorElNotify(null)
+          setAnchorEl?.(null)
+          onClose?.()
         }}
         anchorOrigin={{
           vertical: 'bottom',
@@ -352,9 +355,7 @@ const NotificationPopover: React.FC<Props> = ({
               labelPlacement='start'
               sx={{
                 textDecoration: 'underline',
-                mr: 2,
-                mt: 2,
-                mb: 1
+                mr: 2
               }}
               label={markAllAsReadText}
             />

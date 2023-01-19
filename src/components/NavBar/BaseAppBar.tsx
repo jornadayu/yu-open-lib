@@ -26,7 +26,7 @@ export type Props = {
     rightItems: NavbarItem[]
     drawerItems: NavbarItem[]
   }
-  notifyItem?: NavbarItem
+  mobileActionItem?: NavbarItem
   /**
    * Background color of the NavBar
    * @default '#434242'
@@ -126,7 +126,7 @@ export const ToolbarButton: React.FC<ButtonProps> = ({ button }) => {
 
 const BaseAppBar: React.FC<Props> = ({
   items,
-  notifyItem,
+  mobileActionItem,
   children,
   backgroundColor = '#434242',
   loggedIn = false,
@@ -211,7 +211,7 @@ const BaseAppBar: React.FC<Props> = ({
         centerLogo={centerMobileLogo}
         backgroundColor={backgroundColor}
         logo={navbarLogo}
-        notifyItem={notifyItem}
+        mobileActionItem={mobileActionItem}
         drawer={
           drawer &&
           !!(
