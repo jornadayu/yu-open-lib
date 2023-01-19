@@ -7,6 +7,8 @@ import { Link } from '@mui/material'
 
 import { Props as YuAppBarProps } from '../../components/NavBar/BaseAppBar'
 import YuAppBar from '../../components/NavBar/YuAppBar'
+import NotificationMenu from '../../components/notifications/NotificationMenu'
+import { notificationsData } from '../mocks/notificationMocks'
 
 export default {
   title: 'NavBar/YuAppBar',
@@ -79,4 +81,29 @@ CustomLogo.args = {
   loggedIn: true,
   items: navItems,
   logo: <ShopIcon />
+}
+
+const mobileActionItemBar = {
+  iconButton: true,
+  text: 'Notificações',
+  icon: (
+    <NotificationMenu
+      title='Notificações'
+      emptyNotificationText='Nenhuma notificação'
+      showOnlyUnreadText='Mostrar somente não lidas'
+      markAllAsReadText='Marcar todas como lidas'
+      notifications={notificationsData}
+      handleNotifications={(ids) =>
+        alert('Ids das notificações marcadas como lidas: ' + ids)
+      }
+      onClose={() => console.log('fechou')}
+    />
+  )
+}
+
+export const mobileActionItemInMobile: Story<YuAppBarProps> = Template.bind({})
+mobileActionItemInMobile.args = {
+  loggedIn: true,
+  items: navItems,
+  mobileActionItem: mobileActionItemBar
 }
