@@ -58,19 +58,22 @@ const navItems = {
 export const LoggedIn: Story<YuAppBarProps> = Template.bind({})
 LoggedIn.args = {
   loggedIn: true,
-  items: navItems
+  items: navItems,
+  notifyItem: undefined
 }
 
 export const LoggedOut: Story<YuAppBarProps> = Template.bind({})
 LoggedOut.args = {
   loggedIn: false,
-  items: navItems
+  items: navItems,
+  notifyItem: undefined
 }
 
 export const YuriLogo: Story<YuAppBarProps> = Template.bind({})
 YuriLogo.args = {
   loggedIn: true,
   items: navItems,
+  notifyItem: undefined,
   logo: 'yuri'
 }
 
@@ -78,5 +81,6 @@ export const CustomLogo: Story<YuAppBarProps> = Template.bind({})
 CustomLogo.args = {
   loggedIn: true,
   items: navItems,
+  notifyItem: undefined,
   logo: <ShopIcon />
 }

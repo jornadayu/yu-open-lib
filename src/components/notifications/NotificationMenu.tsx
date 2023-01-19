@@ -21,7 +21,7 @@ import {
 } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-export interface Notification {
+export interface YuriNotification {
   id: string | number
   title: string
   description: string
@@ -38,23 +38,23 @@ export type Props = {
   /**
    * @default 'Notificações'
    */
-  title: string
+  title?: string
   /**
    * @default 'Você não tem notificações'
    */
-  emptyNotificationText: string
+  emptyNotificationText?: string
   /**
    * @default 'Ver somente não lidas'
    */
-  showOnlyUnreadText: string
+  showOnlyUnreadText?: string
   /**
    * @default 'Marcar todas como lidas'
    */
-  markAllAsReadText: string
+  markAllAsReadText?: string
   /**
    * @example {id: 1, title: 'Notificação 1', description: 'Descrição da notificação 1', created_at: new Date(), updated_at: new Date(), viewed_at: new Date(), viewed: false}
    */
-  notifications: Notification[]
+  notifications: YuriNotification[]
   /**
    * @description Function to handle notifications
    * @example (ids: (string | number)[]) => void
@@ -150,7 +150,7 @@ const NotificationPopover: React.FC<Props> = ({
 
     if (notifications?.length) {
       return notifications?.filter(
-        (notification: Notification) => notification.viewed === false
+        (notification: YuriNotification) => notification.viewed === false
       ).length
     }
 
@@ -162,7 +162,9 @@ const NotificationPopover: React.FC<Props> = ({
 
     if (checkedOnlyNotViewed) {
       return notifications
-        ?.filter((notification: Notification) => notification.viewed === false)
+        ?.filter(
+          (notification: YuriNotification) => notification.viewed === false
+        )
         .sort((a, b) => {
           const dateA: Date = new Date(a.created_at)
           const dateB: Date = new Date(b.created_at)
@@ -200,12 +202,14 @@ const NotificationPopover: React.FC<Props> = ({
 
   const handleMarkAllAsRead = () => {
     const ids = notifications
-      ?.filter((notification: Notification) => notification.viewed === false)
-      .map((notification: Notification) => notification.id)
+      ?.filter(
+        (notification: YuriNotification) => notification.viewed === false
+      )
+      .map((notification: YuriNotification) => notification.id)
     handleNotifications?.(ids)
     setNotificationIds([])
   }
-
+  console.log('aaaaaaaaa')
   return (
     <div>
       <Badge badgeContent={badgeNotificationsContent} color='primary'>
