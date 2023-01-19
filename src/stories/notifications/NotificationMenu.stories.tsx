@@ -2,46 +2,17 @@ import React, { useState } from 'react'
 
 import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
 
+import { BADGES } from '../../../.storybook/constants'
 import NotificationMenu, {
-  Notification,
   Props
 } from '../../components/notifications/NotificationMenu'
-
-const notificationsData: Notification[] = [
-  {
-    id: 1,
-    title: 'Notificação 1',
-    description: 'Descrição da notificação 1',
-    viewed: false,
-    created_at: new Date(),
-    updated_at: new Date(),
-    viewed_at: null
-  },
-  {
-    id: 2,
-    title: 'Notificação 2',
-    description: 'A descrição também pode receber um link: https://google.com',
-    viewed: false,
-    created_at: new Date(),
-    updated_at: new Date(),
-    viewed_at: null
-  },
-  {
-    id: 3,
-    title: 'Notificação 3',
-    description: 'Descrição da notificação 3',
-    viewed: true,
-    created_at: new Date(),
-    updated_at: new Date(),
-    viewed_at: new Date()
-  }
-]
+import { notificationsData } from '../mocks/notificationMocks'
 
 export default {
   title: 'notifications/NotificationMenu',
   component: NotificationMenu,
   parameters: {
-    badges: ['Added: v2.6.0']
+    badges: [BADGES.UNRELEASED]
   }
 } as ComponentMeta<typeof NotificationMenu>
 
