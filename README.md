@@ -1,4 +1,4 @@
-# yu-lib
+# yu-open-lib
 
 ## Install
 
