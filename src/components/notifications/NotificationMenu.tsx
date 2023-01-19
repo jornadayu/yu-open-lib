@@ -209,7 +209,6 @@ const NotificationPopover: React.FC<Props> = ({
     handleNotifications?.(ids)
     setNotificationIds([])
   }
-  console.log('aaaaaaaaa')
   return (
     <div>
       <Badge badgeContent={badgeNotificationsContent} color='primary'>
