@@ -12,6 +12,7 @@ import {
   Box,
   Button,
   FormControlLabel,
+  IconButton,
   Link,
   Popover,
   Switch,
@@ -20,6 +21,7 @@ import {
   useTheme
 } from '@mui/material'
 import { styled } from '@mui/material/styles'
+import { SxProps, Theme } from '@mui/system'
 
 export interface YuriNotification {
   id: string | number
@@ -51,6 +53,10 @@ export type Props = {
    * @default 'Marcar todas como lidas'
    */
   markAllAsReadText?: string
+  /**
+   * @description Sx props for the container
+   */
+  containerSx?: SxProps<Theme> | undefined
   /**
    * @example {id: 1, title: 'Notificação 1', description: 'Descrição da notificação 1', created_at: new Date(), updated_at: new Date(), viewed_at: new Date(), viewed: false}
    */
@@ -126,10 +132,11 @@ function linkifyText(str?: string): (string | JSX.Element)[] | undefined {
 }
 
 const NotificationPopover: React.FC<Props> = ({
-  title,
-  emptyNotificationText,
-  showOnlyUnreadText,
-  markAllAsReadText,
+  title = 'Notificações',
+  emptyNotificationText = 'Você não tem notificações',
+  showOnlyUnreadText = 'Ver somente não lidas',
+  markAllAsReadText = 'Marcar todas como lidas',
+  containerSx,
   notifications,
   handleNotifications,
   open,
@@ -212,15 +219,18 @@ const NotificationPopover: React.FC<Props> = ({
   }
   return (
     <div>
-      <Badge badgeContent={badgeNotificationsContent} color='primary'>
-        <NotificationsIcon
-          onClick={(e) => {
-            setAnchorElNotify(e.currentTarget)
-            setAnchorEl?.(e.currentTarget)
-          }}
-          id='notify-item'
-        />
-      </Badge>
+      <IconButton
+        onClick={(e) => {
+          setAnchorElNotify(e.currentTarget)
+          setAnchorEl?.(e.currentTarget)
+        }}
+        id='notify-item'
+        color='inherit'
+      >
+        <Badge badgeContent={badgeNotificationsContent} color='primary'>
+          <NotificationsIcon />
+        </Badge>
+      </IconButton>
       <Popover
         anchorEl={anchorElNotify || anchorEl}
         open={open || Boolean(anchorElNotify)}
@@ -249,7 +259,7 @@ const NotificationPopover: React.FC<Props> = ({
           alignContent: 'center'
         }}
       >
-        <Box sx={{ width: isMobile ? '100%' : '45vw' }}>
+        <Box>
           <Typography
             variant='h6'
             component='div'
@@ -264,8 +274,11 @@ const NotificationPopover: React.FC<Props> = ({
               flexDirection: 'column',
               alignContent: 'center',
               alignItems: 'center',
-              maxHeight: '40vh',
-              overflowY: 'auto'
+              overflowY: 'auto',
+              height: '40vh',
+              width: isMobile ? '100%' : '45vw',
+              pb: 2,
+              ...containerSx
             }}
           >
             {!!filteredNotifications && filteredNotifications?.length ? (

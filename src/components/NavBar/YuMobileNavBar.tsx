@@ -77,7 +77,9 @@ const YuMobileNavBar: React.FC<Props> = ({
                 </IconButton>
               </Typography>
             )}
-            {!!mobileActionItem && <ToolbarButton button={mobileActionItem} />}
+            {!!mobileActionItem && (
+              <Box sx={{ mt: 1 }}>{mobileActionItem.icon}</Box>
+            )}
             <IconButton
               className={classes.logoYuri}
               color='inherit'
