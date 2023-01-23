@@ -36,7 +36,7 @@
     "test:watch": "vitest watch",
     "version:current": "echo $npm_package_version",
     "storybook": "NODE_OPTIONS='--openssl-legacy-provider' start-storybook -p 6006",
-    "build-storybook": "build-storybook -s ./.storybook/public/ -o ./storybook-static/"
+    "build-storybook": "NODE_OPTIONS='--max_old_space_size=4096' build-storybook -s ./.storybook/public/ -o ./storybook-static/"
   },
   "dependencies": {
     "babel-loader": "8.1.0",
