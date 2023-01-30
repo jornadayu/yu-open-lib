@@ -8,7 +8,8 @@ export const notificationsData: YuriNotification[] = [
     viewed: false,
     created_at: new Date(),
     updated_at: new Date(),
-    viewed_at: null
+    viewed_at: null,
+    notifiable_uuid: '165165asdsadsad-sadsadsa12132'
   },
   {
     id: 2,

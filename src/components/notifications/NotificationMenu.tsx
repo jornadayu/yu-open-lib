@@ -1,19 +1,12 @@
 import React, { Dispatch, SetStateAction, useMemo, useState } from 'react'
 
-import dayjs from 'dayjs'
-
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import NotificationsIcon from '@mui/icons-material/Notifications'
 import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
   Badge,
   Box,
   Button,
   FormControlLabel,
   IconButton,
-  Link,
   Popover,
   Switch,
   Typography,
@@ -23,9 +16,13 @@ import {
 import { styled } from '@mui/material/styles'
 import { SxProps, Theme } from '@mui/system'
 
+import NotificationItem from './NotificationItem'
+
 export interface YuriNotification {
   id: string | number
   title: string
+  // eslint-disable-next-line camelcase
+  user_id?: string | number
   description: string
   // eslint-disable-next-line camelcase
   created_at: Date
@@ -34,6 +31,14 @@ export interface YuriNotification {
   // eslint-disable-next-line camelcase
   viewed_at: Date | null
   viewed: boolean
+  // eslint-disable-next-line camelcase
+  notifiable_id?: string | number
+  // eslint-disable-next-line camelcase
+  notifiable_uuid?: string
+  // eslint-disable-next-line camelcase
+  notifiable_type?: string
+  // eslint-disable-next-line camelcase
+  notfication_type?: string
 }
 
 export type Props = {
@@ -61,12 +66,7 @@ export type Props = {
    * @example {id: 1, title: 'Notificação 1', description: 'Descrição da notificação 1', created_at: new Date(), updated_at: new Date(), viewed_at: new Date(), viewed: false}
    */
   notifications: YuriNotification[]
-  /**
-   * @description React element to be used as the action button
-   * @example <Button>Teste</Button>
-   * @default undefined
-   */
-  actionButton?: React.ReactElement
+  NotificationItem: typeof NotificationItem
   /**
    * @description Function to handle notifications
    * @example (ids: (string | number)[]) => void
@@ -113,38 +113,14 @@ const Android12Switch = styled(Switch)(({ theme }) => ({
   }
 }))
 
-function linkifyText(str?: string): (string | JSX.Element)[] | undefined {
-  if (!str) return undefined
-
-  const URL_REGEX =
-    /https?:\/\/[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/
-
-  return str.split(' ').map((part, index) =>
-    URL_REGEX.test(part) ? (
-      <Link
-        key={`${part}-${index}`}
-        href={part}
-        variant='body2'
-        target='_blank'
-        rel='noreferrer'
-        className='hyperlink'
-      >
-        {part}{' '}
-      </Link>
-    ) : (
-      `${part} `
-    )
-  )
-}
-
-const NotificationPopover: React.FC<Props> = ({
+const NotificationMenu: React.FC<Props> = ({
   title = 'Notificações',
   emptyNotificationText = 'Você não tem notificações',
   showOnlyUnreadText = 'Ver somente não lidas',
   markAllAsReadText = 'Marcar todas como lidas',
   containerSx,
   notifications,
-  actionButton,
+  NotificationItem,
   handleNotifications,
   open,
   anchorEl,
@@ -153,7 +129,7 @@ const NotificationPopover: React.FC<Props> = ({
 }) => {
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('md'))
-  const [expanded, setExpanded] = useState<string | false>(false)
+
   const [checkedOnlyNotViewed, setCheckedOnlyNotViewed] = useState(true)
   const [notificationIds, setNotificationIds] = useState<(string | number)[]>(
     []
@@ -206,15 +182,6 @@ const NotificationPopover: React.FC<Props> = ({
     setCheckedOnlyNotViewed(event.target.checked)
   }
 
-  const handleChange =
-    (panel: string) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
-      setExpanded(isExpanded ? panel : false)
-      const id = panel.split('-')[1]
-      if (isExpanded && !notificationIds.includes(id)) {
-        setNotificationIds([...notificationIds, id])
-      }
-    }
-
   const handleMarkAllAsRead = () => {
     const ids = notifications
       ?.filter(
@@ -246,7 +213,6 @@ const NotificationPopover: React.FC<Props> = ({
             handleNotifications?.(notificationIds)
           }
           setNotificationIds([])
-          setExpanded(false)
           setAnchorElNotify(null)
           setAnchorEl?.(null)
           onClose?.()
@@ -288,65 +254,15 @@ const NotificationPopover: React.FC<Props> = ({
               ...containerSx
             }}
           >
-            {!!filteredNotifications && filteredNotifications?.length ? (
-              filteredNotifications?.map((notification) => (
-                <Accordion
-                  key={notification.id}
-                  sx={{ width: '98%', mb: 1 }}
-                  expanded={expanded === `panel-${notification.id}`}
-                  onChange={handleChange(`panel-${notification.id}`)}
-                >
-                  <AccordionSummary
-                    expandIcon={
-                      <Badge
-                        variant={notification.viewed ? undefined : 'dot'}
-                        color={
-                          expanded === `panel-${notification.id}`
-                            ? undefined
-                            : 'primary'
-                        }
-                      >
-                        <ExpandMoreIcon />
-                      </Badge>
-                    }
-                    aria-controls='panel1a-content'
-                    id='panel1a-header'
-                    sx={{ minHeight: '80px' }}
-                  >
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        width: '100%'
-                      }}
-                    >
-                      <Typography>{notification.title}</Typography>
-                      <Typography textAlign='right'>
-                        {dayjs(notification.created_at).fromNow()}
-                      </Typography>
-                    </Box>
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    <Box
-                      sx={{
-                        width: '80%',
-                        display: 'flex',
-                        flexDirection: 'column'
-                      }}
-                    >
-                      <Typography
-                        sx={{
-                          color: 'text.secondary',
-                          textAlign: 'left',
-                          mb: 1
-                        }}
-                      >
-                        {linkifyText(notification.description)}
-                      </Typography>
-                      <Box>{actionButton}</Box>
-                    </Box>
-                  </AccordionDetails>
-                </Accordion>
+            {!!filteredNotifications && filteredNotifications.length ? (
+              filteredNotifications.map((notification: YuriNotification) => (
+                <React.Fragment key={notification.id}>
+                  <NotificationItem
+                    notification={notification}
+                    notificationIds={notificationIds}
+                    setNotificationIds={setNotificationIds}
+                  />
+                </React.Fragment>
               ))
             ) : (
               <Typography variant='body2' color='text.secondary' padding={1}>
@@ -397,4 +313,4 @@ const NotificationPopover: React.FC<Props> = ({
   )
 }
 
-export default NotificationPopover
+export default NotificationMenu
