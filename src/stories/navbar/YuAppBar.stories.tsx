@@ -7,6 +7,7 @@ import { Link } from '@mui/material'
 
 import { Props as YuAppBarProps } from '../../components/NavBar/BaseAppBar'
 import YuAppBar from '../../components/NavBar/YuAppBar'
+import NotificationItem from '../../components/notifications/NotificationItem'
 import NotificationMenu from '../../components/notifications/NotificationMenu'
 import { notificationsData } from '../mocks/notificationMocks'
 
@@ -92,6 +93,7 @@ const mobileActionItemBar = {
       emptyNotificationText='Nenhuma notificação'
       showOnlyUnreadText='Mostrar somente não lidas'
       markAllAsReadText='Marcar todas como lidas'
+      NotificationItem={(props) => <NotificationItem {...props} />}
       notifications={notificationsData}
       handleNotifications={(ids) =>
         alert('Ids das notificações marcadas como lidas: ' + ids)
