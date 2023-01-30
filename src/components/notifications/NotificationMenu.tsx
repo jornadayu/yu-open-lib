@@ -68,6 +68,12 @@ export type Props = {
   notifications: YuriNotification[]
   NotificationItem: typeof NotificationItem
   /**
+   * @description React element to be used as the action button
+   * @example <Button>Teste</Button>
+   * @default undefined
+   */
+  actionButton?: React.ReactElement
+  /**
    * @description Function to handle notifications
    * @example (ids: (string | number)[]) => void
    */
