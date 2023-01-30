@@ -19,7 +19,7 @@ type Props = {
   /**
    * @description Notification object where the data come from the API and is automatically inputed by the NotificationMenu component
    * @example {id: 1, title: 'Notificação 1', description: 'Descrição da notificação 1', user_id: 16, created_at: new Date(), updated_at: new Date(), viewed_at: new Date(), viewed: false,
-   * notifiable_id?: 2084, notifiable_uuid?: 'f3b0c0c0-0c0c-0c0c-0c0c-0c0c0c0c0c0c', notifiable_type?: 'Job', notfication_type?: 'chatbot_validation' }
+   * notifiable_id?: 2084, notifiable_uuid?: 'f3b0c0c0-0c0c-0c0c-0c0c-0c0c0c0c0c0c', notifiable_type?: 'Job', notification_type?: 'chatbot_validation' }
    */
   notification: YuriNotification
   /**
