@@ -38,7 +38,7 @@ export interface YuriNotification {
   // eslint-disable-next-line camelcase
   notifiable_type?: string
   // eslint-disable-next-line camelcase
-  notfication_type?: string
+  notification_type?: string
 }
 
 export type Props = {
