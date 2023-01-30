@@ -3,8 +3,8 @@ import React from 'react'
 const SalmaoIcon: React.FC = () => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
-    width='6251'
-    height='5562'
+    width='50'
+    height='45'
     x='0'
     y='0'
     version='1.1'

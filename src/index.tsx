@@ -15,6 +15,8 @@ export { default as ErrorAlert } from './components/ErrorAlert'
 
 export { default as Welcome } from './components/welcome/Welcome'
 
+export { default as CookiesWarning } from './components/cookies/CookiesWarning'
+
 export { default as YuAppBar } from './components/NavBar/YuAppBar'
 export type { Props as YuAppBarProps } from './components/NavBar/BaseAppBar'
 
