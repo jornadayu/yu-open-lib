@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 
 import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
 
+import { Button } from '@mui/material'
+
 import NotificationMenu, {
   Props
 } from '../../components/notifications/NotificationMenu'
@@ -43,4 +45,14 @@ const baseProps: Partial<Props> = {
 export const Base: Story<Props> = Template.bind({})
 Base.args = {
   ...baseProps
+}
+
+export const WithActionButton: Story<Props> = Template.bind({})
+WithActionButton.args = {
+  ...baseProps,
+  actionButton: (
+    <Button onClick={() => alert('Button Click')} variant='outlined'>
+      teste
+    </Button>
+  )
 }

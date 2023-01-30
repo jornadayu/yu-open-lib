@@ -62,6 +62,12 @@ export type Props = {
    */
   notifications: YuriNotification[]
   /**
+   * @description React element to be used as the action button
+   * @example <Button>Teste</Button>
+   * @default undefined
+   */
+  actionButton?: React.ReactElement
+  /**
    * @description Function to handle notifications
    * @example (ids: (string | number)[]) => void
    */
@@ -138,6 +144,7 @@ const NotificationPopover: React.FC<Props> = ({
   markAllAsReadText = 'Marcar todas como lidas',
   containerSx,
   notifications,
+  actionButton,
   handleNotifications,
   open,
   anchorEl,
@@ -320,12 +327,23 @@ const NotificationPopover: React.FC<Props> = ({
                     </Box>
                   </AccordionSummary>
                   <AccordionDetails>
-                    <Box sx={{ width: '80%' }}>
+                    <Box
+                      sx={{
+                        width: '80%',
+                        display: 'flex',
+                        flexDirection: 'column'
+                      }}
+                    >
                       <Typography
-                        sx={{ color: 'text.secondary', textAlign: 'left' }}
+                        sx={{
+                          color: 'text.secondary',
+                          textAlign: 'left',
+                          mb: 1
+                        }}
                       >
                         {linkifyText(notification.description)}
                       </Typography>
+                      <Box>{actionButton}</Box>
                     </Box>
                   </AccordionDetails>
                 </Accordion>
