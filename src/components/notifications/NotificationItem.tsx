@@ -28,7 +28,15 @@ type Props = {
    * @default undefined
    */
   actionButton?: React.ReactElement
+  /**
+   * @description Function to set the notification ids, automatically inputed by the NotificationMenu component,  its a setState hook
+   * @example (ids: (string | number)[]) => void
+   */
   setNotificationIds: React.Dispatch<React.SetStateAction<(string | number)[]>>
+  /**
+   * @description Array of notification ids, automatically inputed by the NotificationMenu component
+   * @example [1, 2, 3, 4]
+   */
   notificationIds: (string | number)[]
 }
 
