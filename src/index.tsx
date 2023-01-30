@@ -86,3 +86,5 @@ export { default as StatusChip } from './components/chips/StatusChip'
 export { default as MeetingCard } from './components/meetings/MeetingCard'
 
 export { default as NotificationMenu } from './components/notifications/NotificationMenu'
+
+export { default as NotificationItem } from './components/notifications/NotificationItem'
