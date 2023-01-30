@@ -4,6 +4,7 @@ import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
 
 import { Button } from '@mui/material'
 
+import NotificationItem from '../../components/notifications/NotificationItem'
 import NotificationMenu, {
   Props
 } from '../../components/notifications/NotificationMenu'
@@ -38,6 +39,7 @@ const baseProps: Partial<Props> = {
   showOnlyUnreadText: 'Mostrar somente não lidas',
   markAllAsReadText: 'Marcar todas como lidas',
   notifications: notificationsData,
+  NotificationItem: NotificationItem,
   handleNotifications: (ids) =>
     alert('Ids das notificações marcadas como lidas: ' + ids)
 }
@@ -50,9 +52,21 @@ Base.args = {
 export const WithActionButton: Story<Props> = Template.bind({})
 WithActionButton.args = {
   ...baseProps,
-  actionButton: (
-    <Button onClick={() => alert('Button Click')} variant='outlined'>
-      teste
-    </Button>
+  NotificationItem: (props) => (
+    <NotificationItem
+      {...props}
+      actionButton={
+        <Button
+          variant='outlined'
+          onClick={() =>
+            alert(
+              `Clicou na notificação de id: ${props.notification.id} e uuid: ${props.notification.notifiable_uuid}`
+            )
+          }
+        >
+          Botão de ação
+        </Button>
+      }
+    />
   )
 }
