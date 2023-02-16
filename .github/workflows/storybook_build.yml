@@ -4,6 +4,8 @@ on:
   push:
     branches: [master]
     paths: ["src/stories/**", "src/components/**", ".storybook/**", ".github/workflows/storybook_deploy.yml"]
+  pull_request:
+    branches: [master]
 
 jobs:
   storybook:
