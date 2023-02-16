@@ -35,3 +35,49 @@ jobs:
 
       - name: Storybook Build
         run: yarn build-storybook
+
+  storybook_chromatic_build:
+    runs-on: ubuntu-latest
+    name: Publish Storybook Chromatic
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Cache Yarn Dependencies
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ hashFiles('**/yarn.lock') }}
+
+      - name: Setup Node and Yarn
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'yarn'
+
+      - name: Install Dependencies
+        run: yarn install --prefer-offline
+
+      # Storybook tests always passes even if they are failing
+      # - name: Run Storybook tests
+      #   run: yarn test-storybook
+
+      - name: Publish Chromatic Storybook
+        if: github.ref != 'refs/heads/staging' && github.ref != 'refs/heads/master'
+        uses: chromaui/action@v1
+        with:
+          run: yarn
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+
+      - name: Publish to Chromatic and auto accept changes
+        if: github.ref == 'refs/heads/staging' || github.ref == 'refs/heads/master'
+        uses: chromaui/action@v1
+        with:
+          run: yarn
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          # Since PR was already merged, changes were alredy reviewed and approved
+          # so auto-accept them in staging/master
+          autoAcceptChanges: true
