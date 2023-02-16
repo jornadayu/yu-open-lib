@@ -64,13 +64,3 @@ export const parameters = {
   }
 }
 
-// TODO: Decorator breaks with vite
-// Uncaught Error: Dynamic require of "./lib/nestedObjectAssign.js" is not supported
-// at __require (:6006/node_modules/.vite/chunk-IHTDASF6.js?v=e3b2d4cd:11)
-//     at node_modules/nested-object-assign/index.js (:6006/node_modules/.vite/@storybook_addon-info.js?v=e3b2d4cd:477)
-
-// addDecorator(
-//   withInfo({
-//     inline: true,
-//   })
-// )

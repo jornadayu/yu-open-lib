@@ -1,15 +1,10 @@
-const { mergeConfig } = require('vite')
-const path = require('path')
+const {
+  mergeConfig
+} = require('vite');
+const path = require('path');
 module.exports = {
-  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
-  addons: [
-    '@storybook/addon-links',
-    '@storybook/addon-essentials',
-    'storybook-dark-mode',
-    '@etchteam/storybook-addon-status',
-    '@geometricpanda/storybook-addon-badges',
-    '@storybook/addon-storysource'
-  ],
+  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  addons: ['@storybook/addon-links', '@storybook/addon-essentials', 'storybook-dark-mode', '@etchteam/storybook-addon-status', '@geometricpanda/storybook-addon-badges', '@storybook/addon-storysource'],
   framework: {
     name: '@storybook/react-vite',
     options: {}
@@ -31,7 +26,14 @@ module.exports = {
       // Add dependencies to pre-optimization
       optimizeDeps: {
         include: ['storybook-dark-mode']
+      },
+      define: {
+        'process.env.NODE_DEBUG': false,
       }
-    })
-  }
-}
+    });
+  },
+  docs: {
+    autodocs: true
+  },
+  staticDirs: ['./public']
+};
