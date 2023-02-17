@@ -1,6 +1,5 @@
 import React from 'react'
 
-import { BADGE } from '@geometricpanda/storybook-addon-badges'
 import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
 
 import { Card, Grid } from '@mui/material'
@@ -11,10 +10,7 @@ import SalariesBarGraph, {
 
 export default {
   title: 'Graphs/SalariesBarGraph',
-  component: SalariesBarGraph,
-  parameters: {
-    badges: [BADGE.NEEDS_REVISION]
-  }
+  component: SalariesBarGraph
 } as ComponentMeta<typeof SalariesBarGraph>
 
 const Template: ComponentStory<typeof SalariesBarGraph> = (args) => (

@@ -4,7 +4,7 @@ const {
 const path = require('path');
 module.exports = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
-  addons: ['@storybook/addon-links', '@storybook/addon-essentials', 'storybook-dark-mode', '@etchteam/storybook-addon-status', '@geometricpanda/storybook-addon-badges', '@storybook/addon-storysource'],
+  addons: ['@storybook/addon-links', '@storybook/addon-essentials', 'storybook-dark-mode', '@etchteam/storybook-addon-status', '@storybook/addon-storysource'],
   framework: {
     name: '@storybook/react-vite',
     options: {}

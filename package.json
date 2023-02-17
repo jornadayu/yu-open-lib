@@ -23,7 +23,7 @@
   "source": "src/index.tsx",
   "private": false,
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   },
   "scripts": {
     "build": "microbundle-crl --no-compress --external=react,react-dom,react-is --format modern,cjs --css-modules false",
@@ -34,13 +34,15 @@
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest watch",
     "version:current": "echo $npm_package_version",
-    "storybook": "NODE_OPTIONS='--openssl-legacy-provider' start-storybook -p 6006",
-    "build-storybook": "NODE_OPTIONS='--max_old_space_size=4096' build-storybook -s ./.storybook/public/ -o ./storybook-static/",
+    "storybook": "NODE_OPTIONS='--openssl-legacy-provider' sb dev -p 6006",
+    "build-storybook": "NODE_OPTIONS='--max_old_space_size=4096' sb build -o ./storybook-static/",
     "chromatic": "chromatic --exit-zero-on-changes --skip 'dependabot/**'"
   },
   "dependencies": {
+    "@emotion/styled": "^11.10.6",
     "babel-loader": "8.1.0",
-    "javascript-color-gradient": "^1.3.2"
+    "javascript-color-gradient": "^1.3.2",
+    "rollup-plugin-typescript2": "^0.34.1"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
@@ -68,7 +70,6 @@
     "@babel/core": "^7.14.6",
     "@emotion/react": "^11.5.0",
     "@etchteam/storybook-addon-status": "^4.2.2",
-    "@geometricpanda/storybook-addon-badges": "^0.2.2",
     "@mui/icons-material": "^5.0.4",
     "@mui/lab": "^5.0.0-alpha.51",
     "@mui/material": "^5.0.4",
@@ -130,7 +131,6 @@
     "react-dropzone": "^12.0.4",
     "react-toast-notifications": "^2.4.0",
     "react-wordcloud": "^1.2.7",
-    "rollup-plugin-typescript2": "^0.30.0",
     "sass": "^1.32.8",
     "storybook": "^7.0.0-beta.48",
     "storybook-dark-mode": "^2.0.5",
