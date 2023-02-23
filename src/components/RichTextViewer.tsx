@@ -1,9 +1,8 @@
 import React from 'react'
 
-import styled from '@emotion/styled'
 import CSS from 'csstype'
 
-import { Typography } from '@mui/material'
+import { Typography, styled } from '@mui/material'
 
 export type Props = {
   html?: string

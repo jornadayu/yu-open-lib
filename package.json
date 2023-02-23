@@ -45,7 +45,7 @@
     "rollup-plugin-typescript2": "^0.34.1"
   },
   "peerDependencies": {
-    "@emotion/react": "^11.5.0",
+    "@emotion/react": "^11.10.6",
     "@mui/icons-material": "^5.0.4",
     "@mui/lab": "^5.0.0-alpha.51",
     "@mui/material": "^5.0.4",
@@ -68,7 +68,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
-    "@emotion/react": "^11.5.0",
+    "@emotion/react": "^11.10.6",
     "@etchteam/storybook-addon-status": "^4.2.2",
     "@mui/icons-material": "^5.0.4",
     "@mui/lab": "^5.0.0-alpha.51",

@@ -2,18 +2,16 @@ import React, { useCallback } from 'react'
 
 import { useDropzone } from 'react-dropzone'
 
-import styled from '@emotion/styled'
-
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto'
 import BlockIcon from '@mui/icons-material/Block'
-import { IconButton, Tooltip, Typography } from '@mui/material'
+import { Box, IconButton, Tooltip, Typography, styled } from '@mui/material'
 
 type MainContainerProps = {
   width: number
   height: number
 }
 
-const MainContainer = styled.div`
+const MainContainer = styled(Box)`
   position: relative;
   width: ${(props: MainContainerProps) => props.width}px;
   height: ${(props: MainContainerProps) => props.height}px;
@@ -41,7 +39,7 @@ const AddIcon = styled(IconButton)`
   color: white;
 `
 
-const Backdrop = styled.div`
+const Backdrop = styled(Box)`
   display: flex;
   align-items: center;
   justify-content: center;

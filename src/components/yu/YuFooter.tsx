@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Instagram, LinkedIn } from '@mui/icons-material'
 import { Button, IconButton, Link, Typography } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@mui/styles'
 
 import Logo from '../../assets/images/logo_black_bg.png'
 
