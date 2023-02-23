@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 
 import { Card, Grid } from '@mui/material'
 
@@ -9,9 +9,9 @@ import YuBarGraph, { Props } from '../../components/graphs/bar/YuBarGraph'
 export default {
   title: 'Graphs/YuBarGraph',
   component: YuBarGraph
-} as ComponentMeta<typeof YuBarGraph>
+} as Meta<typeof YuBarGraph>
 
-const Template: ComponentStory<typeof YuBarGraph> = (args) => (
+const Template: StoryFn<typeof YuBarGraph> = (args) => (
   <Grid container style={{ height: 500 }}>
     <Card style={{ height: '100%', width: '100%', padding: 24 }}>
       <YuBarGraph {...args} />
@@ -31,7 +31,7 @@ const data: Props['data'] = [
   { Out: 89, name: 'Etapa 1' }
 ]
 
-export const Candidates: Story<Props> = Template.bind({})
+export const Candidates = Template.bind({})
 Candidates.args = {
   data,
   keys: ['Out', 'Placed', 'Em processo', 'Stand By'],

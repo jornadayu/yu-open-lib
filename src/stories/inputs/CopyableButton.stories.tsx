@@ -1,18 +1,18 @@
 import React from 'react'
 
-import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 
 import { Email as EmailIcon } from '@mui/icons-material'
 import { Card, CardContent } from '@mui/material'
 
-import CopyableButton, { Props } from '../../components/inputs/CopyableButton'
+import CopyableButton from '../../components/inputs/CopyableButton'
 
 export default {
   title: 'Inputs/CopyableButton',
   component: CopyableButton
-} as ComponentMeta<typeof CopyableButton>
+} as Meta<typeof CopyableButton>
 
-const Template: ComponentStory<typeof CopyableButton> = (args) => {
+const Template: StoryFn<typeof CopyableButton> = (args) => {
   return (
     <Card variant='outlined'>
       <CardContent>
@@ -22,18 +22,18 @@ const Template: ComponentStory<typeof CopyableButton> = (args) => {
   )
 }
 
-export const Example: Story<Props> = Template.bind({})
+export const Example = Template.bind({})
 Example.args = {
   text: 'Some text to copy'
 }
 
-export const WithCustomIcon: Story<Props> = Template.bind({})
+export const WithCustomIcon = Template.bind({})
 WithCustomIcon.args = {
   text: 'Some text to copy',
   icon: <EmailIcon />
 }
 
-export const WithCustomFormat: Story<Props> = Template.bind({})
+export const WithCustomFormat = Template.bind({})
 WithCustomFormat.args = {
   text: `
   <div>

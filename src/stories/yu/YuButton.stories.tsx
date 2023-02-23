@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 
 import YuButton, { Props } from '../../components/yu/YuButton'
 
@@ -10,9 +10,9 @@ export default {
   parameters: {
     badges: ['Added: 2.0.0']
   }
-} as ComponentMeta<typeof YuButton>
+} as Meta<typeof YuButton>
 
-const Template: ComponentStory<typeof YuButton> = (args) => {
+const Template: StoryFn<typeof YuButton> = (args) => {
   return <YuButton {...args} />
 }
 
@@ -20,18 +20,18 @@ const baseProps: Partial<Props> = {
   children: 'Some Text'
 }
 
-export const Base: Story<Props> = Template.bind({})
+export const Base = Template.bind({})
 Base.args = {
   ...baseProps
 }
 
-export const Contained: Story<Props> = Template.bind({})
+export const Contained = Template.bind({})
 Contained.args = {
   ...baseProps,
   variant: 'contained'
 }
 
-export const Outlined: Story<Props> = Template.bind({})
+export const Outlined = Template.bind({})
 Outlined.args = {
   ...baseProps,
   variant: 'outlined'

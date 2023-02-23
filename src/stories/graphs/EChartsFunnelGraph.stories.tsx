@@ -1,18 +1,17 @@
 import React from 'react'
 
-import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 
 import { Card } from '@mui/material'
 
-import type { Props } from '../../components/graphs/EChartsFunnelGraph'
 import { EChartsFunnelGraph } from '../../index'
 
 export default {
   title: 'Graphs/EChartsFunnelGraph',
   component: EChartsFunnelGraph
-} as ComponentMeta<typeof EChartsFunnelGraph>
+} as Meta<typeof EChartsFunnelGraph>
 
-const Template: ComponentStory<typeof EChartsFunnelGraph> = (args) => (
+const Template: StoryFn<typeof EChartsFunnelGraph> = (args) => (
   <Card variant='outlined' sx={{ p: 2 }}>
     <EChartsFunnelGraph {...args} />
   </Card>
@@ -51,13 +50,13 @@ const exampleData = [
   }
 ]
 
-export const Example: Story<Props> = Template.bind({})
+export const Example = Template.bind({})
 Example.args = {
   data: exampleData,
   colors: Array(exampleData.length).fill('#a11e81')
 }
 
-export const CustomColors: Story<Props> = Template.bind({})
+export const CustomColors = Template.bind({})
 CustomColors.args = {
   data: exampleData,
   colors: [
@@ -66,7 +65,7 @@ CustomColors.args = {
   ]
 }
 
-export const CustomOptions: Story<Props> = Template.bind({})
+export const CustomOptions = Template.bind({})
 CustomOptions.args = {
   data: exampleData,
   colors: [
@@ -78,7 +77,7 @@ CustomOptions.args = {
   }
 }
 
-export const WithLegends: Story<Props> = Template.bind({})
+export const WithLegends = Template.bind({})
 WithLegends.args = {
   data: exampleData,
   colors: [
@@ -92,7 +91,7 @@ WithLegends.args = {
   withLegends: true
 }
 
-export const CustomLegend: Story<Props> = Template.bind({})
+export const CustomLegend = Template.bind({})
 CustomLegend.args = {
   data: exampleData,
   colors: Array(exampleData.length).fill('#269abd'),
@@ -106,7 +105,7 @@ CustomLegend.args = {
   withLegends: true
 }
 
-export const WithEmptyValues: Story<Props> = Template.bind({})
+export const WithEmptyValues = Template.bind({})
 WithEmptyValues.args = {
   data: [...exampleData, { id: 'empty', label: 'Empty', value: 0 }],
   colors: [

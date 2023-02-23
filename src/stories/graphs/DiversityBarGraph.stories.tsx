@@ -1,21 +1,20 @@
 import React from 'react'
 
-import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 
 import { Card, Grid } from '@mui/material'
 
 import DiversityBarGraph, {
   Datum,
-  DatumWithTotal,
-  Props
+  DatumWithTotal
 } from '../../components/graphs/bar/DiversityBarGraph'
 
 export default {
   title: 'Graphs/DiversityBarGraph',
   component: DiversityBarGraph
-} as ComponentMeta<typeof DiversityBarGraph>
+} as Meta<typeof DiversityBarGraph>
 
-const Template: ComponentStory<typeof DiversityBarGraph> = (args) => (
+const Template: StoryFn<typeof DiversityBarGraph> = (args) => (
   <Grid container style={{ height: 500, width: 1070 }}>
     <Card style={{ height: '100%', width: '100%', padding: 24 }}>
       <DiversityBarGraph {...args} />
@@ -78,24 +77,24 @@ const toPercentageValues = (datum: Datum): DatumWithTotal => {
 
 const percentageData = data.map(toPercentageValues)
 
-export const Horizontal: Story<Props> = Template.bind({})
+export const Horizontal = Template.bind({})
 Horizontal.args = {
   data
 }
 
-export const Vertical: Story<Props> = Template.bind({})
+export const Vertical = Template.bind({})
 Vertical.args = {
   data,
   verticalGraph: true
 }
 
-export const HorizontalPercentage: Story<Props> = Template.bind({})
+export const HorizontalPercentage = Template.bind({})
 HorizontalPercentage.args = {
   data: percentageData,
   isPercentage: true
 }
 
-export const VerticalPercentage: Story<Props> = Template.bind({})
+export const VerticalPercentage = Template.bind({})
 VerticalPercentage.args = {
   data: percentageData,
   isPercentage: true,

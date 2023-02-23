@@ -1,17 +1,17 @@
 import React from 'react'
 
-import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 
 import { Card, Grid } from '@mui/material'
 
-import NivoTextTooltip, { Props } from '../../components/graphs/NivoTextTooltip'
+import NivoTextTooltip from '../../components/graphs/NivoTextTooltip'
 
 export default {
   title: 'Graphs/NivoTextTooltip',
   component: NivoTextTooltip
-} as ComponentMeta<typeof NivoTextTooltip>
+} as Meta<typeof NivoTextTooltip>
 
-const Template: ComponentStory<typeof NivoTextTooltip> = (args) => (
+const Template: StoryFn<typeof NivoTextTooltip> = (args) => (
   <Grid container>
     <Card style={{ height: '100%', width: '100%', padding: 24 }}>
       <NivoTextTooltip {...args} />
@@ -19,14 +19,14 @@ const Template: ComponentStory<typeof NivoTextTooltip> = (args) => (
   </Grid>
 )
 
-export const StringValue: Story<Props> = Template.bind({})
+export const StringValue = Template.bind({})
 StringValue.args = {
   text: 'Some value',
   value: '55.45',
   color: '#fff'
 }
 
-export const PercentageValue: Story<Props> = Template.bind({})
+export const PercentageValue = Template.bind({})
 PercentageValue.args = {
   text: 'Some percentage value',
   value: 0.55,

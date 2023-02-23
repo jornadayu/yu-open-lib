@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 
 import { Cancel } from '@mui/icons-material'
 import { LoadingButton } from '@mui/lab'
@@ -15,9 +15,9 @@ export default {
     handleConfirm: { action: 'handleConfirm' },
     handleClose: { action: 'handleClose' }
   }
-} as ComponentMeta<typeof ConfirmDialog>
+} as Meta<typeof ConfirmDialog>
 
-const Template: ComponentStory<typeof ConfirmDialog> = (args) => {
+const Template: StoryFn<typeof ConfirmDialog> = (args) => {
   const [open, setOpen] = useState(false)
 
   const close = () => {
@@ -41,20 +41,18 @@ const baseProps: Partial<Props> = {
   text: 'Do you want to confirm?'
 }
 
-export const Example: Story<Props> = Template.bind({})
+export const Example = Template.bind({})
 Example.args = {
   ...baseProps
 }
 
-export const LoadingConfirmation: Story<Props> = Template.bind({})
+export const LoadingConfirmation = Template.bind({})
 LoadingConfirmation.args = {
   ...baseProps,
   loading: true
 }
 
-type PropsWithChildren = Props & { children?: React.ReactNode }
-
-export const CustomChildren: Story<PropsWithChildren> = Template.bind({})
+export const CustomChildren = Template.bind({})
 CustomChildren.args = {
   ...baseProps,
   children: (
@@ -65,7 +63,7 @@ CustomChildren.args = {
   )
 }
 
-export const CustomButtons: Story<PropsWithChildren> = Template.bind({})
+export const CustomButtons = Template.bind({})
 CustomButtons.args = {
   ...baseProps,
   renderCancelButton(buttonProps) {
@@ -77,7 +75,7 @@ CustomButtons.args = {
   }
 }
 
-export const CustomActions: Story<PropsWithChildren> = Template.bind({})
+export const CustomActions = Template.bind({})
 CustomActions.args = {
   ...baseProps,
   renderActions({ handleClose, handleConfirm, loading }) {

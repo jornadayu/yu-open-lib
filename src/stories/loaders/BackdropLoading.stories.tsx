@@ -1,17 +1,15 @@
 import React, { useState } from 'react'
 
-import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 
-import BackdropLoading, {
-  Props
-} from '../../components/loaders/BackdropLoading'
+import BackdropLoading from '../../components/loaders/BackdropLoading'
 
 export default {
   title: 'Loaders/BackdropLoading',
   component: BackdropLoading
-} as ComponentMeta<typeof BackdropLoading>
+} as Meta<typeof BackdropLoading>
 
-const Template: ComponentStory<typeof BackdropLoading> = () => {
+const Template: StoryFn<typeof BackdropLoading> = () => {
   const [loading, setLoading] = useState(false)
 
   return (
@@ -30,5 +28,5 @@ const Template: ComponentStory<typeof BackdropLoading> = () => {
   )
 }
 
-export const Example: Story<Props> = Template.bind({})
+export const Example = Template.bind({})
 Example.args = {}

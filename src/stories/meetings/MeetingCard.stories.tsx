@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 
 import { Button } from '@mui/material'
 
@@ -12,9 +12,9 @@ export default {
   parameters: {
     badges: ['Added: v2.4.2']
   }
-} as ComponentMeta<typeof MeetingCard>
+} as Meta<typeof MeetingCard>
 
-const Template: ComponentStory<typeof MeetingCard> = (args) => {
+const Template: StoryFn<typeof MeetingCard> = (args) => {
   return (
     <div>
       <MeetingCard {...args} statusLabel='Agendada' statusChipColor='success' />
@@ -42,24 +42,24 @@ const baseProps: Partial<Props> = {
   intervieweeAvatarUrl: 'link photo'
 }
 
-export const Base: Story<Props> = Template.bind({})
+export const Base = Template.bind({})
 Base.args = {
   ...baseProps
 }
 
-export const InterviwerView: Story<Props> = Template.bind({})
+export const InterviwerView = Template.bind({})
 InterviwerView.args = {
   ...baseProps,
   showInterviewer: false
 }
 
-export const IntervieweeView: Story<Props> = Template.bind({})
+export const IntervieweeView = Template.bind({})
 IntervieweeView.args = {
   ...baseProps,
   showInterviewee: false
 }
 
-export const WithDate: Story<Props> = Template.bind({})
+export const WithDate = Template.bind({})
 WithDate.args = {
   ...baseProps,
   startAt: new Date(2022, 12, 17, 12, 0, 0),

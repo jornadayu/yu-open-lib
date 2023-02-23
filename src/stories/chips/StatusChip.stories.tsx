@@ -1,10 +1,9 @@
 import React from 'react'
 
-import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 
 import { Card, CardContent, Grid, Typography } from '@mui/material'
 
-import { Props } from '../../components/chips/StatusChip'
 import { StatusChip } from '../../index'
 
 export default {
@@ -13,11 +12,11 @@ export default {
   parameters: {
     badges: ['Added: v2.3.6']
   }
-} as ComponentMeta<typeof StatusChip>
+} as Meta<typeof StatusChip>
 
 type Status = 'canceled' | 'open' | 'on_hold' | 'inactive' | 'active'
 
-const Template: ComponentStory<typeof StatusChip> = (args) => {
+const Template: StoryFn<typeof StatusChip> = (args) => {
   const canceled: Status = 'canceled'
   const open: Status = 'open'
   const onHold: Status = 'on_hold'
@@ -78,14 +77,14 @@ const Template: ComponentStory<typeof StatusChip> = (args) => {
   )
 }
 
-export const Example: Story<Props> = Template.bind({})
+export const Example = Template.bind({})
 Example.args = {
   successValues: ['open', 'active'],
   errorValues: ['canceled', 'inactive'],
   warningValues: ['on_hold']
 }
 
-export const CustomLabel: Story<Props> = Template.bind({})
+export const CustomLabel = Template.bind({})
 CustomLabel.args = {
   successValues: ['open', 'active'],
   errorValues: ['canceled', 'inactive'],
@@ -93,7 +92,7 @@ CustomLabel.args = {
   label: <Typography variant='subtitle1'>Some label</Typography>
 }
 
-export const WithTooltip: Story<Props> = Template.bind({})
+export const WithTooltip = Template.bind({})
 WithTooltip.args = {
   successValues: ['open', 'active'],
   errorValues: ['canceled', 'inactive'],

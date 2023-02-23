@@ -1,11 +1,10 @@
 import React from 'react'
 
-import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 
 import { Grid } from '@mui/material'
 
 import YuAppBar from '../../components/NavBar/YuAppBar'
-import { Props } from '../../components/yu/YuFooter'
 import { YuFooter } from '../../index'
 
 export default {
@@ -14,9 +13,9 @@ export default {
   parameters: {
     badges: ['Added: v2.1.4']
   }
-} as ComponentMeta<typeof YuFooter>
+} as Meta<typeof YuFooter>
 
-const Template: ComponentStory<typeof YuFooter> = (args) => {
+const Template: StoryFn<typeof YuFooter> = (args) => {
   return (
     <Grid container>
       <YuAppBar
@@ -36,10 +35,10 @@ const Template: ComponentStory<typeof YuFooter> = (args) => {
   )
 }
 
-export const Example: Story<Props> = Template.bind({})
+export const Example = Template.bind({})
 Example.args = {}
 
-export const CustomImage: Story<Props> = Template.bind({})
+export const CustomImage = Template.bind({})
 CustomImage.args = {
   imageSrc: 'https://via.placeholder.com/150'
 }

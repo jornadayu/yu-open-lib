@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 
 import { Button } from '@mui/material'
 
@@ -16,9 +16,9 @@ export default {
   parameters: {
     badges: ['Added: v2.7.0']
   }
-} as ComponentMeta<typeof NotificationMenu>
+} as Meta<typeof NotificationMenu>
 
-const Template: ComponentStory<typeof NotificationMenu> = (args) => {
+const Template: StoryFn<typeof NotificationMenu> = (args) => {
   const [anchorEl, setAnchorEl] = useState<
     Element | (EventTarget & SVGSVGElement) | null
   >(null)
@@ -44,12 +44,12 @@ const baseProps: Partial<Props> = {
     alert('Ids das notificações marcadas como lidas: ' + ids)
 }
 
-export const Base: Story<Props> = Template.bind({})
+export const Base = Template.bind({})
 Base.args = {
   ...baseProps
 }
 
-export const WithActionButton: Story<Props> = Template.bind({})
+export const WithActionButton = Template.bind({})
 WithActionButton.args = {
   ...baseProps,
   NotificationItem: (props) => (

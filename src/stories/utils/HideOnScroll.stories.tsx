@@ -1,17 +1,17 @@
 import React from 'react'
 
-import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 
 import { AppBar, Card, CardContent } from '@mui/material'
 
-import HideOnScroll, { Props } from '../../components/HideOnScroll'
+import HideOnScroll from '../../components/HideOnScroll'
 
 export default {
   title: 'Utils/HideOnScroll',
   component: HideOnScroll
-} as ComponentMeta<typeof HideOnScroll>
+} as Meta<typeof HideOnScroll>
 
-const Template: ComponentStory<typeof HideOnScroll> = (args) => {
+const Template: StoryFn<typeof HideOnScroll> = (args) => {
   return (
     <Card variant='outlined'>
       <CardContent style={{ height: 600 }}>
@@ -22,7 +22,7 @@ const Template: ComponentStory<typeof HideOnScroll> = (args) => {
   )
 }
 
-export const Example: Story<Props> = Template.bind({})
+export const Example = Template.bind({})
 Example.args = {
   children: (
     <AppBar>

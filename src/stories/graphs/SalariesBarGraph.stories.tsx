@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 
 import { Card, Grid } from '@mui/material'
 
@@ -11,9 +11,9 @@ import SalariesBarGraph, {
 export default {
   title: 'Graphs/SalariesBarGraph',
   component: SalariesBarGraph
-} as ComponentMeta<typeof SalariesBarGraph>
+} as Meta<typeof SalariesBarGraph>
 
-const Template: ComponentStory<typeof SalariesBarGraph> = (args) => (
+const Template: StoryFn<typeof SalariesBarGraph> = (args) => (
   <Grid container style={{ height: 500 }}>
     <Card style={{ height: '100%', width: '100%', padding: 24 }}>
       <SalariesBarGraph {...args} />
@@ -82,7 +82,7 @@ const dataWithoutCount: Props['data'] = [
   }
 ]
 
-export const WithoutLine: Story<Props> = Template.bind({})
+export const WithoutLine = Template.bind({})
 WithoutLine.args = {
   data,
   legend: 'Salary Data',
@@ -95,7 +95,7 @@ WithoutLine.args = {
   samplingLabel: 'Amostragem'
 }
 
-export const WithLine: Story<Props> = Template.bind({})
+export const WithLine = Template.bind({})
 WithLine.args = {
   data,
   legend: 'Salary Data',
@@ -115,7 +115,7 @@ WithLine.args = {
   }
 }
 
-export const WithoutMultipleKeys: Story<Props> = Template.bind({})
+export const WithoutMultipleKeys = Template.bind({})
 WithoutMultipleKeys.args = {
   data,
   legend: 'Salary Data',
@@ -124,7 +124,7 @@ WithoutMultipleKeys.args = {
   samplingLabel: 'Amostragem'
 }
 
-export const WithoutSampleSize: Story<Props> = Template.bind({})
+export const WithoutSampleSize = Template.bind({})
 WithoutSampleSize.args = {
   data: dataWithoutCount,
   legend: 'Salary Data',
@@ -133,7 +133,7 @@ WithoutSampleSize.args = {
   hasSampling: false
 }
 
-export const ComputedMaxValue: Story<Props> = Template.bind({})
+export const ComputedMaxValue = Template.bind({})
 ComputedMaxValue.args = {
   data,
   legend: 'Salary Data',

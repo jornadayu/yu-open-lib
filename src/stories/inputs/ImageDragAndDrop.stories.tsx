@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 
 import ImageDragAndDrop, {
   Props
@@ -12,9 +12,9 @@ export default {
   parameters: {
     badges: ['Added: v2.2.0']
   }
-} as ComponentMeta<typeof ImageDragAndDrop>
+} as Meta<typeof ImageDragAndDrop>
 
-const Template: ComponentStory<typeof ImageDragAndDrop> = (args) => {
+const Template: StoryFn<typeof ImageDragAndDrop> = (args) => {
   return (
     <div style={{ width: 500 }}>
       <ImageDragAndDrop {...args} />
@@ -29,12 +29,12 @@ const baseProps: Partial<Props> = {
   }
 }
 
-export const Base: Story<Props> = Template.bind({})
+export const Base = Template.bind({})
 Base.args = {
   ...baseProps
 }
 
-export const OnAttach: Story<Props> = Template.bind({})
+export const OnAttach = Template.bind({})
 OnAttach.args = {
   ...baseProps,
   onAttach(file) {
@@ -42,13 +42,13 @@ OnAttach.args = {
   }
 }
 
-export const CustomTitle: Story<Props> = Template.bind({})
+export const CustomTitle = Template.bind({})
 CustomTitle.args = {
   ...baseProps,
   title: 'titulo personalizado'
 }
 
-export const CustomStyling: Story<Props> = Template.bind({})
+export const CustomStyling = Template.bind({})
 CustomStyling.args = {
   ...baseProps,
   imageSrc: 'https://via.placeholder.com/500',

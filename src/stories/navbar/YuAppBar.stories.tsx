@@ -1,11 +1,10 @@
 import React from 'react'
 
-import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 
 import { Group as GroupIcon, Shop as ShopIcon } from '@mui/icons-material'
 import { Link } from '@mui/material'
 
-import { Props as YuAppBarProps } from '../../components/NavBar/BaseAppBar'
 import YuAppBar from '../../components/NavBar/YuAppBar'
 import NotificationItem from '../../components/notifications/NotificationItem'
 import NotificationMenu from '../../components/notifications/NotificationMenu'
@@ -14,9 +13,9 @@ import { notificationsData } from '../mocks/notificationMocks'
 export default {
   title: 'NavBar/YuAppBar',
   component: YuAppBar
-} as ComponentMeta<typeof YuAppBar>
+} as Meta<typeof YuAppBar>
 
-const Template: ComponentStory<typeof YuAppBar> = (args) => {
+const Template: StoryFn<typeof YuAppBar> = (args) => {
   return <YuAppBar logo='yu' homeURL='/' {...args} />
 }
 
@@ -58,26 +57,26 @@ const navItems = {
   rightItems: []
 }
 
-export const LoggedIn: Story<YuAppBarProps> = Template.bind({})
+export const LoggedIn = Template.bind({})
 LoggedIn.args = {
   loggedIn: true,
   items: navItems
 }
 
-export const LoggedOut: Story<YuAppBarProps> = Template.bind({})
+export const LoggedOut = Template.bind({})
 LoggedOut.args = {
   loggedIn: false,
   items: navItems
 }
 
-export const YuriLogo: Story<YuAppBarProps> = Template.bind({})
+export const YuriLogo = Template.bind({})
 YuriLogo.args = {
   loggedIn: true,
   items: navItems,
   logo: 'yuri'
 }
 
-export const CustomLogo: Story<YuAppBarProps> = Template.bind({})
+export const CustomLogo = Template.bind({})
 CustomLogo.args = {
   loggedIn: true,
   items: navItems,
@@ -103,7 +102,7 @@ const mobileActionItemBar = {
   )
 }
 
-export const mobileActionItemInMobile: Story<YuAppBarProps> = Template.bind({})
+export const mobileActionItemInMobile = Template.bind({})
 mobileActionItemInMobile.args = {
   loggedIn: true,
   items: navItems,

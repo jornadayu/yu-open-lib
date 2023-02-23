@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 
 import { Check } from '@mui/icons-material'
 import { Card, CardContent } from '@mui/material'
@@ -13,9 +13,9 @@ export default {
   parameters: {
     badges: ['Added: v2.1.2']
   }
-} as ComponentMeta<typeof FileUploadInput>
+} as Meta<typeof FileUploadInput>
 
-const Template: ComponentStory<typeof FileUploadInput> = (args) => {
+const Template: StoryFn<typeof FileUploadInput> = (args) => {
   return (
     <Card variant='outlined'>
       <CardContent>
@@ -35,12 +35,12 @@ const baseProps: Partial<Props> = {
   }
 }
 
-export const Example: Story<Props> = Template.bind({})
+export const Example = Template.bind({})
 Example.args = {
   ...baseProps
 }
 
-export const CustomButton: Story<Props> = Template.bind({})
+export const CustomButton = Template.bind({})
 CustomButton.args = {
   ...baseProps,
   label: 'File',
@@ -54,13 +54,13 @@ CustomButton.args = {
   }
 }
 
-export const DefaultFile: Story<Props> = Template.bind({})
+export const DefaultFile = Template.bind({})
 DefaultFile.args = {
   ...baseProps,
   defaultValue: new File(['Hello World'], 'hello.txt')
 }
 
-export const CustomSave: Story<Props> = Template.bind({})
+export const CustomSave = Template.bind({})
 CustomSave.args = {
   ...baseProps,
   label: 'File',
@@ -76,7 +76,7 @@ CustomSave.args = {
   }
 }
 
-export const Loading: Story<Props> = Template.bind({})
+export const Loading = Template.bind({})
 Loading.args = {
   ...baseProps,
   label: 'File',
