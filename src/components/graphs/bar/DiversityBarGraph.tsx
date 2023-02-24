@@ -4,7 +4,7 @@ import { AccessorFunc, BarSvgProps, ResponsiveBar } from '@nivo/bar'
 import { OrdinalColorScaleConfig } from '@nivo/colors'
 
 import { Typography } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@mui/styles'
 
 import { asPercentage, truncatedText } from '../../../helpers'
 import { useNivoTheme } from '../../../hooks/nivo'

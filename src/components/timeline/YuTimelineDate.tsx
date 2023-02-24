@@ -5,7 +5,7 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 
 import { TimelineOppositeContent } from '@mui/lab'
 import { Typography } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
+import { makeStyles } from '@mui/styles'
 
 dayjs.extend(relativeTime)
 

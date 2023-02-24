@@ -29,6 +29,9 @@
     "isolatedModules": true,
     "noEmit": false
   },
+  "react": [
+    "./node_modules/@types/react"
+  ],
   "include": [
     "src"
   ],
@@ -42,6 +45,8 @@
     "src/types"
   ],
   "paths": {
-    "*": ["src/types/*.d.ts"]
+    "*": [
+      "src/types/*.d.ts"
+    ]
   }
 }

@@ -1,20 +1,20 @@
 import React from 'react'
 
-import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 
-import ClickableArea, { Props } from '../../components/ClickableArea'
+import ClickableArea from '../../components/ClickableArea'
 
 export default {
   title: 'Utils/ClickableArea',
   component: ClickableArea,
   argTypes: { onClick: { action: 'clicked' } }
-} as ComponentMeta<typeof ClickableArea>
+} as Meta<typeof ClickableArea>
 
-const Template: ComponentStory<typeof ClickableArea> = (args) => (
+const Template: StoryFn<typeof ClickableArea> = (args) => (
   <ClickableArea {...args}>
     <div style={{ backgroundColor: 'red' }}>Click anywhere in the red area</div>
   </ClickableArea>
 )
 
-export const Example: Story<Props> = Template.bind({})
+export const Example = Template.bind({})
 Example.args = {}

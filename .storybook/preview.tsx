@@ -5,21 +5,15 @@ import { CssBaseline } from '@mui/material'
 
 import { themes } from '@storybook/theming'
 
-import { addDecorator } from '@storybook/react'
-import { jsxDecorator } from 'storybook-addon-jsx'
-import { ThemeProvider as EmotionThemeProvider } from "emotion-theming";
+import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
 // import { withInfo } from '@storybook/addon-info'
 
 import AppTheme from '../src/theme/AppTheme'
 import '../src/styles/core.scss'
 import pkg from '../package.json'
-import { BADGES } from './constants'
 
 const theme = AppTheme({ darkMode: true })
 
-/**
- * https://storybook.js.org/addons/storybook-addon-mui-mode/
- */
 const withMuiTheme = (Story, context) => {
   const mode = context.globals?.muiMode;
 
@@ -36,7 +30,6 @@ const withMuiTheme = (Story, context) => {
 }
 
 export const decorators = [
-  jsxDecorator(),
   withMuiTheme
 ]
 
@@ -60,23 +53,6 @@ export const parameters = {
     source: {
       excludeDecorators: true,
     }
-  },
-  badgesConfig: {
-    [BADGES.UNRELEASED] : {
-      contrast: '#ece9e9',
-      color: '#b92222',
-      title: 'Unreleased'
-    }
   }
 }
 
-// TODO: Decorator breaks with vite
-// Uncaught Error: Dynamic require of "./lib/nestedObjectAssign.js" is not supported
-// at __require (:6006/node_modules/.vite/chunk-IHTDASF6.js?v=e3b2d4cd:11)
-//     at node_modules/nested-object-assign/index.js (:6006/node_modules/.vite/@storybook_addon-info.js?v=e3b2d4cd:477)
-
-// addDecorator(
-//   withInfo({
-//     inline: true,
-//   })
-// )

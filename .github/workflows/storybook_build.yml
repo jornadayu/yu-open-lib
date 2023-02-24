@@ -3,20 +3,20 @@ name: Storybook Build
 on:
   push:
     branches: [master]
-    paths: ["src/stories/**", "src/components/**", ".storybook/**", ".github/workflows/storybook_deploy.yml"]
+    paths: ["src/stories/**", "src/components/**", ".storybook/**"]
+  pull_request:
+    branches: [master]
 
 jobs:
-  storybook:
+  storybook_chromatic_build:
     runs-on: ubuntu-latest
-    env:
-      # 7 GiB by default on GitHub, setting to 6 GiB
-      # https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources
-      # https://github.com/storybookjs/builder-vite/issues/282#issuecomment-1072455178
-      NODE_OPTIONS: --max-old-space-size=6144
+    name: Publish Storybook Chromatic
 
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Cache Yarn Dependencies
         uses: actions/cache@v2
@@ -27,11 +27,29 @@ jobs:
       - name: Setup Node and Yarn
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '18'
           cache: 'yarn'
 
       - name: Install Dependencies
-        run: yarn install --prefer-offline --ignore-scripts
+        run: yarn install --prefer-offline
 
-      - name: Storybook Build
-        run: yarn build-storybook
+      # Storybook tests always passes even if they are failing
+      # - name: Run Storybook tests
+      #   run: yarn test-storybook
+
+      - name: Publish Chromatic Storybook
+        if: github.ref != 'refs/heads/staging' && github.ref != 'refs/heads/master'
+        uses: chromaui/action@v1
+        with:
+          run: yarn
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+
+      - name: Publish to Chromatic and auto accept changes
+        if: github.ref == 'refs/heads/staging' || github.ref == 'refs/heads/master'
+        uses: chromaui/action@v1
+        with:
+          run: yarn
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          # Since PR was already merged, changes were alredy reviewed and approved
+          # so auto-accept them in staging/master
+          autoAcceptChanges: true

@@ -1,15 +1,15 @@
 import React from 'react'
 
-import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 
 import CookiesWarning, { Props } from '../../components/cookies/CookiesWarning'
 
 export default {
   title: 'cookies/CookiesWarning',
   component: CookiesWarning
-} as ComponentMeta<typeof CookiesWarning>
+} as Meta<typeof CookiesWarning>
 
-const Template: ComponentStory<typeof CookiesWarning> = (args) => {
+const Template: StoryFn<typeof CookiesWarning> = (args) => {
   return <CookiesWarning {...args} />
 }
 
@@ -18,7 +18,7 @@ const baseProps: Partial<Props> = {
   locale: 'pt'
 }
 
-export const Base: Story<Props> = Template.bind({})
+export const Base = Template.bind({})
 Base.args = {
   ...baseProps
 }

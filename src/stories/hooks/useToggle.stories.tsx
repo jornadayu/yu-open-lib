@@ -1,29 +1,44 @@
 import React from 'react'
 
-import { Story } from '@storybook/react'
+import { StoryFn } from '@storybook/react'
 
-import { Button, Card, CardContent } from '@mui/material'
+import { Box, Button } from '@mui/material'
 
 import { useToggle } from '../../hooks'
 
 export default {
-  title: 'Hooks/useToggle'
+  title: 'Hooks/useToggle',
+  argTypes: {
+    onClose: { action: 'onClose' }
+  },
+  parameters: {
+    badges: ['Added: v2.3.2']
+  }
 }
 
-const Template = () => {
+const Template: StoryFn = () => {
   const [value, toggleValue] = useToggle(false)
 
   return (
-    <Card variant='outlined'>
-      <CardContent>
-        Value is: {value.toString()}
-        <br />
-        <Button variant='contained' onClick={toggleValue}>
-          Toggle
-        </Button>
-      </CardContent>
-    </Card>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column'
+      }}
+    >
+      Value is: {value.toString()}
+      <Button
+        onClick={toggleValue}
+        variant='outlined'
+        sx={{
+          width: '150px',
+          marginTop: '10px'
+        }}
+      >
+        Toggle
+      </Button>
+    </Box>
   )
 }
 
-export const Example: Story = Template.bind({})
+export const Example = Template.bind({})

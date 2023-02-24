@@ -1,25 +1,30 @@
 import React from 'react'
 
-import { Story } from '@storybook/react'
+import { StoryFn } from '@storybook/react'
 
-import { Card, CardContent } from '@mui/material'
+import { Box } from '@mui/material'
 
 import { useViewport } from '../../hooks'
 
 export default {
-  title: 'Hooks/useViewport'
+  title: 'Hooks/useViewport',
+  argTypes: {
+    onClose: { action: 'onClose' }
+  },
+  parameters: {
+    badges: ['Added: v2.3.2']
+  }
 }
 
-const Template = () => {
+const Template: StoryFn = () => {
   const { isMobile } = useViewport()
 
   return (
-    <Card variant='outlined'>
-      <CardContent>
-        <p>isMobile: {isMobile.toString()}</p>
-      </CardContent>
-    </Card>
+    <Box>
+      isMobile: {isMobile.toString()}
+      {isMobile && <div>I only appear on mobile viewports</div>}
+    </Box>
   )
 }
 
-export const Example: Story = Template.bind({})
+export const Example = Template.bind({})

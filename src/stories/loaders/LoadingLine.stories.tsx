@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 
 import YuAppBar from '../../components/NavBar/YuAppBar'
-import LoadingLine, { Props } from '../../components/loaders/LoadingLine'
+import LoadingLine from '../../components/loaders/LoadingLine'
 
 export default {
   title: 'Loaders/LoadingLine',
@@ -11,9 +11,9 @@ export default {
   parameters: {
     badges: ['Added: 2.0.0']
   }
-} as ComponentMeta<typeof LoadingLine>
+} as Meta<typeof LoadingLine>
 
-const Template: ComponentStory<typeof LoadingLine> = (args) => {
+const Template: StoryFn<typeof LoadingLine> = (args) => {
   return (
     <React.Fragment>
       <YuAppBar
@@ -29,13 +29,13 @@ const Template: ComponentStory<typeof LoadingLine> = (args) => {
   )
 }
 
-export const Top: Story<Props> = Template.bind({})
+export const Top = Template.bind({})
 Top.args = {
   topY: 86,
   bottom: false
 }
 
-export const BottomOnMobile: Story<Props> = Template.bind({})
+export const BottomOnMobile = Template.bind({})
 BottomOnMobile.args = {
   topY: 86,
   bottom: true

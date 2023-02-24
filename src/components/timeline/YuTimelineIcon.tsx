@@ -3,8 +3,7 @@ import React from 'react'
 import { TimelineConnector, TimelineDot, TimelineSeparator } from '@mui/lab'
 import { Badge, Theme } from '@mui/material'
 import { darken } from '@mui/material/styles'
-import makeStyles from '@mui/styles/makeStyles'
-import withStyles from '@mui/styles/withStyles'
+import { makeStyles, withStyles } from '@mui/styles'
 
 import ClickableArea from '../ClickableArea'
 

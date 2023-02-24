@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 
 import { Button } from '@mui/material'
 
@@ -17,9 +17,9 @@ export default {
   parameters: {
     badges: ['Added: v2.3.2']
   }
-} as ComponentMeta<typeof BaseDialog>
+} as Meta<typeof BaseDialog>
 
-const Template: ComponentStory<typeof BaseDialog> = (args) => {
+const Template: StoryFn<typeof BaseDialog> = (args) => {
   const [open, setOpen] = useState(false)
 
   const close = () => {
@@ -49,20 +49,18 @@ const baseProps: BaseDialogProps = {
   )
 }
 
-export const Example: Story<BaseDialogProps> = Template.bind({})
+export const Example = Template.bind({})
 Example.args = {
   ...baseProps
 }
 
-export const LoadingDialog: Story<BaseDialogProps> = Template.bind({})
+export const LoadingDialog = Template.bind({})
 LoadingDialog.args = {
   ...baseProps,
   loading: true
 }
 
-type PropsWithChildren = BaseDialogProps & { children?: React.ReactNode }
-
-export const CustomChildren: Story<PropsWithChildren> = Template.bind({})
+export const CustomChildren = Template.bind({})
 CustomChildren.args = {
   ...baseProps,
   children: (

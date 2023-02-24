@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 
 import { Card, Grid } from '@mui/material'
 
@@ -11,9 +11,9 @@ import RejectionsSunburst, {
 export default {
   title: 'Graphs/RejectionsSunburst',
   component: RejectionsSunburst
-} as ComponentMeta<typeof RejectionsSunburst>
+} as Meta<typeof RejectionsSunburst>
 
-const Template: ComponentStory<typeof RejectionsSunburst> = (args) => (
+const Template: StoryFn<typeof RejectionsSunburst> = (args) => (
   <Grid container style={{ height: 500 }}>
     <Card style={{ height: '100%', width: '100%', padding: 24 }}>
       <RejectionsSunburst {...args} />
@@ -123,7 +123,7 @@ const data: Props['data'] = {
   ]
 }
 
-export const CommonRejection: Story<Props> = Template.bind({})
+export const CommonRejection = Template.bind({})
 CommonRejection.args = {
   data
 }

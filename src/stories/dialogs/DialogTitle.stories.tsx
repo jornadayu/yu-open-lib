@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 
-import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 
 import { Dialog, DialogContent } from '@mui/material'
 
-import DialogTitle, { Props } from '../../components/DialogTitle'
+import DialogTitle from '../../components/DialogTitle'
 
 export default {
   title: 'Dialogs/DialogTitle',
@@ -13,9 +13,9 @@ export default {
   parameters: {
     badges: ['Added: 2.0.0']
   }
-} as ComponentMeta<typeof DialogTitle>
+} as Meta<typeof DialogTitle>
 
-const Template: ComponentStory<typeof DialogTitle> = (args) => {
+const Template: StoryFn<typeof DialogTitle> = (args) => {
   const [open, setOpen] = useState(false)
 
   const close = () => {
@@ -36,7 +36,7 @@ const Template: ComponentStory<typeof DialogTitle> = (args) => {
   )
 }
 
-export const Example: Story<Props> = Template.bind({})
+export const Example = Template.bind({})
 Example.args = {
   children: (
     <h4>

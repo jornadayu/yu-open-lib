@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 
 import { Card, Grid } from '@mui/material'
 
@@ -9,9 +9,9 @@ import YuWordCloud, { Props } from '../../components/graphs/YuWordCloud'
 export default {
   title: 'Graphs/YuWordCloud',
   component: YuWordCloud
-} as ComponentMeta<typeof YuWordCloud>
+} as Meta<typeof YuWordCloud>
 
-const Template: ComponentStory<typeof YuWordCloud> = (args) => (
+const Template: StoryFn<typeof YuWordCloud> = (args) => (
   <Grid container>
     <Card style={{ height: '100%', width: '100%', padding: 24 }}>
       <YuWordCloud {...args} />
@@ -47,12 +47,12 @@ const wordsPercentage = words.map((word) => ({
   value: word.value / valueSum
 }))
 
-export const StaticValues: Story<Props> = Template.bind({})
+export const StaticValues = Template.bind({})
 StaticValues.args = {
   words
 }
 
-export const Percentage: Story<Props> = Template.bind({})
+export const Percentage = Template.bind({})
 Percentage.args = {
   words: wordsPercentage,
   isPercentage: true,

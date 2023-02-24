@@ -1,12 +1,10 @@
 import React from 'react'
 
-import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 
 import { Card, Grid } from '@mui/material'
 
-import AverageStepDurationGraph, {
-  AverageStepDurationGraphProps
-} from '../../components/graphs/AverageStepDurationGraph'
+import AverageStepDurationGraph from '../../components/graphs/AverageStepDurationGraph'
 
 export default {
   title: 'Graphs/AverageStepDurationGraph',
@@ -14,9 +12,9 @@ export default {
   parameters: {
     badges: ['Added: 1.8.0']
   }
-} as ComponentMeta<typeof AverageStepDurationGraph>
+} as Meta<typeof AverageStepDurationGraph>
 
-const Template: ComponentStory<typeof AverageStepDurationGraph> = (args) => (
+const Template: StoryFn<typeof AverageStepDurationGraph> = (args) => (
   <Grid container>
     <Card style={{ height: 500, width: '100%', padding: 24 }}>
       <AverageStepDurationGraph {...args} />
@@ -24,7 +22,7 @@ const Template: ComponentStory<typeof AverageStepDurationGraph> = (args) => (
   </Grid>
 )
 
-export const Example: Story<AverageStepDurationGraphProps> = Template.bind({})
+export const Example = Template.bind({})
 Example.args = {
   steps: [
     { name: 'First Step', count: 4 },
@@ -35,8 +33,7 @@ Example.args = {
   ]
 }
 
-export const LongStepNames: Story<AverageStepDurationGraphProps> =
-  Template.bind({})
+export const LongStepNames = Template.bind({})
 LongStepNames.args = {
   steps: [
     { name: 'First Very Long Title Step', count: 4 },
@@ -47,8 +44,7 @@ LongStepNames.args = {
   ]
 }
 
-export const SameNameSteps: Story<AverageStepDurationGraphProps> =
-  Template.bind({})
+export const SameNameSteps = Template.bind({})
 SameNameSteps.args = {
   steps: [
     { name: 'Same Step Name', count: 4 },
@@ -63,9 +59,7 @@ SameNameSteps.args = {
   ]
 }
 
-export const LotsOfSteps: Story<AverageStepDurationGraphProps> = Template.bind(
-  {}
-)
+export const LotsOfSteps = Template.bind({})
 LotsOfSteps.args = {
   steps: [
     { name: 'First Very Long Title Step', count: 4 },
@@ -80,9 +74,7 @@ LotsOfSteps.args = {
   ]
 }
 
-export const CustomColors: Story<AverageStepDurationGraphProps> = Template.bind(
-  {}
-)
+export const CustomColors = Template.bind({})
 CustomColors.args = {
   steps: [
     { name: 'Some Step', count: 4 },
@@ -107,8 +99,7 @@ CustomColors.args = {
   legend: 'Dias'
 }
 
-export const CustomColors2: Story<AverageStepDurationGraphProps> =
-  Template.bind({})
+export const CustomColors2 = Template.bind({})
 CustomColors2.args = {
   steps: [
     { name: 'Some Step', count: 4 },
@@ -125,7 +116,7 @@ CustomColors2.args = {
   legend: 'Dias'
 }
 
-export const Vertical: Story<AverageStepDurationGraphProps> = Template.bind({})
+export const Vertical = Template.bind({})
 Vertical.args = {
   vertical: true,
   steps: [

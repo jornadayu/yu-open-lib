@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Typography, CssBaseline, Switch, FormGroup, FormControlLabel } from '@mui/material'
 import { Box } from '@mui/system'
 import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles'
-import { ThemeProvider as EmotionThemeProvider } from 'emotion-theming'
+import { ThemeProvider as EmotionThemeProvider } from '@emotion/react'
 import GroupIcon from '@mui/icons-material/Group'
 
 // @ts-ignore
@@ -70,7 +70,7 @@ const App = () => {
 
             <ToastTests />
 
-            <WhatsappChip onClick={() => {}} number="123456" message="Olá" />
+            <WhatsappChip onClick={() => { }} number="123456" message="Olá" />
 
             <FormGroup>
               <FormControlLabel control={<Switch checked={darkMode} onChange={toggleDarkMode} />} label="Dark Mode" />

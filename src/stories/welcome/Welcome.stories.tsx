@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ComponentMeta, ComponentStory, Story } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 
 import Welcome, { Props } from '../../components/welcome/Welcome'
 
@@ -10,9 +10,9 @@ export default {
   parameters: {
     badges: ['Added: v2.5.0']
   }
-} as ComponentMeta<typeof Welcome>
+} as Meta<typeof Welcome>
 
-const Template: ComponentStory<typeof Welcome> = (args) => {
+const Template: StoryFn<typeof Welcome> = (args) => {
   return <Welcome {...args} />
 }
 
@@ -20,7 +20,7 @@ const baseProps: Partial<Props> = {
   name: 'John Doe'
 }
 
-export const Base: Story<Props> = Template.bind({})
+export const Base = Template.bind({})
 Base.args = {
   ...baseProps
 }
