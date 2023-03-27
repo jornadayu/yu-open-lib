@@ -14,7 +14,15 @@ import {
   useReactTable
 } from '@tanstack/react-table'
 
-import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
+import { ExpandLess, ExpandMore } from '@mui/icons-material'
+import {
+  IconButton,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow
+} from '@mui/material'
 
 export type Props<T extends Record<string, any>> = {
   columns: ColumnDef<T>[]
@@ -122,23 +130,27 @@ const YuTable = <T extends Record<string, any>>({
                         <React.Fragment>
                           {/* If a manual grouping expand state was passed, don't allow manually changing it */}
                           {groupingExpand === undefined ? (
-                            <button
-                              {...{
-                                onClick: row.getToggleExpandedHandler(),
-                                style: {
-                                  cursor: row.getCanExpand()
-                                    ? 'pointer'
-                                    : 'normal'
-                                }
-                              }}
-                            >
-                              {row.getIsExpanded() ? '👇' : '👉'}{' '}
+                            <React.Fragment>
+                              <IconButton
+                                size='small'
+                                sx={{
+                                  mr: 1
+                                }}
+                                onClick={row.getToggleExpandedHandler()}
+                                disabled={!row.getCanExpand()}
+                              >
+                                {row.getIsExpanded() ? (
+                                  <ExpandLess />
+                                ) : (
+                                  <ExpandMore />
+                                )}{' '}
+                              </IconButton>
                               {flexRender(
                                 cell.column.columnDef.cell,
                                 cell.getContext()
                               )}{' '}
                               ({row.subRows.length})
-                            </button>
+                            </React.Fragment>
                           ) : (
                             <React.Fragment>
                               {flexRender(
