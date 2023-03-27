@@ -7,7 +7,7 @@ import {
   Cancel,
   CheckCircleOutline
 } from '@mui/icons-material'
-import { Chip, Grid } from '@mui/material'
+import { Card, Chip, Grid } from '@mui/material'
 
 import { YuTable } from '../../index'
 
@@ -68,39 +68,41 @@ const getChipColor = (status: Application['status']) => {
 const Template: StoryFn<typeof YuTable> = (args) => {
   return (
     <Grid container>
-      <YuTable
-        {...args}
-        columns={[
-          {
-            accessorKey: 'manager',
-            header: 'Manager',
-            cell: (info) => info.getValue(),
-            accessorFn: (row) => row.manager,
-            enableGrouping: false
-          },
-          {
-            accessorFn: (row) => row.name,
-            id: 'name',
-            header: () => <span>Name</span>,
-            cell: (info) => info.getValue(),
-            enableGrouping: false
-          },
-          {
-            accessorKey: 'status',
-            id: 'status',
-            header: () => <span>Status</span>,
-            cell: (info) => (
-              <Chip
-                label={info.getValue() as string}
-                icon={getStatusIcon(info.getValue() as Application['status'])}
-                color={getChipColor(info.getValue() as Application['status'])}
-              />
-            ),
-            enableGrouping: false
-          }
-        ]}
-        data={data}
-      />
+      <Card sx={{ width: '100%' }}>
+        <YuTable
+          {...args}
+          columns={[
+            {
+              accessorKey: 'manager',
+              header: 'Manager',
+              cell: (info) => info.getValue(),
+              accessorFn: (row) => row.manager,
+              enableGrouping: false
+            },
+            {
+              accessorFn: (row) => row.name,
+              id: 'name',
+              header: () => <span>Name</span>,
+              cell: (info) => info.getValue(),
+              enableGrouping: false
+            },
+            {
+              accessorKey: 'status',
+              id: 'status',
+              header: () => <span>Status</span>,
+              cell: (info) => (
+                <Chip
+                  label={info.getValue() as string}
+                  icon={getStatusIcon(info.getValue() as Application['status'])}
+                  color={getChipColor(info.getValue() as Application['status'])}
+                />
+              ),
+              enableGrouping: false
+            }
+          ]}
+          data={data}
+        />
+      </Card>
     </Grid>
   )
 }
