@@ -1,23 +1,30 @@
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 
 import { ThemeProvider } from '@mui/material/styles'
 import { CssBaseline } from '@mui/material'
 
 import { themes } from '@storybook/theming'
+import { addons } from '@storybook/preview-api';
+
+import { DARK_MODE_EVENT_NAME } from 'storybook-dark-mode';
 
 import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
-// import { withInfo } from '@storybook/addon-info'
 
 import AppTheme from '../src/theme/AppTheme'
 import '../src/styles/core.scss'
-import pkg from '../package.json'
-
-const theme = AppTheme({ darkMode: true })
 
 const withMuiTheme = (Story, context) => {
-  const mode = context.globals?.muiMode;
+  // get channel to listen to event emitter
+  const channel = addons.getChannel();
 
-  const theme = useMemo(() => AppTheme({ darkMode: mode === 'dark' }), [mode])
+  const [isDark, setDark] = useState(true);
+  useEffect(() => {
+    // listen to DARK_MODE event
+    channel.on(DARK_MODE_EVENT_NAME, setDark);
+    return () => channel.off(DARK_MODE_EVENT_NAME, setDark);
+  }, [channel, setDark]);
+
+  const theme = useMemo(() => AppTheme({ darkMode: isDark }), [isDark])
 
   return (
     <EmotionThemeProvider theme={theme}>
