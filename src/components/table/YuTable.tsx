@@ -27,7 +27,7 @@ import {
 import TableGroupToggle from './TableGroupToggle'
 import YuTableCell from './YuTableCell'
 
-export type Props<T extends Record<string, any>> = {
+export type Props<T> = {
   columns: ColumnDef<T>[]
   data: T[]
   /**
@@ -50,7 +50,7 @@ export type Props<T extends Record<string, any>> = {
   showGroupingIndex?: boolean
 } & Partial<TableOptions<T>>
 
-const YuTable = <T extends Record<string, any>>({
+const YuTable = <T extends Record<string, unknown>>({
   data,
   columns,
   defaultGrouping = [],

@@ -9,7 +9,7 @@ import {
 } from '@mui/icons-material'
 import { Card, Chip, Grid } from '@mui/material'
 
-import { YuTable } from '../../index'
+import { ContactChip, YuTable } from '../../index'
 
 export default {
   title: 'YU/YuTable',
@@ -23,23 +23,35 @@ type Application = {
   manager: string
   name: string
   status: 'Active' | 'Placed' | 'Rejected'
+  linkedinUrl?: string
+  phoneNumber?: string
+  email?: string
 }
 
 const data: Application[] = [
   {
     manager: 'Foo',
     name: 'John',
-    status: 'Active'
+    status: 'Active',
+    linkedinUrl: 'https://www.linkedin.com/in/john-doe-fake-linkedin/',
+    phoneNumber: '5511123456789',
+    email: 'foobarfakeemail@gmail.com'
   },
   {
     manager: 'Foo',
     name: 'Doe',
-    status: 'Placed'
+    status: 'Placed',
+    linkedinUrl: 'https://www.linkedin.com/in/john-doe-fake-linkedin/',
+    phoneNumber: '5511123456789',
+    email: 'foobarfakeemail@gmail.com'
   },
   {
     manager: 'Bar',
     name: 'Jane',
-    status: 'Rejected'
+    status: 'Rejected',
+    linkedinUrl: 'https://www.linkedin.com/in/john-doe-fake-linkedin/',
+    phoneNumber: '5511123456789',
+    email: 'foobarfakeemail@gmail.com'
   }
 ]
 
@@ -96,6 +108,40 @@ const Template: StoryFn<typeof YuTable> = (args) => {
                   icon={getStatusIcon(info.getValue() as Application['status'])}
                   color={getChipColor(info.getValue() as Application['status'])}
                 />
+              ),
+              enableGrouping: false
+            },
+            {
+              accessorFn: (row) => row.name,
+              id: 'contactInfo',
+              header: () => <span>Contact Info</span>,
+              cell: (info) => (
+                <Grid container spacing={1}>
+                  <Grid item>
+                    <ContactChip
+                      variant='linkedin'
+                      value={info.cell.row.original.linkedinUrl as string}
+                      copyable
+                    />
+                  </Grid>
+
+                  <Grid item>
+                    <ContactChip
+                      variant='whatsapp'
+                      value={info.cell.row.original.phoneNumber as string}
+                      copyable
+                      copyAs='phoneNumber'
+                    />
+                  </Grid>
+
+                  <Grid item>
+                    <ContactChip
+                      variant='email'
+                      value={info.cell.row.original.email as string}
+                      copyable
+                    />
+                  </Grid>
+                </Grid>
               ),
               enableGrouping: false
             }
