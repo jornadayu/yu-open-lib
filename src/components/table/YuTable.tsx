@@ -13,15 +13,18 @@ import {
   getPaginationRowModel,
   useReactTable
 } from '@tanstack/react-table'
+import { TableOptions } from '@tanstack/table-core'
 
-import { ExpandLess, ExpandMore } from '@mui/icons-material'
+import { AutoAwesomeMosaic, ExpandLess, ExpandMore } from '@mui/icons-material'
 import {
+  Badge,
   IconButton,
   Table,
   TableBody,
   TableCell,
   TableHead,
-  TableRow
+  TableRow,
+  Typography
 } from '@mui/material'
 
 export type Props<T extends Record<string, any>> = {
@@ -39,13 +42,21 @@ export type Props<T extends Record<string, any>> = {
    * @default undefined
    */
   groupingExpand?: ExpandedState
-}
+  /**
+   * Show grouping index in the grouping icon button for grouped columns?
+   *
+   * @default true
+   */
+  showGroupingIndex?: boolean
+} & Partial<TableOptions<T>>
 
 const YuTable = <T extends Record<string, any>>({
   data,
   columns,
   defaultGrouping = [],
-  groupingExpand = undefined
+  groupingExpand = undefined,
+  showGroupingIndex = true,
+  ...tableOptions
 }: Props<T>): React.ReactElement => {
   const [grouping, setGrouping] = useState<GroupingState>(defaultGrouping)
 
@@ -75,115 +86,127 @@ const YuTable = <T extends Record<string, any>>({
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
-    debugTable: false
+    debugTable: false,
+    ...tableOptions
   })
 
   return (
-    <div>
-      <div />
-      <Table>
-        <TableHead>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id}>
-              {headerGroup.headers.map((header) => {
-                return (
-                  <TableCell key={header.id} colSpan={header.colSpan}>
-                    {header.isPlaceholder ? null : (
-                      <div>
-                        {header.column.getCanGroup() ? (
-                          // If the header can be grouped, let's add a toggle
-                          <button
-                            {...{
-                              onClick: header.column.getToggleGroupingHandler(),
-                              style: {
-                                cursor: 'pointer'
-                              }
-                            }}
+    <Table>
+      <TableHead>
+        {table.getHeaderGroups().map((headerGroup) => (
+          <TableRow key={headerGroup.id}>
+            {headerGroup.headers.map((header) => {
+              return (
+                <TableCell key={header.id} colSpan={header.colSpan}>
+                  {header.isPlaceholder ? null : (
+                    <div>
+                      {header.column.getCanGroup() ? (
+                        // If the header can be grouped, let's add a toggle
+                        <IconButton
+                          onClick={header.column.getToggleGroupingHandler()}
+                          sx={{ mr: 1 }}
+                        >
+                          <Badge
+                            color='success'
+                            badgeContent={
+                              showGroupingIndex
+                                ? header.column.getGroupedIndex() + 1
+                                : 0
+                            }
                           >
-                            {header.column.getIsGrouped()
-                              ? `🛑(${header.column.getGroupedIndex()}) `
-                              : `👊 `}
-                          </button>
-                        ) : null}{' '}
+                            <AutoAwesomeMosaic
+                              sx={{
+                                color: header.column.getIsGrouped()
+                                  ? 'primary.main'
+                                  : 'inherit'
+                              }}
+                            />
+                          </Badge>
+                        </IconButton>
+                      ) : null}{' '}
+                      <Typography
+                        variant='body1'
+                        sx={{
+                          fontWeight: 600
+                        }}
+                      >
                         {flexRender(
                           header.column.columnDef.header,
                           header.getContext()
                         )}
-                      </div>
+                      </Typography>
+                    </div>
+                  )}
+                </TableCell>
+              )
+            })}
+          </TableRow>
+        ))}
+      </TableHead>
+
+      <TableBody>
+        {table.getRowModel().rows.map((row) => {
+          return (
+            <TableRow key={row.id}>
+              {row.getVisibleCells().map((cell) => {
+                return (
+                  <TableCell key={cell.id}>
+                    {cell.getIsGrouped() ? (
+                      // If it's a grouped cell, add an expander and row count
+                      <React.Fragment>
+                        {/* If a manual grouping expand state was passed, don't allow manually changing it */}
+                        {groupingExpand === undefined ? (
+                          <React.Fragment>
+                            <IconButton
+                              size='small'
+                              sx={{
+                                mr: 1
+                              }}
+                              onClick={row.getToggleExpandedHandler()}
+                              disabled={!row.getCanExpand()}
+                            >
+                              {row.getIsExpanded() ? (
+                                <ExpandLess />
+                              ) : (
+                                <ExpandMore />
+                              )}{' '}
+                            </IconButton>
+                            {flexRender(
+                              cell.column.columnDef.cell,
+                              cell.getContext()
+                            )}{' '}
+                            ({row.subRows.length})
+                          </React.Fragment>
+                        ) : (
+                          <React.Fragment>
+                            {flexRender(
+                              cell.column.columnDef.cell,
+                              cell.getContext()
+                            )}
+                          </React.Fragment>
+                        )}
+                      </React.Fragment>
+                    ) : cell.getIsAggregated() ? (
+                      // If the cell is aggregated, use the Aggregated
+                      // renderer for cell
+                      flexRender(
+                        cell.column.columnDef.aggregatedCell ??
+                          cell.column.columnDef.cell,
+                        cell.getContext()
+                      )
+                    ) : cell.getIsPlaceholder() ? null : ( // For cells with repeated values, render null
+                      // Otherwise, just render the regular cell
+                      flexRender(cell.column.columnDef.cell, cell.getContext())
                     )}
                   </TableCell>
                 )
               })}
             </TableRow>
-          ))}
-        </TableHead>
-        <TableBody>
-          {table.getRowModel().rows.map((row) => {
-            return (
-              <TableRow key={row.id}>
-                {row.getVisibleCells().map((cell) => {
-                  return (
-                    <TableCell key={cell.id}>
-                      {cell.getIsGrouped() ? (
-                        // If it's a grouped cell, add an expander and row count
-
-                        <React.Fragment>
-                          {/* If a manual grouping expand state was passed, don't allow manually changing it */}
-                          {groupingExpand === undefined ? (
-                            <React.Fragment>
-                              <IconButton
-                                size='small'
-                                sx={{
-                                  mr: 1
-                                }}
-                                onClick={row.getToggleExpandedHandler()}
-                                disabled={!row.getCanExpand()}
-                              >
-                                {row.getIsExpanded() ? (
-                                  <ExpandLess />
-                                ) : (
-                                  <ExpandMore />
-                                )}{' '}
-                              </IconButton>
-                              {flexRender(
-                                cell.column.columnDef.cell,
-                                cell.getContext()
-                              )}{' '}
-                              ({row.subRows.length})
-                            </React.Fragment>
-                          ) : (
-                            <React.Fragment>
-                              {flexRender(
-                                cell.column.columnDef.cell,
-                                cell.getContext()
-                              )}
-                            </React.Fragment>
-                          )}
-                        </React.Fragment>
-                      ) : cell.getIsAggregated() ? (
-                        // If the cell is aggregated, use the Aggregated
-                        // renderer for cell
-                        flexRender(
-                          cell.column.columnDef.aggregatedCell ??
-                            cell.column.columnDef.cell,
-                          cell.getContext()
-                        )
-                      ) : cell.getIsPlaceholder() ? null : ( // For cells with repeated values, render null
-                        // Otherwise, just render the regular cell
-                        flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext()
-                        )
-                      )}
-                    </TableCell>
-                  )
-                })}
-              </TableRow>
-            )
-          })}
-        </TableBody>
-      </Table>
-      {/* <div className='h-2' />
+          )
+        })}
+      </TableBody>
+    </Table>
+    /* <div className='h-2' />
       <div className='flex items-center gap-2'>
         <button
           className='border rounded p-1'
@@ -249,8 +272,7 @@ const YuTable = <T extends Record<string, any>>({
       <div>
         <button onClick={() => rerender()}>Force Rerender</button>
       </div>
-      <pre>{JSON.stringify(grouping, null, 2)}</pre> */}
-    </div>
+      <pre>{JSON.stringify(grouping, null, 2)}</pre> */
   )
 }
 

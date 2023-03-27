@@ -2,7 +2,12 @@ import React from 'react'
 
 import { Meta, StoryFn } from '@storybook/react'
 
-import { Grid } from '@mui/material'
+import {
+  Badge as BadgeIcon,
+  Cancel,
+  CheckCircleOutline
+} from '@mui/icons-material'
+import { Chip, Grid } from '@mui/material'
 
 import { YuTable } from '../../index'
 
@@ -37,24 +42,61 @@ const data: Application[] = [
     status: 'Rejected'
   }
 ]
-const Template: StoryFn<typeof YuTable> = () => {
+
+const getStatusIcon = (status: Application['status']) => {
+  switch (status) {
+    case 'Active':
+      return <CheckCircleOutline sx={{ color: 'primary.main' }} />
+    case 'Placed':
+      return <BadgeIcon sx={{ color: 'success.main' }} />
+    case 'Rejected':
+      return <Cancel sx={{ color: 'error.main' }} />
+  }
+}
+
+const getChipColor = (status: Application['status']) => {
+  switch (status) {
+    case 'Active':
+      return 'primary'
+    case 'Placed':
+      return 'success'
+    case 'Rejected':
+      return 'error'
+  }
+}
+
+const Template: StoryFn<typeof YuTable> = (args) => {
   return (
     <Grid container>
       <YuTable
-        defaultGrouping={['manager']}
-        // groupingExpand
+        {...args}
         columns={[
           {
             accessorKey: 'manager',
             header: 'Manager',
             cell: (info) => info.getValue(),
-            accessorFn: (row) => row.manager
+            accessorFn: (row) => row.manager,
+            enableGrouping: false
           },
           {
             accessorFn: (row) => row.name,
             id: 'name',
             header: () => <span>Name</span>,
-            cell: (info) => info.getValue()
+            cell: (info) => info.getValue(),
+            enableGrouping: false
+          },
+          {
+            accessorKey: 'status',
+            id: 'status',
+            header: () => <span>Status</span>,
+            cell: (info) => (
+              <Chip
+                label={info.getValue() as string}
+                icon={getStatusIcon(info.getValue() as Application['status'])}
+                color={getChipColor(info.getValue() as Application['status'])}
+              />
+            ),
+            enableGrouping: false
           }
         ]}
         data={data}
@@ -63,5 +105,14 @@ const Template: StoryFn<typeof YuTable> = () => {
   )
 }
 
-export const Example = Template.bind({})
-Example.args = {}
+export const GroupedDataExpanded = Template.bind({})
+GroupedDataExpanded.args = {
+  defaultGrouping: ['manager'],
+  groupingExpand: true,
+  showGroupingIndex: false
+}
+
+export const GroupedDataManualExpanding = Template.bind({})
+GroupedDataManualExpanding.args = {
+  defaultGrouping: ['manager']
+}
