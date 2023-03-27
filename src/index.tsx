@@ -77,6 +77,8 @@ export { default as AverageStepDurationGraph } from './components/graphs/Average
 export { default as YuButton } from './components/yu/YuButton'
 export { default as YuFooter } from './components/yu/YuFooter'
 
+export { default as ContactChip } from './components/yu/ContactChip'
+
 export { default as CopyableButton } from './components/inputs/CopyableButton'
 
 export { default as FileUploadInput } from './components/inputs/FileUploadInput'
