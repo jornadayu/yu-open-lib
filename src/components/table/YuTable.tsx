@@ -27,6 +27,10 @@ import {
 import TableGroupToggle from './TableGroupToggle'
 import YuTableCell from './YuTableCell'
 
+export type DataModel = {
+  [key: string]: any
+}
+
 export type Props<T> = {
   columns: ColumnDef<T>[]
   data: T[]
@@ -48,15 +52,19 @@ export type Props<T> = {
    * @default true
    */
   showGroupingIndex?: boolean
-} & Partial<TableOptions<T>>
+  /**
+   * Optional customization options to pass directly to react-table 'useTable' hook
+   */
+  tableOptions?: Partial<TableOptions<T>>
+}
 
-const YuTable = <T extends Record<string, unknown>>({
-  data,
+const YuTable = <T extends Record<string, any>>({
   columns,
+  data,
   defaultGrouping = [],
-  groupingExpand = undefined,
+  groupingExpand,
   showGroupingIndex = true,
-  ...tableOptions
+  tableOptions
 }: Props<T>): React.ReactElement => {
   const [grouping, setGrouping] = useState<GroupingState>(defaultGrouping)
 

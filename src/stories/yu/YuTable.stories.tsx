@@ -9,6 +9,7 @@ import {
 } from '@mui/icons-material'
 import { Card, Chip, Grid } from '@mui/material'
 
+import { Props } from '../../components/table/YuTable'
 import { ContactChip, YuTable } from '../../index'
 
 export default {
@@ -82,7 +83,7 @@ const Template: StoryFn<typeof YuTable> = (args) => {
     <Grid container>
       <Card sx={{ width: '100%' }}>
         <YuTable
-          {...args}
+          {...(args as Partial<Props<Application>>)}
           columns={[
             {
               accessorKey: 'manager',
