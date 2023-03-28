@@ -9,16 +9,16 @@ import {
 } from '@mui/icons-material'
 import { Card, Chip, Grid } from '@mui/material'
 
-import { Props } from '../../components/table/YuTable'
-import { ContactChip, YuTable } from '../../index'
+import { Props } from '../../components/table/DataTable'
+import { ContactChip, DataTable } from '../../index'
 
 export default {
-  title: 'YU/YuTable',
-  component: YuTable,
+  title: 'YU/DataTable',
+  component: DataTable,
   parameters: {
     badges: ['Added: v3.0.0']
   }
-} as Meta<typeof YuTable>
+} as Meta<typeof DataTable>
 
 type Application = {
   manager: string
@@ -78,11 +78,11 @@ const getChipColor = (status: Application['status']) => {
   }
 }
 
-const Template: StoryFn<typeof YuTable> = (args) => {
+const Template: StoryFn<typeof DataTable> = (args) => {
   return (
     <Grid container>
       <Card sx={{ width: '100%' }}>
-        <YuTable
+        <DataTable
           {...(args as Partial<Props<Application>>)}
           columns={[
             {

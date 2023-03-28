@@ -20,7 +20,7 @@ export { default as CookiesWarning } from './components/cookies/CookiesWarning'
 export { default as YuAppBar } from './components/NavBar/YuAppBar'
 export type { Props as YuAppBarProps } from './components/NavBar/BaseAppBar'
 
-export { default as YuTable } from './components/table/YuTable'
+export { default as DataTable } from './components/table/DataTable'
 
 export { default as YuDrawer } from './components/NavBar/YuDrawer'
 export type {

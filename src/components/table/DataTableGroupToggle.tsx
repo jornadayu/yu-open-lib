@@ -10,7 +10,7 @@ export type Props<T extends Record<string, any>> = {
   showGroupingIndex?: boolean
 }
 
-const TableGroupToggle = <T extends Record<string, any>>({
+const DataTableGroupToggle = <T extends Record<string, any>>({
   header,
   showGroupingIndex = false
 }: Props<T>): React.ReactElement => {
@@ -38,4 +38,4 @@ const TableGroupToggle = <T extends Record<string, any>>({
   )
 }
 
-export default TableGroupToggle
+export default DataTableGroupToggle

@@ -11,7 +11,7 @@ export type Props<T extends Record<string, any>> = {
   groupingExpand: ExpandedState | undefined
 }
 
-const YuTableCell = <T extends Record<string, any>>({
+const DataTableCell = <T extends Record<string, any>>({
   cell,
   row,
   groupingExpand
@@ -58,4 +58,4 @@ const YuTableCell = <T extends Record<string, any>>({
   )
 }
 
-export default YuTableCell
+export default DataTableCell

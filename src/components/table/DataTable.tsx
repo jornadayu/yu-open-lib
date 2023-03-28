@@ -24,8 +24,8 @@ import {
   Typography
 } from '@mui/material'
 
-import TableGroupToggle from './TableGroupToggle'
-import YuTableCell from './YuTableCell'
+import DataTableCell from './DataTableCell'
+import DataTableGroupToggle from './DataTableGroupToggle'
 
 export type DataModel = {
   [key: string]: any
@@ -58,7 +58,7 @@ export type Props<T> = {
   tableOptions?: Partial<TableOptions<T>>
 }
 
-const YuTable = <T extends Record<string, any>>({
+const DataTable = <T extends Record<string, any>>({
   columns,
   data,
   defaultGrouping = [],
@@ -109,7 +109,7 @@ const YuTable = <T extends Record<string, any>>({
                   {header.isPlaceholder ? null : (
                     <div>
                       {header.column.getCanGroup() ? (
-                        <TableGroupToggle
+                        <DataTableGroupToggle
                           header={header}
                           showGroupingIndex={showGroupingIndex}
                         />
@@ -141,7 +141,7 @@ const YuTable = <T extends Record<string, any>>({
             <TableRow key={row.id}>
               {row.getVisibleCells().map((cell) => {
                 return (
-                  <YuTableCell
+                  <DataTableCell
                     row={row}
                     cell={cell}
                     key={cell.id}
@@ -157,4 +157,4 @@ const YuTable = <T extends Record<string, any>>({
   )
 }
 
-export default YuTable
+export default DataTable
