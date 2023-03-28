@@ -7,7 +7,15 @@ import {
   Cancel,
   CheckCircleOutline
 } from '@mui/icons-material'
-import { Card, Chip, Grid } from '@mui/material'
+import {
+  Avatar,
+  Card,
+  Chip,
+  Grid,
+  ListItem,
+  ListItemAvatar,
+  ListItemText
+} from '@mui/material'
 
 import { Props } from '../../components/table/DataTable'
 import { ContactChip, DataTable } from '../../index'
@@ -28,6 +36,7 @@ type Application = {
   linkedinUrl?: string
   phoneNumber?: string
   email?: string
+  position: string
 }
 
 const data: Application[] = [
@@ -38,7 +47,8 @@ const data: Application[] = [
     status: 'Active',
     linkedinUrl: 'https://www.linkedin.com/in/john-doe-fake-linkedin/',
     phoneNumber: '5511123456789',
-    email: 'foobarfakeemail@gmail.com'
+    email: 'foobarfakeemail@gmail.com',
+    position: 'Dev'
   },
   {
     id: 2,
@@ -47,7 +57,8 @@ const data: Application[] = [
     status: 'Placed',
     linkedinUrl: 'https://www.linkedin.com/in/john-doe-fake-linkedin/',
     phoneNumber: '5511123456789',
-    email: 'foobarfakeemail@gmail.com'
+    email: 'foobarfakeemail@gmail.com',
+    position: 'Dev'
   },
   {
     id: 3,
@@ -56,7 +67,8 @@ const data: Application[] = [
     status: 'Rejected',
     linkedinUrl: 'https://www.linkedin.com/in/john-doe-fake-linkedin/',
     phoneNumber: '5511123456789',
-    email: 'foobarfakeemail@gmail.com'
+    email: 'foobarfakeemail@gmail.com',
+    position: 'Dev'
   },
   {
     id: 4,
@@ -65,7 +77,8 @@ const data: Application[] = [
     status: 'Active',
     linkedinUrl: 'https://www.linkedin.com/in/john-doe-fake-linkedin/',
     phoneNumber: '5511123456789',
-    email: 'foobarfakeemail@gmail.com'
+    email: 'foobarfakeemail@gmail.com',
+    position: 'DevOps'
   },
   {
     id: 5,
@@ -74,7 +87,8 @@ const data: Application[] = [
     status: 'Active',
     linkedinUrl: 'https://www.linkedin.com/in/john-doe-fake-linkedin/',
     phoneNumber: '5511123456789',
-    email: 'foobarfakeemail@gmail.com'
+    email: 'foobarfakeemail@gmail.com',
+    position: 'Lead'
   },
   {
     id: 6,
@@ -83,7 +97,8 @@ const data: Application[] = [
     status: 'Placed',
     linkedinUrl: 'https://www.linkedin.com/in/john-doe-fake-linkedin/',
     phoneNumber: '5511123456789',
-    email: 'foobarfakeemail@gmail.com'
+    email: 'foobarfakeemail@gmail.com',
+    position: 'Lead'
   }
 ]
 
@@ -119,13 +134,26 @@ const Template: StoryFn<typeof DataTable> = (args) => {
             {
               accessorKey: 'manager',
               header: 'Manager',
-              cell: (info) => info.getValue(),
+              cell: (info) => (
+                <ListItem disablePadding>
+                  <ListItemAvatar>
+                    <Avatar />
+                  </ListItemAvatar>
+                  <ListItemText primary={info.getValue()} />
+                </ListItem>
+              ),
               accessorFn: (row) => row.manager,
               enableGrouping: false
             },
             {
-              accessorFn: (row) => row.name,
+              accessorKey: 'position',
+              header: 'Job Position',
+              cell: (info) => info.getValue(),
+              enableGrouping: false
+            },
+            {
               id: 'name',
+              accessorKey: 'name',
               header: () => <span>Name</span>,
               cell: (info) => info.getValue(),
               enableGrouping: false
@@ -144,7 +172,6 @@ const Template: StoryFn<typeof DataTable> = (args) => {
               enableGrouping: false
             },
             {
-              accessorFn: (row) => row.name,
               id: 'contactInfo',
               header: () => <span>Contact Info</span>,
               cell: (info) => (
@@ -187,7 +214,7 @@ const Template: StoryFn<typeof DataTable> = (args) => {
 
 export const GroupedDataExpanded = Template.bind({})
 GroupedDataExpanded.args = {
-  defaultGrouping: ['manager'],
+  defaultGrouping: ['manager', 'position'],
   groupingExpand: true,
   showGroupingIndex: false
 }
