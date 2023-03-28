@@ -127,7 +127,7 @@ const getChipColor = (status: Application['status']) => {
 const Template: StoryFn<typeof DataTable> = (args) => {
   return (
     <Grid container>
-      <Card sx={{ width: '100%' }}>
+      <Card sx={{ width: '100%', height: '12000' }}>
         <DataTable
           {...(args as Partial<Props<Application>>)}
           columns={[
@@ -169,7 +169,7 @@ const Template: StoryFn<typeof DataTable> = (args) => {
                   color={getChipColor(info.getValue() as Application['status'])}
                 />
               ),
-              enableGrouping: false
+              enableGrouping: true
             },
             {
               id: 'contactInfo',
@@ -218,6 +218,16 @@ GroupedDataExpanded.args = {
   groupingExpand: true,
   showGroupingIndex: false
 }
+
+export const GroupedDataExpandedManual = Template.bind({})
+GroupedDataExpandedManual.args = {
+  defaultGrouping: ['manager', 'position'],
+  groupingExpand: true,
+  allowManualGrouping: true
+}
+
+export const Ungrouped = Template.bind({})
+Ungrouped.args = {}
 
 export const GroupedDataManualExpanding = Template.bind({})
 GroupedDataManualExpanding.args = {

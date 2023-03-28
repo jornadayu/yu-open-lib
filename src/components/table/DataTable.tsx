@@ -4,7 +4,6 @@ import {
   ColumnDef,
   ExpandedState,
   GroupingState,
-  TableState,
   flexRender,
   getCoreRowModel,
   getExpandedRowModel,
@@ -13,7 +12,7 @@ import {
   getPaginationRowModel,
   useReactTable
 } from '@tanstack/react-table'
-import { TableOptions } from '@tanstack/table-core'
+import { TableOptions, TableState } from '@tanstack/table-core'
 
 import {
   Table,
@@ -53,9 +52,22 @@ export type Props<T> = {
    */
   showGroupingIndex?: boolean
   /**
+   * Show number of rows in group cell?
+   *
+   * @default true
+   */
+  showGroupingRowCount?: boolean
+  /**
    * Optional customization options to pass directly to react-table 'useTable' hook
    */
   tableOptions?: Partial<TableOptions<T>>
+  /**
+   * Allow user to manually collapse/group rows even if a default list of
+   * grouping columns is passed
+   *
+   * @default false
+   */
+  allowManualGrouping?: boolean
 }
 
 const DataTable = <T extends Record<string, any>>({
@@ -64,31 +76,37 @@ const DataTable = <T extends Record<string, any>>({
   defaultGrouping = [],
   groupingExpand,
   showGroupingIndex = true,
+  showGroupingRowCount = true,
+  allowManualGrouping = false,
   tableOptions
 }: Props<T>): React.ReactElement => {
   const [grouping, setGrouping] = useState<GroupingState>(defaultGrouping)
+  const [expanded, setExpanded] = useState<ExpandedState>(groupingExpand || {})
 
-  const tableState = useMemo<Partial<TableState>>(() => {
-    if (groupingExpand !== undefined) {
-      // Only manually pass 'expanded' if the prop is defined
-      // that way, the user can manually expand and collapse instead
-      // of a fixed state
-      return {
-        grouping,
-        expanded: groupingExpand
-      }
+  const tableState = useMemo(() => {
+    // Set default grouping state, if passed, otherwise keep it uncontrolled
+    const tableState: Partial<TableState> = {}
+
+    if (grouping.length) {
+      tableState.grouping = grouping
     }
 
-    return {
-      grouping
+    if (
+      (expanded !== undefined && !!Object.keys(expanded).length) ||
+      expanded === true
+    ) {
+      tableState.expanded = expanded
     }
-  }, [grouping, groupingExpand])
+
+    return tableState
+  }, [grouping, expanded])
 
   const table = useReactTable({
     data,
     columns,
     state: tableState,
     onGroupingChange: setGrouping,
+    onExpandedChange: setExpanded,
     getExpandedRowModel: getExpandedRowModel(),
     getGroupedRowModel: getGroupedRowModel(),
     getCoreRowModel: getCoreRowModel(),
@@ -108,19 +126,18 @@ const DataTable = <T extends Record<string, any>>({
                 <TableCell key={header.id} colSpan={header.colSpan}>
                   {header.isPlaceholder ? null : (
                     <div>
-                      {header.column.getCanGroup() ? (
-                        <DataTableGroupToggle
-                          header={header}
-                          showGroupingIndex={showGroupingIndex}
-                        />
-                      ) : null}
-
                       <Typography
                         variant='body1'
                         sx={{
                           fontWeight: 600
                         }}
                       >
+                        {header.column.getCanGroup() ? (
+                          <DataTableGroupToggle
+                            header={header}
+                            showGroupingIndex={showGroupingIndex}
+                          />
+                        ) : null}
                         {flexRender(
                           header.column.columnDef.header,
                           header.getContext()
@@ -146,6 +163,8 @@ const DataTable = <T extends Record<string, any>>({
                     cell={cell}
                     key={cell.id}
                     groupingExpand={groupingExpand}
+                    showGroupingRowCount={showGroupingRowCount}
+                    allowManualGrouping={allowManualGrouping}
                   />
                 )
               })}

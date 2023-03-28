@@ -3,18 +3,33 @@ import React from 'react'
 import { Cell, ExpandedState, Row, flexRender } from '@tanstack/react-table'
 
 import { ExpandLess, ExpandMore } from '@mui/icons-material'
-import { IconButton, TableCell } from '@mui/material'
+import { Button, TableCell } from '@mui/material'
 
 export type Props<T extends Record<string, any>> = {
   cell: Cell<T, unknown>
   row: Row<T>
   groupingExpand: ExpandedState | undefined
+  /**
+   * Show number of rows in group cell?
+   *
+   * @default true
+   */
+  showGroupingRowCount?: boolean
+  /**
+   * Allow user to manually collapse/group rows even if a default list of
+   * grouping columns is passed
+   *
+   * @default false
+   */
+  allowManualGrouping?: boolean
 }
 
 const DataTableCell = <T extends Record<string, any>>({
   cell,
   row,
-  groupingExpand
+  groupingExpand,
+  showGroupingRowCount = true,
+  allowManualGrouping = false
 }: Props<T>): React.ReactElement => {
   return (
     <TableCell>
@@ -22,20 +37,30 @@ const DataTableCell = <T extends Record<string, any>>({
         // If it's a grouped cell, add an expander and row count
         <React.Fragment>
           {/* If a manual grouping expand state was passed, don't allow manually changing it */}
-          {groupingExpand === undefined ? (
+          {groupingExpand === undefined || allowManualGrouping ? (
             <React.Fragment>
-              <IconButton
-                size='small'
-                sx={{
-                  mr: 1
-                }}
+              <Button
+                startIcon={
+                  row.getIsExpanded() ? <ExpandLess /> : <ExpandMore />
+                }
                 onClick={row.getToggleExpandedHandler()}
                 disabled={!row.getCanExpand()}
+                sx={{
+                  color: 'text.secondary',
+                  borderColor: 'text.secondary',
+                  textTransform: 'none',
+                  // Show pointer cursor in custom cell render sub-components
+                  '& *': {
+                    cursor: 'pointer'
+                  }
+                }}
               >
-                {row.getIsExpanded() ? <ExpandLess /> : <ExpandMore />}{' '}
-              </IconButton>
-              {flexRender(cell.column.columnDef.cell, cell.getContext())} (
-              {row.subRows.length})
+                {flexRender(cell.column.columnDef.cell, cell.getContext())}
+
+                {showGroupingRowCount && (
+                  <div style={{ marginLeft: 4 }}>({row.subRows.length})</div>
+                )}
+              </Button>
             </React.Fragment>
           ) : (
             <React.Fragment>
