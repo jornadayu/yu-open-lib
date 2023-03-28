@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useState } from 'react'
 
 import {
   CheckCircle,
@@ -8,7 +8,14 @@ import {
   LinkedIn,
   WhatsApp
 } from '@mui/icons-material'
-import { Chip, ChipProps, IconButton, SvgIconProps } from '@mui/material'
+import {
+  Chip,
+  ChipProps,
+  Collapse,
+  IconButton,
+  SvgIconProps
+} from '@mui/material'
+import { Box } from '@mui/system'
 
 import { copyToClipboard } from '../../helpers/text'
 
@@ -110,18 +117,7 @@ const getChipHref = (variant: ContactChipVariant, value: string) => {
   }
 }
 
-type CopyState = 'success' | 'error' | 'default'
-
-const getCopyIconFromState = (state: CopyState) => {
-  switch (state) {
-    case 'success':
-      return <CheckCircle style={{ color: 'success' }} />
-    case 'error':
-      return <Error style={{ color: 'error' }} />
-    case 'default':
-      return <ContentCopy />
-  }
-}
+type CopyState = 'success' | 'error' | 'default' | 'loading'
 
 const ContactChip: React.FC<Props> = ({
   variant,
@@ -134,12 +130,9 @@ const ContactChip: React.FC<Props> = ({
 }) => {
   const [copiedState, setCopiedState] = useState<CopyState>('default')
 
-  const copyIcon = useMemo(
-    () => getCopyIconFromState(copiedState),
-    [copiedState]
-  )
-
   const onCopy = () => {
+    setCopiedState('loading')
+
     try {
       copyToClipboard(value)
 
@@ -197,7 +190,23 @@ const ContactChip: React.FC<Props> = ({
       }}
       variant='outlined'
       onDelete={copyable ? onCopy : undefined}
-      deleteIcon={copyable ? copyIcon : undefined}
+      deleteIcon={
+        copyable ? (
+          <Box>
+            <Collapse in={copiedState === 'success'} timeout={400}>
+              <CheckCircle sx={{ mt: 1 }} style={{ color: 'success' }} />
+            </Collapse>
+
+            <Collapse in={copiedState === 'default'} timeout={400}>
+              <ContentCopy sx={{ mt: 1 }} />
+            </Collapse>
+
+            <Collapse in={copiedState === 'error'} timeout={400}>
+              <Error sx={{ mt: 1 }} style={{ color: 'error' }} />
+            </Collapse>
+          </Box>
+        ) : undefined
+      }
       {...chipProps}
     />
   )
