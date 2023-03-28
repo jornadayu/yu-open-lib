@@ -21,6 +21,7 @@ export default {
 } as Meta<typeof DataTable>
 
 type Application = {
+  id: number
   manager: string
   name: string
   status: 'Active' | 'Placed' | 'Rejected'
@@ -31,6 +32,7 @@ type Application = {
 
 const data: Application[] = [
   {
+    id: 1,
     manager: 'Foo',
     name: 'John',
     status: 'Active',
@@ -39,6 +41,7 @@ const data: Application[] = [
     email: 'foobarfakeemail@gmail.com'
   },
   {
+    id: 2,
     manager: 'Foo',
     name: 'Doe',
     status: 'Placed',
@@ -47,9 +50,37 @@ const data: Application[] = [
     email: 'foobarfakeemail@gmail.com'
   },
   {
+    id: 3,
     manager: 'Bar',
     name: 'Jane',
     status: 'Rejected',
+    linkedinUrl: 'https://www.linkedin.com/in/john-doe-fake-linkedin/',
+    phoneNumber: '5511123456789',
+    email: 'foobarfakeemail@gmail.com'
+  },
+  {
+    id: 4,
+    manager: 'Bar',
+    name: 'Doe',
+    status: 'Active',
+    linkedinUrl: 'https://www.linkedin.com/in/john-doe-fake-linkedin/',
+    phoneNumber: '5511123456789',
+    email: 'foobarfakeemail@gmail.com'
+  },
+  {
+    id: 5,
+    manager: 'Foo',
+    name: 'John',
+    status: 'Active',
+    linkedinUrl: 'https://www.linkedin.com/in/john-doe-fake-linkedin/',
+    phoneNumber: '5511123456789',
+    email: 'foobarfakeemail@gmail.com'
+  },
+  {
+    id: 6,
+    manager: 'Foo',
+    name: 'Doe',
+    status: 'Placed',
     linkedinUrl: 'https://www.linkedin.com/in/john-doe-fake-linkedin/',
     phoneNumber: '5511123456789',
     email: 'foobarfakeemail@gmail.com'
