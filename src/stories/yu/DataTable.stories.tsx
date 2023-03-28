@@ -9,7 +9,6 @@ import {
 } from '@mui/icons-material'
 import {
   Avatar,
-  Card,
   Chip,
   Grid,
   ListItem,
@@ -127,87 +126,92 @@ const getChipColor = (status: Application['status']) => {
 const Template: StoryFn<typeof DataTable> = (args) => {
   return (
     <Grid container>
-      <Card sx={{ width: '100%', height: '12000' }}>
-        <DataTable
-          {...(args as Partial<Props<Application>>)}
-          columns={[
-            {
-              accessorKey: 'manager',
-              header: 'Manager',
-              cell: (info) => (
-                <ListItem disablePadding>
-                  <ListItemAvatar>
-                    <Avatar />
-                  </ListItemAvatar>
-                  <ListItemText primary={info.getValue()} />
-                </ListItem>
-              ),
-              accessorFn: (row) => row.manager,
-              enableGrouping: false
-            },
-            {
-              accessorKey: 'position',
-              header: 'Job Position',
-              cell: (info) => info.getValue(),
-              enableGrouping: false
-            },
-            {
-              id: 'name',
-              accessorKey: 'name',
-              header: () => <span>Name</span>,
-              cell: (info) => info.getValue(),
-              enableGrouping: false
-            },
-            {
-              accessorKey: 'status',
-              id: 'status',
-              header: () => <span>Status</span>,
-              cell: (info) => (
-                <Chip
-                  label={info.getValue() as string}
-                  icon={getStatusIcon(info.getValue() as Application['status'])}
-                  color={getChipColor(info.getValue() as Application['status'])}
-                />
-              ),
-              enableGrouping: true
-            },
-            {
-              id: 'contactInfo',
-              header: () => <span>Contact Info</span>,
-              cell: (info) => (
-                <Grid container spacing={1}>
-                  <Grid item>
-                    <ContactChip
-                      variant='linkedin'
-                      value={info.cell.row.original.linkedinUrl as string}
-                      copyable
-                    />
-                  </Grid>
-
-                  <Grid item>
-                    <ContactChip
-                      variant='whatsapp'
-                      value={info.cell.row.original.phoneNumber as string}
-                      copyable
-                      copyAs='phoneNumber'
-                    />
-                  </Grid>
-
-                  <Grid item>
-                    <ContactChip
-                      variant='email'
-                      value={info.cell.row.original.email as string}
-                      copyable
-                    />
-                  </Grid>
+      <DataTable
+        {...(args as Partial<Props<Application>>)}
+        columns={[
+          {
+            accessorKey: 'manager',
+            header: 'Manager',
+            cell: (info) => (
+              <ListItem disablePadding>
+                <ListItemAvatar>
+                  <Avatar />
+                </ListItemAvatar>
+                <ListItemText primary={info.getValue()} />
+              </ListItem>
+            ),
+            accessorFn: (row) => row.manager,
+            enableGrouping: false
+          },
+          {
+            accessorKey: 'position',
+            header: 'Job Position',
+            cell: (info) => info.getValue(),
+            enableGrouping: false
+          },
+          {
+            id: 'name',
+            accessorKey: 'name',
+            header: () => <span>Name</span>,
+            cell: (info) => info.getValue(),
+            enableGrouping: false
+          },
+          {
+            accessorKey: 'status',
+            id: 'status',
+            header: () => <span>Status</span>,
+            cell: (info) => (
+              <Chip
+                label={info.getValue() as string}
+                icon={getStatusIcon(info.getValue() as Application['status'])}
+                color={getChipColor(info.getValue() as Application['status'])}
+              />
+            ),
+            enableGrouping: true
+          },
+          {
+            id: 'contactInfo',
+            header: () => <span>Contact Info</span>,
+            accessorFn: (row) =>
+              [row.linkedinUrl, row.phoneNumber, row.email].join(','),
+            cell: (info) => (
+              <Grid container spacing={1}>
+                <Grid item>
+                  <ContactChip
+                    variant='linkedin'
+                    value={info.cell.row.original.linkedinUrl as string}
+                    copyable
+                  />
                 </Grid>
-              ),
-              enableGrouping: false
-            }
-          ]}
-          data={data}
-        />
-      </Card>
+
+                <Grid item>
+                  <ContactChip
+                    variant='whatsapp'
+                    value={info.cell.row.original.phoneNumber as string}
+                    copyable
+                    copyAs='phoneNumber'
+                  />
+                </Grid>
+
+                <Grid item>
+                  <ContactChip
+                    variant='email'
+                    value={info.cell.row.original.email as string}
+                    copyable
+                  />
+                </Grid>
+              </Grid>
+            ),
+            enableGrouping: false
+          }
+        ]}
+        tableContainerProps={{
+          sx: {
+            maxHeight: 'calc(100vh - 50px)'
+          }
+        }}
+        data={(args as Partial<Props<Application>>).data || data}
+      />
     </Grid>
   )
 }
@@ -232,4 +236,18 @@ Ungrouped.args = {}
 export const GroupedDataManualExpanding = Template.bind({})
 GroupedDataManualExpanding.args = {
   defaultGrouping: ['manager']
+}
+
+export const Scrollable = Template.bind({})
+Scrollable.args = {
+  data: Array.from({ length: 50 }, (_, i) => ({
+    id: i + 1,
+    manager: 'Foo' + i,
+    name: 'John',
+    status: 'Active',
+    linkedinUrl: 'https://www.linkedin.com/in/john-doe-fake-linkedin/',
+    phoneNumber: '5511123456789',
+    email: 'aaa@email.com',
+    position: 'Dev'
+  }))
 }

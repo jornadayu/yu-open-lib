@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React from 'react'
 
 import {
   ColumnDef,
@@ -15,12 +15,16 @@ import {
 import { TableOptions, TableState } from '@tanstack/table-core'
 
 import {
+  Box,
   Table,
   TableBody,
   TableCell,
+  TableContainer,
+  TableContainerProps,
   TableHead,
   TableRow,
-  Typography
+  Typography,
+  styled
 } from '@mui/material'
 
 import DataTableCell from './DataTableCell'
@@ -68,7 +72,18 @@ export type Props<T> = {
    * @default false
    */
   allowManualGrouping?: boolean
+  tableContainerProps?: Partial<TableContainerProps>
 }
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  '&:nth-of-type(odd)': {
+    backgroundColor: theme.palette.action.hover
+  },
+  // hide last border
+  '&:last-child td, &:last-child th': {
+    border: 0
+  }
+}))
 
 const DataTable = <T extends Record<string, any>>({
   columns,
@@ -78,101 +93,106 @@ const DataTable = <T extends Record<string, any>>({
   showGroupingIndex = true,
   showGroupingRowCount = true,
   allowManualGrouping = false,
+  tableContainerProps,
   tableOptions
 }: Props<T>): React.ReactElement => {
-  const [grouping, setGrouping] = useState<GroupingState>(defaultGrouping)
-  const [expanded, setExpanded] = useState<ExpandedState>(groupingExpand || {})
-
-  const tableState = useMemo(() => {
-    // Set default grouping state, if passed, otherwise keep it uncontrolled
-    const tableState: Partial<TableState> = {}
-
-    if (grouping.length) {
-      tableState.grouping = grouping
+  const initialState: Partial<TableState> = {
+    pagination: {
+      // Can't be data.length by default because it won't account for placeholder cells
+      // when rows are grouped
+      // TODO: Implement pagination
+      pageSize: 99999999,
+      pageIndex: 0
     }
+  }
 
-    if (
-      (expanded !== undefined && !!Object.keys(expanded).length) ||
-      expanded === true
-    ) {
-      tableState.expanded = expanded
-    }
+  // Set default grouping state, if passed, otherwise keep it uncontrolled
+  if (defaultGrouping.length) {
+    initialState.grouping = defaultGrouping
+  }
 
-    return tableState
-  }, [grouping, expanded])
+  // If user has manually expanded groups, keep that state, otherwise use default
+  // passed by props/local state
+  if (groupingExpand !== undefined) {
+    initialState.expanded = groupingExpand
+  }
 
   const table = useReactTable({
     data,
     columns,
-    state: tableState,
-    onGroupingChange: setGrouping,
-    onExpandedChange: setExpanded,
+    initialState,
     getExpandedRowModel: getExpandedRowModel(),
     getGroupedRowModel: getGroupedRowModel(),
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
-    debugTable: false,
     ...tableOptions
   })
 
   return (
-    <Table>
-      <TableHead>
-        {table.getHeaderGroups().map((headerGroup) => (
-          <TableRow key={headerGroup.id}>
-            {headerGroup.headers.map((header) => {
-              return (
-                <TableCell key={header.id} colSpan={header.colSpan}>
-                  {header.isPlaceholder ? null : (
-                    <div>
-                      <Typography
-                        variant='body1'
-                        sx={{
-                          fontWeight: 600
-                        }}
-                      >
-                        {header.column.getCanGroup() ? (
-                          <DataTableGroupToggle
-                            header={header}
-                            showGroupingIndex={showGroupingIndex}
-                          />
-                        ) : null}
-                        {flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                      </Typography>
-                    </div>
-                  )}
-                </TableCell>
-              )
-            })}
-          </TableRow>
-        ))}
-      </TableHead>
-
-      <TableBody>
-        {table.getRowModel().rows.map((row) => {
-          return (
-            <TableRow key={row.id}>
-              {row.getVisibleCells().map((cell) => {
+    <TableContainer {...tableContainerProps}>
+      <Table>
+        <TableHead>
+          {table.getHeaderGroups().map((headerGroup) => (
+            <TableRow key={headerGroup.id}>
+              {headerGroup.headers.map((header) => {
                 return (
-                  <DataTableCell
-                    row={row}
-                    cell={cell}
-                    key={cell.id}
-                    groupingExpand={groupingExpand}
-                    showGroupingRowCount={showGroupingRowCount}
-                    allowManualGrouping={allowManualGrouping}
-                  />
+                  <TableCell
+                    key={header.id}
+                    colSpan={header.colSpan}
+                    width={header.getSize()}
+                    variant='head'
+                  >
+                    {header.isPlaceholder ? null : (
+                      <Box>
+                        <Typography
+                          variant='body1'
+                          sx={{
+                            fontWeight: 600
+                          }}
+                        >
+                          {header.column.getCanGroup() ? (
+                            <DataTableGroupToggle
+                              header={header}
+                              showGroupingIndex={showGroupingIndex}
+                            />
+                          ) : null}
+                          {flexRender(
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
+                        </Typography>
+                      </Box>
+                    )}
+                  </TableCell>
                 )
               })}
             </TableRow>
-          )
-        })}
-      </TableBody>
-    </Table>
+          ))}
+        </TableHead>
+
+        <TableBody>
+          {table.getRowModel().rows.map((row) => {
+            return (
+              <StyledTableRow key={row.id}>
+                {row.getVisibleCells().map((cell) => {
+                  return (
+                    <DataTableCell
+                      row={row}
+                      cell={cell}
+                      key={cell.id}
+                      groupingExpand={groupingExpand}
+                      showGroupingRowCount={showGroupingRowCount}
+                      allowManualGrouping={allowManualGrouping}
+                    />
+                  )
+                })}
+              </StyledTableRow>
+            )
+          })}
+        </TableBody>
+      </Table>
+    </TableContainer>
   )
 }
 
