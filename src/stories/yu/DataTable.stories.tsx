@@ -16,7 +16,7 @@ import {
   ListItemText
 } from '@mui/material'
 
-import { Props } from '../../components/table/DataTable'
+import { DataTableProps } from '../../components/table/DataTable'
 import { ContactChip, DataTable } from '../../index'
 
 export default {
@@ -43,6 +43,16 @@ const data: Application[] = [
     id: 1,
     manager: 'Foo',
     name: 'John',
+    status: 'Active',
+    linkedinUrl: 'https://www.linkedin.com/in/john-doe-fake-linkedin/',
+    phoneNumber: '5511123456789',
+    email: 'foobarfakeemail@gmail.com',
+    position: 'Dev'
+  },
+  {
+    id: 7,
+    manager: 'Foo',
+    name: 'Doe',
     status: 'Active',
     linkedinUrl: 'https://www.linkedin.com/in/john-doe-fake-linkedin/',
     phoneNumber: '5511123456789',
@@ -127,7 +137,7 @@ const Template: StoryFn<typeof DataTable> = (args) => {
   return (
     <Grid container>
       <DataTable
-        {...(args as Partial<Props<Application>>)}
+        {...(args as Partial<DataTableProps<Application>>)}
         columns={[
           {
             accessorKey: 'manager',
@@ -210,7 +220,7 @@ const Template: StoryFn<typeof DataTable> = (args) => {
             maxHeight: 'calc(100vh - 50px)'
           }
         }}
-        data={(args as Partial<Props<Application>>).data || data}
+        data={(args as Partial<DataTableProps<Application>>).data || data}
       />
     </Grid>
   )

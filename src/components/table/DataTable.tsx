@@ -23,18 +23,18 @@ import {
   TableContainerProps,
   TableHead,
   TableRow,
-  Typography,
-  styled
+  Typography
 } from '@mui/material'
 
-import DataTableCell from './DataTableCell'
 import DataTableGroupToggle from './DataTableGroupToggle'
+import DataTableRow from './DataTableRow'
+import { DataTableProvider } from './useDataTable'
 
 export type DataModel = {
   [key: string]: any
 }
 
-export type Props<T> = {
+export type DataTableProps<T> = {
   columns: ColumnDef<T>[]
   data: T[]
   /**
@@ -73,29 +73,22 @@ export type Props<T> = {
    */
   allowManualGrouping?: boolean
   tableContainerProps?: Partial<TableContainerProps>
+  /**
+   * Highlight rows (including grouped rows) when hovering them?
+   *
+   * @default true
+   */
+  highlightOnHover?: boolean
 }
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover
-  },
-  // hide last border
-  '&:last-child td, &:last-child th': {
-    border: 0
-  }
-}))
-
-const DataTable = <T extends Record<string, any>>({
+const InnerDataTable = <T extends Record<string, any>>({
   columns,
   data,
   defaultGrouping = [],
   groupingExpand,
-  showGroupingIndex = true,
-  showGroupingRowCount = true,
-  allowManualGrouping = false,
   tableContainerProps,
   tableOptions
-}: Props<T>): React.ReactElement => {
+}: DataTableProps<T>): React.ReactElement => {
   const initialState: Partial<TableState> = {
     pagination: {
       // Can't be data.length by default because it won't account for placeholder cells
@@ -131,10 +124,15 @@ const DataTable = <T extends Record<string, any>>({
 
   return (
     <TableContainer {...tableContainerProps}>
-      <Table>
+      <Table stickyHeader>
         <TableHead>
           {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id}>
+            <TableRow
+              key={headerGroup.id}
+              sx={{
+                bgcolor: 'action.hover'
+              }}
+            >
               {headerGroup.headers.map((header) => {
                 return (
                   <TableCell
@@ -152,10 +150,7 @@ const DataTable = <T extends Record<string, any>>({
                           }}
                         >
                           {header.column.getCanGroup() ? (
-                            <DataTableGroupToggle
-                              header={header}
-                              showGroupingIndex={showGroupingIndex}
-                            />
+                            <DataTableGroupToggle header={header} />
                           ) : null}
                           {flexRender(
                             header.column.columnDef.header,
@@ -173,27 +168,26 @@ const DataTable = <T extends Record<string, any>>({
 
         <TableBody>
           {table.getRowModel().rows.map((row) => {
-            return (
-              <StyledTableRow key={row.id}>
-                {row.getVisibleCells().map((cell) => {
-                  return (
-                    <DataTableCell
-                      row={row}
-                      cell={cell}
-                      key={cell.id}
-                      groupingExpand={groupingExpand}
-                      showGroupingRowCount={showGroupingRowCount}
-                      allowManualGrouping={allowManualGrouping}
-                    />
-                  )
-                })}
-              </StyledTableRow>
-            )
+            return <DataTableRow row={row} key={row.id} />
           })}
         </TableBody>
       </Table>
     </TableContainer>
   )
 }
+
+const DataTable = <T extends Record<string, any>>(
+  props: DataTableProps<T>
+): React.ReactElement => (
+  <DataTableProvider
+    allowManualGrouping={props.allowManualGrouping ?? false}
+    groupingExpand={props.groupingExpand}
+    showGroupingRowCount={props.showGroupingRowCount ?? true}
+    showGroupingIndex={props.showGroupingIndex ?? true}
+    highlightOnHover={props.highlightOnHover ?? true}
+  >
+    <InnerDataTable {...props} />
+  </DataTableProvider>
+)
 
 export default DataTable
