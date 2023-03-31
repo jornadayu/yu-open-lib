@@ -25,6 +25,7 @@ import {
   TableRow,
   Typography
 } from '@mui/material'
+import { useTheme } from '@mui/styles'
 
 import DataTableGroupToggle from './DataTableGroupToggle'
 import DataTablePagination from './DataTablePagination'
@@ -134,23 +135,26 @@ const InnerDataTable = <T extends Record<string, any>>({
     ...tableOptions
   })
 
+  const theme = useTheme()
+
   return (
     <TableContainer {...tableContainerProps}>
       <Table stickyHeader>
         <TableHead>
           {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow
-              key={headerGroup.id}
-              sx={{
-                bgcolor: 'action.hover'
-              }}
-            >
+            <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
                 <TableCell
                   key={header.id}
                   colSpan={header.colSpan}
                   width={header.getSize()}
                   variant='head'
+                  sx={{
+                    bgcolor:
+                      theme.palette.mode === 'dark'
+                        ? 'background.paper'
+                        : '#f5f5f5'
+                  }}
                 >
                   {header.isPlaceholder ? null : (
                     <Box>
