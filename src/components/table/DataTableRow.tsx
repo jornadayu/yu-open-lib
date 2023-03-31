@@ -43,7 +43,13 @@ const DataTableRow = <T extends Record<string, any>>({
         })}
       </TableRow>
     ),
-    [row, isHovering, highlightOnHover]
+    [
+      row,
+      // Row expansion is a dependency so cells are re-rendered when a row is expanded/collapsed
+      row.getIsExpanded(),
+      isHovering,
+      highlightOnHover
+    ]
   )
 }
 

@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from 'react'
+import React, { useMemo } from 'react'
 
 import { Cell, Row, flexRender } from '@tanstack/react-table'
 
@@ -20,6 +20,8 @@ const DataTableCell = <T extends Record<string, any>>({
   const { groupingExpand, showGroupingRowCount, allowManualGrouping } =
     useDataTable()
 
+  const isExpanded = row.getIsExpanded()
+
   return useMemo(
     () => (
       <TableCell {...tableCellProps}>
@@ -30,9 +32,7 @@ const DataTableCell = <T extends Record<string, any>>({
             {groupingExpand === undefined || allowManualGrouping ? (
               <React.Fragment>
                 <Button
-                  startIcon={
-                    row.getIsExpanded() ? <ExpandLess /> : <ExpandMore />
-                  }
+                  startIcon={isExpanded ? <ExpandLess /> : <ExpandMore />}
                   onClick={row.getToggleExpandedHandler()}
                   disabled={!row.getCanExpand()}
                   sx={{
@@ -71,9 +71,15 @@ const DataTableCell = <T extends Record<string, any>>({
         )}
       </TableCell>
     ),
-    [cell, row, groupingExpand, showGroupingRowCount, allowManualGrouping]
+    [
+      cell,
+      row,
+      isExpanded,
+      groupingExpand,
+      showGroupingRowCount,
+      allowManualGrouping
+    ]
   )
 }
 
-// https:// github.com/DefinitelyTyped/DefinitelyTyped/issues/37087#issuecomment-656596623
-export default memo(DataTableCell) as typeof DataTableCell
+export default DataTableCell
