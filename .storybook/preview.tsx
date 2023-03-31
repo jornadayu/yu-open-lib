@@ -3,28 +3,27 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { ThemeProvider } from '@mui/material/styles'
 import { CssBaseline } from '@mui/material'
 
+import { addons } from '@storybook/manager-api';
 import { themes } from '@storybook/theming'
-import { addons } from '@storybook/preview-api';
-
-import { DARK_MODE_EVENT_NAME } from 'storybook-dark-mode';
 
 import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
 
 import AppTheme from '../src/theme/AppTheme'
 import '../src/styles/core.scss'
+import { StoryFn } from '@storybook/react';
+import { StoryContext } from '@storybook/types';
 
-const withMuiTheme = (Story, context) => {
-  // get channel to listen to event emitter
-  const channel = addons.getChannel();
+const withMuiTheme = (Story: StoryFn, context: StoryContext) => {
+  const sbTheme: 'dark' | 'light' = context.parameters.theme || context.globals.theme
 
-  const [isDark, setDark] = useState(true);
-  useEffect(() => {
-    // listen to DARK_MODE event
-    channel.on(DARK_MODE_EVENT_NAME, setDark);
-    return () => channel.off(DARK_MODE_EVENT_NAME, setDark);
-  }, [channel, setDark]);
+  const theme = useMemo(() => {
+    // TODO: not actually setting storybook theme, just App theme
+    addons.setConfig({
+      theme: themes[sbTheme]
+    })
 
-  const theme = useMemo(() => AppTheme({ darkMode: isDark }), [isDark])
+    return AppTheme({ darkMode: sbTheme === 'dark' })
+  }, [sbTheme])
 
   return (
     <EmotionThemeProvider theme={theme}>
@@ -34,6 +33,25 @@ const withMuiTheme = (Story, context) => {
       </ThemeProvider>
     </EmotionThemeProvider>
   )
+}
+
+export const globalTypes = {
+  theme: {
+    name: 'Theme',
+    description: 'Global theme for components',
+    defaultValue: 'dark',
+    toolbar: {
+      // The icon for the toolbar item
+      icon: 'circlehollow',
+      // Array of options
+      items: [
+        { value: 'dark', icon: 'circle', title: 'Dark' },
+        { value: 'light', icon: 'circlehollow', title: 'Light' }
+      ],
+      // Property that specifies if the name of the item will be displayed
+      showName: true,
+    },
+  },
 }
 
 export const decorators = [
