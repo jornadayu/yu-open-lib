@@ -1,11 +1,9 @@
 import React from 'react'
 
-import { RankingInfo, rankItem } from '@tanstack/match-sorter-utils'
 import {
   ColumnDef,
   ExpandedState,
   GroupingState,
-  flexRender,
   getCoreRowModel,
   getExpandedRowModel,
   getFilteredRowModel,
@@ -13,32 +11,22 @@ import {
   getPaginationRowModel,
   useReactTable
 } from '@tanstack/react-table'
-import {
-  FilterFn,
-  FilterFnOption,
-  TableOptions,
-  TableState
-} from '@tanstack/table-core'
+import { TableOptions, TableState } from '@tanstack/table-core'
 
-import { Search } from '@mui/icons-material'
 import {
-  Box,
   Table,
   TableBody,
-  TableCell,
   TableContainer,
   TableContainerProps,
   TableHead,
   TableRow,
-  TextField,
-  TextFieldProps,
-  Typography
+  TextFieldProps
 } from '@mui/material'
-import { useTheme } from '@mui/styles'
 
-import DataTableGroupToggle from './DataTableGroupToggle'
+import DataTableHeader from './DataTableHeader'
 import DataTablePagination from './DataTablePagination'
 import DataTableRow from './DataTableRow'
+import DataTableSearch, { fuzzyFilter } from './DataTableSearch'
 import { DataTableProvider } from './useDataTable'
 
 export type DataModel = {
@@ -115,28 +103,6 @@ export type DataTableProps<T> = {
   highlightOnHover?: boolean
 }
 
-const fuzzyFilter: FilterFnOption<any> = (row, columnId, value, addMeta) => {
-  // Rank the item
-  const itemRank = rankItem(row.getValue(columnId), value)
-
-  // Store the itemRank info
-  addMeta({
-    itemRank
-  })
-
-  // Return if the item should be filtered in/out
-  return itemRank.passed
-}
-
-declare module '@tanstack/table-core' {
-  interface FilterFns {
-    fuzzy?: FilterFn<unknown>
-  }
-  interface FilterMeta {
-    itemRank: RankingInfo
-  }
-}
-
 const InnerDataTable = <T extends Record<string, any>>({
   columns,
   data,
@@ -176,14 +142,12 @@ const InnerDataTable = <T extends Record<string, any>>({
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
-    globalFilterFn: fuzzyFilter as FilterFn<T>,
+    globalFilterFn: fuzzyFilter,
     filterFns: {
       fuzzy: fuzzyFilter
     },
     ...tableOptions
   })
-
-  const theme = useTheme()
 
   return (
     <TableContainer {...tableContainerProps}>
@@ -191,65 +155,14 @@ const InnerDataTable = <T extends Record<string, any>>({
         <TableHead>
           {searchable && (
             <TableRow>
-              <TableCell>
-                <TextField
-                  fullWidth
-                  InputProps={{
-                    startAdornment: <Search sx={{ mr: 1 }} />,
-                    sx: {
-                      borderRadius: 4
-                    }
-                  }}
-                  sx={{ ml: -1.4 }}
-                  onChange={({ target }) => {
-                    table.setState((state) => ({
-                      ...state,
-                      globalFilter: target.value
-                    }))
-                  }}
-                  {...searchInputProps}
-                />
-              </TableCell>
+              <DataTableSearch
+                table={table}
+                searchInputProps={searchInputProps}
+              />
             </TableRow>
           )}
 
-          {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <TableCell
-                  key={header.id}
-                  colSpan={header.colSpan}
-                  width={header.getSize()}
-                  variant='head'
-                  sx={{
-                    bgcolor:
-                      theme.palette.mode === 'dark'
-                        ? 'background.paper'
-                        : '#f5f5f5'
-                  }}
-                >
-                  {header.isPlaceholder ? null : (
-                    <Box>
-                      <Typography
-                        variant='body1'
-                        sx={{
-                          fontWeight: 600
-                        }}
-                      >
-                        {header.column.getCanGroup() ? (
-                          <DataTableGroupToggle header={header} />
-                        ) : null}
-                        {flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                      </Typography>
-                    </Box>
-                  )}
-                </TableCell>
-              ))}
-            </TableRow>
-          ))}
+          <DataTableHeader table={table} />
         </TableHead>
 
         <TableBody>
