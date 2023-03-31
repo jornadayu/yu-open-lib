@@ -248,6 +248,38 @@ GroupedDataManualExpanding.args = {
   defaultGrouping: ['manager']
 }
 
+export const Pagination = Template.bind({})
+Pagination.args = {
+  defaultGrouping: ['manager', 'position'],
+  groupingExpand: true,
+  showGroupingIndex: false,
+  withPagination: true,
+  pageSize: 8,
+  data: [
+    ...Array.from({ length: 8 }, (_, i) => ({
+      id: i + 1,
+      manager: 'Foo',
+      name: 'John' + i,
+      status: 'Active',
+      linkedinUrl: 'https://www.linkedin.com/in/john-doe-fake-linkedin/',
+      phoneNumber: '5511123456789',
+      email: 'aaa@email.com',
+      position: 'Dev'
+    })),
+
+    ...Array.from({ length: 8 }, (_, i) => ({
+      id: i + 1,
+      manager: 'Bar',
+      name: 'Joe' + i,
+      status: 'Rejected',
+      linkedinUrl: 'https://www.linkedin.com/in/john-doe-fake-linkedin/',
+      phoneNumber: '5511123456789',
+      email: 'aaa@email.com',
+      position: 'Dev'
+    }))
+  ]
+}
+
 export const Scrollable = Template.bind({})
 Scrollable.args = {
   data: Array.from({ length: 50 }, (_, i) => ({
@@ -259,5 +291,6 @@ Scrollable.args = {
     phoneNumber: '5511123456789',
     email: 'aaa@email.com',
     position: 'Dev'
-  }))
+  })),
+  withPagination: false
 }

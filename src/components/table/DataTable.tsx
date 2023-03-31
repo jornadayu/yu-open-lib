@@ -27,6 +27,7 @@ import {
 } from '@mui/material'
 
 import DataTableGroupToggle from './DataTableGroupToggle'
+import DataTablePagination from './DataTablePagination'
 import DataTableRow from './DataTableRow'
 import { DataTableProvider } from './useDataTable'
 
@@ -74,6 +75,18 @@ export type DataTableProps<T> = {
   allowManualGrouping?: boolean
   tableContainerProps?: Partial<TableContainerProps>
   /**
+   * Show pagination controls?
+   *
+   * @default true
+   */
+  withPagination?: boolean
+  /**
+   * Page size when pagination is enabled
+   *
+   * @default 15
+   */
+  pageSize?: number
+  /**
    * Highlight rows (including grouped rows) when hovering them?
    *
    * @default true
@@ -87,14 +100,13 @@ const InnerDataTable = <T extends Record<string, any>>({
   defaultGrouping = [],
   groupingExpand,
   tableContainerProps,
+  withPagination = true,
+  pageSize = 15,
   tableOptions
 }: DataTableProps<T>): React.ReactElement => {
   const initialState: Partial<TableState> = {
     pagination: {
-      // Can't be data.length by default because it won't account for placeholder cells
-      // when rows are grouped
-      // TODO: Implement pagination
-      pageSize: 99999999,
+      pageSize: withPagination ? pageSize : -1,
       pageIndex: 0
     }
   }
@@ -133,44 +145,44 @@ const InnerDataTable = <T extends Record<string, any>>({
                 bgcolor: 'action.hover'
               }}
             >
-              {headerGroup.headers.map((header) => {
-                return (
-                  <TableCell
-                    key={header.id}
-                    colSpan={header.colSpan}
-                    width={header.getSize()}
-                    variant='head'
-                  >
-                    {header.isPlaceholder ? null : (
-                      <Box>
-                        <Typography
-                          variant='body1'
-                          sx={{
-                            fontWeight: 600
-                          }}
-                        >
-                          {header.column.getCanGroup() ? (
-                            <DataTableGroupToggle header={header} />
-                          ) : null}
-                          {flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
-                        </Typography>
-                      </Box>
-                    )}
-                  </TableCell>
-                )
-              })}
+              {headerGroup.headers.map((header) => (
+                <TableCell
+                  key={header.id}
+                  colSpan={header.colSpan}
+                  width={header.getSize()}
+                  variant='head'
+                >
+                  {header.isPlaceholder ? null : (
+                    <Box>
+                      <Typography
+                        variant='body1'
+                        sx={{
+                          fontWeight: 600
+                        }}
+                      >
+                        {header.column.getCanGroup() ? (
+                          <DataTableGroupToggle header={header} />
+                        ) : null}
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                      </Typography>
+                    </Box>
+                  )}
+                </TableCell>
+              ))}
             </TableRow>
           ))}
         </TableHead>
 
         <TableBody>
-          {table.getRowModel().rows.map((row) => {
-            return <DataTableRow row={row} key={row.id} />
-          })}
+          {table.getRowModel().rows.map((row) => (
+            <DataTableRow row={row} key={row.id} />
+          ))}
         </TableBody>
+
+        {withPagination && <DataTablePagination table={table} />}
       </Table>
     </TableContainer>
   )
