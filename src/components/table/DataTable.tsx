@@ -11,11 +11,12 @@ import {
   getPaginationRowModel,
   useReactTable
 } from '@tanstack/react-table'
-import { TableOptions, TableState } from '@tanstack/table-core'
+import { Table, TableOptions, TableState } from '@tanstack/table-core'
 
 import {
-  Table,
+  Table as MuiTable,
   TableBody,
+  TableCell,
   TableContainer,
   TableContainerProps,
   TableHead,
@@ -29,9 +30,7 @@ import DataTableRow from './DataTableRow'
 import DataTableSearch, { fuzzyFilter } from './DataTableSearch'
 import { DataTableProvider } from './useDataTable'
 
-export type DataModel = {
-  [key: string]: any
-}
+export type DataModel = Record<string, any>
 
 export type DataTableProps<T> = {
   columns: ColumnDef<T>[]
@@ -101,12 +100,22 @@ export type DataTableProps<T> = {
    * @default true
    */
   highlightOnHover?: boolean
+  /**
+   * Custom header items to render in the table header
+   */
+  headerItems?: CustomHeaderItem<T>[]
 }
 
-const InnerDataTable = <T extends Record<string, any>>({
+export type CustomHeaderItem<T> = {
+  id: string
+  render: (table: Table<T>) => React.ReactNode
+}
+
+const InnerDataTable = <T extends DataModel>({
   columns,
   data,
   defaultGrouping = [],
+  headerItems = [],
   groupingExpand,
   tableContainerProps,
   withPagination = true,
@@ -151,14 +160,20 @@ const InnerDataTable = <T extends Record<string, any>>({
 
   return (
     <TableContainer {...tableContainerProps}>
-      <Table stickyHeader>
+      <MuiTable stickyHeader>
         <TableHead>
-          {searchable && (
+          {(searchable || headerItems.length > 0) && (
             <TableRow>
-              <DataTableSearch
-                table={table}
-                searchInputProps={searchInputProps}
-              />
+              {searchable && (
+                <DataTableSearch
+                  table={table}
+                  searchInputProps={searchInputProps}
+                />
+              )}
+
+              {headerItems.map((item) => (
+                <TableCell key={item.id}>{item.render(table)}</TableCell>
+              ))}
             </TableRow>
           )}
 
@@ -172,12 +187,12 @@ const InnerDataTable = <T extends Record<string, any>>({
         </TableBody>
 
         {withPagination && <DataTablePagination table={table} />}
-      </Table>
+      </MuiTable>
     </TableContainer>
   )
 }
 
-const DataTable = <T extends Record<string, any>>(
+const DataTable = <T extends DataModel>(
   props: DataTableProps<T>
 ): React.ReactElement => (
   <DataTableProvider

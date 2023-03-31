@@ -9,6 +9,7 @@ import {
 } from '@mui/icons-material'
 import {
   Avatar,
+  Button,
   Chip,
   Grid,
   ListItem,
@@ -256,6 +257,34 @@ Searchable.args = {
   searchInputProps: {
     placeholder: 'Search on any column'
   }
+}
+
+export const CustomHeaderItems = Template.bind({})
+CustomHeaderItems.args = {
+  defaultGrouping: ['manager'],
+  groupingExpand: true,
+  headerItems: [
+    {
+      id: 'filter-manager',
+      render() {
+        return (
+          <Button color='primary' variant='outlined'>
+            Do Custom Thing
+          </Button>
+        )
+      }
+    },
+    {
+      id: 'filter-position',
+      render() {
+        return (
+          <Button color='secondary' variant='outlined'>
+            Do Another Thing
+          </Button>
+        )
+      }
+    }
+  ]
 }
 
 export const Pagination = Template.bind({})
