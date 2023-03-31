@@ -46,7 +46,7 @@ const data: Application[] = [
     status: 'Active',
     linkedinUrl: 'https://www.linkedin.com/in/john-doe-fake-linkedin/',
     phoneNumber: '5511123456789',
-    email: 'foobarfakeemail@gmail.com',
+    email: 'foobarfakeemail2@gmail.com',
     position: 'Dev'
   },
   {
@@ -246,6 +246,16 @@ Ungrouped.args = {}
 export const GroupedDataManualExpanding = Template.bind({})
 GroupedDataManualExpanding.args = {
   defaultGrouping: ['manager']
+}
+
+export const Searchable = Template.bind({})
+Searchable.args = {
+  defaultGrouping: ['manager'],
+  groupingExpand: true,
+  searchable: true,
+  searchInputProps: {
+    placeholder: 'Search on any column'
+  }
 }
 
 export const Pagination = Template.bind({})

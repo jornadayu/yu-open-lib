@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { RankingInfo, rankItem } from '@tanstack/match-sorter-utils'
 import {
   ColumnDef,
   ExpandedState,
@@ -12,8 +13,14 @@ import {
   getPaginationRowModel,
   useReactTable
 } from '@tanstack/react-table'
-import { TableOptions, TableState } from '@tanstack/table-core'
+import {
+  FilterFn,
+  FilterFnOption,
+  TableOptions,
+  TableState
+} from '@tanstack/table-core'
 
+import { Search } from '@mui/icons-material'
 import {
   Box,
   Table,
@@ -23,6 +30,8 @@ import {
   TableContainerProps,
   TableHead,
   TableRow,
+  TextField,
+  TextFieldProps,
   Typography
 } from '@mui/material'
 import { useTheme } from '@mui/styles'
@@ -81,6 +90,7 @@ export type DataTableProps<T> = {
    * @default true
    */
   withPagination?: boolean
+
   /**
    * Page size when pagination is enabled
    *
@@ -88,11 +98,43 @@ export type DataTableProps<T> = {
    */
   pageSize?: number
   /**
+   * Add search input to DataTable?
+   *
+   * @default false
+   */
+  searchable?: boolean
+  /**
+   * Props to pass to search input, if 'searchable' is enabled
+   */
+  searchInputProps?: Partial<TextFieldProps>
+  /**
    * Highlight rows (including grouped rows) when hovering them?
    *
    * @default true
    */
   highlightOnHover?: boolean
+}
+
+const fuzzyFilter: FilterFnOption<any> = (row, columnId, value, addMeta) => {
+  // Rank the item
+  const itemRank = rankItem(row.getValue(columnId), value)
+
+  // Store the itemRank info
+  addMeta({
+    itemRank
+  })
+
+  // Return if the item should be filtered in/out
+  return itemRank.passed
+}
+
+declare module '@tanstack/table-core' {
+  interface FilterFns {
+    fuzzy?: FilterFn<unknown>
+  }
+  interface FilterMeta {
+    itemRank: RankingInfo
+  }
 }
 
 const InnerDataTable = <T extends Record<string, any>>({
@@ -103,6 +145,8 @@ const InnerDataTable = <T extends Record<string, any>>({
   tableContainerProps,
   withPagination = true,
   pageSize = 15,
+  searchable = false,
+  searchInputProps,
   tableOptions
 }: DataTableProps<T>): React.ReactElement => {
   const initialState: Partial<TableState> = {
@@ -132,6 +176,10 @@ const InnerDataTable = <T extends Record<string, any>>({
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
+    globalFilterFn: fuzzyFilter as FilterFn<T>,
+    filterFns: {
+      fuzzy: fuzzyFilter
+    },
     ...tableOptions
   })
 
@@ -141,6 +189,30 @@ const InnerDataTable = <T extends Record<string, any>>({
     <TableContainer {...tableContainerProps}>
       <Table stickyHeader>
         <TableHead>
+          {searchable && (
+            <TableRow>
+              <TableCell>
+                <TextField
+                  fullWidth
+                  InputProps={{
+                    startAdornment: <Search sx={{ mr: 1 }} />,
+                    sx: {
+                      borderRadius: 4
+                    }
+                  }}
+                  sx={{ ml: -1.4 }}
+                  onChange={({ target }) => {
+                    table.setState((state) => ({
+                      ...state,
+                      globalFilter: target.value
+                    }))
+                  }}
+                  {...searchInputProps}
+                />
+              </TableCell>
+            </TableRow>
+          )}
+
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
