@@ -174,7 +174,9 @@ const InnerDataTable = <T extends DataModel>({
               )}
 
               {headerItems.map((item) => (
-                <TableCell key={item.id}>{item.render(table)}</TableCell>
+                <TableCell key={item.id} sx={{ border: 'none' }}>
+                  {item.render(table)}
+                </TableCell>
               ))}
             </TableRow>
           )}

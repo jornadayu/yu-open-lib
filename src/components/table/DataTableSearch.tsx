@@ -39,7 +39,7 @@ const DataTableSearch = <T extends Record<string, any>>({
 }: Props<T>): React.ReactElement => {
   return useMemo(
     () => (
-      <TableCell>
+      <TableCell sx={{ border: 'none' }}>
         <TextField
           fullWidth
           InputProps={{
