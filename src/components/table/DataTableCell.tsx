@@ -3,7 +3,7 @@ import React, { useMemo } from 'react'
 import { Cell, Row, flexRender } from '@tanstack/react-table'
 
 import { ExpandLess, ExpandMore } from '@mui/icons-material'
-import { Button, TableCell, TableCellProps } from '@mui/material'
+import { Button, TableCell, TableCellProps, useTheme } from '@mui/material'
 
 import { useDataTable } from './useDataTable'
 
@@ -12,24 +12,66 @@ export type Props<T extends Record<string, any>> = {
   row: Row<T>
 } & TableCellProps
 
+const isBlankCell = (cell?: Cell<any, any>): boolean => {
+  if (!cell) {
+    return true
+  }
+
+  return (
+    (cell?.column.getIsGrouped() && cell.getIsPlaceholder()) ||
+    cell?.getIsAggregated()
+  )
+}
+
 const DataTableCell = <T extends Record<string, any>>({
   cell,
   row,
   ...tableCellProps
-}: Props<T>): React.ReactElement => {
+}: Props<T>): React.ReactElement | null => {
   const { groupingExpand, showGroupingRowCount, allowManualGrouping } =
     useDataTable()
 
   const isExpanded = row.getIsExpanded()
 
-  return useMemo(
-    () => (
-      <TableCell {...tableCellProps}>
+  return useMemo(() => {
+    const canGropRow = groupingExpand === undefined || allowManualGrouping
+
+    if (isBlankCell(cell) && isExpanded && !canGropRow) {
+      // No need for placeholders if group rows are being merged
+      return null
+    }
+
+    // Merge rows from the same group, as long as they are expanded and
+    // grouping is not being manually controlled
+    const subRows = row
+      .getLeafRows()
+      .filter((leafRow) => leafRow.getIsExpanded())
+    const rowSpan =
+      !canGropRow && cell.getIsGrouped() && isExpanded ? subRows.length + 1 : 1
+
+    const theme = useTheme()
+
+    return (
+      <TableCell
+        {...tableCellProps}
+        rowSpan={rowSpan}
+        sx={{
+          // Borders around merged group rows
+          borderLeft:
+            cell.getIsGrouped() && !canGropRow
+              ? `1px solid ${theme.palette.divider}`
+              : undefined,
+          borderRight:
+            cell.getIsGrouped() && !canGropRow
+              ? `1px solid ${theme.palette.divider}`
+              : undefined
+        }}
+      >
         {cell.getIsGrouped() ? (
           // If it's a grouped cell, add an expander and row count
           <React.Fragment>
             {/* If a manual grouping expand state was passed, don't allow manually changing it */}
-            {groupingExpand === undefined || allowManualGrouping ? (
+            {canGropRow ? (
               <React.Fragment>
                 <Button
                   startIcon={isExpanded ? <ExpandLess /> : <ExpandMore />}
@@ -70,16 +112,15 @@ const DataTableCell = <T extends Record<string, any>>({
           flexRender(cell.column.columnDef.cell, cell.getContext())
         )}
       </TableCell>
-    ),
-    [
-      cell,
-      row,
-      isExpanded,
-      groupingExpand,
-      showGroupingRowCount,
-      allowManualGrouping
-    ]
-  )
+    )
+  }, [
+    cell,
+    row,
+    isExpanded,
+    groupingExpand,
+    showGroupingRowCount,
+    allowManualGrouping
+  ])
 }
 
 export default DataTableCell

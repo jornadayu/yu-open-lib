@@ -43,7 +43,7 @@ const data: Application[] = [
   {
     id: 1,
     manager: 'Foo',
-    name: 'John',
+    name: 'DevJohn',
     status: 'Active',
     linkedinUrl: 'https://www.linkedin.com/in/john-doe-fake-linkedin/',
     phoneNumber: '5511123456789',
@@ -53,7 +53,7 @@ const data: Application[] = [
   {
     id: 7,
     manager: 'Foo',
-    name: 'Doe',
+    name: 'DevFoo',
     status: 'Active',
     linkedinUrl: 'https://www.linkedin.com/in/john-doe-fake-linkedin/',
     phoneNumber: '5511123456789',
@@ -63,7 +63,7 @@ const data: Application[] = [
   {
     id: 2,
     manager: 'Foo',
-    name: 'Doe',
+    name: 'DevDoe',
     status: 'Placed',
     linkedinUrl: 'https://www.linkedin.com/in/john-doe-fake-linkedin/',
     phoneNumber: '5511123456789',
@@ -73,17 +73,17 @@ const data: Application[] = [
   {
     id: 3,
     manager: 'Bar',
-    name: 'Jane',
+    name: 'DataJane',
     status: 'Rejected',
     linkedinUrl: 'https://www.linkedin.com/in/john-doe-fake-linkedin/',
     phoneNumber: '5511123456789',
     email: 'foobarfakeemail@gmail.com',
-    position: 'Dev'
+    position: 'Data Analyst'
   },
   {
     id: 4,
     manager: 'Bar',
-    name: 'Doe',
+    name: 'DevOpsJoe',
     status: 'Active',
     linkedinUrl: 'https://www.linkedin.com/in/john-doe-fake-linkedin/',
     phoneNumber: '5511123456789',
@@ -93,7 +93,17 @@ const data: Application[] = [
   {
     id: 5,
     manager: 'Foo',
-    name: 'John',
+    name: 'LeadJohn',
+    status: 'Active',
+    linkedinUrl: 'https://www.linkedin.com/in/john-doe-fake-linkedin/',
+    phoneNumber: '5511123456789',
+    email: 'foobarfakeemail@gmail.com',
+    position: 'Lead'
+  },
+  {
+    id: 5,
+    manager: 'Foo',
+    name: 'LeadBar',
     status: 'Active',
     linkedinUrl: 'https://www.linkedin.com/in/john-doe-fake-linkedin/',
     phoneNumber: '5511123456789',
@@ -103,7 +113,7 @@ const data: Application[] = [
   {
     id: 6,
     manager: 'Foo',
-    name: 'Doe',
+    name: 'LeadDoe',
     status: 'Placed',
     linkedinUrl: 'https://www.linkedin.com/in/john-doe-fake-linkedin/',
     phoneNumber: '5511123456789',

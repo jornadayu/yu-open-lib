@@ -60,7 +60,7 @@ export type DataTableProps<T> = {
    */
   showGroupingRowCount?: boolean
   /**
-   * Optional customization options to pass directly to react-table 'useTable' hook
+   * Optional customization options to pass directly to react-table 'useReactTable' hook
    */
   tableOptions?: Partial<TableOptions<T>>
   /**
