@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 
-import { Row } from '@tanstack/react-table'
+import { GroupingState, Row } from '@tanstack/react-table'
 
 import { TableRow } from '@mui/material'
 
@@ -9,10 +9,12 @@ import { useDataTable } from './useDataTable'
 
 export type Props<T extends Record<string, any>> = {
   row: Row<T>
+  grouping: GroupingState
 }
 
 const DataTableRow = <T extends Record<string, any>>({
-  row
+  row,
+  grouping
 }: Props<T>): React.ReactElement => {
   const { highlightOnHover } = useDataTable()
   const isHovering = row.getIsSelected()
@@ -48,7 +50,9 @@ const DataTableRow = <T extends Record<string, any>>({
       // Row expansion is a dependency so cells are re-rendered when a row is expanded/collapsed
       row.getIsExpanded(),
       isHovering,
-      highlightOnHover
+      highlightOnHover,
+      // Re-render rows when grouping changes
+      grouping
     ]
   )
 }

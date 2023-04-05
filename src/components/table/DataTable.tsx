@@ -158,6 +158,8 @@ const InnerDataTable = <T extends DataModel>({
     ...tableOptions
   })
 
+  const { grouping } = table.getState()
+
   return (
     <TableContainer {...tableContainerProps}>
       <MuiTable stickyHeader>
@@ -182,7 +184,7 @@ const InnerDataTable = <T extends DataModel>({
 
         <TableBody>
           {table.getRowModel().rows.map((row) => (
-            <DataTableRow row={row} key={row.id} />
+            <DataTableRow row={row} key={row.id} grouping={grouping} />
           ))}
         </TableBody>
 
