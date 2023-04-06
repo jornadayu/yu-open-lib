@@ -20,6 +20,8 @@ export { default as CookiesWarning } from './components/cookies/CookiesWarning'
 export { default as YuAppBar } from './components/NavBar/YuAppBar'
 export type { Props as YuAppBarProps } from './components/NavBar/BaseAppBar'
 
+export { default as DataTable } from './components/table/DataTable'
+
 export { default as YuDrawer } from './components/NavBar/YuDrawer'
 export type {
   Props as YuMobileNavBarProps,
@@ -74,6 +76,8 @@ export { default as AverageStepDurationGraph } from './components/graphs/Average
 
 export { default as YuButton } from './components/yu/YuButton'
 export { default as YuFooter } from './components/yu/YuFooter'
+
+export { default as ContactChip } from './components/yu/ContactChip'
 
 export { default as CopyableButton } from './components/inputs/CopyableButton'
 

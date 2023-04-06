@@ -4,7 +4,7 @@ const {
 const path = require('path');
 module.exports = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
-  addons: ['@storybook/addon-links', '@storybook/addon-essentials', 'storybook-dark-mode', '@etchteam/storybook-addon-status', '@storybook/addon-storysource'],
+  addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@etchteam/storybook-addon-status', '@storybook/addon-storysource'],
   framework: {
     name: '@storybook/react-vite',
     options: {}
@@ -25,7 +25,7 @@ module.exports = {
       },
       // Add dependencies to pre-optimization
       optimizeDeps: {
-        include: ['storybook-dark-mode']
+        include: []
       },
       define: {
         'process.env.NODE_DEBUG': false,
