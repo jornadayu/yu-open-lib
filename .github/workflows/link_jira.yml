@@ -1,11 +1,14 @@
 name: Link Jira issues
-on: pull_request
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, labeled, unlabeled]
 
 jobs:
   change-pr-name:
     name: Change Pull Request name
     runs-on: ubuntu-latest
-    
+    if: "!contains(github.event.pull_request.labels.*.name, 'dependencies') && !contains(github.event.pull_request.labels.*.name, 'ignore-jira-link')"
+
     permissions:
       contents: read
       pull-requests: write
