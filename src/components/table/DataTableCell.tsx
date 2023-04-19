@@ -32,6 +32,7 @@ const DataTableCell = <T extends Record<string, any>>({
     useDataTable()
 
   const isExpanded = row.getIsExpanded()
+  const theme = useTheme()
 
   return useMemo(() => {
     const canGropRow = groupingExpand === undefined || allowManualGrouping
@@ -48,8 +49,6 @@ const DataTableCell = <T extends Record<string, any>>({
       .filter((leafRow) => leafRow.getIsExpanded())
     const rowSpan =
       !canGropRow && cell.getIsGrouped() && isExpanded ? subRows.length + 1 : 1
-
-    const theme = useTheme()
 
     return (
       <TableCell
