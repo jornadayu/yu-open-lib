@@ -19,25 +19,23 @@ const Template: StoryFn<typeof YuWordCloud> = (args) => (
   </Grid>
 )
 
-const randomValue = () => Math.floor(Math.random() * (100 - 5) + 5)
-
 const words: Props['words'] = [
-  { text: 'Stuff', value: randomValue() },
-  { text: 'Other', value: randomValue() },
-  { text: 'Computer', value: randomValue() },
-  { text: 'Headset', value: randomValue() },
-  { text: 'Video', value: randomValue() },
-  { text: 'Monitor', value: randomValue() },
-  { text: 'People', value: randomValue() },
-  { text: 'Shirt', value: randomValue() },
-  { text: 'Umbrella', value: randomValue() },
-  { text: 'Another', value: randomValue() },
-  { text: 'Day', value: randomValue() },
-  { text: 'Thing', value: randomValue() },
-  { text: 'Car', value: randomValue() },
-  { text: 'House', value: randomValue() },
-  { text: 'Person', value: randomValue() },
-  { text: 'Light', value: randomValue() }
+  { text: 'Stuff', value: 41 },
+  { text: 'Other', value: 46 },
+  { text: 'Computer', value: 65 },
+  { text: 'Headset', value: 91 },
+  { text: 'Video', value: 7 },
+  { text: 'Monitor', value: 93 },
+  { text: 'People', value: 79 },
+  { text: 'Shirt', value: 86 },
+  { text: 'Umbrella', value: 54 },
+  { text: 'Another', value: 23 },
+  { text: 'Day', value: 44 },
+  { text: 'Thing', value: 68 },
+  { text: 'Car', value: 36 },
+  { text: 'House', value: 62 },
+  { text: 'Person', value: 14 },
+  { text: 'Light', value: 14 }
 ]
 
 const valueSum = words.reduce((a, b) => a + (b.value || 0), 0)

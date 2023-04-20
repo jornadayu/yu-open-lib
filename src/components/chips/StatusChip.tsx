@@ -42,7 +42,7 @@ const StatusChip = <Status extends string = string>({
       return 'primary.main'
     }
     return 'primary.main'
-  }, [])
+  }, [errorValues, primaryValues, successValues, value, warningValues])
 
   return (
     <Tooltip title={tooltip || false} open={tooltip ? undefined : false}>

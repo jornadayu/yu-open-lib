@@ -17,7 +17,9 @@ const Template: StoryFn<typeof Welcome> = (args) => {
 }
 
 const baseProps: Partial<Props> = {
-  name: 'John Doe'
+  name: 'John Doe',
+  greeting: 'Hello',
+  emoji: '😜'
 }
 
 export const Base = Template.bind({})

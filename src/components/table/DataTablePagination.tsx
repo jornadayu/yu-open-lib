@@ -103,16 +103,15 @@ const DataTablePagination = <T extends Record<string, any>>({
 }: DataTablePaginationProps<T>): React.ReactElement | null => {
   const fullRowLength = table.getPrePaginationRowModel().rows.length
   const pageSize = table.getState().pagination.pageSize
-
-  if (fullRowLength < pageSize) {
-    // No need to paginate if there's not enough rows for a second page
-    return null
-  }
-
   const pageIndex = table.getState().pagination.pageIndex
 
-  return useMemo(
-    () => (
+  return useMemo(() => {
+    if (fullRowLength < pageSize) {
+      // No need to paginate if there's not enough rows for a second page
+      return null
+    }
+
+    return (
       <TableFooter>
         <TableRow>
           <TablePagination
@@ -133,9 +132,8 @@ const DataTablePagination = <T extends Record<string, any>>({
           />
         </TableRow>
       </TableFooter>
-    ),
-    [fullRowLength, pageSize, pageIndex]
-  )
+    )
+  }, [fullRowLength, pageSize, pageIndex, table])
 }
 
 export default DataTablePagination

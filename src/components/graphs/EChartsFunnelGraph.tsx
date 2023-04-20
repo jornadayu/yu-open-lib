@@ -90,7 +90,7 @@ const EChartsFunnelGraph: React.FC<Props> = ({
     }
 
     return filteredData.map((d) => ({ ...d, name: d.label }))
-  }, [data])
+  }, [allowEmptyValues, data])
 
   const smoothedData = useMemo(
     () =>

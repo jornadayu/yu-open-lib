@@ -92,7 +92,7 @@ const AverageStepDurationGraph: React.FC<AverageStepDurationGraphProps> = ({
     }
 
     return toHeatmapData(steps)
-  }, [steps])
+  }, [legend, steps, vertical])
   const nivoTheme = useNivoTheme()
 
   const axisTopRotation = vertical ? 0 : -25

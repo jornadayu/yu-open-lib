@@ -73,7 +73,7 @@ const CookiesWarning: React.FC<Props> = ({ url, locale }) => {
     if (language.includes('pt')) return 'pt'
     if (language.includes('es')) return 'es'
     return 'en'
-  }, [])
+  }, [locale])
 
   const handleCookiesAction = (accepted: boolean) => {
     localStorage.setItem('cookiesAccepted', accepted ? 'true' : 'false')

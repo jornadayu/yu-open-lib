@@ -81,7 +81,7 @@ const DiversityBarGraph: React.FC<Props> = ({
     mappedKeys.delete('total')
 
     return mappedKeys
-  }, [data])
+  }, [data, key])
 
   const barLabel = (datum: Datum) => {
     const start = `${truncatedText(datum.id.toString(), 20)}:`

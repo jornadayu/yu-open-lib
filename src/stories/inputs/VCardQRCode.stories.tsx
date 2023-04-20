@@ -29,7 +29,7 @@ const baseProps: Partial<Props> = {
     email: 'some_email@email.com',
     phoneNumber: '+5511123456789'
   },
-  revisionDate: new Date()
+  revisionDate: new Date('2021-01-01')
 }
 
 export const Example = Template.bind({})
