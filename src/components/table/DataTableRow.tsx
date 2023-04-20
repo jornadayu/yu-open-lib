@@ -19,6 +19,8 @@ const DataTableRow = <T extends Record<string, any>>({
   const { highlightOnHover } = useDataTable()
   const isHovering = row.getIsSelected()
 
+  const expandedRow = row.getIsExpanded()
+
   return useMemo(
     () => (
       <TableRow
@@ -45,10 +47,13 @@ const DataTableRow = <T extends Record<string, any>>({
         })}
       </TableRow>
     ),
+    // WARN: When changing this component, re-enable the exhaustive-deps rule temporarily
+    // to make sure the useMemo dependencies make sense, take the comments below into consideration
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [
       row,
       // Row expansion is a dependency so cells are re-rendered when a row is expanded/collapsed
-      row.getIsExpanded(),
+      expandedRow,
       isHovering,
       highlightOnHover,
       // Re-render rows when grouping changes

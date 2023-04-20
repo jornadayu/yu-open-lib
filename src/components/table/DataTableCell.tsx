@@ -118,7 +118,9 @@ const DataTableCell = <T extends Record<string, any>>({
     isExpanded,
     groupingExpand,
     showGroupingRowCount,
-    allowManualGrouping
+    allowManualGrouping,
+    theme.palette.divider,
+    tableCellProps
   ])
 }
 
