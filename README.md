@@ -112,4 +112,4 @@ const App = () => {
 
 ## License
 
-UNLICENSED © [jornadayu](https://github.com/jornadayu)
+MIT © [YU Tecnologia e Consultoria](https://github.com/jornadayu/LICENSE)
