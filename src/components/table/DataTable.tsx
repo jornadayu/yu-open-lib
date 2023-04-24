@@ -21,7 +21,8 @@ import {
   TableContainerProps,
   TableHead,
   TableRow,
-  TextFieldProps
+  TextFieldProps,
+  useTheme
 } from '@mui/material'
 
 import DataTableHeader from './DataTableHeader'
@@ -159,6 +160,7 @@ const InnerDataTable = <T extends DataModel>({
   })
 
   const { grouping } = table.getState()
+  const theme = useTheme()
 
   return (
     <TableContainer {...tableContainerProps}>
@@ -184,7 +186,11 @@ const InnerDataTable = <T extends DataModel>({
           <DataTableHeader table={table} />
         </TableHead>
 
-        <TableBody>
+        <TableBody
+          sx={{
+            bgcolor: theme.palette.background.default
+          }}
+        >
           {table.getRowModel().rows.map((row) => (
             <DataTableRow row={row} key={row.id} grouping={grouping} />
           ))}
