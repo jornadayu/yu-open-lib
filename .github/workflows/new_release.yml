@@ -85,7 +85,7 @@ jobs:
           git commit --amend --no-edit
 
       - name: Publish package
-        run: yarn publish
+        run: yarn publish --provenance --access public
         if:  ${{ github.event.inputs.fakeDeploy == 'false' }}
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
