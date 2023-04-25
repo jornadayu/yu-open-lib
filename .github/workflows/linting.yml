@@ -71,6 +71,6 @@ jobs:
 
             | Type | Size |
             | --- | --- |
-            | gzip | ${{ steps.build_bundle_size.outputs.gzipSize }} | 
+            | gzip | :package: ${{ steps.build_bundle_size.outputs.gzipSize }} | 
 
           edit-mode: replace
