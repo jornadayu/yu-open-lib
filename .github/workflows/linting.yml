@@ -43,5 +43,34 @@ jobs:
       - name: Run TypeScript Type-checking
         run: yarn run tsc --noEmit
 
-      - name: Build
-        run: yarn build
+      - name: Build with bundle size grep by "dist/index.js"
+        id: build_bundle_size
+        shell: bash
+        run: |
+          BUILD_OUTPUT=$(yarn build)
+          GZIP_SIZE=$(cat -v <<< "$BUILD_OUTPUT" | grep 'index.js[^ ]*gz' | sed -r 's/.*\^\[\[31m([0-9]+) kB\^\[\[39m.*/\1 kB/')
+          echo "::set-output name=gzipSize::$GZIP_SIZE"
+
+      - name: Find Comment
+        uses: peter-evans/find-comment@a54c31d7fa095754bfef525c0c8e5e5674c4b4b1
+        id: fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: Bundle size
+  
+      - name: Create or update comment
+        uses: peter-evans/create-or-update-comment@700b7747569afe6451120008543f9dda464be6fc
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            **Bundle size**
+
+            ---
+
+            | Type | Size |
+            | --- | --- |
+            | gzip | ${{ steps.build_bundle_size.outputs.gzipSize }} | 
+
+          edit-mode: replace
