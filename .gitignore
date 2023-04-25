@@ -23,6 +23,9 @@ yarn-error.log*
 
 tmp/
 
-#storybook
+# storybook
 storybook-static
 build-storybook.log
+
+# bundle analyzer
+bundle_analyzer.html

@@ -85,7 +85,7 @@ jobs:
           git commit --amend --no-edit
 
       - name: Publish package
-        run: yarn publish
+        run: yarn publish --provenance --access public
         if:  ${{ github.event.inputs.fakeDeploy == 'false' }}
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
@@ -107,6 +107,8 @@ jobs:
         if:  ${{ github.event.inputs.fakeDeploy == 'false' }}
         with:
           tag_name: v${{ fromJson(steps.new_version.outputs.packageJson).version }}
+          files: |
+            dist/*
           body: |
             https://www.npmjs.com/package/yu-open-lib/v/${{ fromJson(steps.new_version.outputs.packageJson).version }}
 

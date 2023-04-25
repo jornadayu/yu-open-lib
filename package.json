@@ -3,7 +3,7 @@
   "version": "3.0.2",
   "description": "A collection of React components, helpers and assets used at YU",
   "author": "jornadayu",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/jornadayu/yu-open-lib"
@@ -143,6 +143,7 @@
     "react-dropzone": "^12.0.4",
     "react-toast-notifications": "^2.4.0",
     "react-wordcloud": "^1.2.7",
+    "rollup-plugin-visualizer": "^5.9.0",
     "sass": "^1.32.8",
     "storybook": "^7.0.0",
     "typescript": "^4.9.5",

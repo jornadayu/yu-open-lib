@@ -6,6 +6,14 @@ export default (): UserConfigExport => ({
   plugins: [
     // https://github.com/vitejs/vite/issues/3409
     viteCommonjs()
+    // Uncomment to generate bundle visualizer
+    // visualizer({
+    //   template: 'treemap', // or sunburst
+    //   open: true,
+    //   gzipSize: true,
+    //   brotliSize: true,
+    //   filename: 'bundle_analyzer.html'
+    // }) as PluginOption
   ],
   build: {
     sourcemap: true,
@@ -26,7 +34,11 @@ export default (): UserConfigExport => ({
         'react-dom',
         'echarts-for-react/lib/core',
         // https://github.com/transitive-bullshit/react-modern-library-boilerplate/issues/29
-        'react-is'
+        'react-is',
+        /@mui/,
+        /@nivo/,
+        /echarts/,
+        /zrender/
       ]
     }
   }
