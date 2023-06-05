@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Meta, StoryFn } from '@storybook/react'
+import { CellContext } from '@tanstack/react-table'
 
 import {
   Badge as BadgeIcon,
@@ -153,7 +154,7 @@ const Template: StoryFn<typeof DataTable> = (args) => {
           {
             accessorKey: 'manager',
             header: 'Manager',
-            cell: (info) => (
+            cell: (info: CellContext<Application, React.ReactNode>) => (
               <ListItem disablePadding>
                 <ListItemAvatar>
                   <Avatar />

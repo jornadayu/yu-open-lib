@@ -15,7 +15,7 @@ export type BaseDialogProps = {
   open: boolean
   onClose?: () => void
   title: string
-  actions?: React.ReactChild | React.ReactChildren | (() => React.ReactElement)
+  actions?: React.ReactNode
   /** @default false */
   loading?: boolean
 } & DialogProps

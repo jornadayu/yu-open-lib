@@ -23,6 +23,7 @@ export type Props = {
   useKeybinding?: boolean
   /** @default true */
   active?: boolean
+  children?: React.ReactNode
 }
 
 /**
