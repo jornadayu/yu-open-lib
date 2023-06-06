@@ -72,6 +72,7 @@ export type Props = {
    * @default false
    */
   withMobileIcons?: boolean
+  children?: React.ReactNode
 }
 
 export type ButtonProps = {

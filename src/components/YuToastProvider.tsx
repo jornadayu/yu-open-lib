@@ -30,6 +30,7 @@ export const ToastContainer: React.FC<ToastContainerProps> = (props) => (
 
 type ProviderProps = {
   autoDismissTimeout?: number
+  children: React.ReactNode
 }
 
 /**

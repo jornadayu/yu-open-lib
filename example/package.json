@@ -22,7 +22,7 @@
     "echarts-for-react": "^3.0.1",
     "react": "link:../node_modules/react",
     "react-dom": "link:../node_modules/react-dom",
-    "react-router-dom": "^5.2.0",
+    "react-router-dom": "^5.3.3",
     "react-scripts": "^4.0.3",
     "react-toast-notifications": "link:../node_modules/react-toast-notifications",
     "typescript": "link:../node_modules/typescript",
@@ -46,5 +46,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "resolutions": {
+    "@types/react": "link:../node_modules/@types/react"
   }
 }

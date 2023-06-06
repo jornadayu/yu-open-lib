@@ -1,13 +1,19 @@
 name: Link Jira issues
 on:
   pull_request:
-    types: [opened, reopened, synchronize, labeled, unlabeled]
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+      - labeled
+      - unlabeled
 
 jobs:
   change-pr-name:
     name: Change Pull Request name
     runs-on: ubuntu-latest
-    if: "!contains(github.event.pull_request.labels.*.name, 'dependencies') && !contains(github.event.pull_request.labels.*.name, 'ignore-jira-link')"
+    if: github.event.pull_request.draft == false && !contains(github.event.pull_request.labels.*.name, 'dependencies') && !contains(github.event.pull_request.labels.*.name, 'ignore-jira-link')
 
     permissions:
       contents: read
@@ -33,12 +39,12 @@ jobs:
 
     - name: Remove old link
       shell: bash
-      run: echo "##[set-output name=title;]$(echo ${{ github.event.pull_request.title }} | sed 's/\[.*\] - //')"
+      run: echo "##[set-output name=title;]$(echo "${{ github.event.pull_request.title }}" | sed 's/\[.*\] - //')"
       id: clean_title
 
     - name: Generate pull request title
       shell: bash
-      run: echo "##[set-output name=title;]$(git log ${GITHUB_BASE_REF#refs/heads/}..${{ steps.extract_branch.outputs.branch }} --no-merges --grep='YURI2' | grep -Eo 'YURI2-[0-9]{1,10}' | tr "\n" "," | sed 's/.$/] - ${{ steps.clean_title.outputs.title }}/' | sed 's/^/[/' | sed 's/,/, /')"
+      run: echo "##[set-output name=title;]$(git log ${GITHUB_BASE_REF#refs/heads/}..${{ steps.extract_branch.outputs.branch }} --no-merges --grep='YURI' | grep -Eo 'YURI.*-[0-9]{1,10}' | awk '{for (i=1;i<=NF;i++) if (!a[$i]++) printf("%s%s",$i,FS)}' | tr " " "," | sed 's/.$/] - ${{ steps.clean_title.outputs.title }}/' | sed 's/^/[/' | sed 's/,/, /')"
       id: generate_title
 
     - name: PR title updater

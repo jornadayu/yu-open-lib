@@ -11,6 +11,7 @@ export type BaseProps = {
   color: string
   /** @default false */
   isPercentage?: boolean
+  children?: React.ReactNode
 }
 
 export type Props = BaseProps &

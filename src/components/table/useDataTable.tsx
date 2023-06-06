@@ -8,6 +8,7 @@ export type DataTableState = {
   allowManualGrouping: DataTableProps<any>['allowManualGrouping']
   showGroupingIndex: DataTableProps<any>['showGroupingIndex']
   highlightOnHover: DataTableProps<any>['highlightOnHover']
+  children: React.ReactNode
 }
 
 const dataTableContext = createContext<Partial<DataTableState>>({})

@@ -41,7 +41,7 @@ const Template: StoryFn<typeof BaseDialog> = (args) => {
 const baseProps: BaseDialogProps = {
   open: false,
   title: 'Dialog Title',
-  actions: () => (
+  actions: (
     <React.Fragment>
       <Button>Yes</Button>
       <Button>No</Button>

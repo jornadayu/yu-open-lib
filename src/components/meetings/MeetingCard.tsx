@@ -61,6 +61,7 @@ export type Props = {
   statusChipProps?: Partial<ChipProps>
   inviteButtonProps?: Partial<ButtonProps>
   sx?: SxProps<Theme>
+  children?: React.ReactNode
 }
 
 const MeetingCard: React.FC<Props> = ({
