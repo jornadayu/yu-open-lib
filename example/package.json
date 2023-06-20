@@ -23,7 +23,7 @@
     "react": "link:../node_modules/react",
     "react-dom": "link:../node_modules/react-dom",
     "react-router-dom": "^5.3.3",
-    "react-scripts": "^4.0.3",
+    "react-scripts": "^5.0.0",
     "react-toast-notifications": "link:../node_modules/react-toast-notifications",
     "typescript": "link:../node_modules/typescript",
     "yu-open-lib": "link:.."
