@@ -254,19 +254,30 @@ const BaseAppBar: React.FC<Props> = ({
                 {navbarLogo}
               </IconButton>
 
-              {leftItems.map((button) => (
-                <ToolbarButton
-                  button={button}
-                  key={button.path || button.text}
-                />
-              ))}
+              {leftItems.map((button) =>
+                button.renderItem ? (
+                  button.renderItem()
+                ) : (
+                  <ToolbarButton
+                    button={button}
+                    key={button.path || button.text}
+                  />
+                )
+              )}
             </Typography>
 
             {children}
 
-            {rightItems.map((button) => (
-              <ToolbarButton button={button} key={button.path || button.text} />
-            ))}
+            {rightItems.map((button) =>
+              button.renderItem ? (
+                button.renderItem()
+              ) : (
+                <ToolbarButton
+                  button={button}
+                  key={button.path || button.text}
+                />
+              )
+            )}
           </Toolbar>
 
           <div className='gradient-line' />
