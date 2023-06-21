@@ -50,9 +50,13 @@ const NavListItem: React.FC<NavbarItem> = ({
 
 const ListItems: React.FC<ListProps> = ({ buttons }) => (
   <React.Fragment>
-    {buttons.map((button) => (
-      <NavListItem key={button.path || button.text} {...button} />
-    ))}
+    {buttons.map((button) =>
+      button.renderItem ? (
+        button.renderItem()
+      ) : (
+        <NavListItem key={button.path || button.text} {...button} />
+      )
+    )}
   </React.Fragment>
 )
 
