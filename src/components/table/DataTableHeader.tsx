@@ -3,7 +3,7 @@ import React from 'react'
 import { Table, flexRender } from '@tanstack/react-table'
 
 import { Box, TableCell, TableRow, Typography } from '@mui/material'
-import { useTheme } from '@mui/styles'
+import { useTheme } from '@mui/material/styles'
 
 import DataTableGroupToggle from './DataTableGroupToggle'
 

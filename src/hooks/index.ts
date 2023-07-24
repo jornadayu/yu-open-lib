@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
-import { useMediaQuery, useTheme } from '@mui/material'
+import { useMediaQuery } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
 
 /**
  * Viewport hook to use for mobile-specific features, using MUI viewport breakpoints

@@ -1,6 +1,7 @@
 import React from 'react'
 
-import { Fade, Grid, LinearProgress, useTheme } from '@mui/material'
+import { Fade, Grid, LinearProgress } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
 
 export type Props = {
   /** @default false */

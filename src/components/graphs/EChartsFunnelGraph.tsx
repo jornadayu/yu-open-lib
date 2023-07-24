@@ -13,7 +13,7 @@ import {
 import * as echarts from 'echarts/core'
 import { SVGRenderer } from 'echarts/renderers'
 
-import { useTheme } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
 
 import { useEchartsTheme } from '../../hooks/echarts'
 

@@ -3,7 +3,8 @@ import React, { useMemo } from 'react'
 import { Cell, Row, flexRender } from '@tanstack/react-table'
 
 import { ExpandLess, ExpandMore } from '@mui/icons-material'
-import { Button, TableCell, TableCellProps, useTheme } from '@mui/material'
+import { Button, TableCell, TableCellProps } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
 
 import { useDataTable } from './useDataTable'
 

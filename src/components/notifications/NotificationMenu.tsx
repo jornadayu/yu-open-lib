@@ -10,10 +10,9 @@ import {
   Popover,
   Switch,
   Typography,
-  useMediaQuery,
-  useTheme
+  useMediaQuery
 } from '@mui/material'
-import { styled } from '@mui/material/styles'
+import { styled, useTheme } from '@mui/material/styles'
 import { SxProps, Theme } from '@mui/system'
 
 import NotificationItem from './NotificationItem'

@@ -24,6 +24,10 @@
   },
   "plugins": ["@typescript-eslint", "unused-imports", "react-hooks"],
   "rules": {
+    "no-restricted-imports": [
+      "error", {"paths": [
+       {"name": "@mui/material", "importNames": ["useTheme"]}]}
+    ],
     "no-unused-expressions": "off",
     "no-unused-vars": "off",
     "react-hooks/rules-of-hooks": "error",
