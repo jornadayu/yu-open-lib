@@ -7,7 +7,7 @@ import 'tippy.js/dist/tippy.css'
 import 'tippy.js/themes/light.css'
 import 'tippy.js/themes/material.css'
 
-import { useTheme } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
 
 import { removeStopWords } from '../../helpers/stopwords'
 

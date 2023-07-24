@@ -21,9 +21,9 @@ import {
   TableContainerProps,
   TableHead,
   TableRow,
-  TextFieldProps,
-  useTheme
+  TextFieldProps
 } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
 
 import DataTableHeader from './DataTableHeader'
 import DataTablePagination from './DataTablePagination'

@@ -1,14 +1,7 @@
 import React from 'react'
 
-import {
-  Box,
-  Button,
-  Link,
-  Snackbar,
-  Typography,
-  styled,
-  useTheme
-} from '@mui/material'
+import { Box, Button, Link, Snackbar, Typography, styled } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
 
 import SalmaoIconNegative from '../../assets/icons/yu/negative/SalmaoIcon'
 import SalmaoIconPositive from '../../assets/icons/yu/positive/SalmaoIcon'

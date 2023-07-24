@@ -1,4 +1,4 @@
-import { useTheme } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
 
 export const useEchartsTheme = (): any => {
   const theme = useTheme()

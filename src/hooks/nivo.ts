@@ -1,7 +1,7 @@
 import { Theme } from '@nivo/core'
 import { LegendProps } from '@nivo/legends'
 
-import { useTheme } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
 
 export const legendProps: LegendProps = {
   anchor: 'bottom',

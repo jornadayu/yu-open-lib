@@ -1,6 +1,7 @@
 import React from 'react'
 
-import { Grid, GridProps, Paper, useTheme } from '@mui/material'
+import { Grid, GridProps, Paper } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
 
 type Props = {
   children: React.ReactNode
